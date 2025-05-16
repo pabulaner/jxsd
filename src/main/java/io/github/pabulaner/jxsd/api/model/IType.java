@@ -1,4 +1,4 @@
-package io.github.pabulaner.jxsd.api;
+package io.github.pabulaner.jxsd.api.model;
 
 import java.util.List;
 
@@ -7,8 +7,6 @@ public interface IType {
     IName getName();
 
     IType getBase();
-
-    IPackage getPackage();
 
     List<IRestriction> getRestrictions();
 }

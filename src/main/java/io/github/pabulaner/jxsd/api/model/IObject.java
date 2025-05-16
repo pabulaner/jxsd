@@ -1,4 +1,4 @@
-package io.github.pabulaner.jxsd.api;
+package io.github.pabulaner.jxsd.api.model;
 
 public interface IObject {
 
