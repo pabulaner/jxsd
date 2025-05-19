@@ -1,5 +1,6 @@
 package io.github.pabulaner.jxsd.input.value;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class GroupValue extends Value {
@@ -15,8 +16,9 @@ public class GroupValue extends Value {
 
     private final List<Value> children;
 
-    public GroupValue(int minOccurs, int maxOccurs, Compositor compositor, List<Value> children) {
+    public GroupValue(BigInteger minOccurs, BigInteger maxOccurs, Compositor compositor, List<Value> children) {
         super(Kind.GROUP, minOccurs, maxOccurs);
+
         this.compositor = compositor;
         this.children = children;
     }

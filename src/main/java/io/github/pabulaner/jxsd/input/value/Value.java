@@ -1,5 +1,7 @@
 package io.github.pabulaner.jxsd.input.value;
 
+import java.math.BigInteger;
+
 public abstract class Value {
 
     public enum Kind {
@@ -10,11 +12,11 @@ public abstract class Value {
 
     private final Kind kind;
 
-    private final int minOccurs;
+    private final BigInteger minOccurs;
 
-    private final int maxOccurs;
+    private final BigInteger maxOccurs;
 
-    protected Value(Kind kind, int minOccurs, int maxOccurs) {
+    protected Value(Kind kind, BigInteger minOccurs, BigInteger maxOccurs) {
         this.kind = kind;
         this.minOccurs = minOccurs;
         this.maxOccurs = maxOccurs;
@@ -24,11 +26,11 @@ public abstract class Value {
         return kind;
     }
 
-    public int getMinOccurs() {
+    public BigInteger getMinOccurs() {
         return minOccurs;
     }
 
-    public int getMaxOccurs() {
+    public BigInteger getMaxOccurs() {
         return maxOccurs;
     }
 }

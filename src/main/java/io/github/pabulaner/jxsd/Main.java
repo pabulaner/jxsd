@@ -6,6 +6,6 @@ import org.xml.sax.SAXException;
 public class Main {
 
     public static void main(String[] args) throws SAXException {
-        new InputParser().parse(Main.class.getResource("/xsd/shared-documentPropertiesVariantTypes.xsd"));
+        new InputParser().parse(Main.class.getResource("/xsd/dml-chart.xsd"));
     }
 }

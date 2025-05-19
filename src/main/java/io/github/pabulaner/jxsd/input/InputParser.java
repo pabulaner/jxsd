@@ -33,9 +33,12 @@ import io.github.pabulaner.jxsd.input.value.Value;
 import io.github.pabulaner.jxsd.model.NameModel;
 import io.github.pabulaner.jxsd.model.PackageModel;
 import io.github.pabulaner.jxsd.model.TypeModel;
+import io.github.pabulaner.jxsd.parser.Parser;
+import io.github.pabulaner.jxsd.parser.SimpleParser;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +61,6 @@ public class InputParser implements IInputParser {
         parser.parse(url);
 
         XSSchemaSet set = parser.getResult();
-
         return parseSet(set);
     }
 
@@ -67,7 +69,8 @@ public class InputParser implements IInputParser {
         List<IClass> result = new ArrayList<>();
 
         set.getSchemas().forEach(schema -> {
-            schema.getSimpleTypes().values().forEach(this::parseType);
+            SimpleParser parser = new SimpleParser(null);
+            schema.getSimpleTypes().values().forEach(parser::parse);
             schema.getComplexTypes().values().forEach(this::parseType);
             List<IEnum> enums = schema.getSimpleTypes()
                     .values()
@@ -106,7 +109,7 @@ public class InputParser implements IInputParser {
         }
 
         // check if type is any type
-        if (type.getName() != null && type.getName().equals(ANY_SIMPLE_TYPE)) {
+        if (ANY_SIMPLE_TYPE.equals(type.getName())) {
             return null;
         }
 
@@ -163,17 +166,20 @@ public class InputParser implements IInputParser {
 
     private ValueType parseComplex(XSComplexType type, ValueType base) {
         String name = type.getName();
-        XSComplexType complexType = type.asComplexType();
         XSParticle particle = type.getContentType().asParticle();
 
-        List<AttributeValue> attributes = complexType.getAttributeUses()
+        List<AttributeValue> attributes = type.getAttributeUses()
                 .stream()
                 .map(XSAttributeUse::getDecl)
                 .map(decl -> {
                     ValueType declType = parseType(decl.getType());
                     String declName = decl.getName();
-                    String declDefaultValue = decl.getDefaultValue().value;
-                    String declFixedValue = decl.getFixedValue().value;
+                    String declDefaultValue = decl.getDefaultValue() != null
+                            ? decl.getDefaultValue().value
+                            : null;
+                    String declFixedValue = decl.getFixedValue() != null
+                            ? decl.getFixedValue().value
+                            : null;
 
                     return new AttributeValue(declType, declName, declDefaultValue, declFixedValue);
                 })
@@ -206,8 +212,13 @@ public class InputParser implements IInputParser {
     }
 
     private Value parseValue(XSParticle particle) {
-        int minOccurs = particle.getMinOccurs().intValue();
-        int maxOccurs = particle.getMaxOccurs().intValue();
+        // TODO: handle null particle -> simple type
+        if (particle == null) {
+            return null;
+        }
+
+        BigInteger minOccurs = particle.getMinOccurs();
+        BigInteger maxOccurs = particle.getMaxOccurs();
         XSTerm term = particle.getTerm();
 
         if (term.isModelGroup()) {

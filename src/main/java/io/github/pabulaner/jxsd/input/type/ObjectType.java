@@ -1,9 +1,7 @@
 package io.github.pabulaner.jxsd.input.type;
 
 import io.github.pabulaner.jxsd.input.value.AttributeValue;
-import io.github.pabulaner.jxsd.input.value.ElementValue;
 import io.github.pabulaner.jxsd.input.value.Value;
-import org.w3c.dom.Attr;
 
 import java.util.List;
 

@@ -9,7 +9,7 @@ public class AttributeValue extends ElementValue {
     private final String fixedValue;
 
     public AttributeValue(ValueType type, String name, String defaultValue, String fixedValue) {
-        super(-1, -1, type, name);
+        super(null, null, type, name);
 
         this.defaultValue = defaultValue;
         this.fixedValue = fixedValue;
