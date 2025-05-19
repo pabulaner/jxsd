@@ -34,4 +34,13 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="test">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="hello" type="xs:string"/>
+                <xs:element name="world" type="xs:int"/>
+            </xs:choice>
+            <xs:element name="what" type="xs:anyURI" minOccurs="10" maxOccurs="1000"/>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>

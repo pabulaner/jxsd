@@ -1,0 +1,11 @@
+package io.github.pabulaner.jxsd.impl.java;
+
+import io.github.pabulaner.jxsd.api.java.IJavaField;
+import io.github.pabulaner.jxsd.api.java.IJavaType;
+import io.github.pabulaner.jxsd.api.java.IJavaValidator;
+import io.github.pabulaner.jxsd.api.xsd.IType;
+
+import java.util.List;
+
+public record JavaFieldImpl(IJavaType type, String name, String value, List<IJavaValidator> validators) implements IJavaField {
+}
