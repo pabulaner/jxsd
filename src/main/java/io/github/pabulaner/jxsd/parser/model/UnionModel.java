@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.parser.model;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A class representing a union.
@@ -10,14 +10,14 @@ public class UnionModel extends Model {
     /**
      * The types of the union.
      */
-    private final List<Name> types;
+    private final Collection<Name> types;
 
-    public UnionModel(Name name, List<Name> types) {
+    public UnionModel(Name name, Collection<Name> types) {
         super(name);
         this.types = types;
     }
 
-    public List<Name> getTypes() {
+    public Collection<Name> getTypes() {
         return types;
     }
 }

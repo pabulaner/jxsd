@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.parser.model;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A class that represents a Java class.
@@ -10,43 +10,33 @@ public class ClassModel {
     /**
      * The parent of the class.
      */
-    private Name parent;
+    private final Name parent;
 
     /**
      * The inner classes of the class.
      */
-    private List<Name> inners;
+    private final Collection<Name> inners;
 
     /**
      * The fields of the class.
      */
-    private List<FieldModel> fields;
+    private final Collection<FieldModel> fields;
 
-    public ClassModel() {
+    public ClassModel(Name parent, Collection<Name> inners, Collection<FieldModel> fields) {
+        this.parent = parent;
+        this.inners = inners;
+        this.fields = fields;
     }
 
     public Name getParent() {
         return parent;
     }
 
-    public ClassModel setParent(Name parent) {
-        this.parent = parent;
-        return this;
-    }
-
-    public List<Name> getInners() {
+    public Collection<Name> getInners() {
         return inners;
     }
 
-    public void setInners(List<Name> inners) {
-        this.inners = inners;
-    }
-
-    public List<FieldModel> getFields() {
+    public Collection<FieldModel> getFields() {
         return fields;
-    }
-
-    public void setFields(List<FieldModel> fields) {
-        this.fields = fields;
     }
 }

@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.parser.model;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A class that represents a Java enum.
@@ -10,14 +10,14 @@ public class EnumModel extends Model {
     /**
      * The values of the enum.
      */
-    private final List<Name> values;
+    private final Collection<Name> values;
 
-    public EnumModel(Name name, List<Name> values) {
+    public EnumModel(Name name, Collection<Name> values) {
         super(name);
         this.values = values;
     }
 
-    public List<Name> getValues() {
+    public Collection<Name> getValues() {
         return values;
     }
 }

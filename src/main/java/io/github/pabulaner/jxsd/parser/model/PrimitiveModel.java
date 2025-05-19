@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.parser.model;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A class that represents a primitive data type.
@@ -15,9 +15,9 @@ public class PrimitiveModel extends Model {
     /**
      * The restrictions for the primitive.
      */
-    private final List<RestrictionModel> restrictions;
+    private final Collection<RestrictionModel> restrictions;
 
-    public PrimitiveModel(Name name, Name parent, List<RestrictionModel> restrictions) {
+    public PrimitiveModel(Name name, Name parent, Collection<RestrictionModel> restrictions) {
         super(name);
 
         this.parent = parent;
@@ -28,7 +28,7 @@ public class PrimitiveModel extends Model {
         return parent;
     }
 
-    public List<RestrictionModel> getRestrictions() {
+    public Collection<RestrictionModel> getRestrictions() {
         return restrictions;
     }
 }

@@ -5,6 +5,9 @@ package io.github.pabulaner.jxsd.parser.model;
  */
 public class Name {
 
+    /**
+     * The value of the name.
+     */
     private final String value;
 
     public Name(String value) {

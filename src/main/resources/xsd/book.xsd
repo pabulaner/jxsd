@@ -5,22 +5,29 @@
            elementFormDefault="qualified">
 
     <!-- Root element -->
-    <xs:complexType name="user">
-        <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="name" type="xs:string" />
-            <xs:element name="age" type="xs:int" />
-        </xs:sequence>
-        <xs:attribute name="id" type="xs:ID" use="required"/>
-    </xs:complexType>
+    <xs:simpleType name="ST_TextRotation">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:maxInclusive value="180"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:enumeration value="255"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
     <xs:complexType name="library">
         <xs:sequence>
             <xs:element name="book" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="title" type="library"/>
+                        <xs:element name="title" type="ST_TextRotation"/>
                         <xs:element name="author" type="xs:QName"/>
-                        <xs:element name="isbn" type="xs:base64Binary"/>
-                        <xs:element name="test" type="xs:hexBinary"/>
+                        <xs:element name="isbn" type="ST_TextRotation"/>
+                        <xs:element name="test" type="ST_TextRotation"/>
                     </xs:sequence>
                     <xs:attribute name="id" type="xs:ID" use="required"/>
                 </xs:complexType>

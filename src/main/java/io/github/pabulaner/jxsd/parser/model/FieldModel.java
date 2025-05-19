@@ -13,12 +13,20 @@ public class FieldModel extends Model {
     /**
      * The default value of the field.
      */
-    private final String value;
+    private final Name value;
 
-    public FieldModel(Name name, Name type, String value) {
+    public FieldModel(Name name, Name type, Name value) {
         super(name);
 
         this.type = type;
         this.value = value;
+    }
+
+    public Name getType() {
+        return type;
+    }
+
+    public Name getValue() {
+        return value;
     }
 }
