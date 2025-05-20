@@ -7,4 +7,6 @@ public interface IJavaType {
     String name();
 
     String parent();
+
+    boolean list();
 }

@@ -34,12 +34,12 @@ import java.util.stream.Collectors;
 
 public class XsdParser {
 
-    public Map<String, IModel> parse(URL url) throws SAXException {
+    public List<IModel> parse(URL url) throws SAXException {
         XSOMParser parser = new XSOMParser(SAXParserFactory.newInstance());
         parser.parse(url);
 
         XSSchemaSet set = parser.getResult();
-        Map<String, IModel> result = new HashMap<>();
+        List<IModel> result = new ArrayList<>();
 
         set.getSchemas().forEach(schema -> schema.getTypes()
                 .values()
@@ -47,7 +47,7 @@ public class XsdParser {
                 .map(xs -> xs.isSimpleType()
                         ? parseSimpleType(xs.asSimpleType())
                         : parseComplexType(xs.asComplexType()))
-                .forEach(model -> result.put(model.type().name(), model)));
+                .forEach(result::add));
 
         return result;
     }
@@ -139,6 +139,9 @@ public class XsdParser {
         XSTerm term = xs.getTerm();
         int minOccurs = xs.getMinOccurs().intValue();
         int maxOccurs = xs.getMaxOccurs().intValue();
+
+        if (minOccurs == -1) minOccurs = Integer.MAX_VALUE;
+        if (maxOccurs == -1) maxOccurs = Integer.MAX_VALUE;
 
         if (term.isElementDecl()) {
             XSElementDecl element = term.asElementDecl();

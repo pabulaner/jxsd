@@ -5,4 +5,6 @@ import java.util.List;
 public interface IJavaClass extends IJavaModel {
 
     List<IJavaField> fields();
+
+    List<IJavaModel> inners();
 }

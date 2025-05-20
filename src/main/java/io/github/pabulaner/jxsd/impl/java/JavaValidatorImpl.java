@@ -4,5 +4,5 @@ import io.github.pabulaner.jxsd.api.java.IJavaValidator;
 
 import java.util.Map;
 
-public record JavaValidatorImpl(String name, Map<String, String> values) implements IJavaValidator {
+public record JavaValidatorImpl(String name, String value) implements IJavaValidator {
 }

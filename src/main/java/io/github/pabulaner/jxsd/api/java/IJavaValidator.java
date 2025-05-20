@@ -6,5 +6,5 @@ public interface IJavaValidator {
 
     String name();
 
-    Map<String, String> values();
+    String value();
 }
