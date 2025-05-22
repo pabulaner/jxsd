@@ -1,19 +1,13 @@
 package io.github.pabulaner.jxsd.impl.out;
 
 import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.api.java.IJavaClass;
 import io.github.pabulaner.jxsd.api.java.IJavaField;
-import io.github.pabulaner.jxsd.api.java.IJavaModel;
-import io.github.pabulaner.jxsd.api.java.IJavaType;
 
 import javax.lang.model.element.Modifier;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 public class OutClassParser extends OutParser {
 
