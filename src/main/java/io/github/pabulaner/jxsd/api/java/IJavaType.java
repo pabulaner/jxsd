@@ -2,9 +2,9 @@ package io.github.pabulaner.jxsd.api.java;
 
 public interface IJavaType {
 
-    String name();
+    IJavaName name();
 
-    String parent();
+    IJavaName parent();
 
     boolean list();
 }

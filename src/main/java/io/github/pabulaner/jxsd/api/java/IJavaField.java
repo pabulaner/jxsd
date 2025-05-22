@@ -6,7 +6,7 @@ public interface IJavaField {
 
     IJavaType type();
 
-    String name();
+    IJavaName name();
 
     String value();
 

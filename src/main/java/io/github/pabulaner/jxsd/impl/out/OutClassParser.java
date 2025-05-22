@@ -31,11 +31,11 @@ public class OutClassParser extends OutParser {
     }
 
     private void parseGetter(TypeSpec.Builder builder, IJavaField field) {
-        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder("get" + getUpperName(field.name()))
+        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(field.name().withPrefix("get").raw())
                 .addModifiers(Modifier.PUBLIC)
                 .returns(getBase(field.type()));
 
-        methodBuilder.addStatement("return this.$L", field.name());
+        methodBuilder.addStatement("return this.$L", field.name().valid());
         builder.addMethod(methodBuilder.build());
     }
 

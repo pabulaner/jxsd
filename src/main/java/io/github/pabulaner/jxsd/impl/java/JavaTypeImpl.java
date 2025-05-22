@@ -1,6 +1,7 @@
 package io.github.pabulaner.jxsd.impl.java;
 
+import io.github.pabulaner.jxsd.api.java.IJavaName;
 import io.github.pabulaner.jxsd.api.java.IJavaType;
 
-public record JavaTypeImpl(String name, String parent, boolean list) implements IJavaType {
+public record JavaTypeImpl(IJavaName name, IJavaName parent, boolean list) implements IJavaType {
 }

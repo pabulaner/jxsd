@@ -54,7 +54,7 @@ public class JavaParser {
 
     private IJavaField parseElement(IXsdElementValue xsd) {
         IJavaType type = parseType(xsd.type(), xsd.maxOccurs() > 1);
-        return new JavaFieldImpl(type, xsd.name(), xsd.value(), new ArrayList<>());
+        return new JavaFieldImpl(type, new JavaNameImpl(xsd.name()), xsd.value(), new ArrayList<>());
     }
 
     private void parseGroup(IXsdGroupValue group, List<IJavaField> fields, List<IJavaModel> inners) {
@@ -63,6 +63,6 @@ public class JavaParser {
     }
 
     private IJavaType parseType(IXsdType xsd, boolean list) {
-        return new JavaTypeImpl(xsd.name(), xsd.parent(), list);
+        return new JavaTypeImpl(new JavaNameImpl(xsd.name()), new JavaNameImpl(xsd.parent()), list);
     }
 }

@@ -94,10 +94,6 @@ public class XsdParser {
     private IXsdComplexType parseComplexType(XSComplexType xs) {
         IXsdType type = parseType(xs);
 
-        if (type.name().equals("test")) {
-            System.out.println("test");
-        }
-
         List<IXsdValue> values = xs.getAttributeUses()
                 .stream()
                 .map(attr -> {

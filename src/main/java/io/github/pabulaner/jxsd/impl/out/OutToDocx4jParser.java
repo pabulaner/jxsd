@@ -5,6 +5,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.api.java.IJavaClass;
 import io.github.pabulaner.jxsd.api.java.IJavaField;
+import io.github.pabulaner.jxsd.api.java.IJavaName;
 
 import javax.lang.model.element.Modifier;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class OutToDocx4jParser extends OutParser {
     protected TypeSpec parseClass(IJavaClass java) {
         List<IJavaField> fields = java.fields();
 
-        ClassName resultType = getType(java.type().name() + "Output");
+        ClassName resultType = getType(java.type().name().withSuffix("output"));
         ClassName modelType = getType(java.type().name());
         ClassName docx4jType = getDocx4jType(java.type().name());
 
@@ -41,7 +42,7 @@ public class OutToDocx4jParser extends OutParser {
         methodBuilder.addStatement("$L result = new $L()", docx4jType, docx4jType);
 
         forEach(fields, (type, name) -> {
-            String fieldName = getUpperName(name);
+            String fieldName = name.upper();
             String outputName = type.simpleName() + "Output";
 
             methodBuilder.addStatement("result.set$L($L.output(value.get$L()))", fieldName, outputName, fieldName);
@@ -51,8 +52,8 @@ public class OutToDocx4jParser extends OutParser {
         builder.addMethod(methodBuilder.build());
     }
 
-    private ClassName getDocx4jType(String name) {
-        name = name.replaceAll("_", "");
-        return ClassName.get("", name);
+    private ClassName getDocx4jType(IJavaName name) {
+        String raw = name.raw().replaceAll("_", "");
+        return ClassName.get("", raw);
     }
 }

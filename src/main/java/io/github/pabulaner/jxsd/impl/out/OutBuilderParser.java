@@ -20,7 +20,7 @@ public class OutBuilderParser extends OutParser {
         List<IJavaField> fields = java.fields();
 
         ClassName type = getType(java.type().name());
-        ClassName builderType = getType(java.type().name() + "Builder");
+        ClassName builderType = getType(java.type().name().withSuffix("builder"));
         TypeSpec.Builder result = TypeSpec.classBuilder(builderType)
                 .addModifiers(Modifier.PUBLIC);
 
@@ -43,7 +43,7 @@ public class OutBuilderParser extends OutParser {
                 params.append(", ");
             }
 
-            params.append(field.name());
+            params.append(field.name().valid());
         });
 
         methodBuilder.addStatement("return new $L($L)", type, params);
@@ -51,11 +51,11 @@ public class OutBuilderParser extends OutParser {
     }
 
     private void parseSetter(TypeSpec.Builder builder, ClassName type, IJavaField field) {
-        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder("set" + getUpperName(field.name()))
+        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(field.name().withPrefix("set").raw())
                 .addModifiers(Modifier.PUBLIC)
                 .returns(type);
 
-        methodBuilder.addStatement("this.$L = $L", field.name(), field.name());
+        methodBuilder.addStatement("this.$L = $L", field.name().valid(), field.name().valid());
         methodBuilder.addStatement("return this");
 
         builder.addMethod(methodBuilder.build());
