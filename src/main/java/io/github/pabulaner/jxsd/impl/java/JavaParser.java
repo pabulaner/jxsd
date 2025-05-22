@@ -4,13 +4,12 @@ import io.github.pabulaner.jxsd.api.java.IJavaClass;
 import io.github.pabulaner.jxsd.api.java.IJavaField;
 import io.github.pabulaner.jxsd.api.java.IJavaModel;
 import io.github.pabulaner.jxsd.api.java.IJavaType;
-import io.github.pabulaner.jxsd.api.java.IJavaValidator;
-import io.github.pabulaner.jxsd.api.xsd.IComplexType;
-import io.github.pabulaner.jxsd.api.xsd.IElementValue;
-import io.github.pabulaner.jxsd.api.xsd.IGroupValue;
-import io.github.pabulaner.jxsd.api.xsd.IModel;
-import io.github.pabulaner.jxsd.api.xsd.IType;
-import io.github.pabulaner.jxsd.api.xsd.IValue;
+import io.github.pabulaner.jxsd.api.xsd.IXsdComplexType;
+import io.github.pabulaner.jxsd.api.xsd.IXsdElementValue;
+import io.github.pabulaner.jxsd.api.xsd.IXsdGroupValue;
+import io.github.pabulaner.jxsd.api.xsd.IXsdModel;
+import io.github.pabulaner.jxsd.api.xsd.IXsdType;
+import io.github.pabulaner.jxsd.api.xsd.IXsdValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +18,21 @@ public class JavaParser {
 
     private static final int GROUP_AUTO_NAME_COUNT = 3;
 
-    public List<IJavaModel> parse(List<IModel> xsd) {
+    public List<IJavaModel> parse(List<IXsdModel> xsd) {
         return xsd.stream()
                 .map(this::parseModel)
                 .toList();
     }
 
-    private IJavaModel parseModel(IModel xsd) {
-        if (xsd instanceof IComplexType complex) {
+    private IJavaModel parseModel(IXsdModel xsd) {
+        if (xsd instanceof IXsdComplexType complex) {
             return parseComplex(complex);
         }
 
         return null;
     }
 
-    private IJavaClass parseComplex(IComplexType xsd) {
+    private IJavaClass parseComplex(IXsdComplexType xsd) {
         IJavaType type = parseType(xsd.type(), false);
 
         List<IJavaField> fields = new ArrayList<>();
@@ -43,27 +42,27 @@ public class JavaParser {
         return new JavaClassImpl(type, fields, inners);
     }
 
-    private void parseValue(IValue value, List<IJavaField> fields, List<IJavaModel> inners) {
-        if (value instanceof IElementValue element) {
+    private void parseValue(IXsdValue value, List<IJavaField> fields, List<IJavaModel> inners) {
+        if (value instanceof IXsdElementValue element) {
             fields.add(parseElement(element));
         }
 
-        if (value instanceof IGroupValue group) {
+        if (value instanceof IXsdGroupValue group) {
             parseGroup(group, fields, inners);
         }
     }
 
-    private IJavaField parseElement(IElementValue xsd) {
+    private IJavaField parseElement(IXsdElementValue xsd) {
         IJavaType type = parseType(xsd.type(), xsd.maxOccurs() > 1);
         return new JavaFieldImpl(type, xsd.name(), xsd.value(), new ArrayList<>());
     }
 
-    private void parseGroup(IGroupValue group, List<IJavaField> fields, List<IJavaModel> inners) {
+    private void parseGroup(IXsdGroupValue group, List<IJavaField> fields, List<IJavaModel> inners) {
         // TODO: handle maxOccurs > 1
         group.values().forEach(value -> parseValue(value, fields, inners));
     }
 
-    private IJavaType parseType(IType xsd, boolean list) {
+    private IJavaType parseType(IXsdType xsd, boolean list) {
         return new JavaTypeImpl(xsd.name(), xsd.parent(), list);
     }
 }

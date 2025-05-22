@@ -1,8 +1,8 @@
 package io.github.pabulaner.jxsd.api.xsd;
 
-public interface IRestriction {
+public interface IXsdType {
 
     String name();
 
-    String value();
+    String parent();
 }

@@ -2,7 +2,7 @@ package io.github.pabulaner.jxsd.api.xsd;
 
 import java.util.List;
 
-public interface IGroupValue extends IValue {
+public interface IXsdGroupValue extends IXsdValue {
 
     enum Kind {
 
@@ -12,5 +12,5 @@ public interface IGroupValue extends IValue {
 
     Kind kind();
 
-    List<IValue> values();
+    List<IXsdValue> values();
 }
