@@ -14,7 +14,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws SAXException {
-        List<IXsdModel> models = new XsdParser().parse(Main.class.getResource("/xsd/dml-chart.xsd"));
+        List<IXsdModel> models = new XsdParser().parse(Main.class.getResource("/xsd/book.xsd"));
         List<IJavaModel> javaModels = new JavaParser().parse(models);
 
         new OutClassParser().parse(javaModels);
