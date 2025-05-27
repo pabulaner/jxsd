@@ -18,6 +18,8 @@ import java.util.function.BiConsumer;
 
 public abstract class OutParser implements IOutParser {
 
+    private static final String UTIL_PACKAGE = "java.util";
+
     protected OutParser() {
     }
 
@@ -61,14 +63,18 @@ public abstract class OutParser implements IOutParser {
     protected void forEach(List<IJavaField> fields, BiConsumer<ClassName, IJavaName> consumer) {
         fields.forEach(field -> {
             IJavaName name = field.name();
-            ClassName type = getBase(field.type());
+            ClassName type = field.type() != null
+                    ? getBase(field.type())
+                    : null;
 
-            consumer.accept(type, name);
+            if (type != null) {
+                consumer.accept(type, name);
+            }
         });
     }
 
     protected ClassName getType(IJavaName name) {
-        return ClassName.get("", name.clean());
+        return ClassName.get("", name.upper().part());
     }
 
     protected ClassName getBase(IJavaType type) {
@@ -76,6 +82,14 @@ public abstract class OutParser implements IOutParser {
     }
 
     protected ClassName getParent(IJavaType type) {
-        return getType(type.parent());
+        if (type.parent() != null) {
+            return getType(type.parent());
+        } else {
+            return null;
+        }
+    }
+
+    protected ClassName getList(IJavaType type) {
+        return ClassName.get(UTIL_PACKAGE, "List<" + type + ">");
     }
 }

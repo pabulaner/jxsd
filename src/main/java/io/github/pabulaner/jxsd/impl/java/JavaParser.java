@@ -20,15 +20,21 @@ import java.util.List;
 
 public class JavaParser {
 
-    private static final IJavaName VALUE_NAME = new JavaNameImpl("value");
+    private static final IJavaName VALUE_NAME = new JavaNameImpl(null, "value");
+
+    private static final String SUFFIX = "model";
+
+    private static final String ANY_TYPE = "anyType";
+
+    private static final String ANY_SIMPLE_TYPE = "anySimpleType";
 
     private static final String ENUMERATION = "enumeration";
-
-    private static final int GROUP_NAME_COUNT = 3;
 
     private static final String GROUP_SEQUENCE_SEPARATOR = "and";
 
     private static final String GROUP_CHOICE_SEPARATOR = "or";
+
+    private static final int GROUP_NAME_COUNT = 3;
 
     public List<IJavaModel> parse(List<IXsdModel> xsd) {
         return xsd.stream()
@@ -61,27 +67,14 @@ public class JavaParser {
     }
 
     private IJavaModel parsePrimitive(IXsdSimpleType.IXsdPrimitiveType xsd) {
-        String name = switch (xsd.type().name()) {
-            case "string", "NOTATION", "QName", "anyURI" -> "String";
-            case "boolean" -> "Boolean";
-            case "float" -> "Float";
-            case "double" -> "Double";
-            case "decimal" -> "Long";
-            case "duration" -> "java.time.Duration";
-            case "dateTime" -> "java.time.LocalDateTime";
-            case "time" -> "java.time.LocalTime";
-            case "date" -> "java.time.LocalDate";
-            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "Integer";
-            case "hexBinary", "base64Binary" -> "byte[]";
-            default -> null;
-        };
+        IJavaName name = getName(xsd.type());
 
-        if (name == null) {
+        if (name.part() == null) {
             return null;
         }
 
         IJavaType type = parseType(xsd.type(), IJavaType.Kind.OBJECT);
-        IJavaType value = new JavaTypeImpl(new JavaNameImpl(name), null, IJavaType.Kind.OBJECT);
+        IJavaType value = new JavaTypeImpl(name, null, IJavaType.Kind.OBJECT);
         IJavaField field = new JavaFieldImpl(value, VALUE_NAME, null, new ArrayList<>());
 
         return new JavaClassImpl(type, Collections.singletonList(field), new ArrayList<>());
@@ -112,7 +105,7 @@ public class JavaParser {
     }
 
     private IJavaModel parseList(IXsdSimpleType.IXsdListType xsd) {
-        IJavaType type = new JavaTypeImpl(new JavaNameImpl(xsd.type().name()), new JavaNameImpl(xsd.itemType().name()), IJavaType.Kind.LIST);
+        IJavaType type = new JavaTypeImpl(getName(xsd.type()), getName(xsd.itemType()), IJavaType.Kind.LIST);
         return new JavaClassImpl(type, new ArrayList<>(), new ArrayList<>());
     }
 
@@ -154,7 +147,7 @@ public class JavaParser {
                 ? IJavaType.Kind.LIST
                 : IJavaType.Kind.OBJECT);
 
-        return new JavaFieldImpl(type, new JavaNameImpl(xsd.name()), xsd.value(), new ArrayList<>());
+        return new JavaFieldImpl(type, getName(xsd.type()), xsd.value(), new ArrayList<>());
     }
 
     private void parseGroup(IXsdGroupValue group, List<IJavaField> fields, List<IJavaModel> inners) {
@@ -166,23 +159,23 @@ public class JavaParser {
         values.forEach(value -> parseValue(value, groupFields, groupInners));
 
         if (group.maxOccurs() > 1) {
-            IJavaName name = new JavaNameImpl("");
+            IJavaName name = new JavaNameImpl(null, "");
             String separator = group.kind() == IXsdGroupValue.Kind.SEQUENCE
                     ? GROUP_SEQUENCE_SEPARATOR
                     : GROUP_CHOICE_SEPARATOR;
 
             for (int i = 0; i < GROUP_NAME_COUNT && i < groupFields.size(); i++) {
-                if (!name.raw().isEmpty()) {
+                if (!name.part().isEmpty()) {
                     name = name.withSuffix(separator);
                 }
 
-                name = name.withSuffix(groupFields.get(i).name().raw());
+                name = name.withSuffix(groupFields.get(i).name().part());
             }
 
-            IJavaType type = new JavaTypeImpl(name, null, IJavaType.Kind.OBJECT);
-
-            fields.add(new JavaFieldImpl(type, name, null, new ArrayList<>()));
-            inners.add(new JavaClassImpl(type, groupFields, groupInners));
+            fields.add(new JavaFieldImpl(
+                    new JavaTypeImpl(name, null, IJavaType.Kind.LIST), name, null, new ArrayList<>()));
+            inners.add(new JavaClassImpl(
+                    new JavaTypeImpl(name, null, IJavaType.Kind.OBJECT), groupFields, groupInners));
         } else {
             fields.addAll(groupFields);
             inners.addAll(groupInners);
@@ -190,6 +183,42 @@ public class JavaParser {
     }
 
     private IJavaType parseType(IXsdType xsd, IJavaType.Kind kind) {
-        return new JavaTypeImpl(new JavaNameImpl(xsd.name()), new JavaNameImpl(xsd.parent()), kind);
+        IJavaName parent = getName(xsd.parent());
+
+        if (ANY_TYPE.equals(parent.part()) || ANY_SIMPLE_TYPE.equals(parent.part())) {
+            parent = null;
+        } else {
+            parent = parent.withSuffix(SUFFIX);
+        }
+
+        return new JavaTypeImpl(getName(xsd).withSuffix(SUFFIX), parent, kind);
+    }
+
+    private IJavaName getName(IXsdType xsd) {
+        return getName(xsd.name());
+    }
+
+    private IJavaName getName(String name) {
+        String base = switch (name) {
+            case "duration", "dateTime", "time", "date" -> "java.time";
+            default -> null;
+        };
+
+        String part = switch (name) {
+            case "string", "NOTATION", "QName", "anyURI" -> "String";
+            case "boolean" -> "Boolean";
+            case "float" -> "Float";
+            case "double" -> "Double";
+            case "decimal" -> "Long";
+            case "duration" -> "Duration";
+            case "dateTime" -> "LocalDateTime";
+            case "time" -> "LocalTime";
+            case "date" -> "LocalDate";
+            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "Integer";
+            case "hexBinary", "base64Binary" -> "byte[]";
+            default -> name;
+        };
+
+        return new JavaNameImpl(base, part);
     }
 }

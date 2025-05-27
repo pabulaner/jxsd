@@ -51,7 +51,7 @@ public class OutBuilderParser extends OutParser {
     }
 
     private void parseSetter(TypeSpec.Builder builder, ClassName type, IJavaField field) {
-        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(field.name().withPrefix("set").raw())
+        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(field.name().withPrefix("set").upper().part())
                 .addModifiers(Modifier.PUBLIC)
                 .returns(type);
 

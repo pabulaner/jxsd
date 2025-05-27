@@ -5,6 +5,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.api.java.IJavaClass;
 import io.github.pabulaner.jxsd.api.java.IJavaField;
+import io.github.pabulaner.jxsd.api.java.IJavaType;
 
 import javax.lang.model.element.Modifier;
 import java.util.List;
@@ -20,8 +21,17 @@ public class OutClassParser extends OutParser {
 
         ClassName type = getBase(java.type());
         TypeSpec.Builder result = TypeSpec.classBuilder(type)
-                .addModifiers(Modifier.PUBLIC)
-                .superclass(getParent(java.type()));
+                .addModifiers(Modifier.PUBLIC);
+
+        ClassName parent = getParent(java.type());
+
+        if (parent != null) {
+            if (java.type().kind() == IJavaType.Kind.LIST) {
+                result.superclass(ClassName.get("java.util", "List<" + parent.simpleName() + ">"));
+            } else {
+                result.superclass(parent);
+            }
+        }
 
         parseFields(result, fields, Modifier.PRIVATE, Modifier.FINAL);
         parseConstructor(result, fields, Modifier.PUBLIC);
@@ -31,7 +41,7 @@ public class OutClassParser extends OutParser {
     }
 
     private void parseGetter(TypeSpec.Builder builder, IJavaField field) {
-        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(field.name().withPrefix("get").raw())
+        MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(field.name().withPrefix("get").part())
                 .addModifiers(Modifier.PUBLIC)
                 .returns(getBase(field.type()));
 

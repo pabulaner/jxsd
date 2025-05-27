@@ -2,13 +2,17 @@ package io.github.pabulaner.jxsd.api.java;
 
 public interface IJavaName {
 
-    String raw();
+    String base();
+
+    String part();
 
     String valid();
 
-    String upper();
+    IJavaName clean();
 
-    String clean();
+    IJavaName lower();
+
+    IJavaName upper();
 
     IJavaName withPrefix(String prefix);
 

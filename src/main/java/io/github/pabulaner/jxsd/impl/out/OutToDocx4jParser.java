@@ -42,7 +42,7 @@ public class OutToDocx4jParser extends OutParser {
         methodBuilder.addStatement("$L result = new $L()", docx4jType, docx4jType);
 
         forEach(fields, (type, name) -> {
-            String fieldName = name.upper();
+            String fieldName = name.upper().part();
             String outputName = type.simpleName() + "Output";
 
             methodBuilder.addStatement("result.set$L($L.output(value.get$L()))", fieldName, outputName, fieldName);
@@ -53,7 +53,7 @@ public class OutToDocx4jParser extends OutParser {
     }
 
     private ClassName getDocx4jType(IJavaName name) {
-        String raw = name.raw().replaceAll("_", "");
+        String raw = name.part().replaceAll("_", "");
         return ClassName.get("", raw);
     }
 }

@@ -18,7 +18,7 @@ public class Main {
         List<IJavaModel> javaModels = new JavaParser().parse(models);
 
         new OutClassParser().parse(javaModels);
-        new OutBuilderParser().parse(javaModels);
-        new OutToDocx4jParser().parse(javaModels);
+        // new OutBuilderParser().parse(javaModels);
+        // new OutToDocx4jParser().parse(javaModels);
     }
 }
