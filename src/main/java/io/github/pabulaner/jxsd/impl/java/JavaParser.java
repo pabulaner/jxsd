@@ -17,6 +17,7 @@ import io.github.pabulaner.jxsd.api.xsd.IXsdValue;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class JavaParser {
 
@@ -39,31 +40,19 @@ public class JavaParser {
     public List<IJavaModel> parse(List<IXsdModel> xsd) {
         return xsd.stream()
                 .map(this::parseModel)
+                .filter(Objects::nonNull)
                 .toList();
     }
 
     private IJavaModel parseModel(IXsdModel xsd) {
-        if (xsd instanceof IXsdSimpleType.IXsdPrimitiveType primitive) {
-            return parsePrimitive(primitive);
-        }
-
-        if (xsd instanceof IXsdSimpleType.IXsdRestrictionType restriction) {
-            return parseRestriction(restriction);
-        }
-
-        if (xsd instanceof IXsdSimpleType.IXsdListType list) {
-            return parseList(list);
-        }
-
-        if (xsd instanceof IXsdSimpleType.IXsdUnionType union) {
-            return parseUnion(union);
-        }
-
-        if (xsd instanceof IXsdComplexType complex) {
-            return parseComplex(complex);
-        }
-
-        return null;
+        return switch (xsd) {
+            case IXsdSimpleType.IXsdPrimitiveType casted -> parsePrimitive(casted);
+            case IXsdSimpleType.IXsdRestrictionType casted -> parseRestriction(casted);
+            case IXsdSimpleType.IXsdListType casted -> parseList(casted);
+            case IXsdSimpleType.IXsdUnionType casted -> parseUnion(casted);
+            case IXsdComplexType casted -> parseComplex(casted);
+            default -> throw new IllegalStateException();
+        };
     }
 
     private IJavaModel parsePrimitive(IXsdSimpleType.IXsdPrimitiveType xsd) {
@@ -93,8 +82,8 @@ public class JavaParser {
         });
 
         IJavaType type = parseType(xsd.type(), enumValues.isEmpty()
-                ? IJavaType.Kind.OBJECT
-                : IJavaType.Kind.RESTRICTION);
+                ? IJavaType.Kind.RESTRICTION
+                : IJavaType.Kind.OBJECT);
 
         if (enumValues.isEmpty()) {
             IJavaField field = new JavaFieldImpl(null, VALUE_NAME, null, validators);
@@ -199,6 +188,10 @@ public class JavaParser {
     }
 
     private IJavaName getName(String name) {
+        if (name == null) {
+            return new JavaNameImpl(null, null);
+        }
+
         String base = switch (name) {
             case "duration", "dateTime", "time", "date" -> "java.time";
             default -> null;
