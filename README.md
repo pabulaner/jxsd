@@ -14,6 +14,8 @@ A converter from xsd to Java files using models, builders and docx4j converters.
 
 #### Examples
 
+### Primitive
+
 ```
 xs:integer
 ```
@@ -34,6 +36,7 @@ public class PT_Integer {
 ```
 
 ---
+### Restriction
 
 ```
 <xs:simpleType name="ST_Age">
@@ -57,6 +60,7 @@ public class ST_Age extends PT_Integer {
 ```
 
 ---
+### Enum
 
 ```
 <xs:simpleType name="ST_Color">
@@ -78,6 +82,7 @@ public enum ST_Color {
 ```
 
 ---
+### List
 
 ```
 <xs:simpleType name="ST_IntList">
@@ -91,6 +96,7 @@ public class ST_IntList extends ArrayList<PT_Integer> {
 ```
 
 ---
+### Union
 
 ```
 <xs:simpleType name="ST_IntOrStr">
@@ -104,13 +110,11 @@ public class ST_IntOrStr {
     private final Object value;
     
     public ST_IntOrStr(Object value) {
-        boolean valid = false;
-        valid |= value instanceof ST_Integer;
-        valid |= value instanceof ST_String;
-        
-        if (!valid) throw new IllegalArgumentException();
-        
-        this.value = value;
+        if (ST_Integer.class.isInstance(value) || ST_String.class.isInstance(value)) {
+            this.value = value;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
     
     public Object getRaw() {
@@ -121,8 +125,70 @@ public class ST_IntOrStr {
         return (ST_Integer) this.value;
     }
     
-    public ST_String getInteger() {
-        return (ST_Integer) this.value;
+    public ST_String getString() {
+        return (ST_String) this.value;
+    }
+}
+```
+
+---
+### Complex
+
+```
+<xs:complexType name="CT_User">
+    <xs:sequence>
+        <xs:choice>
+            <xs:element name="man" type="xs:boolean"/>
+            <xs:element name="woman" type="xs:int"/>
+        </xs:choice>
+        <xs:element name="name" type="xs:string"/>
+    </xs:sequence>
+</xs:complexType>
+```
+
+```
+public class CT_User {
+    
+    private final ManOrWoman manOrWoman;
+    
+    private final String name;
+    
+    public CT_User(ManOrWoman manOrWoman, String name) {
+        this.manOrWoman = manOrWoman;
+        this.name = name;
+    }
+    
+    public ManOrWoman getManOrWoman() {
+        return this.manOrWoman;
+    }
+    
+    public String getName() {
+        return this.name;
+    }
+    
+    public class CT_ManOrWoman {
+
+        private final Object value;
+        
+        public CT_ManOrWoman(Object value) {
+            if (ST_Boolean.class.isInstance(value) || ST_Integer.class.isInstance(value)) {
+                this.value = value;
+            } else {
+                throw new IllegalArgumentException();
+            }
+        }
+        
+        public Object getRaw() {
+            return this.value;
+        }
+        
+        public ST_String getMan() {
+            return (ST_String) this.value;
+        }
+        
+        public ST_Integer getWoman() {
+            return (ST_Integer) this.value;
+        }
     }
 }
 ```
