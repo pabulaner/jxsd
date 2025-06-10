@@ -27,17 +27,27 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.SAXParserFactory;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class XsdParser {
 
-    public List<IXsdModel> parse(URL url) throws SAXException {
+    private final Map<String, IXsdType> types;
+
+    public XsdParser() {
+        types = new HashMap<>();
+    }
+
+    public XsdResult parse(URL url) throws SAXException {
+        types.clear();
+
         XSOMParser parser = new XSOMParser(SAXParserFactory.newInstance());
         parser.parse(url);
 
         XSSchemaSet set = parser.getResult();
-        List<IXsdModel> result = new ArrayList<>();
+        List<IXsdModel> models = new ArrayList<>();
 
         set.getSchemas().forEach(schema -> schema.getTypes()
                 .values()
@@ -45,13 +55,9 @@ public class XsdParser {
                 .map(xs -> xs.isSimpleType()
                         ? parseSimpleType(xs.asSimpleType())
                         : parseComplexType(xs.asComplexType()))
-                .forEach(result::add));
+                .forEach(models::add));
 
-        return result;
-    }
-
-    private IXsdType parseType(XSType xs) {
-        return new XsdTypeImpl(xs.getName(), xs.getBaseType().getName());
+        return new XsdResult(new HashMap<>(types), models);
     }
 
     private IXsdSimpleType parseSimpleType(XSSimpleType xs) {
@@ -114,7 +120,7 @@ public class XsdParser {
             XSParticle particle = content.asParticle();
 
             if (simple != null) {
-                // empty, as simple type should already be the base type
+                throw new IllegalStateException("Unreachable");
             }
 
             if (particle != null) {
@@ -170,6 +176,14 @@ public class XsdParser {
 
         return null;
     }
+
+    private IXsdType parseType(XSType xs) {
+        String name = xs.getName();
+
+        return types.computeIfAbsent(name, key ->
+                new XsdTypeImpl(xs.getName(), xs.getBaseType().getName()));
+    }
+
 
     private String parseString(XmlString value) {
         return value != null

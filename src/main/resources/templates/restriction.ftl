@@ -1,3 +1,5 @@
+<#include "header.ftl">
+
 public class ${name} extends ${parent} {
 
     public ${name}(${type} value) {

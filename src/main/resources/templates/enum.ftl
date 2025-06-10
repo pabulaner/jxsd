@@ -1,3 +1,5 @@
+<#include "header.ftl">
+
 public enum ${name} {
 
     <#list values as value>

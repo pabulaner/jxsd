@@ -1,17 +1,14 @@
+<#include "header.ftl">
+
 public class ${name} {
 
     private final Object value;
 
-    public ${name}(Object value) {
-        boolean valid = false;
-
-        <#list types as type>
-        valid |= ${type}.class.isInstance(value);
-        </#list>
-
-        if (!valid) throw new IllegalArgumentException();
+    <#list types as type>
+    public ${name}(${type} value) {
         this.value = value;
     }
+    </#list>
 
     public Object getRaw() {
         return this.value;
