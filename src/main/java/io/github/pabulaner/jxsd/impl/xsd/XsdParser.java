@@ -15,39 +15,30 @@ import com.sun.xml.xsom.XSType;
 import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
-import io.github.pabulaner.jxsd.api.xsd.IXsdComplexType;
-import io.github.pabulaner.jxsd.api.xsd.IXsdGroupValue;
-import io.github.pabulaner.jxsd.api.xsd.IXsdModel;
-import io.github.pabulaner.jxsd.api.xsd.IXsdRestriction;
-import io.github.pabulaner.jxsd.api.xsd.IXsdSimpleType;
-import io.github.pabulaner.jxsd.api.xsd.IXsdType;
-import io.github.pabulaner.jxsd.api.xsd.IXsdValue;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class XsdParser {
 
-    private final Map<String, IXsdType> types;
+    private XsdScope scope;
 
     public XsdParser() {
-        types = new HashMap<>();
+        scope = null;
     }
 
     public XsdResult parse(URL url) throws SAXException {
-        types.clear();
+        scope = new XsdScope();
 
         XSOMParser parser = new XSOMParser(SAXParserFactory.newInstance());
         parser.parse(url);
 
         XSSchemaSet set = parser.getResult();
-        List<IXsdModel> models = new ArrayList<>();
+        List<XsdStruct> structs = new ArrayList<>();
 
         set.getSchemas().forEach(schema -> schema.getTypes()
                 .values()
@@ -55,58 +46,58 @@ public class XsdParser {
                 .map(xs -> xs.isSimpleType()
                         ? parseSimpleType(xs.asSimpleType())
                         : parseComplexType(xs.asComplexType()))
-                .forEach(models::add));
+                .forEach(structs::add));
 
-        return new XsdResult(new HashMap<>(types), models);
+        return new XsdResult(scope, structs);
     }
 
-    private IXsdSimpleType parseSimpleType(XSSimpleType xs) {
-        IXsdType type = parseType(xs);
+    private XsdSimpleStruct parseSimpleType(XSSimpleType xs) {
+        XsdType type = parseType(xs);
 
         if (xs.isPrimitive()) {
-            return new XsdSimpleTypeImpl.XsdPrimitiveTypeImpl(type);
+            return new XsdSimpleStruct.XsdPrimitiveStruct(type);
         }
 
         if (xs.isRestriction()) {
             XSRestrictionSimpleType restriction = xs.asRestriction();
-            List<IXsdRestriction> restrictions = restriction.getDeclaredFacets()
+            List<XsdRestriction> restrictions = restriction.getDeclaredFacets()
                     .stream()
-                    .map(facet -> new XsdRestrictionImpl(
+                    .map(facet -> new XsdRestriction(
                             facet.getName(),
                             parseString(facet.getValue())))
                     .collect(Collectors.toList());
 
-            return new XsdSimpleTypeImpl.XsdRestrictionTypeImpl(type, restrictions);
+            return new XsdSimpleStruct.XsdRestrictionStruct(type, restrictions);
         }
 
         if (xs.isList()) {
             XSListSimpleType list = xs.asList();
-            IXsdType itemType = parseType(list.getItemType());
+            XsdType itemType = parseType(list.getItemType());
 
-            return new XsdSimpleTypeImpl.XsdListTypeImpl(type, itemType);
+            return new XsdSimpleStruct.XsdListStruct(type, itemType);
         }
 
         if (xs.isUnion()) {
             XSUnionSimpleType union = xs.asUnion();
-            List<IXsdType> types = new ArrayList<>();
+            List<XsdType> types = new ArrayList<>();
 
             union.forEach(xsType -> types.add(parseType(xsType)));
-            return new XsdSimpleTypeImpl.XsdUnionTypeImpl(type, types);
+            return new XsdSimpleStruct.XsdUnionStruct(type, types);
         }
 
         throw new IllegalStateException("Unreachable");
     }
 
-    private IXsdComplexType parseComplexType(XSComplexType xs) {
-        IXsdType type = parseType(xs);
+    private XsdComplexStruct parseComplexType(XSComplexType xs) {
+        XsdType type = parseType(xs);
 
-        List<IXsdValue> values = xs.getAttributeUses()
+        List<XsdValue> values = xs.getAttributeUses()
                 .stream()
                 .map(attr -> {
                     XSAttributeDecl decl = attr.getDecl();
-                    IXsdType attrType = parseType(decl.getType());
+                    XsdType attrType = parseType(decl.getType());
 
-                    return new XsdElementValueImpl(1, 1,
+                    return new XsdElementValue(1, 1,
                             attrType,
                             decl.getName(),
                             parseString(attr.getDefaultValue()));
@@ -124,7 +115,7 @@ public class XsdParser {
             }
 
             if (particle != null) {
-                IXsdValue value = parseParticle(particle);
+                XsdValue value = parseParticle(particle);
 
                 if (value != null) {
                     values.add(value);
@@ -132,10 +123,10 @@ public class XsdParser {
             }
         }
 
-        return new XsdComplexTypeImpl(type, values);
+        return new XsdComplexStruct(type, values);
     }
 
-    private IXsdValue parseParticle(XSParticle xs) {
+    private XsdValue parseParticle(XSParticle xs) {
         XSTerm term = xs.getTerm();
         int minOccurs = xs.getMinOccurs().intValue();
         int maxOccurs = xs.getMaxOccurs().intValue();
@@ -145,8 +136,8 @@ public class XsdParser {
 
         if (term.isElementDecl()) {
             XSElementDecl element = term.asElementDecl();
-            IXsdType type = parseType(element.getType());
-            return new XsdElementValueImpl(
+            XsdType type = parseType(element.getType());
+            return new XsdElementValue(
                     minOccurs,
                     maxOccurs,
                     type,
@@ -156,32 +147,29 @@ public class XsdParser {
 
         if (term.isModelGroup()) {
             XSModelGroup group = term.asModelGroup();
-            IXsdGroupValue.Kind kind = switch (group.getCompositor()) {
-                case SEQUENCE, ALL -> IXsdGroupValue.Kind.SEQUENCE;
-                case CHOICE -> IXsdGroupValue.Kind.UNION;
+            XsdGroupValue.Kind kind = switch (group.getCompositor()) {
+                case SEQUENCE, ALL -> XsdGroupValue.Kind.SEQUENCE;
+                case CHOICE -> XsdGroupValue.Kind.UNION;
             };
 
-            List<IXsdValue> values = new ArrayList<>();
+            List<XsdValue> values = new ArrayList<>();
 
             group.forEach(particle -> {
-                IXsdValue value = parseParticle(particle);
+                XsdValue value = parseParticle(particle);
 
                 if (value != null) {
                     values.add(parseParticle(particle));
                 }
             });
 
-            return new XsdGroupValueImpl(minOccurs, maxOccurs, kind, values);
+            return new XsdGroupValue(minOccurs, maxOccurs, kind, values);
         }
 
         return null;
     }
 
-    private IXsdType parseType(XSType xs) {
-        String name = xs.getName();
-
-        return types.computeIfAbsent(name, key ->
-                new XsdTypeImpl(xs.getName(), xs.getBaseType().getName()));
+    private XsdType parseType(XSType xs) {
+        return scope.declare(xs.getName(), xs.getBaseType().getName());
     }
 
 
