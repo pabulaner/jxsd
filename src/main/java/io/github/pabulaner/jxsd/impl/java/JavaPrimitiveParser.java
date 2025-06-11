@@ -8,13 +8,13 @@ import java.util.Map;
 
 public class JavaPrimitiveParser extends JavaParser<XsdSimpleStruct.XsdPrimitiveStruct> {
 
-    public JavaPrimitiveParser(XsdScope scope) throws IOException {
-        super("primitive.ftl", scope);
+    public JavaPrimitiveParser() throws IOException {
+        super("primitive.ftl", null);
     }
 
     @Override
     protected void parse(XsdSimpleStruct.XsdPrimitiveStruct struct, Map<String, Object> data) {
-        data.put("name", struct.type().name());
-        data.put("type", xsdResult.getPrimitiveType(xsd.type()).name());
+        data.put(NAME, JavaName.toClass(struct.type().name()));
+        data.put(TYPE, JavaName.toPrimitive(struct.type().name()));
     }
 }

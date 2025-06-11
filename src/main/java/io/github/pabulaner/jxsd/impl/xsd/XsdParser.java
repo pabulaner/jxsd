@@ -15,6 +15,7 @@ import com.sun.xml.xsom.XSType;
 import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
+import org.checkerframework.checker.units.qual.A;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
@@ -25,30 +26,40 @@ import java.util.stream.Collectors;
 
 public class XsdParser {
 
+    public static final String SIMPLE_TYPE = "simpleType";
+
+    public static final String ANY_SIMPLE_TYPE = "anySimpleType";
+
     private XsdScope scope;
 
     public XsdParser() {
         scope = null;
     }
 
-    public XsdResult parse(URL url) throws SAXException {
-        scope = new XsdScope();
-
+    public List<XsdResult> parse(URL url) throws SAXException {
+        List<XsdResult> result = new ArrayList<>();
         XSOMParser parser = new XSOMParser(SAXParserFactory.newInstance());
         parser.parse(url);
 
         XSSchemaSet set = parser.getResult();
-        List<XsdStruct> structs = new ArrayList<>();
 
-        set.getSchemas().forEach(schema -> schema.getTypes()
-                .values()
-                .stream()
-                .map(xs -> xs.isSimpleType()
-                        ? parseSimpleType(xs.asSimpleType())
-                        : parseComplexType(xs.asComplexType()))
-                .forEach(structs::add));
+        set.getSchemas().forEach(schema -> {
+            scope = new XsdScope();
+            List<XsdStruct> structs = schema.getTypes()
+                    .values()
+                    .stream()
+                    .map(xs -> xs.isSimpleType()
+                            ? parseSimpleType(xs.asSimpleType())
+                            : parseComplexType(xs.asComplexType()))
+                    .filter(xs -> !SIMPLE_TYPE.equals(xs.type().name()))
+                    .filter(xs -> !ANY_SIMPLE_TYPE.equals(xs.type().name()))
+                    .filter(xs -> xs.type().parent() != null)
+                    .toList();
 
-        return new XsdResult(scope, structs);
+            result.add(new XsdResult(scope, structs));
+        });
+
+        return result;
     }
 
     private XsdSimpleStruct parseSimpleType(XSSimpleType xs) {
@@ -60,6 +71,7 @@ public class XsdParser {
 
         if (xs.isRestriction()) {
             XSRestrictionSimpleType restriction = xs.asRestriction();
+            System.out.println(xs.getBaseType().getName() + ", " + restriction.getSimpleBaseType().getName() + ", " + restriction.getBaseType().getName());
             List<XsdRestriction> restrictions = restriction.getDeclaredFacets()
                     .stream()
                     .map(facet -> new XsdRestriction(
