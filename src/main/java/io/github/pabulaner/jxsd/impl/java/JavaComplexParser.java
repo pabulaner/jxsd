@@ -1,5 +1,6 @@
 package io.github.pabulaner.jxsd.impl.java;
 
+import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.impl.xsd.XsdComplexStruct;
 import io.github.pabulaner.jxsd.impl.xsd.XsdElementValue;
 import io.github.pabulaner.jxsd.impl.xsd.XsdGroupValue;
@@ -9,6 +10,7 @@ import io.github.pabulaner.jxsd.impl.xsd.XsdValue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,30 +22,27 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
 
     private static final String UNION_SEPARATOR = "Or";
 
-    private record Field(String type, String lowerName, String upperName) {
+    public JavaComplexParser(XsdScope scope) throws IOException {
+        this("complex_sequence.ftl", scope);
     }
 
-    public JavaComplexParser(XsdScope scope) throws IOException {
-        super("complex.ftl", scope);
+    private JavaComplexParser(String template, XsdScope scope) throws IOException {
+        super(template, scope);
     }
 
     @Override
     protected void parse(XsdComplexStruct struct, Map<String, Object> data) {
-        struct.values().forEach(value -> parseValue(value, data));
-        data.put(NAME, JavaName.toClass(struct.type().name()));
-    }
-
-    private void parseValue(XsdValue value, Map<String, Object> data) {
         List<String> inners = new ArrayList<>();
-        List<Field> fields = new ArrayList<>();
+        List<Map<String, String>> fields = new ArrayList<>();
 
-        parseValue(value, inners, fields);
+        struct.values().forEach(value -> parseValue(value, inners, fields));
 
+        data.put(NAME, JavaName.toClass(struct.type().name()));
         data.put(INNERS, inners);
         data.put(FIELDS, fields);
     }
 
-    private void parseValue(XsdValue value, List<String> inners, List<Field> fields) {
+    private void parseValue(XsdValue value, List<String> inners, List<Map<String, String>> fields) {
         switch (value) {
             case XsdElementValue casted -> parseElement(casted, fields);
             case XsdGroupValue casted -> parseGroup(casted, inners, fields);
@@ -51,7 +50,7 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
         }
     }
 
-    private void parseElement(XsdElementValue value, List<Field> fields) {
+    private void parseElement(XsdElementValue value, List<Map<String, String>> fields) {
         String type = JavaName.toClass(value.type().name());
         String name = value.name();
 
@@ -59,26 +58,45 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
             type = "List<" + type + ">";
         }
 
-        fields.add(new Field(type, JavaName.toVariable(name), JavaName.toUpper(name)));
+        fields.add(createField(type, JavaName.toVariable(name), JavaName.toUpper(name)));
     }
 
-    private void parseGroup(XsdGroupValue value, List<String> inners, List<Field> fields) throws IOException {
+    private void parseGroup(XsdGroupValue value, List<String> inners, List<Map<String, String>> fields) {
         if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
             String upperName = getUpperName(value);
             String type = upperName;
+            System.out.println("type: " + type);
 
             if (value.maxOccurs() > 1) {
                 type = "List<" + type + ">";
             }
 
-            fields.add(new Field(type, JavaName.toLower(upperName), upperName));
+            fields.add(createField(type, JavaName.toLower(upperName), upperName));
 
-            XsdType structType = new XsdType(null, upperName, null, null);
-            XsdComplexStruct struct = new XsdComplexStruct(structType, )
-            new JavaComplexParser(getScope()).parse()
+            XsdType xsdType = new XsdType(null, upperName, null, null);
+            XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
+
+            String template = value.kind() == XsdGroupValue.Kind.SEQUENCE
+                    ? "complex_sequence.ftl"
+                    : "complex_union.ftl";
+
+            try {
+                inners.add(new JavaComplexParser(template, getScope()).parse(xsdStruct));
+            } catch (TemplateException | IOException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             value.values().forEach(val -> parseValue(val, inners, fields));
         }
+    }
+
+    private Map<String, String> createField(String type, String lowerName, String upperName) {
+        Map<String, String> result = new HashMap<>();
+        result.put("type", type);
+        result.put("lowerName", lowerName);
+        result.put("upperName", upperName);
+
+        return result;
     }
 
     private String getUpperName(XsdGroupValue value) {

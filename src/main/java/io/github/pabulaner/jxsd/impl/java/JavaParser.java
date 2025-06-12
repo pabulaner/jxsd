@@ -38,7 +38,9 @@ public abstract class JavaParser<TStruct extends XsdStruct> {
         Configuration config = new Configuration(Configuration.VERSION_2_3_34);
         config.setClassForTemplateLoading(JavaStructParser.class, "/templates");
 
-        this.template = config.getTemplate(template);
+        this.template = template != null
+                ? config.getTemplate(template)
+                : null;
         this.scope = scope;
     }
 
