@@ -15,7 +15,7 @@ import com.sun.xml.xsom.XSType;
 import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
-import org.checkerframework.checker.units.qual.A;
+
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
@@ -36,16 +36,17 @@ public class XsdParser {
         scope = null;
     }
 
-    public List<XsdResult> parse(URL url) throws SAXException {
-        List<XsdResult> result = new ArrayList<>();
+    public XsdResult parse(URL url) throws SAXException {
+        scope = new XsdScope();
+
         XSOMParser parser = new XSOMParser(SAXParserFactory.newInstance());
         parser.parse(url);
 
         XSSchemaSet set = parser.getResult();
+        List<XsdStruct> structs = new ArrayList<>();
 
         set.getSchemas().forEach(schema -> {
-            scope = new XsdScope();
-            List<XsdStruct> structs = schema.getTypes()
+            schema.getTypes()
                     .values()
                     .stream()
                     .map(xs -> xs.isSimpleType()
@@ -53,13 +54,11 @@ public class XsdParser {
                             : parseComplexType(xs.asComplexType()))
                     .filter(xs -> !SIMPLE_TYPE.equals(xs.type().name()))
                     .filter(xs -> !ANY_SIMPLE_TYPE.equals(xs.type().name()))
-                    .filter(xs -> xs.type().parent() != null)
-                    .toList();
-
-            result.add(new XsdResult(scope, structs));
+                    .filter(xs -> xs.type().parentName() != null)
+                    .forEach(structs::add);
         });
 
-        return result;
+        return new XsdResult(scope, structs);
     }
 
     private XsdSimpleStruct parseSimpleType(XSSimpleType xs) {
@@ -181,7 +180,11 @@ public class XsdParser {
     }
 
     private XsdType parseType(XSType xs) {
-        return scope.declare(xs.getName(), xs.getBaseType().getName());
+        return scope.declare(
+                xs.getTargetNamespace(),
+                xs.getName(),
+                xs.getBaseType().getTargetNamespace(),
+                xs.getBaseType().getName());
     }
 
 

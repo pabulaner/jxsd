@@ -4,7 +4,7 @@ import java.util.List;
 
 public record XsdGroupValue(int minOccurs, int maxOccurs, Kind kind, List<XsdValue> values) implements XsdValue {
 
-    enum Kind {
+    public enum Kind {
 
         SEQUENCE,
         UNION,

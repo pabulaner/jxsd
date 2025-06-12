@@ -26,6 +26,10 @@ public abstract class JavaParser<TStruct extends XsdStruct> {
 
     protected static final String RESTRICTIONS = "restrictions";
 
+    protected static final String INNERS = "inners";
+
+    protected static final String FIELDS = "fields";
+
     private final Template template;
 
     private final XsdScope scope;
@@ -38,14 +42,14 @@ public abstract class JavaParser<TStruct extends XsdStruct> {
         this.scope = scope;
     }
 
-    public void parse(TStruct struct) throws TemplateException, IOException {
+    public String parse(TStruct struct) throws TemplateException, IOException {
         Map<String, Object> data = new HashMap<>();
         Writer result = new StringWriter();
 
         parse(struct, data);
 
         template.process(data, result);
-        System.out.println(result);
+        return result.toString();
     }
 
     protected abstract void parse(TStruct struct, Map<String, Object> data);

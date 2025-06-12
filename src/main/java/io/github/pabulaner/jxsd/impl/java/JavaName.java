@@ -34,25 +34,35 @@ public final class JavaName {
     }
 
     public static String toClass(String name) {
-        name = removePrefix(name);
-
-        if (!name.isEmpty()) {
-            name = name.substring(0, 1).toUpperCase() + name.substring(1);
-        }
-
-        return name + CLASS_SUFFIX;
+        return toUpper(name) + CLASS_SUFFIX;
     }
 
     public static String toVariable(String name) {
+        name = toLower(name);
+
+        return switch (name) {
+            case "byte", "short", "int", "long", "float", "double", "boolean", "char", "if", "else", "for" -> "_" + name;
+            default -> name;
+        };
+    }
+
+    public static String toLower(String name) {
         name = removePrefix(name);
 
         if (!name.isEmpty()) {
             name = name.substring(0, 1).toLowerCase() + name.substring(1);
         }
 
-        return switch (name) {
-            case "byte", "short", "int", "long", "float", "double", "boolean", "char", "if", "else", "for" -> "_" + name;
-            default -> name;
-        };
+        return name;
+    }
+
+    public static String toUpper(String name) {
+        name = removePrefix(name);
+
+        if (!name.isEmpty()) {
+            name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        }
+
+        return name;
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws SAXException, IOException, TemplateException {
-        List<XsdResult> result = new XsdParser().parse(Main.class.getResource("/xsd/dml-chart.xsd"));
+        XsdResult result = new XsdParser().parse(Main.class.getResource("/xsd/dml-chart.xsd"));
         new JavaStructParser().parse(result);
 
         // new OutClassParser().parse(javaModels);

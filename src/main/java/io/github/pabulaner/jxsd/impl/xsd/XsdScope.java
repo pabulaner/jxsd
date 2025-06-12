@@ -5,27 +5,23 @@ import java.util.Map;
 
 public class XsdScope {
 
-    private final Map<String, XsdType> types;
+    private final Map<String, Map<String, XsdType>> types;
 
     public XsdScope() {
         types = new HashMap<>();
     }
 
-    public XsdType declare(String name, String parent) {
-        return types.computeIfAbsent(name, key -> new XsdType(name, parent));
+    public XsdType declare(String scope, String name, String parentScope, String parentName) {
+        return types
+                .computeIfAbsent(scope, key -> new HashMap<>())
+                .computeIfAbsent(name, key -> new XsdType(scope, name, parentScope, parentName));
     }
 
     public XsdType getTopParent(XsdType type) {
-        if (type.name().equals("ST_Percentage")) {
-            System.out.println(type);
-        }
         XsdType result = type;
 
-        while (result.parent() != null
-                && !XsdParser.SIMPLE_TYPE.equals(result.parent())
-                && !XsdParser.ANY_SIMPLE_TYPE.equals(result.parent())
-        ) {
-            result = types.get(result.parent());
+        while (!XsdParser.SIMPLE_TYPE.equals(result.parentName()) && !XsdParser.ANY_SIMPLE_TYPE.equals(result.parentName())) {
+            result = types.get(result.parentScope()).get(result.parentName());
         }
 
         return result;
