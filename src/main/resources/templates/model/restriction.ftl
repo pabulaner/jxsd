@@ -1,8 +1,8 @@
 <#include "../header.ftl">
 
-public class ${to_model(name)} extends ${to_model(parent)} {
+public class ${util.to_model(name, false)} extends ${util.to_model(parent, false)} {
 
-    public ${to_model(name)}(${type} value) {
+    public ${util.to_model(name, false)}(${type} value) {
         super(value);
 
         <#list restrictions as restriction>

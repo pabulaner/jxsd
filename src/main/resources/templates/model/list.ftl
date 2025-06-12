@@ -2,5 +2,5 @@
 
 import java.util.ArrayList;
 
-public class ${to_model(name)} extends ArrayList<${to_model(parent)}> {
+public class ${util.to_model(name, false)} extends ArrayList<${util.to_model(parent, false)}> {
 }

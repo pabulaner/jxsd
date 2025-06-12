@@ -13,7 +13,7 @@ public class JavaPrimitiveParser extends JavaParser<XsdSimpleStruct.XsdPrimitive
 
     @Override
     protected void parse(XsdSimpleStruct.XsdPrimitiveStruct struct, Map<String, Object> data) {
-        data.put(JavaTemplate.NAME, JavaName.toClass(struct.type().name()));
-        data.put(JavaTemplate.TYPE, JavaName.toPrimitive(struct.type().name()));
+        data.put(JavaTemplate.NAME, struct.type().name());
+        data.put(JavaTemplate.TYPE, struct.type().name());
     }
 }

@@ -14,11 +14,10 @@ public class JavaUnionParser extends JavaParser<XsdSimpleStruct.XsdUnionStruct> 
 
     @Override
     protected void parse(XsdSimpleStruct.XsdUnionStruct struct, Map<String, Object> data) {
-        data.put(JavaTemplate.NAME, JavaName.toClass(struct.type().name()));
+        data.put(JavaTemplate.NAME, struct.type().name());
         data.put(JavaTemplate.TYPES, struct.types()
                 .stream()
                 .map(XsdType::name)
-                .map(JavaName::toClass)
                 .toList());
     }
 }

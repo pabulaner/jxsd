@@ -1,14 +1,14 @@
 <#include "../header.ftl">
 
-public class ${to_model(name)} {
+public class ${util.to_model(name, false)} {
 
-    private final ${type} value;
+    private final ${util.to_upper(type)} value;
 
-    public ${to_model(name)}(${type} value) {
+    public ${util.to_model(name, false)}(${util.to_upper(type)} value) {
         this.value = value;
     }
 
-    public ${type} getValue() {
+    public ${util.to_upper(type)} getValue() {
         return this.value;
     }
 }

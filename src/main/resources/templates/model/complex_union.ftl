@@ -1,13 +1,13 @@
 <#include "../header.ftl">
 
-public class ${to_model(name)} {
+public class ${util.to_model(name, false)} {
 
     <#include "complex_inners.ftl">
 
     private final Object value;
 
     <#list fields as field>
-    public ${to_model(name)}(${to_model(field.type)} value) {
+    public ${util.to_model(name, false)}(${util.to_model(field.type, field.is_list)} value) {
         this.value = value;
     }
     </#list>
@@ -17,8 +17,8 @@ public class ${to_model(name)} {
     }
 
     <#list fields as field>
-    public ${to_model(field.type)} get${to_upper(field.name)}() {
-        return (${to_model(field.type)}) value;
+    public ${util.to_model(field.type, field.is_list)} get${util.to_upper(field.name)}() {
+        return (${util.to_model(field.type, field.is_list)}) value;
     }
     </#list>
 }

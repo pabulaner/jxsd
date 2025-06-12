@@ -33,16 +33,16 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
     @Override
     protected void parse(XsdComplexStruct struct, Map<String, Object> data) {
         List<String> inners = new ArrayList<>();
-        List<Map<String, String>> fields = new ArrayList<>();
+        List<Map<String, Object>> fields = new ArrayList<>();
 
         struct.values().forEach(value -> parseValue(value, inners, fields));
 
-        data.put(JavaTemplate.NAME, JavaName.toClass(struct.type().name()));
+        data.put(JavaTemplate.NAME, struct.type().name());
         data.put(JavaTemplate.INNERS, inners);
         data.put(JavaTemplate.FIELDS, fields);
     }
 
-    private void parseValue(XsdValue value, List<String> inners, List<Map<String, String>> fields) {
+    private void parseValue(XsdValue value, List<String> inners, List<Map<String, Object>> fields) {
         switch (value) {
             case XsdElementValue casted -> parseElement(casted, fields);
             case XsdGroupValue casted -> parseGroup(casted, inners, fields);
@@ -50,30 +50,20 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
         }
     }
 
-    private void parseElement(XsdElementValue value, List<Map<String, String>> fields) {
-        String type = JavaName.toClass(value.type().name());
+    private void parseElement(XsdElementValue value, List<Map<String, Object>> fields) {
+        String type = value.type().name();
         String name = value.name();
 
-        if (value.maxOccurs() > 1) {
-            type = "List<" + type + ">";
-        }
-
-        fields.add(createField(type, JavaName.toVariable(name), JavaName.toUpper(name)));
+        fields.add(createField(type, value.maxOccurs() > 1, name));
     }
 
-    private void parseGroup(XsdGroupValue value, List<String> inners, List<Map<String, String>> fields) {
+    private void parseGroup(XsdGroupValue value, List<String> inners, List<Map<String, Object>> fields) {
         if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
-            String upperName = getUpperName(value);
-            String type = upperName;
-            System.out.println("type: " + type);
+            String name = getName(value);
 
-            if (value.maxOccurs() > 1) {
-                type = "List<" + type + ">";
-            }
+            fields.add(createField(name, value.maxOccurs() > 1, name));
 
-            fields.add(createField(type, JavaName.toLower(upperName), upperName));
-
-            XsdType xsdType = new XsdType(null, upperName, null, null);
+            XsdType xsdType = new XsdType(null, name, null, null);
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             String template = value.kind() == XsdGroupValue.Kind.SEQUENCE
@@ -91,20 +81,20 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
         }
     }
 
-    private Map<String, String> createField(String type, String lowerName, String upperName) {
-        Map<String, String> result = new HashMap<>();
+    private Map<String, Object> createField(String type, boolean isList, String name) {
+        Map<String, Object> result = new HashMap<>();
         result.put("type", type);
-        result.put("lowerName", lowerName);
-        result.put("upperName", upperName);
+        result.put("is_list", isList);
+        result.put("name", name);
 
         return result;
     }
 
-    private String getUpperName(XsdGroupValue value) {
-        return getUpperName(value, MAX_NAME_COUNT);
+    private String getName(XsdGroupValue value) {
+        return getName(value, MAX_NAME_COUNT);
     }
 
-    private String getUpperName(XsdGroupValue value, int maxNameCount) {
+    private String getName(XsdGroupValue value, int maxNameCount) {
         List<XsdValue> values = value.values();
         StringBuilder result = new StringBuilder();
 
@@ -114,8 +104,8 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
 
         for (int i = 0; i < maxNameCount && i < values.size(); i++) {
             String name = switch (values.get(i)) {
-                case XsdElementValue casted -> JavaName.toUpper(casted.name());
-                case XsdGroupValue casted -> getUpperName(casted, 1);
+                case XsdElementValue casted -> casted.name();
+                case XsdGroupValue casted -> getName(casted, 1);
                 default -> throw new IllegalStateException("Unexpected value: " + values.get(i));
             };
 

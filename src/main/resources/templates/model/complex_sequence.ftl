@@ -1,22 +1,22 @@
 <#include "../header.ftl">
 
-public class ${to_model(name)} {
+public class ${util.to_model(name, false)} {
 
     <#include "complex_inners.ftl">
 
     <#list fields as field>
-    private final ${to_model(field.type)} ${to_name(field.name)};
+    private final ${util.to_model(field.type, field.is_list)} ${util.to_name(field.name)};
     </#list>
 
-    public ${to_model(name)}(<#list fields as field>${to_model(field.type)} ${to_name(field.name)} <#sep>, </#list>) {
+    public ${util.to_model(name, false)}(<#list fields as field>${util.to_model(field.type, field.is_list)} ${util.to_name(field.name)} <#sep>, </#list>) {
         <#list fields as field>
-        this.${to_name(field.name)} = ${to_name(field.name)};
+        this.${util.to_name(field.name)} = ${util.to_name(field.name)};
         </#list>
     }
 
     <#list fields as field>
-    public ${to_model(field.type)} get${to_upper(field.name)}() {
-        return this.${to_name(field.name)};
+    public ${util.to_model(field.type, field.is_list)} get${util.to_upper(field.name)}() {
+        return this.${util.to_name(field.name)};
     }
     </#list>
 }

@@ -32,9 +32,9 @@ public class JavaRestrictionParser extends JavaParser<XsdSimpleStruct.XsdRestric
             restrictions.add(result);
         });
 
-        data.put(JavaTemplate.NAME, JavaName.toClass(type.name()));
-        data.put(JavaTemplate.TYPE, JavaName.toPrimitive(getScope().getTopParent(type).name()));
-        data.put(JavaTemplate.PARENT, JavaName.toClass(type.parentName()));
+        data.put(JavaTemplate.NAME, type.name());
+        data.put(JavaTemplate.TYPE, getScope().getTopParent(type).name());
+        data.put(JavaTemplate.PARENT, type.parentName());
         data.put(JavaTemplate.RESTRICTIONS, restrictions);
     }
 }

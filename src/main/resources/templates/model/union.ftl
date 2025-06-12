@@ -1,11 +1,11 @@
 <#include "../header.ftl">
 
-public class ${to_model(name)} {
+public class ${util.to_model(name, false)} {
 
     private final Object value;
 
     <#list types as type>
-    public ${to_model(name)}(${to_model(type)} value) {
+    public ${util.to_model(name, false)}(${util.to_model(type, false)} value) {
         this.value = value;
     }
     </#list>
@@ -15,8 +15,8 @@ public class ${to_model(name)} {
     }
 
     <#list types as type>
-    public ${to_model(type)} get${to_upper(type)}() {
-        return (${to_model(type)}) this.value;
+    public ${util.to_model(type, false)} get${util.to_upper(type)}() {
+        return (${util.to_model(type, false)}) this.value;
     }
     </#list>
 }
