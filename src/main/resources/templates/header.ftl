@@ -1,3 +1,4 @@
+<#import "util.ftl">
 <#if package??>
 package ${package};
 </#if>
