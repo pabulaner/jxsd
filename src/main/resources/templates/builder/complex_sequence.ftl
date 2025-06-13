@@ -2,7 +2,7 @@
 
 public class ${util.to_builder(name, false)} {
 
-    <#include "complex_inners.ftl">
+    <#include "../inners.ftl">
 
     <#list fields as field>
     private final ${util.to_builder(field.type, field.is_list)} ${util.to_name(field.name)};

@@ -70,7 +70,6 @@ public class XsdParser {
 
         if (xs.isRestriction()) {
             XSRestrictionSimpleType restriction = xs.asRestriction();
-            System.out.println(xs.getBaseType().getName() + ", " + restriction.getSimpleBaseType().getName() + ", " + restriction.getBaseType().getName());
             List<XsdRestriction> restrictions = restriction.getDeclaredFacets()
                     .stream()
                     .map(facet -> new XsdRestriction(

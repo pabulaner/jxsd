@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 
 public class HelloHello${util.to_builder(name, false)} {
 
-    <#include "complex_inners.ftl">
+    <#include "../inners.ftl">
 
     private Object value;
 

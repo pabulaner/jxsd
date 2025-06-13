@@ -8,6 +8,8 @@ import io.github.pabulaner.jxsd.xsd.XsdSimpleStruct;
 import io.github.pabulaner.jxsd.xsd.XsdStruct;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JavaStructParser {
 
@@ -15,7 +17,8 @@ public class JavaStructParser {
         // empty
     }
 
-    public void parse(String type, XsdResult xsd) throws IOException, TemplateException {
+    public List<JavaResult> parse(String type, XsdResult xsd) throws IOException, TemplateException {
+        List<JavaResult> results = new ArrayList<>();
         XsdScope scope = xsd.scope();
 
         for (XsdStruct struct : xsd.structs()) {
@@ -28,7 +31,9 @@ public class JavaStructParser {
                 default -> throw new IllegalStateException("Unexpected value: " + struct);
             };
 
-            System.out.println(result.content());
+            results.add(result);
         }
+
+        return results;
     }
 }
