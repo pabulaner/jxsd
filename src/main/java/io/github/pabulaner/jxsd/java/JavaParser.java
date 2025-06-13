@@ -39,7 +39,7 @@ public abstract class JavaParser<TStruct extends XsdStruct> {
         Writer writer = new StringWriter();
         template.process(data, writer);
 
-        return new JavaResult(type, struct.type().scope(), writer.toString());
+        return new JavaResult(struct.type().scope(), struct.type().name(), writer.toString());
     }
 
     protected abstract void parse(TStruct struct, Map<String, Object> data);

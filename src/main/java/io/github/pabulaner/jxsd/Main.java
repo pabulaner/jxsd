@@ -24,7 +24,7 @@ public class Main {
             List<JavaResult> java = new JavaStructParser().parse(type, xsd);
 
             for (JavaResult result : java) {
-                new OutWriter().write(Path.of("./generated"), result);
+                new OutWriter().write(Path.of("./generated/" + type), result);
             }
         }
     }

@@ -16,7 +16,7 @@ public class OutWriter {
 
     public void write(Path path, JavaResult result) throws IOException {
         String pack = getPackage(result.scope());
-        Path full = path.resolve(Path.of(pack)).resolve(result.type() + ".java");
+        Path full = path.resolve(Path.of(pack)).resolve(result.name() + ".java");
 
         Files.createDirectories(path.resolve(Path.of(pack)));
         Files.writeString(full, result.content());
