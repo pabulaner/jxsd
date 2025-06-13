@@ -13,6 +13,7 @@ public class Main {
     public static void main(String[] args) throws SAXException, IOException, TemplateException {
         XsdResult result = new XsdParser().parse(Main.class.getResource("/xsd/dml-chart.xsd"));
         new JavaStructParser().parse("model", result);
+        new JavaStructParser().parse("builder", result);
 
         // new OutClassParser().parse(javaModels);
         // new OutBuilderParser().parse(javaModels);

@@ -14,6 +14,6 @@ public class JavaListParser extends JavaParser<XsdSimpleStruct.XsdListStruct> {
     @Override
     protected void parse(XsdSimpleStruct.XsdListStruct struct, Map<String, Object> data) {
         data.put(JavaTemplate.NAME, struct.type().name());
-        data.put(JavaTemplate.PARENT, struct.type().parentName());
+        data.put(JavaTemplate.PARENT, struct.itemType().name());
     }
 }

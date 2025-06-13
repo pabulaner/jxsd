@@ -1,4 +1,6 @@
+<#import "var.ftl" as var>
 <#import "util.ftl" as util>
+
 <#if package??>
 package ${package};
 </#if>
