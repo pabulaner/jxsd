@@ -1,4 +1,4 @@
-package io.github.pabulaner.jxsd.java;
+package io.github.pabulaner.jxsd.java.parser;
 
 import io.github.pabulaner.jxsd.xsd.XsdSimpleStruct;
 
@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class JavaListParser extends JavaParser<XsdSimpleStruct.XsdListStruct> {
 
-    public JavaListParser(String type) throws IOException {
-        super(type, "list.ftl", null);
+    public JavaListParser(JavaParserConfig config) throws IOException {
+        super(config.setTemplate("list.ftl"));
     }
 
     @Override

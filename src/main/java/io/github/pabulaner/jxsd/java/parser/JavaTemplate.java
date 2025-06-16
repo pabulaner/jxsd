@@ -1,6 +1,10 @@
-package io.github.pabulaner.jxsd.java;
+package io.github.pabulaner.jxsd.java.parser;
 
 public final class JavaTemplate {
+
+    public static final String PACKAGE = "package";
+
+    public static final String IMPORTS = "imports";
 
     public static final String NAME = "name";
 

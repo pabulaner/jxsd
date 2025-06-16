@@ -1,10 +1,9 @@
-package io.github.pabulaner.jxsd.java;
+package io.github.pabulaner.jxsd.java.parser;
 
 import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.xsd.XsdComplexStruct;
 import io.github.pabulaner.jxsd.xsd.XsdElementValue;
 import io.github.pabulaner.jxsd.xsd.XsdGroupValue;
-import io.github.pabulaner.jxsd.xsd.XsdScope;
 import io.github.pabulaner.jxsd.xsd.XsdType;
 import io.github.pabulaner.jxsd.xsd.XsdValue;
 
@@ -22,12 +21,8 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
 
     private static final String UNION_SEPARATOR = "Or";
 
-    public JavaComplexParser(String type, XsdScope scope) throws IOException {
-        this(type, "complex_sequence.ftl", scope);
-    }
-
-    private JavaComplexParser(String type, String template, XsdScope scope) throws IOException {
-        super(type, template, scope);
+    public JavaComplexParser(JavaParserConfig config) throws IOException {
+        super(config.setTemplate("complex_sequence.ftl"));
     }
 
     @Override
@@ -71,7 +66,7 @@ public class JavaComplexParser extends JavaParser<XsdComplexStruct> {
                     : "complex_union.ftl";
 
             try {
-                JavaComplexParser parser = new JavaComplexParser(getType(), template, getScope());
+                JavaComplexParser parser = new JavaComplexParser(getConfig().setTemplate(template));
                 inners.add(parser.parse(xsdStruct).content());
             } catch (TemplateException | IOException e) {
                 throw new RuntimeException(e);

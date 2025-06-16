@@ -1,9 +1,8 @@
 package io.github.pabulaner.jxsd;
 
 import freemarker.template.TemplateException;
-import io.github.pabulaner.jxsd.java.JavaParser;
-import io.github.pabulaner.jxsd.java.JavaResult;
-import io.github.pabulaner.jxsd.java.JavaStructParser;
+import io.github.pabulaner.jxsd.java.parser.JavaResult;
+import io.github.pabulaner.jxsd.java.parser.JavaStructParser;
 import io.github.pabulaner.jxsd.out.OutWriter;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class Main {
 
-    private static final List<String> TYPES = List.of("model", "converter");
+    private static final List<String> TYPES = List.of("model", "builder", "converter");
 
     public static void main(String[] args) throws SAXException, IOException, TemplateException {
         XsdResult xsd = new XsdParser().parse(Main.class.getResource("/xsd/dml-chart.xsd"));

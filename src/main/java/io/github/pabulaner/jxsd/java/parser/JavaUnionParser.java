@@ -1,4 +1,4 @@
-package io.github.pabulaner.jxsd.java;
+package io.github.pabulaner.jxsd.java.parser;
 
 import io.github.pabulaner.jxsd.xsd.XsdSimpleStruct;
 import io.github.pabulaner.jxsd.xsd.XsdType;
@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class JavaUnionParser extends JavaParser<XsdSimpleStruct.XsdUnionStruct> {
 
-    public JavaUnionParser(String type) throws IOException {
-        super(type, "union.ftl", null);
+    public JavaUnionParser(JavaParserConfig config) throws IOException {
+        super(config.setTemplate("union.ftl"));
     }
 
     @Override
