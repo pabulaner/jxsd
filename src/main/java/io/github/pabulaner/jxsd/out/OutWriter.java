@@ -20,6 +20,10 @@ public class OutWriter {
     public OutWriter() {
         types = new EnumMap<>(JavaFile.Type.class);
         types.put(JavaFile.Type.PRIMITIVE, "primitive.ftl");
+        types.put(JavaFile.Type.RESTRICTION, "restriction.ftl");
+        types.put(JavaFile.Type.LIST, "list.ftl");
+        types.put(JavaFile.Type.UNION, "union.ftl");
+        types.put(JavaFile.Type.ENUM, "enum.ftl");
     }
 
     public void write(String mode, JavaFile file) throws IOException, TemplateException {
@@ -27,7 +31,7 @@ public class OutWriter {
         config.setClassForTemplateLoading(OutWriter.class, "/templates");
 
         Writer writer = new StringWriter();
-        String directory = "generated/" + file.pkg().replace(".", "/");
+        String directory = "generated/" + file.content().type().pkg().replace(".", "/");
 
         Template template = config.getTemplate(mode + "/" + types.get(file.type()));
         template.process(file, writer);

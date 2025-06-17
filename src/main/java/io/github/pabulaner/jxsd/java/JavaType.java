@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.java;
 
-public record JavaType(String pkg, String name, String parentPkg, String parentName, boolean isList) {
+public record JavaType(String pkg, String name, boolean isList) {
 
     public static JavaType createPrimitive(String primitive) {
         String name = switch (primitive) {
@@ -23,23 +23,11 @@ public record JavaType(String pkg, String name, String parentPkg, String parentN
             default -> null;
         };
 
-        return new JavaType(pkg, name, null, null, false);
-    }
-
-    public String toModel() {
-        return toModel(false);
-    }
-
-    public String toModel(boolean parent) {
-        return toUpper(parent) + "Model";
+        return new JavaType(pkg, name, false);
     }
 
     public String toVar() {
-        return toVar(false);
-    }
-
-    public String toVar(boolean parent) {
-        String value = toLower(parent);
+        String value = toLower();
 
         return switch (value) {
             case "byte", "short", "int", "long", "float", "double", "boolean", "char", "if", "else", "for" -> "_" + value;
@@ -47,21 +35,19 @@ public record JavaType(String pkg, String name, String parentPkg, String parentN
         };
     }
 
-    public String toLower() {
-        return toLower(false);
+    public String toModel() {
+        return toUpper() + "Model";
     }
 
-    public String toLower(boolean parent) {
-        String value = parent ? parentName : name;
-        return value.substring(0, 1).toLowerCase() + value.substring(1);
+    public String toBuilder() {
+        return toUpper() + "Builder";
+    }
+
+    public String toLower() {
+        return name.substring(0, 1).toLowerCase() + name.substring(1);
     }
 
     public String toUpper() {
-        return toUpper(false);
-    }
-
-    public String toUpper(boolean parent) {
-        String value = parent ? parentName : name;
-        return value.substring(0, 1).toUpperCase() + value.substring(1);
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 }

@@ -1,11 +1,11 @@
 <#include "../header.ftl">
 
-public class ${util.to_model(name, false)} extends ${util.to_model(parent, false)} {
+public class ${content.type.toModel()} extends ${content.parent.toModel()} {
 
-    public ${util.to_model(name, false)}(${type} value) {
+    public ${content.type.toModel()}(${content.primitive.toUpper()} value) {
         super(value);
 
-        <#list restrictions as restriction>
+        <#list content.restrictions as restriction>
         if (!(${restriction})) throw new IllegalArgumentException();
         </#list>
     }

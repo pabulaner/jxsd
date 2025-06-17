@@ -1,9 +1,8 @@
-<#import "../util.ftl">
 <#include "../header.ftl">
 
-public enum ${util.to_model(name)} {
+public enum ${content.type.toModel()} {
 
-    <#list values as value>
-    ${value} <#sep>,<#/if>
+    <#list content.values as value>
+    ${value},
     </#list>
 }
