@@ -1,4 +1,4 @@
-package io.github.pabulaner.jxsd.java.model;
+package io.github.pabulaner.jxsd.java;
 
 import java.util.List;
 
