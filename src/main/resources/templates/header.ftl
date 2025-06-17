@@ -6,5 +6,9 @@ package ${pkg};
 </#if>
 
 <#list imports as import>
+<#if import?starts_with("java")>
 import ${import};
+<#else>
+import ${import}Model;
+</#if>
 </#list>

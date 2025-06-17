@@ -96,8 +96,14 @@ public class JavaParser {
                 .map(value -> parseType(value, false))
                 .toList();
 
+        List<String> imports = List.of();
+
+        if (types.size() > 1) {
+            imports = toImports(types);
+        }
+
         JavaUnion result = new JavaUnion(type, types);
-        return new JavaFile(JavaFile.Type.UNION, toImports(types), result);
+        return new JavaFile(JavaFile.Type.UNION, imports, result);
     }
 
     private JavaType parseType(XsdType type, boolean isList) {
