@@ -17,6 +17,7 @@ public class ${content.type.toModel()} {
 
     <#list content.fields as field>
     private final ${field.type.toModel()} ${field.name.toVar()};
+
     </#list>
 
     public ${content.type.toModel()}(<#list content.fields as field>${field.type.toModel()} ${field.name.toVar()}<#sep>, </#list>) {
@@ -29,6 +30,7 @@ public class ${content.type.toModel()} {
     public ${field.type.toModel()} get${field.name.toUpper()}() {
         return this.${field.name.toVar()};
     }
+
     </#list>
 }
 </#macro>
@@ -54,6 +56,7 @@ public class ${content.type.toModel()} {
     public ${field.type.toModel()} get${field.name.toUpper()}() {
         return (${field.type.toModel()}) value;
     }
+
     </#list>
 }
 </#macro>

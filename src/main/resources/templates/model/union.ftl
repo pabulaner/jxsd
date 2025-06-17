@@ -18,6 +18,7 @@ public class ${content.type.toModel()} {
     public ${content.type.toModel()}(${type.toModel()} value) {
         this.value = value;
     }
+
     </#list>
     </#if>
 
@@ -35,6 +36,7 @@ public class ${content.type.toModel()} {
     public ${type.toModel()} get${type.toUpper()}() {
         return (${type.toModel()}) this.value;
     }
+
     </#list>
     </#if>
 }

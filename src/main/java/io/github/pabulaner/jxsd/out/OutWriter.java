@@ -37,7 +37,9 @@ public class OutWriter {
         Template template = config.getTemplate(mode + "/" + types.get(file.type()));
         template.process(file, writer);
 
+        String content = new OutFormatter(writer.toString()).format();
+
         Files.createDirectories(Path.of(directory));
-        Files.writeString(Path.of(directory, file.content().type().toModel() + ".java"), writer.toString());
+        Files.writeString(Path.of(directory, file.content().type().toModel() + ".java"), content);
     }
 }
