@@ -1,12 +1,16 @@
 <#include "../header.ftl">
 
+<#function to_full_name type>
+    <#return type.pkg + "." + type.toModel()>
+</#function>
+
 public class ${content.type.toModel()} {
 
     private final Object value;
 
     <#if content.types?size == 1>
     <#assign type = content.types[0]>
-    public ${content.type.toModel()}(${type.pkg + "." + type.toModel()} value) {
+    public ${content.type.toModel()}(${to_full_name(type)} value) {
         this.value = value;
     }
     <#else>
@@ -23,8 +27,8 @@ public class ${content.type.toModel()} {
 
     <#if content.types?size == 1>
     <#assign type = content.types[0]>
-    public ${type.pkg + "." + type.toModel()} get${type.toUpper()}() {
-        return (${type.pkg + "." + type.toModel()}) this.value;
+    public ${to_full_name(type)} get${type.toUpper()}() {
+        return (${to_full_name(type)}) this.value;
     }
     <#else>
     <#list content.types as type>

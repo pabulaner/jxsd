@@ -1,18 +1,20 @@
 package io.github.pabulaner.jxsd.java;
 
+import io.github.pabulaner.jxsd.xsd.XsdComplexStruct;
+import io.github.pabulaner.jxsd.xsd.XsdElementValue;
+import io.github.pabulaner.jxsd.xsd.XsdGroupValue;
 import io.github.pabulaner.jxsd.xsd.XsdRestriction;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
 import io.github.pabulaner.jxsd.xsd.XsdScope;
 import io.github.pabulaner.jxsd.xsd.XsdSimpleStruct;
 import io.github.pabulaner.jxsd.xsd.XsdStruct;
 import io.github.pabulaner.jxsd.xsd.XsdType;
-import org.checkerframework.checker.units.qual.A;
+import io.github.pabulaner.jxsd.xsd.XsdValue;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +47,8 @@ public class JavaParser {
             case XsdSimpleStruct.XsdRestrictionStruct casted -> parseRestriction(casted);
             case XsdSimpleStruct.XsdListStruct casted -> parseList(casted);
             case XsdSimpleStruct.XsdUnionStruct casted -> parseUnion(casted);
-            default -> null; // throw new IllegalStateException("Unexpected value: " + struct);
+            case XsdComplexStruct casted -> parseComplex(casted);
+            default -> throw new IllegalStateException("Unexpected value: " + struct);
         };
     }
 
@@ -59,7 +62,7 @@ public class JavaParser {
 
     private JavaFile parseRestriction(XsdSimpleStruct.XsdRestrictionStruct struct) {
         JavaType type = parseType(struct.type(), false);
-        JavaType parent = parseParent(struct.type(), false);
+        JavaType parent = parseParent(struct.type());
         JavaType primitive = JavaType.createPrimitive(scope.getTopParent(struct.type()).name());
 
         List<String> enums = struct.restrictions()
@@ -106,12 +109,66 @@ public class JavaParser {
         return new JavaFile(JavaFile.Type.UNION, imports, result);
     }
 
+    private JavaFile parseComplex(XsdComplexStruct struct) {
+        JavaType type = parseType(struct.type(), false);
+
+        List<String> imports = new ArrayList<>();
+        List<JavaComplex> inners = new ArrayList<>();
+        List<JavaField> fields = new ArrayList<>();
+
+        struct.values().forEach(value -> parseValue(value, imports, inners, fields));
+
+        JavaComplex result = new JavaComplex(JavaComplex.Group.SEQUENCE, type, inners, fields);
+        return new JavaFile(JavaFile.Type.COMPLEX, imports, result);
+    }
+
+    private void parseValue(XsdValue value, List<String> imports, List<JavaComplex> inners, List<JavaField> fields) {
+        switch (value) {
+            case XsdElementValue casted -> parseElement(casted, imports, fields);
+            case XsdGroupValue casted -> parseGroup(casted, imports, inners, fields);
+            default -> throw new IllegalStateException("Unexpected value: " + value);
+        }
+    }
+
+    private void parseElement(XsdElementValue value, List<String> imports, List<JavaField> fields) {
+        JavaType type = parseType(value.type(), value.maxOccurs() > 1);
+        JavaType name = new JavaType(null, value.name(), false);
+
+        imports.addAll(toImports(type));
+        fields.add(new JavaField(type, name));
+    }
+
+    private void parseGroup(XsdGroupValue value, List<String> imports, List<JavaComplex> inners, List<JavaField> fields) {
+        if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
+            String name = parseGroupName(value);
+            JavaType type = new JavaType(null, name, value.maxOccurs() > 1);
+
+            fields.add(new JavaField(type, type));
+
+            XsdType xsdType = new XsdType(null, name, null, null);
+            XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
+
+            JavaFile file = parse(xsdStruct);
+            JavaComplex inner = (JavaComplex) file.content();
+            JavaComplex.Group group = value.kind() == XsdGroupValue.Kind.SEQUENCE
+                    ? JavaComplex.Group.SEQUENCE
+                    : JavaComplex.Group.UNION;
+
+            inner = new JavaComplex(group, inner.type(), inner.inners(), inner.fields());
+
+            imports.addAll(file.imports());
+            inners.add(inner);
+        } else {
+            value.values().forEach(val -> parseValue(val, imports, inners, fields));
+        }
+    }
+
     private JavaType parseType(XsdType type, boolean isList) {
         return new JavaType(toPackage(type.scope()), type.name(), isList);
     }
 
-    private JavaType parseParent(XsdType type, boolean isList) {
-        return new JavaType(toPackage(type.parentScope()), type.parentName(), isList);
+    private JavaType parseParent(XsdType type) {
+        return new JavaType(toPackage(type.parentScope()), type.parentName(), false);
     }
 
     private String parseEnum(String value) {
@@ -127,6 +184,35 @@ public class JavaParser {
         }
 
         return value.toUpperCase();
+    }
+
+    private String parseGroupName(XsdGroupValue value) {
+        return parseGroupName(value, 3);
+    }
+
+    private String parseGroupName(XsdGroupValue value, int maxNameCount) {
+        List<XsdValue> values = value.values();
+        StringBuilder result = new StringBuilder();
+
+        String separator = value.kind() == XsdGroupValue.Kind.SEQUENCE
+                ? "And"
+                : "Or";
+
+        for (int i = 0; i < maxNameCount && i < values.size(); i++) {
+            String name = switch (values.get(i)) {
+                case XsdElementValue casted -> casted.name();
+                case XsdGroupValue casted -> parseGroupName(casted, 1);
+                default -> throw new IllegalStateException("Unexpected value: " + values.get(i));
+            };
+
+            if (!result.isEmpty()) {
+                result.append(separator);
+            }
+
+            result.append(name);
+        }
+
+        return result.toString();
     }
 
     private String toPackage(String scope) {

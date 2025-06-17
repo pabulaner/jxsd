@@ -24,6 +24,7 @@ public class OutWriter {
         types.put(JavaFile.Type.LIST, "list.ftl");
         types.put(JavaFile.Type.UNION, "union.ftl");
         types.put(JavaFile.Type.ENUM, "enum.ftl");
+        types.put(JavaFile.Type.COMPLEX, "complex.ftl");
     }
 
     public void write(String mode, JavaFile file) throws IOException, TemplateException {

@@ -15,7 +15,6 @@ import com.sun.xml.xsom.XSType;
 import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
-
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;

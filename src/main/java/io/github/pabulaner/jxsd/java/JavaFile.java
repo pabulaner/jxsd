@@ -11,7 +11,6 @@ public record JavaFile(Type type, List<String> imports, JavaClass content) {
         LIST,
         UNION,
         ENUM,
-        COMPLEX_SEQUENCE,
-        COMPLEX_UNION,
+        COMPLEX,
     }
 }

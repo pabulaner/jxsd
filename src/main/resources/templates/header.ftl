@@ -1,9 +1,7 @@
 <#import "var.ftl" as var>
 <#import "util.ftl" as util>
 
-<#if pkg??>
-package ${pkg};
-</#if>
+package ${content.type().pkg()};
 
 <#list imports as import>
 <#if import?starts_with("java")>
