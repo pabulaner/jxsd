@@ -8,6 +8,10 @@ public class ${content.type.toModel()} {
 
     private final Object value;
 
+    public ${content.type.toModel()}() {
+        this.value = null;
+    }
+
     <#if content.types?size == 1>
     <#assign type = content.types[0]>
     public ${content.type.toModel()}(${to_full_name(type)} value) {

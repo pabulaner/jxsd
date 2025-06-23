@@ -1,19 +1,19 @@
 <#include "../header.ftl">
 
-<#macro parse_inners inners>
+<#macro parse_inners inners first>
 <#list inners as inner>
 <#if inner.group?string == "SEQUENCE">
-<@sequence inner />
+<@sequence inner first/>
 <#else>
-<@union inner />
+<@union inner first/>
 </#if>
 </#list>
 </#macro>
 
-<#macro sequence content>
-public class ${content.type.toModel()} {
+<#macro sequence content first>
+public <#if !first>static </#if>class ${content.type.toModel()} {
 
-    <@parse_inners content.inners />
+    <@parse_inners content.inners false />
 
     <#list content.fields as field>
     private final ${field.type.toModel()} ${field.name.toVar()};
@@ -33,19 +33,25 @@ public class ${content.type.toModel()} {
 
     </#list>
 }
+
 </#macro>
 
-<#macro union content>
-public class ${content.type.toModel()} {
+<#macro union content first>
+public <#if !first>static </#if>class ${content.type.toModel()} {
 
-    <@parse_inners content.inners />
+    <@parse_inners content.inners false />
 
     private final Object value;
+
+    public ${content.type.toModel()}() {
+        this.value = null;
+    }
 
     <#list content.fields as field>
     public ${content.type.toModel()}(${field.type.toModel()} value) {
         this.value = value;
     }
+
     </#list>
 
     public Object getRaw() {
@@ -59,6 +65,7 @@ public class ${content.type.toModel()} {
 
     </#list>
 }
+
 </#macro>
 
-<@sequence content />
+<@parse_inners [content] true/>

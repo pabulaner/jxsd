@@ -1,14 +1,12 @@
 <#include "../header.ftl">
 
-public class ${util.to_model(name, false)} {
+public final class ${content.type.toConverter()} {
 
-    private final ${util.to_upper(type)} value;
-
-    public ${util.to_model(name, false)}(${util.to_upper(type)} value) {
-        this.value = value;
+    private ${content.type.toConverter()} {
+        // empty
     }
 
-    public ${util.to_upper(type)} getValue() {
-        return this.value;
+    public static ${content.type.toModel()} fromDocx4j(${content.primitive.toUpper()} value) {
+        return new ${content.type.toModel()}(value);
     }
 }

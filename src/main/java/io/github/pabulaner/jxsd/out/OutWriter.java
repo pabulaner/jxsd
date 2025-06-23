@@ -4,6 +4,8 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.java.JavaFile;
+import org.docx4j.dml.chart.CTAxDataSource;
+import org.docx4j.dml.diagram.STAxisType;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -28,6 +30,10 @@ public class OutWriter {
     }
 
     public void write(String mode, JavaFile file) throws IOException, TemplateException {
+        if (file.type() != JavaFile.Type.COMPLEX) {
+            return;
+        }
+
         Configuration config = new Configuration(Configuration.VERSION_2_3_34);
         config.setClassForTemplateLoading(OutWriter.class, "/templates");
 
@@ -40,6 +46,10 @@ public class OutWriter {
         String content = new OutFormatter(writer.toString()).format();
 
         Files.createDirectories(Path.of(directory));
-        Files.writeString(Path.of(directory, file.content().type().toModel() + ".java"), content);
+        Files.writeString(Path.of(directory, file.content().type().clean(toUpper(mode)) + ".java"), content);
+    }
+
+    private String toUpper(String mode) {
+        return mode.substring(0, 1).toUpperCase() + mode.substring(1);
     }
 }

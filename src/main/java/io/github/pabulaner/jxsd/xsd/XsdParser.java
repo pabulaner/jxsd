@@ -15,6 +15,8 @@ import com.sun.xml.xsom.XSType;
 import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
+import org.docx4j.dml.chart.CTAxDataSource;
+import org.docx4j.dml.chart.CTCatAx;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
@@ -132,6 +134,22 @@ public class XsdParser {
             }
         }
 
+        while (values.size() == 1) {
+            XsdValue value = values.getFirst();
+
+            if (value instanceof XsdGroupValue group) {
+                if (group.kind() == XsdGroupValue.Kind.SEQUENCE) {
+                    values = group.values();
+                } else if (group.values().size() == 1) {
+                    values = group.values();
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+
         return new XsdComplexStruct(type, values);
     }
 
@@ -154,8 +172,11 @@ public class XsdParser {
                     parseString(element.getDefaultValue()));
         }
 
-        if (term.isModelGroup()) {
-            XSModelGroup group = term.asModelGroup();
+        if (term.isModelGroup() || term.isModelGroupDecl()) {
+            XSModelGroup group = term.isModelGroup()
+                    ? term.asModelGroup()
+                    : term.asModelGroupDecl().getModelGroup();
+
             XsdGroupValue.Kind kind = switch (group.getCompositor()) {
                 case SEQUENCE, ALL -> XsdGroupValue.Kind.SEQUENCE;
                 case CHOICE -> XsdGroupValue.Kind.UNION;

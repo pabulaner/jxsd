@@ -10,6 +10,7 @@ import io.github.pabulaner.jxsd.xsd.XsdSimpleStruct;
 import io.github.pabulaner.jxsd.xsd.XsdStruct;
 import io.github.pabulaner.jxsd.xsd.XsdType;
 import io.github.pabulaner.jxsd.xsd.XsdValue;
+import org.docx4j.dml.chart.CTAxDataSource;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -111,14 +112,26 @@ public class JavaParser {
 
     private JavaFile parseComplex(XsdComplexStruct struct) {
         JavaType type = parseType(struct.type(), false);
+        JavaComplex.Group kind = JavaComplex.Group.SEQUENCE;
+
+        List<XsdValue> values = struct.values();
+
+        if (values.size() == 1) {
+            XsdValue value = values.getFirst();
+
+            if (value instanceof XsdGroupValue group && group.kind() == XsdGroupValue.Kind.UNION) {
+                kind = JavaComplex.Group.UNION;
+                values = group.values();
+            }
+        }
 
         List<String> imports = new ArrayList<>();
         List<JavaComplex> inners = new ArrayList<>();
         List<JavaField> fields = new ArrayList<>();
 
-        struct.values().forEach(value -> parseValue(value, imports, inners, fields));
+        values.forEach(value -> parseValue(value, imports, inners, fields));
 
-        JavaComplex result = new JavaComplex(JavaComplex.Group.SEQUENCE, type, inners, fields);
+        JavaComplex result = new JavaComplex(kind, type, inners, fields);
         return new JavaFile(JavaFile.Type.COMPLEX, imports, result);
     }
 
@@ -206,10 +219,12 @@ public class JavaParser {
             };
 
             if (!result.isEmpty()) {
-                result.append(separator);
+                result.append(separator)
+                        .append(name.substring(0, 1).toUpperCase())
+                        .append(name.substring(1));
+            } else {
+                result.append(name);
             }
-
-            result.append(name);
         }
 
         return result.toString();

@@ -3,10 +3,16 @@
 
 package ${content.type().pkg()};
 
+import java.stream.Collectors;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 <#list imports as import>
-<#if import?starts_with("java")>
-import ${import};
-<#else>
 import ${import}Model;
-</#if>
+import ${import}Converter;
 </#list>

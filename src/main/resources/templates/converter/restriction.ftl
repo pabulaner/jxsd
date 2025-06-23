@@ -1,12 +1,12 @@
 <#include "../header.ftl">
 
-public class ${util.to_model(name, false)} extends ${util.to_model(parent, false)} {
+public final class ${content.type.toConverter()} {
 
-    public ${util.to_model(name, false)}(${type} value) {
-        super(value);
+    private ${content.type.toConverter()} {
+        // empty
+    }
 
-        <#list restrictions as restriction>
-        if (!(${restriction})) throw new IllegalArgumentException();
-        </#list>
+    public static ${content.type.toModel()} fromDocx4j(${content.primitive.toUpper()} value) {
+        return new ${content.type.toModel()}(value);
     }
 }

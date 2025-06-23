@@ -18,12 +18,7 @@ public record JavaType(String pkg, String name, boolean isList) {
             default -> throw new IllegalArgumentException("Unexpected value: " + primitive);
         };
 
-        String pkg = switch (primitive) {
-            case "duration", "dateTime", "time", "date" -> "java.time";
-            default -> null;
-        };
-
-        return new JavaType(pkg, name, false);
+        return new JavaType(null, name, false);
     }
 
     public String toVar() {
@@ -36,11 +31,30 @@ public record JavaType(String pkg, String name, boolean isList) {
     }
 
     public String toModel() {
-        return toUpper() + "Model";
+        return clean("Model");
     }
 
     public String toBuilder() {
-        return toUpper() + "Builder";
+        return clean("Builder");
+    }
+
+    public String toConverter() {
+        return new JavaType(pkg, name, false).clean("Converter");
+    }
+
+    public String toDocx4j() {
+        return toUpper().replace("_", "");
+    }
+
+    public String clean(String suffix) {
+        String value = toUpper() + suffix;
+        int index = value.indexOf("_");
+
+        if (index >= 0) {
+            value = value.substring(index + 1);
+        }
+
+        return isList ? "List<" + value + ">" : value;
     }
 
     public String toLower() {
