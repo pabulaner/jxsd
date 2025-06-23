@@ -59,13 +59,7 @@ public record JavaType(String pkg, String name, boolean isList) {
     }
 
     public String clean(String suffix, boolean isList) {
-        String value = toUpper() + suffix;
-        int index = value.indexOf("_");
-
-        if (index >= 0) {
-            value = value.substring(index + 1);
-        }
-
+        String value = toUpper().replace("_", "") + suffix;
         return isList ? "List<" + value + ">" : value;
     }
 

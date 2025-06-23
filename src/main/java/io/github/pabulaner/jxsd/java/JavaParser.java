@@ -234,6 +234,7 @@ public class JavaParser {
         return result.toString();
     }
 
+    // TODO: figure out nice way to filter or rename packages
     private String toPackage(String scope) {
         if (scope == null) {
             return basePkg;
@@ -242,14 +243,13 @@ public class JavaParser {
         try {
             URL url = URI.create(scope).toURL();
 
-            if (url.getHost().equals("www.w3.org")) {
-                return null;
-            }
-
             String[] parts = url.getPath().split("/");
 
             return basePkg + Arrays.stream(parts)
                     .filter(part -> !part.equals("ooxml") && !part.equals("main"))
+                    .map(part -> {
+                        return part.equals("drawingml") ? "dml" : part;
+                    })
                     .collect(Collectors.joining("."));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
@@ -260,13 +260,14 @@ public class JavaParser {
         return toImports(List.of(type));
     }
 
+    // TODO: figure out nice way to handle imports
     private List<String> toImports(Collection<JavaType> types) {
         List<String> result = types.stream()
                 .filter(type -> type.pkg() != null)
                 .map(type -> List.of(
-                        type.pkg() + "." + type.toModel(),
-                        type.pkg() + "." + type.toConverter(),
-                        type.toDocx4j()
+                        type.pkg() + "." + type.toModelImport(),
+                        type.pkg() + "." + type.toConverterImport(),
+                        type.pkg().replace(basePkg, "org.docx4j") + ".*"
                 ))
                 .flatMap(List::stream)
                 .toList();

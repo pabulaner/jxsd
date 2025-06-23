@@ -22,11 +22,11 @@ public <#if !first>static </#if>final class ${content.type.toConverter()} {
     public static ${content.type.toModel()} fromDocx4j(${content.type.toDocx4j()} value) {
         return new ${content.type.toModel()}(
         <#list content.fields as field>
-            <#if field.type.isList()>
-            value.get${field.name.toUpper()}().stream().map(${field.type.toConverter()}::fromDocx4j).collect(Collectors.toList());
-            <#else>
-            ${field.type.toConverter()}.fromDocx4j(value.get${field.name.toUpper()}())<#sep>,</#sep>
-            </#if>
+        <#if field.type.isList()>
+        value.get${field.name.toUpper()}().stream().map(${field.type.toConverter()}::fromDocx4j).collect(Collectors.toList());
+        <#else>
+        ${field.type.toConverter()}.fromDocx4j(value.get${field.name.toUpper()}())<#sep>,</#sep>
+        </#if>
         </#list>
         );
     }

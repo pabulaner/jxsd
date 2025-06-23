@@ -30,10 +30,6 @@ public class OutWriter {
     }
 
     public void write(String mode, JavaFile file) throws IOException, TemplateException {
-        if (file.type() != JavaFile.Type.COMPLEX) {
-            return;
-        }
-
         Configuration config = new Configuration(Configuration.VERSION_2_3_34);
         config.setClassForTemplateLoading(OutWriter.class, "/templates");
 
