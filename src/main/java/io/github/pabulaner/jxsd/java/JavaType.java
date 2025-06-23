@@ -31,22 +31,34 @@ public record JavaType(String pkg, String name, boolean isList) {
     }
 
     public String toModel() {
-        return clean("Model");
+        return clean("Model", isList);
+    }
+
+    public String toModelImport() {
+        return clean("Model", false);
     }
 
     public String toBuilder() {
-        return clean("Builder");
+        return clean("Builder", isList);
+    }
+
+    public String toBuilderImport() {
+        return clean("Builder", false);
     }
 
     public String toConverter() {
-        return new JavaType(pkg, name, false).clean("Converter");
+        return clean("Converter", false);
+    }
+
+    public String toConverterImport() {
+        return toConverter();
     }
 
     public String toDocx4j() {
         return toUpper().replace("_", "");
     }
 
-    public String clean(String suffix) {
+    public String clean(String suffix, boolean isList) {
         String value = toUpper() + suffix;
         int index = value.indexOf("_");
 

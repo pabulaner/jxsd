@@ -46,7 +46,7 @@ public class OutWriter {
         String content = new OutFormatter(writer.toString()).format();
 
         Files.createDirectories(Path.of(directory));
-        Files.writeString(Path.of(directory, file.content().type().clean(toUpper(mode)) + ".java"), content);
+        Files.writeString(Path.of(directory, file.content().type().clean(toUpper(mode), false) + ".java"), content);
     }
 
     private String toUpper(String mode) {

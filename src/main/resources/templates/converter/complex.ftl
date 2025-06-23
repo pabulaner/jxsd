@@ -34,7 +34,7 @@ public <#if !first>static </#if>final class ${content.type.toConverter()} {
 </#macro>
 
 <#macro union content first>
-public <#if !first>static </#if>final class ${content.type.toModel()} {
+public <#if !first>static </#if>final class ${content.type.toConverter()} {
 
     <@parse_inners content.inners false />
 

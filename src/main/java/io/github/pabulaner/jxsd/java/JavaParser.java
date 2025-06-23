@@ -16,9 +16,12 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JavaParser {
 
@@ -39,6 +42,7 @@ public class JavaParser {
                 .stream()
                 .map(this::parse)
                 .filter(Objects::nonNull)
+                .filter(file -> file.content().type().pkg() != null)
                 .toList();
     }
 
@@ -237,16 +241,16 @@ public class JavaParser {
 
         try {
             URL url = URI.create(scope).toURL();
-            String[] parts = url.getPath().split("/");
 
-            for (int i = 0; i < parts.length; i++) {
-                // check if parts[i] only contains digits
-                if (parts[i].matches("\\d+")) {
-                    parts[i] = "_" + parts[i];
-                }
+            if (url.getHost().equals("www.w3.org")) {
+                return null;
             }
 
-            return basePkg + String.join(".", parts);
+            String[] parts = url.getPath().split("/");
+
+            return basePkg + Arrays.stream(parts)
+                    .filter(part -> !part.equals("ooxml") && !part.equals("main"))
+                    .collect(Collectors.joining("."));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -259,7 +263,12 @@ public class JavaParser {
     private List<String> toImports(Collection<JavaType> types) {
         List<String> result = types.stream()
                 .filter(type -> type.pkg() != null)
-                .map(type -> type.pkg() + "." + type.toUpper())
+                .map(type -> List.of(
+                        type.pkg() + "." + type.toModel(),
+                        type.pkg() + "." + type.toConverter(),
+                        type.toDocx4j()
+                ))
+                .flatMap(List::stream)
                 .toList();
 
         return new ArrayList<>(result);
