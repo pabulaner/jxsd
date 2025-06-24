@@ -50,9 +50,7 @@ public class XsdParser {
             schema.getTypes()
                     .values()
                     .stream()
-                    .map(xs -> xs.isSimpleType()
-                            ? parseSimpleType(xs.asSimpleType())
-                            : parseComplexType(xs.asComplexType()))
+                    .map(this::parse)
                     .filter(xs -> !SIMPLE_TYPE.equals(xs.type().name()))
                     .filter(xs -> !ANY_SIMPLE_TYPE.equals(xs.type().name()))
                     .filter(xs -> xs.type().parentName() != null)
@@ -60,6 +58,12 @@ public class XsdParser {
         });
 
         return new XsdResult(scope, structs);
+    }
+
+    private XsdStruct parse(XSType xs) {
+        return xs.isSimpleType()
+                ? parseSimpleType(xs.asSimpleType())
+                : parseComplexType(xs.asComplexType());
     }
 
     private XsdSimpleStruct parseSimpleType(XSSimpleType xs) {
@@ -106,11 +110,24 @@ public class XsdParser {
                 .stream()
                 .map(attr -> {
                     XSAttributeDecl decl = attr.getDecl();
-                    XsdType attrType = parseType(decl.getType());
+                    XSType declType = decl.getType();
+                    String name = decl.getName();
+                    XsdStruct struct;
+                    XsdType attrType;
+
+                    // check if the element has an anonymous type
+                    if (declType.getName() == null) {
+                        struct = parse(declType);
+                        attrType = parseType(name, declType);
+                    } else {
+                        struct = null;
+                        attrType = parseType(declType);
+                    }
 
                     return new XsdElementValue(1, 1,
+                            struct,
                             attrType,
-                            decl.getName(),
+                            name,
                             parseString(attr.getDefaultValue()));
                 })
                 .collect(Collectors.toList());
@@ -163,12 +180,26 @@ public class XsdParser {
 
         if (term.isElementDecl()) {
             XSElementDecl element = term.asElementDecl();
-            XsdType type = parseType(element.getType());
+            XSType xsType = element.getType();
+            String name = element.getName();
+            XsdStruct struct;
+            XsdType type;
+
+            // check if the element has an anonymous type
+            if (element.getType().getName() == null) {
+                struct = parse(xsType);
+                type = parseType(name, xsType);
+            } else {
+                struct = null;
+                type = parseType(xsType);
+            }
+
             return new XsdElementValue(
                     minOccurs,
                     maxOccurs,
+                    struct,
                     type,
-                    element.getName(),
+                    name,
                     parseString(element.getDefaultValue()));
         }
 
@@ -199,13 +230,16 @@ public class XsdParser {
     }
 
     private XsdType parseType(XSType xs) {
+        return parseType(xs.getName(), xs);
+    }
+
+    private XsdType parseType(String name, XSType xs) {
         return scope.declare(
                 xs.getTargetNamespace(),
-                xs.getName(),
+                name,
                 xs.getBaseType().getTargetNamespace(),
                 xs.getBaseType().getName());
     }
-
 
     private String parseString(XmlString value) {
         return value != null

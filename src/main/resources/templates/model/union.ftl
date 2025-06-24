@@ -1,6 +1,10 @@
 <#include "../header.ftl">
 
-public class ${content.type.toModel()} <#if content.types?size == 1>extends ${content.types[0].pkg}.${content.types[0].toModel()} </#if>{
+<#function to_full_name type>
+    <#return type.pkg + "." + type.toModel()>
+</#function>
+
+public class ${content.type.toModel()} {
 
     private final Object value;
 
@@ -8,7 +12,12 @@ public class ${content.type.toModel()} <#if content.types?size == 1>extends ${co
         this.value = null;
     }
 
-    <#if (content.types?size > 1)>
+    <#if content.types?size == 1>
+    <#assign type = content.types[0]>
+    public ${content.type.toModel()}(${to_full_name(type)} value) {
+        this.value = value;
+    }
+    <#else>
     <#list content.types as type>
     public ${content.type.toModel()}(${type.toModel()} value) {
         this.value = value;
@@ -21,7 +30,12 @@ public class ${content.type.toModel()} <#if content.types?size == 1>extends ${co
         return this.value;
     }
 
-    <#if (content.types?size > 1)>
+    <#if content.types?size == 1>
+    <#assign type = content.types[0]>
+    public ${to_full_name(type)} get${type.toUpper()}() {
+        return (${to_full_name(type)}) this.value;
+    }
+    <#else>
     <#list content.types as type>
     public ${type.toModel()} get${type.toUpper()}() {
         return (${type.toModel()}) this.value;

@@ -6,7 +6,6 @@ import io.github.pabulaner.jxsd.java.JavaParser;
 import io.github.pabulaner.jxsd.out.OutWriter;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
-import org.docx4j.dml.diagram.STBoolOperator;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -17,9 +16,9 @@ public class Main {
     private static final List<String> MODES = List.of("model", "converter");
 
     public static void main(String[] args) throws SAXException, IOException, TemplateException {
-        XsdResult xsd = new XsdParser().parse(Main.class.getResource("/xsd/dml-chart.xsd"));
+        XsdResult xsd = new XsdParser().parse(Main.class.getResource("/xsd/dml/dml-chart.xsd"));
 
-        for (String mode : MODES) {
+        for (String mode : Main.MODES) {
             List<JavaFile> files = new JavaParser("test").parse(xsd);
 
             for (JavaFile file : files) {

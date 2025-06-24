@@ -10,7 +10,6 @@ import io.github.pabulaner.jxsd.xsd.XsdSimpleStruct;
 import io.github.pabulaner.jxsd.xsd.XsdStruct;
 import io.github.pabulaner.jxsd.xsd.XsdType;
 import io.github.pabulaner.jxsd.xsd.XsdValue;
-import org.docx4j.dml.chart.CTAxDataSource;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -21,7 +20,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class JavaParser {
 
@@ -116,7 +114,7 @@ public class JavaParser {
 
     private JavaFile parseComplex(XsdComplexStruct struct) {
         JavaType type = parseType(struct.type(), false);
-        JavaComplex.Group kind = JavaComplex.Group.SEQUENCE;
+        boolean isSequence = true;
 
         List<XsdValue> values = struct.values();
 
@@ -124,30 +122,33 @@ public class JavaParser {
             XsdValue value = values.getFirst();
 
             if (value instanceof XsdGroupValue group && group.kind() == XsdGroupValue.Kind.UNION) {
-                kind = JavaComplex.Group.UNION;
+                isSequence = false;
                 values = group.values();
             }
         }
 
         List<String> imports = new ArrayList<>();
-        List<JavaComplex> inners = new ArrayList<>();
+        List<JavaClass> inners = new ArrayList<>();
         List<JavaField> fields = new ArrayList<>();
 
         values.forEach(value -> parseValue(value, imports, inners, fields));
 
-        JavaComplex result = new JavaComplex(kind, type, inners, fields);
+        JavaComplex result = isSequence
+                ? new JavaSequence(type, inners, fields)
+                : new JavaChoice(type, inners, fields);
+        
         return new JavaFile(JavaFile.Type.COMPLEX, imports, result);
     }
 
-    private void parseValue(XsdValue value, List<String> imports, List<JavaComplex> inners, List<JavaField> fields) {
+    private void parseValue(XsdValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
         switch (value) {
-            case XsdElementValue casted -> parseElement(casted, imports, fields);
+            case XsdElementValue casted -> parseElement(casted, imports, inners, fields);
             case XsdGroupValue casted -> parseGroup(casted, imports, inners, fields);
             default -> throw new IllegalStateException("Unexpected value: " + value);
         }
     }
 
-    private void parseElement(XsdElementValue value, List<String> imports, List<JavaField> fields) {
+    private void parseElement(XsdElementValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
         JavaType type = parseType(value.type(), value.maxOccurs() > 1);
         JavaType name = new JavaType(null, value.name(), false);
 
@@ -155,7 +156,7 @@ public class JavaParser {
         fields.add(new JavaField(type, name));
     }
 
-    private void parseGroup(XsdGroupValue value, List<String> imports, List<JavaComplex> inners, List<JavaField> fields) {
+    private void parseGroup(XsdGroupValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
         if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
             String name = parseGroupName(value);
             JavaType type = new JavaType(null, name, value.maxOccurs() > 1);
@@ -167,11 +168,11 @@ public class JavaParser {
 
             JavaFile file = parse(xsdStruct);
             JavaComplex inner = (JavaComplex) file.content();
-            JavaComplex.Group group = value.kind() == XsdGroupValue.Kind.SEQUENCE
-                    ? JavaComplex.Group.SEQUENCE
-                    : JavaComplex.Group.UNION;
+            boolean isSequence = inner instanceof JavaSequence;
 
-            inner = new JavaComplex(group, inner.type(), inner.inners(), inner.fields());
+            inner = isSequence
+                    ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
+                    : new JavaChoice(inner.type(), inner.inners(), inner.fields());
 
             imports.addAll(file.imports());
             inners.add(inner);
@@ -246,9 +247,9 @@ public class JavaParser {
             String[] parts = url.getPath().split("/");
 
             return basePkg + Arrays.stream(parts)
-                    .filter(part -> !part.equals("ooxml") && !part.equals("main"))
+                    .filter(part -> !"ooxml".equals(part) && !"main".equals(part))
                     .map(part -> {
-                        return part.equals("drawingml") ? "dml" : part;
+                        return "drawingml".equals(part) ? "dml" : part;
                     })
                     .collect(Collectors.joining("."));
         } catch (MalformedURLException e) {

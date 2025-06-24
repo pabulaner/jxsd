@@ -2,11 +2,9 @@ package io.github.pabulaner.jxsd.java;
 
 import java.util.List;
 
-public record JavaComplex(Group group, JavaType type, List<JavaComplex> inners, List<JavaField> fields) implements JavaClass {
+public interface JavaComplex extends JavaClass {
 
-    public enum Group {
+    List<JavaClass> inners();
 
-        SEQUENCE,
-        UNION,
-    }
+    List<JavaField> fields();
 }
