@@ -16,35 +16,36 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class JavaParser {
 
-    private final String basePkg;
+    public record Config(String basePkg, Map<String, String> pkgConverter) {
+    }
+
+    private final Config config;
 
     private XsdScope scope;
 
-    public JavaParser(String basePkg) {
-        Objects.requireNonNull(basePkg);
-
-        this.basePkg = basePkg;
+    public JavaParser(Config config) {
+        this.config = config;
         this.scope = null;
     }
 
-    public List<JavaFile> parse(XsdResult xsd) {
+    public List<JavaClass> parse(XsdResult xsd) {
         scope = xsd.scope();
         return xsd.structs()
                 .stream()
                 .map(this::parse)
                 .filter(Objects::nonNull)
-                .filter(file -> file.content().type().pkg() != null)
+                .filter(clazz -> clazz.type().pkg() != null)
                 .toList();
     }
 
-    private JavaFile parse(XsdStruct struct) {
+    private JavaClass parse(XsdStruct struct) {
         return switch (struct) {
             case XsdSimpleStruct.XsdPrimitiveStruct casted -> parsePrimitive(casted);
             case XsdSimpleStruct.XsdRestrictionStruct casted -> parseRestriction(casted);
@@ -55,15 +56,14 @@ public class JavaParser {
         };
     }
 
-    private JavaFile parsePrimitive(XsdSimpleStruct.XsdPrimitiveStruct struct) {
+    private JavaClass parsePrimitive(XsdSimpleStruct.XsdPrimitiveStruct struct) {
         JavaType type = parseType(struct.type(), false);
         JavaType primitive = JavaType.createPrimitive(struct.type().name());
-        JavaPrimitive result = new JavaPrimitive(type, primitive);
 
-        return new JavaFile(toImports(primitive), result);
+        return new JavaPrimitive(type, primitive);
     }
 
-    private JavaFile parseRestriction(XsdSimpleStruct.XsdRestrictionStruct struct) {
+    private JavaClass parseRestriction(XsdSimpleStruct.XsdRestrictionStruct struct) {
         JavaType type = parseType(struct.type(), false);
         JavaType parent = parseParent(struct.type());
         JavaType primitive = JavaType.createPrimitive(scope.getTopParent(struct.type()).name());
@@ -76,43 +76,30 @@ public class JavaParser {
                 .toList();
 
         if (enums.isEmpty()) {
-            List<String> imports = toImports(primitive);
-            imports.addAll(toImports(parent));
-
-            JavaRestriction result = new JavaRestriction(type, parent, primitive, List.of());
-            return new JavaFile(imports, result);
+            return new JavaRestriction(type, parent, primitive, List.of());
         } else {
-            JavaEnum result = new JavaEnum(type, enums);
-            return new JavaFile(List.of(), result);
+            return new JavaEnum(type, enums);
         }
     }
 
-    private JavaFile parseList(XsdSimpleStruct.XsdListStruct struct) {
+    private JavaClass parseList(XsdSimpleStruct.XsdListStruct struct) {
         JavaType type = parseType(struct.type(), false);
         JavaType itemType = parseType(struct.itemType(), false);
-        JavaList result = new JavaList(type, itemType);
 
-        return new JavaFile(toImports(itemType), result);
+        return new JavaList(type, itemType);
     }
 
-    private JavaFile parseUnion(XsdSimpleStruct.XsdUnionStruct struct) {
+    private JavaClass parseUnion(XsdSimpleStruct.XsdUnionStruct struct) {
         JavaType type = parseType(struct.type(), false);
         List<JavaType> types = struct.types()
                 .stream()
                 .map(value -> parseType(value, false))
                 .toList();
 
-        List<String> imports = List.of();
-
-        if (types.size() > 1) {
-            imports = toImports(types);
-        }
-
-        JavaUnion result = new JavaUnion(type, types);
-        return new JavaFile(imports, result);
+        return new JavaUnion(type, types);
     }
 
-    private JavaFile parseComplex(XsdComplexStruct struct) {
+    private JavaClass parseComplex(XsdComplexStruct struct) {
         JavaType type = parseType(struct.type(), false);
         boolean isSequence = true;
 
@@ -127,41 +114,37 @@ public class JavaParser {
             }
         }
 
-        List<String> imports = new ArrayList<>();
         List<JavaClass> inners = new ArrayList<>();
         List<JavaField> fields = new ArrayList<>();
 
-        values.forEach(value -> parseValue(value, imports, inners, fields));
+        values.forEach(value -> parseValue(value, inners, fields));
 
-        JavaComplex result = isSequence
+        return isSequence
                 ? new JavaSequence(type, inners, fields)
                 : new JavaChoice(type, inners, fields);
-        
-        return new JavaFile(imports, result);
     }
 
-    private void parseValue(XsdValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
+    private void parseValue(XsdValue value, List<JavaClass> inners, List<JavaField> fields) {
         switch (value) {
-            case XsdElementValue casted -> parseElement(casted, imports, inners, fields);
-            case XsdGroupValue casted -> parseGroup(casted, imports, inners, fields);
+            case XsdElementValue casted -> parseElement(casted, inners, fields);
+            case XsdGroupValue casted -> parseGroup(casted, inners, fields);
             default -> throw new IllegalStateException("Unexpected value: " + value);
         }
     }
 
-    private void parseElement(XsdElementValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
+    private void parseElement(XsdElementValue value, List<JavaClass> inners, List<JavaField> fields) {
         JavaType type = parseType(value.type(), value.maxOccurs() > 1);
         JavaType name = new JavaType(null, value.name(), false);
         XsdStruct struct = value.struct();
 
         if (struct != null) {
-            inners.add(parse(struct).content());
+            inners.add(parse(struct));
         }
 
-        imports.addAll(toImports(type));
         fields.add(new JavaField(type, name));
     }
 
-    private void parseGroup(XsdGroupValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
+    private void parseGroup(XsdGroupValue value, List<JavaClass> inners, List<JavaField> fields) {
         if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
             String name = parseGroupName(value);
             JavaType type = new JavaType(null, name, value.maxOccurs() > 1);
@@ -171,18 +154,10 @@ public class JavaParser {
             XsdType xsdType = new XsdType(null, name, null, null);
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
-            JavaFile file = parse(xsdStruct);
-            JavaComplex inner = (JavaComplex) file.content();
-            boolean isSequence = inner instanceof JavaSequence;
-
-            inner = isSequence
-                    ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
-                    : new JavaChoice(inner.type(), inner.inners(), inner.fields());
-
-            imports.addAll(file.imports());
+            JavaComplex inner = (JavaComplex) parse(xsdStruct);
             inners.add(inner);
         } else {
-            value.values().forEach(val -> parseValue(val, imports, inners, fields));
+            value.values().forEach(val -> parseValue(val, inners, fields));
         }
     }
 
@@ -243,7 +218,7 @@ public class JavaParser {
     // TODO: figure out nice way to filter or rename packages
     private String toPackage(String scope) {
         if (scope == null) {
-            return basePkg;
+            return config.basePkg;
         }
 
         try {
@@ -251,33 +226,17 @@ public class JavaParser {
 
             String[] parts = url.getPath().split("/");
 
-            return basePkg + Arrays.stream(parts)
-                    .filter(part -> !"ooxml".equals(part) && !"main".equals(part))
+            return config.basePkg + Arrays.stream(parts)
+                    .filter(part -> !part.matches("\\d+") && !"".equals(config.pkgConverter.get(part)))
                     .map(part -> {
-                        return "drawingml".equals(part) ? "dml" : part;
+                        String converted = config.pkgConverter.get(part);
+                        return converted != null
+                                ? converted
+                                : part;
                     })
                     .collect(Collectors.joining("."));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private List<String> toImports(JavaType type) {
-        return toImports(List.of(type));
-    }
-
-    // TODO: figure out nice way to handle imports
-    private List<String> toImports(Collection<JavaType> types) {
-        List<String> result = types.stream()
-                .filter(type -> type.pkg() != null)
-                .map(type -> List.of(
-                        type.pkg() + "." + type.toModelImport(),
-                        type.pkg() + "." + type.toConverterImport(),
-                        type.pkg().replace(basePkg, "org.docx4j") + ".*"
-                ))
-                .flatMap(List::stream)
-                .toList();
-
-        return new ArrayList<>(result);
     }
 }

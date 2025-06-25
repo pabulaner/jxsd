@@ -12,7 +12,7 @@
         return new ${content.type.toModel()}(
             <#list content.fields as field>
                 <#if field.type.isList()>
-                    value.get${field.name.toUpper()}().stream().map(${field.type.toConverter()}::fromDocx4j).collect(Collectors.toList());
+                    value.get${field.name.toUpper()}().stream().map(${field.type.toConverter()}::fromDocx4j).collect(Collectors.toList())
                 <#else>
                     ${field.type.toConverter()}.fromDocx4j(value.get${field.name.toUpper()}())
                 </#if>

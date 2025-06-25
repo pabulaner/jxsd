@@ -6,7 +6,7 @@
     <#assign is_inner=true>
     <#list inners as inner>
         <#assign content=inner>
-        <#switch inner.name()>
+        <#switch inner.name>
             <#on "JavaPrimitive"><#local file="primitive">
             <#on "JavaRestriction"><#local file="restriction">
             <#on "JavaList"><#local file="list">
@@ -15,7 +15,6 @@
             <#on "JavaSequence"><#local file="sequence">
             <#on "JavaChoice"><#local file="choice">
         </#switch>
-        
         <#include type + "/" + file + ".ftl">
     </#list>
 </#macro>

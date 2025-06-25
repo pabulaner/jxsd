@@ -6,7 +6,7 @@
 
     <@converter_util.decl_constructor />
 
-    <@converter_util.decl_from /> {
+    public static ${content.type.toModel()} fromDocx4j(${content.primitive.toUpper()} value) {
         return new ${content.type.toModel()}(value);
     }
 }
