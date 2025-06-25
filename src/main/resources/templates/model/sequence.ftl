@@ -1,6 +1,7 @@
 <#import "../util.ftl" as util>
 <#include "../header.ftl">
 
+// SEQUENCE MODEL
 <@util.decl_class content.type.toModel() /> {
 
     <@util.decl_inners "model" content.inners />

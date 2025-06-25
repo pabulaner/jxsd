@@ -22,9 +22,9 @@ public class Main {
 
     public static void main(String[] args) throws SAXException, IOException, TemplateException {
         Map<String, String> pkgConverter = new HashMap<>();
-        pkgConverter.put("ooxml", "");
-        pkgConverter.put("main", "");
-        pkgConverter.put("drawingml", "dml");
+        //pkgConverter.put("ooxml", "");
+        //pkgConverter.put("main", "");
+        //pkgConverter.put("drawingml", "dml");
 
         Set<String> additionalImports = new HashSet<>();
         additionalImports.add("org.docx4j.dml.*");

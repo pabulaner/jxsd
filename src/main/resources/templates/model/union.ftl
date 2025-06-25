@@ -5,6 +5,7 @@
     <#return type.pkg + "." + type.toModel()>
 </#function>
 
+// UNION MODEL
 <@util.decl_class content.type.toModel() /> {
 
     private final Object value;

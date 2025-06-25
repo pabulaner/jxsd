@@ -155,6 +155,10 @@ public class JavaParser {
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             JavaComplex inner = (JavaComplex) parse(xsdStruct);
+            inner = value.kind() == XsdGroupValue.Kind.SEQUENCE
+                    ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
+                    : new JavaChoice(inner.type(), inner.inners(), inner.fields());
+
             inners.add(inner);
         } else {
             value.values().forEach(val -> parseValue(val, inners, fields));

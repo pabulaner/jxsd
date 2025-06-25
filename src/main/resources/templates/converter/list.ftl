@@ -5,11 +5,12 @@
 import java.util.ArrayList;
 import java.util.Collection;
 
+// LIST CONVERTER
 <@util.decl_class content.type.toConverter() /> {
 
-    <@converter_util.decl_constructor />
+    <@converter_util.decl_constructor content/>
 
-    <@converter_util.decl_from /> {
+    <@converter_util.decl_from content /> {
         return null;
     }
 }

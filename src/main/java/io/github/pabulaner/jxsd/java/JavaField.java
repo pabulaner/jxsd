@@ -1,4 +1,6 @@
 package io.github.pabulaner.jxsd.java;
 
-public record JavaField(JavaType type, JavaType name) {
+import java.util.function.Supplier;
+
+public record JavaField(JavaType type, JavaType name, Supplier<Class<? extends JavaClass>> classSupplier) {
 }

@@ -1,6 +1,7 @@
 <#import "../util.ftl" as util>
 <#include "../header.ftl">
 
+// PRIMITIVE MODEL
 <@util.decl_class content.type.toModel() /> {
 
     private final ${content.primitive.toUpper()} value;

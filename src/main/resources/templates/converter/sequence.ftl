@@ -2,13 +2,14 @@
 <#import "../util.ftl" as util>
 <#include "../header.ftl">
 
+// SEQUENCE CONVERTER
 <@util.decl_class content.type.toConverter() /> {
 
     <@util.decl_inners "converter" content.inners />
 
-    <@converter_util.decl_constructor />
+    <@converter_util.decl_constructor content/>
 
-    <@converter_util.decl_from /> {
+    <@converter_util.decl_from content /> {
         return new ${content.type.toModel()}(
             <#list content.fields as field>
                 <#if field.type.isList()>
