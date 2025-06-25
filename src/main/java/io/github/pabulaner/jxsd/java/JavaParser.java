@@ -60,7 +60,7 @@ public class JavaParser {
         JavaType primitive = JavaType.createPrimitive(struct.type().name());
         JavaPrimitive result = new JavaPrimitive(type, primitive);
 
-        return new JavaFile(JavaFile.Type.PRIMITIVE, toImports(primitive), result);
+        return new JavaFile(toImports(primitive), result);
     }
 
     private JavaFile parseRestriction(XsdSimpleStruct.XsdRestrictionStruct struct) {
@@ -80,10 +80,10 @@ public class JavaParser {
             imports.addAll(toImports(parent));
 
             JavaRestriction result = new JavaRestriction(type, parent, primitive, List.of());
-            return new JavaFile(JavaFile.Type.RESTRICTION, imports, result);
+            return new JavaFile(imports, result);
         } else {
             JavaEnum result = new JavaEnum(type, enums);
-            return new JavaFile(JavaFile.Type.ENUM, List.of(), result);
+            return new JavaFile(List.of(), result);
         }
     }
 
@@ -92,7 +92,7 @@ public class JavaParser {
         JavaType itemType = parseType(struct.itemType(), false);
         JavaList result = new JavaList(type, itemType);
 
-        return new JavaFile(JavaFile.Type.LIST, toImports(itemType), result);
+        return new JavaFile(toImports(itemType), result);
     }
 
     private JavaFile parseUnion(XsdSimpleStruct.XsdUnionStruct struct) {
@@ -109,7 +109,7 @@ public class JavaParser {
         }
 
         JavaUnion result = new JavaUnion(type, types);
-        return new JavaFile(JavaFile.Type.UNION, imports, result);
+        return new JavaFile(imports, result);
     }
 
     private JavaFile parseComplex(XsdComplexStruct struct) {
@@ -137,7 +137,7 @@ public class JavaParser {
                 ? new JavaSequence(type, inners, fields)
                 : new JavaChoice(type, inners, fields);
         
-        return new JavaFile(JavaFile.Type.COMPLEX, imports, result);
+        return new JavaFile(imports, result);
     }
 
     private void parseValue(XsdValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
@@ -151,6 +151,11 @@ public class JavaParser {
     private void parseElement(XsdElementValue value, List<String> imports, List<JavaClass> inners, List<JavaField> fields) {
         JavaType type = parseType(value.type(), value.maxOccurs() > 1);
         JavaType name = new JavaType(null, value.name(), false);
+        XsdStruct struct = value.struct();
+
+        if (struct != null) {
+            inners.add(parse(struct).content());
+        }
 
         imports.addAll(toImports(type));
         fields.add(new JavaField(type, name));

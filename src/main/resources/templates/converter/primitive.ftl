@@ -1,12 +1,12 @@
+<#import "util.ftl" as converter_util>
+<#import "../util.ftl" as util>
 <#include "../header.ftl">
 
-public final class ${content.type.toConverter()} {
+<@util.decl_class content.type.toConverter() /> {
 
-    private ${content.type.toConverter()} {
-        // empty
-    }
+    <@converter_util.decl_constructor />
 
-    public static ${content.type.toModel()} fromDocx4j(${content.primitive.toUpper()} value) {
+    <@converter_util.decl_from /> {
         return new ${content.type.toModel()}(value);
     }
 }

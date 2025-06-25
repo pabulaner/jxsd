@@ -1,8 +1,12 @@
+<#import "util.ftl" as converter_util>
+<#import "../util.ftl" as util>
 <#include "../header.ftl">
 
-public enum ${content.type.toModel()} {
+<@util.decl_class content.type.toConverter() /> {
 
-    <#list content.values as value>
-    ${value},
-    </#list>
+    <@converter_util.decl_constructor />
+
+    <@converter_util.decl_from /> {
+        return null;
+    }
 }

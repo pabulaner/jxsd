@@ -15,14 +15,13 @@ import com.sun.xml.xsom.XSType;
 import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
-import org.docx4j.dml.chart.CTAxDataSource;
-import org.docx4j.dml.chart.CTCatAx;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class XsdParser {
@@ -31,10 +30,16 @@ public class XsdParser {
 
     public static final String ANY_SIMPLE_TYPE = "anySimpleType";
 
+    private record Pair(XsdType type, XsdStruct struct) {
+    }
+
     private XsdScope scope;
+
+    private final Stack<String> anonymous;
 
     public XsdParser() {
         scope = null;
+        anonymous = new Stack<>();
     }
 
     public XsdResult parse(URL url) throws SAXException {
@@ -110,23 +115,12 @@ public class XsdParser {
                 .stream()
                 .map(attr -> {
                     XSAttributeDecl decl = attr.getDecl();
-                    XSType declType = decl.getType();
                     String name = decl.getName();
-                    XsdStruct struct;
-                    XsdType attrType;
-
-                    // check if the element has an anonymous type
-                    if (declType.getName() == null) {
-                        struct = parse(declType);
-                        attrType = parseType(name, declType);
-                    } else {
-                        struct = null;
-                        attrType = parseType(declType);
-                    }
+                    Pair pair = parseAnonymous(name, decl.getType());
 
                     return new XsdElementValue(1, 1,
-                            struct,
-                            attrType,
+                            pair.struct,
+                            pair.type,
                             name,
                             parseString(attr.getDefaultValue()));
                 })
@@ -180,25 +174,14 @@ public class XsdParser {
 
         if (term.isElementDecl()) {
             XSElementDecl element = term.asElementDecl();
-            XSType xsType = element.getType();
             String name = element.getName();
-            XsdStruct struct;
-            XsdType type;
-
-            // check if the element has an anonymous type
-            if (element.getType().getName() == null) {
-                struct = parse(xsType);
-                type = parseType(name, xsType);
-            } else {
-                struct = null;
-                type = parseType(xsType);
-            }
+            Pair pair = parseAnonymous(name, element.getType());
 
             return new XsdElementValue(
                     minOccurs,
                     maxOccurs,
-                    struct,
-                    type,
+                    pair.struct,
+                    pair.type,
                     name,
                     parseString(element.getDefaultValue()));
         }
@@ -234,11 +217,26 @@ public class XsdParser {
     }
 
     private XsdType parseType(String name, XSType xs) {
+        if (name == null) {
+            name = anonymous.pop();
+        }
+
         return scope.declare(
                 xs.getTargetNamespace(),
                 name,
                 xs.getBaseType().getTargetNamespace(),
                 xs.getBaseType().getName());
+    }
+
+    private Pair parseAnonymous(String name, XSType type) {
+        String typeName = type.getName();
+
+        if (typeName == null) {
+            anonymous.push(name);
+            return new Pair(parseType(name, type), parse(type));
+        } else {
+            return new Pair(parseType(type), null);
+        }
     }
 
     private String parseString(XmlString value) {

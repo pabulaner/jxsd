@@ -3,7 +3,15 @@ package io.github.pabulaner.jxsd.out;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import io.github.pabulaner.jxsd.java.JavaChoice;
+import io.github.pabulaner.jxsd.java.JavaClass;
+import io.github.pabulaner.jxsd.java.JavaEnum;
 import io.github.pabulaner.jxsd.java.JavaFile;
+import io.github.pabulaner.jxsd.java.JavaList;
+import io.github.pabulaner.jxsd.java.JavaPrimitive;
+import io.github.pabulaner.jxsd.java.JavaRestriction;
+import io.github.pabulaner.jxsd.java.JavaSequence;
+import io.github.pabulaner.jxsd.java.JavaUnion;
 import org.docx4j.dml.chart.CTAxDataSource;
 import org.docx4j.dml.diagram.STAxisType;
 
@@ -13,20 +21,22 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 public class OutWriter {
 
-    private final Map<JavaFile.Type, String> types;
+    private final Map<Class<? extends JavaClass>, String> types;
 
     public OutWriter() {
-        types = new EnumMap<>(JavaFile.Type.class);
-        types.put(JavaFile.Type.PRIMITIVE, "primitive.ftl");
-        types.put(JavaFile.Type.RESTRICTION, "restriction.ftl");
-        types.put(JavaFile.Type.LIST, "list.ftl");
-        types.put(JavaFile.Type.UNION, "union.ftl");
-        types.put(JavaFile.Type.ENUM, "enum.ftl");
-        types.put(JavaFile.Type.COMPLEX, "complex.ftl");
+        types = new HashMap<>();
+        types.put(JavaPrimitive.class, "primitive.ftl");
+        types.put(JavaRestriction.class, "restriction.ftl");
+        types.put(JavaList.class, "list.ftl");
+        types.put(JavaUnion.class, "union.ftl");
+        types.put(JavaEnum.class, "enum.ftl");
+        types.put(JavaSequence.class, "sequence.ftl");
+        types.put(JavaChoice.class, "choice.ftl");
     }
 
     public void write(String mode, JavaFile file) throws IOException, TemplateException {
@@ -36,7 +46,7 @@ public class OutWriter {
         Writer writer = new StringWriter();
         String directory = "generated/" + file.content().type().pkg().replace(".", "/");
 
-        Template template = config.getTemplate(mode + "/" + types.get(file.type()));
+        Template template = config.getTemplate(mode + "/" + types.get(file.content().getClass()));
         template.process(file, writer);
 
         String content = new OutFormatter(writer.toString()).format();
