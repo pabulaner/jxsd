@@ -3,6 +3,7 @@ package io.github.pabulaner.jxsd;
 import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaParser;
+import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.out.OutWriter;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
@@ -31,11 +32,11 @@ public class Main {
         additionalImports.add("org.docx4j.dml.chart.*");
         additionalImports.add("org.docx4j.dml.chartDrawing.*");
 
-        JavaParser.Config config = new JavaParser.Config("test", pkgConverter);
+        JavaParser.Config config = new JavaParser.Config(List.of("test"), pkgConverter);
 
         XsdResult xsd = new XsdParser().parse(Main.class.getResource("/xsd/dml/dml-chart.xsd"));
-        List<JavaClass> classes = new JavaParser(config).parse(xsd);
-        OutWriter writer = new OutWriter(classes, additionalImports);
+        JavaResult java = new JavaParser(config).parse(xsd);
+        OutWriter writer = new OutWriter(java, additionalImports);
 
         writer.write(MODES);
     }

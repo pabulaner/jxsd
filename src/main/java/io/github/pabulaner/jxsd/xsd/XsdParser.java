@@ -129,12 +129,7 @@ public class XsdParser {
         XSContentType content = xs.getContentType();
 
         if (content != null) {
-            XSSimpleType simple = content.asSimpleType();
             XSParticle particle = content.asParticle();
-
-            if (simple != null) {
-                throw new IllegalStateException("Unreachable");
-            }
 
             if (particle != null) {
                 XsdValue value = parseParticle(particle);

@@ -16,37 +16,49 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Stack;
 
 public class JavaParser {
 
-    public record Config(String basePkg, Map<String, String> pkgConverter) {
+    public record Config(List<String> basePkg, Map<String, String> pkgConverter) {
     }
 
     private final Config config;
 
-    private XsdScope scope;
+    private XsdScope xsdScope;
+
+    private JavaScope javaScope;
+
+    private final Stack<String> outer;
 
     public JavaParser(Config config) {
         this.config = config;
-        this.scope = null;
+        this.xsdScope = null;
+        this.javaScope = null;
+        this.outer = new Stack<>();
     }
 
-    public List<JavaClass> parse(XsdResult xsd) {
-        scope = xsd.scope();
-        return xsd.structs()
+    public JavaResult parse(XsdResult xsd) {
+        xsdScope = xsd.scope();
+        javaScope = new JavaScope();
+
+        List<JavaClass> classes = xsd.structs()
                 .stream()
                 .map(this::parse)
                 .filter(Objects::nonNull)
                 .filter(clazz -> clazz.type().pkg() != null)
                 .toList();
+
+        return new JavaResult(javaScope, classes);
     }
 
     private JavaClass parse(XsdStruct struct) {
-        return switch (struct) {
+        JavaClass result = switch (struct) {
             case XsdSimpleStruct.XsdPrimitiveStruct casted -> parsePrimitive(casted);
             case XsdSimpleStruct.XsdRestrictionStruct casted -> parseRestriction(casted);
             case XsdSimpleStruct.XsdListStruct casted -> parseList(casted);
@@ -54,6 +66,9 @@ public class JavaParser {
             case XsdComplexStruct casted -> parseComplex(casted);
             default -> throw new IllegalStateException("Unexpected value: " + struct);
         };
+
+        javaScope.declare(result);
+        return result;
     }
 
     private JavaClass parsePrimitive(XsdSimpleStruct.XsdPrimitiveStruct struct) {
@@ -66,7 +81,7 @@ public class JavaParser {
     private JavaClass parseRestriction(XsdSimpleStruct.XsdRestrictionStruct struct) {
         JavaType type = parseType(struct.type(), false);
         JavaType parent = parseParent(struct.type());
-        JavaType primitive = JavaType.createPrimitive(scope.getTopParent(struct.type()).name());
+        JavaType primitive = JavaType.createPrimitive(xsdScope.getTopParent(struct.type()).name());
 
         List<String> enums = struct.restrictions()
                 .stream()
@@ -117,7 +132,9 @@ public class JavaParser {
         List<JavaClass> inners = new ArrayList<>();
         List<JavaField> fields = new ArrayList<>();
 
+        outer.push(type.name());
         values.forEach(value -> parseValue(value, inners, fields));
+        outer.pop();
 
         return isSequence
                 ? new JavaSequence(type, inners, fields)
@@ -134,7 +151,7 @@ public class JavaParser {
 
     private void parseElement(XsdElementValue value, List<JavaClass> inners, List<JavaField> fields) {
         JavaType type = parseType(value.type(), value.maxOccurs() > 1);
-        JavaType name = new JavaType(null, value.name(), false);
+        JavaType name = new JavaType(null, null, value.name(), false);
         XsdStruct struct = value.struct();
 
         if (struct != null) {
@@ -147,9 +164,6 @@ public class JavaParser {
     private void parseGroup(XsdGroupValue value, List<JavaClass> inners, List<JavaField> fields) {
         if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
             String name = parseGroupName(value);
-            JavaType type = new JavaType(null, name, value.maxOccurs() > 1);
-
-            fields.add(new JavaField(type, type));
 
             XsdType xsdType = new XsdType(null, name, null, null);
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
@@ -159,6 +173,7 @@ public class JavaParser {
                     ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
                     : new JavaChoice(inner.type(), inner.inners(), inner.fields());
 
+            javaScope.declare(inner);
             inners.add(inner);
         } else {
             value.values().forEach(val -> parseValue(val, inners, fields));
@@ -166,11 +181,12 @@ public class JavaParser {
     }
 
     private JavaType parseType(XsdType type, boolean isList) {
-        return new JavaType(toPackage(type.scope()), type.name(), isList);
+        return new JavaType(toPackage(type.scope()), getOuter(), type.name(), isList);
     }
 
     private JavaType parseParent(XsdType type) {
-        return new JavaType(toPackage(type.parentScope()), type.parentName(), false);
+        // TODO: figure out if the empty outer part causes problems as the parent might also be located inside an outer class
+        return new JavaType(toPackage(type.parentScope()), List.of(), type.parentName(), false);
     }
 
     private String parseEnum(String value) {
@@ -219,18 +235,17 @@ public class JavaParser {
         return result.toString();
     }
 
-    // TODO: figure out nice way to filter or rename packages
-    private String toPackage(String scope) {
+    private List<String> toPackage(String scope) {
         if (scope == null) {
             return config.basePkg;
         }
 
         try {
             URL url = URI.create(scope).toURL();
-
             String[] parts = url.getPath().split("/");
 
-            return config.basePkg + Arrays.stream(parts)
+            List<String> result = new ArrayList<>(config.basePkg);
+            result.addAll(Arrays.stream(parts)
                     .filter(part -> !part.matches("\\d+") && !"".equals(config.pkgConverter.get(part)))
                     .map(part -> {
                         String converted = config.pkgConverter.get(part);
@@ -238,9 +253,15 @@ public class JavaParser {
                                 ? converted
                                 : part;
                     })
-                    .collect(Collectors.joining("."));
+                    .toList());
+
+            return result;
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private List<String> getOuter() {
+        return Collections.unmodifiableList(outer);
     }
 }

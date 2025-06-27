@@ -1,5 +1,5 @@
 <#if !(is_inner!false)>
-    package ${content.type().pkg()};
+    package ${content.type().pkg()?join(".")};
 
     import java.time.LocalDate;
     import java.time.LocalDateTime;
