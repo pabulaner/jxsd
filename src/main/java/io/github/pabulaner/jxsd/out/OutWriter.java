@@ -11,9 +11,7 @@ import io.github.pabulaner.jxsd.java.JavaList;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaResult;
-import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.java.JavaSequence;
-import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 
 import java.io.IOException;
@@ -51,7 +49,7 @@ public class OutWriter {
         types.put(JavaSequence.class, "sequence.ftl");
         types.put(JavaChoice.class, "choice.ftl");
 
-        result.classes().forEach(clazz -> imports.add(clazz.type().pkg() + ".*"));
+        result.classes().forEach(clazz -> imports.add(String.join(".", clazz.type().pkg()) + ".*"));
         imports.addAll(additionalImports);
     }
 
@@ -71,7 +69,7 @@ public class OutWriter {
         config.setClassForTemplateLoading(OutWriter.class, "/templates");
 
         Writer writer = new StringWriter();
-        String directory = "src/main/java/" + String.join(".", clazz.type().pkg());
+        String directory = "src/main/java/" + String.join("/", clazz.type().pkg());
 
         Template template = config.getTemplate(mode + "/" + types.get(clazz.getClass()));
         template.process(new OutFile(addInnerImports(clazz, clazz.type().pkg(), new HashSet<>(imports)), result.scope(), clazz), writer);

@@ -169,12 +169,17 @@ public class JavaParser {
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             JavaComplex inner = (JavaComplex) parse(xsdStruct);
+            JavaType type = inner.type()
+                    ;
             inner = value.kind() == XsdGroupValue.Kind.SEQUENCE
                     ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
                     : new JavaChoice(inner.type(), inner.inners(), inner.fields());
+            type = new JavaType(type.pkg(), type.outer(), type.name(), value.maxOccurs() > 1);
 
             javaScope.declare(inner);
+
             inners.add(inner);
+            fields.add(new JavaField(type, new JavaType(null, null, name, false)));
         } else {
             value.values().forEach(val -> parseValue(val, inners, fields));
         }
@@ -253,6 +258,7 @@ public class JavaParser {
                                 ? converted
                                 : part;
                     })
+                    .filter(part -> !part.isEmpty())
                     .toList());
 
             return result;
