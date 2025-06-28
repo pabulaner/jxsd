@@ -2,9 +2,12 @@
     public <#if is_inner!false>static </#if>class ${name}
 </#macro>
 
-<#macro decl_inners type inners>
+<#macro decl_inners type content>
     <#assign is_inner=true>
-    <#list inners as inner>
+    <#if !outer??>
+        <#assign outer=content>
+    </#if>
+    <#list content.inners as inner>
         <#assign content=inner>
         <#switch inner.name>
             <#on "JavaPrimitive"><#local file="primitive">
