@@ -1,9 +1,7 @@
 <#import "../util.ftl">
 <#include "../header.ftl">
 
-public enum ${util.to_builder(name)} {
+public class ${content.type.toBuilder()} {
 
-    <#list values as value>
-    ${value} <#sep>,<#/if>
-    </#list>
+
 }

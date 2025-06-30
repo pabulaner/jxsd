@@ -3,12 +3,12 @@
 </#macro>
 
 <#macro decl_inners type content>
-    <#assign is_inner=true>
+    <#local is_inner=true>
     <#if !outer??>
         <#assign outer=content>
     </#if>
     <#list content.inners as inner>
-        <#assign content=inner>
+        <#local content=inner>
         <#switch inner.name>
             <#on "JavaPrimitive"><#local file="primitive">
             <#on "JavaRestriction"><#local file="restriction">

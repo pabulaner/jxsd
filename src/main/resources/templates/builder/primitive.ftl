@@ -1,22 +1,22 @@
 <#include "../header.ftl">
 
-public class ${util.to_builder(name, false)} {
+public class ${content.type.toBuilder()} {
 
-    private ${util.to_upper(type)} value;
+    private ${content.primitive.raw()} value;
 
-    public ${util.to_builder(name, false)}(${util.to_upper(type)} value) {
+    public ${content.type.toBuilder()}() {
         this(null);
     }
 
-    public ${util.to_builder(name, false)}(${util.to_upper(type)} value) {
+    public ${content.type.toBuilder()}(${content.type.toModel()} value) {
         this.value = value;
     }
 
-    public ${util.to_model(name, false)} build() {
-        return new ${util.to_model(name, false)}(this.value);
+    public ${content.type.toModel()} build() {
+        return new ${content.type.toBuilder()}(this.value);
     }
 
-    public ${util.to_builder(name, false)} setValue(${util.to_upper(type)} value) {
+    public ${content.type.toBuilder()} setValue(${content.primitive.raw()} value) {
         this.value = value;
         return this;
     }

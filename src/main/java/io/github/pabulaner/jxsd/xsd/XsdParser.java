@@ -1,5 +1,6 @@
 package io.github.pabulaner.jxsd.xsd;
 
+import com.sun.xml.xsom.XSAnnotation;
 import com.sun.xml.xsom.XSAttributeDecl;
 import com.sun.xml.xsom.XSComplexType;
 import com.sun.xml.xsom.XSContentType;
@@ -15,6 +16,7 @@ import com.sun.xml.xsom.XSType;
 import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
+import com.sun.xml.xsom.util.DomAnnotationParserFactory;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
@@ -46,21 +48,20 @@ public class XsdParser {
         scope = new XsdScope();
 
         XSOMParser parser = new XSOMParser(SAXParserFactory.newInstance());
+        parser.setAnnotationParser(new DomAnnotationParserFactory());
         parser.parse(url);
 
         XSSchemaSet set = parser.getResult();
         List<XsdStruct> structs = new ArrayList<>();
 
-        set.getSchemas().forEach(schema -> {
-            schema.getTypes()
-                    .values()
-                    .stream()
-                    .map(this::parse)
-                    .filter(xs -> !SIMPLE_TYPE.equals(xs.type().name()))
-                    .filter(xs -> !ANY_SIMPLE_TYPE.equals(xs.type().name()))
-                    .filter(xs -> xs.type().parentName() != null)
-                    .forEach(structs::add);
-        });
+        set.getSchemas().forEach(schema -> schema.getTypes()
+                .values()
+                .stream()
+                .map(this::parse)
+                .filter(xs -> !SIMPLE_TYPE.equals(xs.type().name()))
+                .filter(xs -> !ANY_SIMPLE_TYPE.equals(xs.type().name()))
+                .filter(xs -> xs.type().parentName() != null)
+                .forEach(structs::add));
 
         return new XsdResult(scope, structs);
     }

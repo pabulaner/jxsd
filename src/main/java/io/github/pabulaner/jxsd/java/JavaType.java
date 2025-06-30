@@ -3,9 +3,14 @@ package io.github.pabulaner.jxsd.java;
 import java.util.List;
 import java.util.Objects;
 
-public record JavaType(List<String> pkg, List<String> outer, String name, boolean isList) {
+public record JavaType(List<String> pkg, List<JavaName> outer, JavaName name, boolean isList) {
 
     public static JavaType createPrimitive(String primitive) {
+        List<String> pkg = switch (primitive) {
+            case "duration", "dateTime", "time", "date" -> List.of("java", "util", "time");
+            default -> List.of();
+        };
+
         String name = switch (primitive) {
             case "string", "NOTATION", "QName", "anyURI", "IDREFS" -> "String";
             case "boolean" -> "boolean";
@@ -21,57 +26,7 @@ public record JavaType(List<String> pkg, List<String> outer, String name, boolea
             default -> throw new IllegalArgumentException("Unexpected value: " + primitive);
         };
 
-        return new JavaType(null, null, name, false);
-    }
-
-    public String toVar() {
-        String value = toLower();
-
-        return switch (value) {
-            case "byte", "short", "int", "long", "float", "double", "boolean", "char", "if", "else", "for" -> "_" + value;
-            default -> value;
-        };
-    }
-
-    public String toModel() {
-        return clean("Model", isList);
-    }
-
-    public String toModelImport() {
-        return clean("Model", false);
-    }
-
-    public String toBuilder() {
-        return clean("Builder", isList);
-    }
-
-    public String toBuilderImport() {
-        return clean("Builder", false);
-    }
-
-    public String toConverter() {
-        return clean("Converter", false);
-    }
-
-    public String toConverterImport() {
-        return toConverter();
-    }
-
-    public String toDocx4j() {
-        return toUpper().replace("_", "");
-    }
-
-    public String toLower() {
-        return name.substring(0, 1).toLowerCase() + name.substring(1);
-    }
-
-    public String toUpper() {
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
-    }
-
-    public String clean(String suffix, boolean isList) {
-        String value = toUpper().replace("_", "") + suffix;
-        return isList ? "List<" + value + ">" : value;
+        return new JavaType(pkg, List.of(), new JavaName(name), false);
     }
 
     @Override

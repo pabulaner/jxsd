@@ -34,7 +34,7 @@ public class JavaParser {
 
     private JavaScope javaScope;
 
-    private final Stack<String> outer;
+    private final Stack<JavaName> outer;
 
     public JavaParser(Config config) {
         this.config = config;
@@ -151,7 +151,7 @@ public class JavaParser {
 
     private void parseElement(XsdElementValue value, List<JavaClass> inners, List<JavaField> fields) {
         JavaType type = parseType(value.type(), value.maxOccurs() > 1);
-        JavaType name = new JavaType(null, null, value.name(), false);
+        JavaName name = new JavaName(value.name());
         XsdStruct struct = value.struct();
 
         if (struct != null) {
@@ -169,8 +169,8 @@ public class JavaParser {
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             JavaComplex inner = (JavaComplex) parse(xsdStruct);
-            JavaType type = inner.type()
-                    ;
+            JavaType type = inner.type();
+
             inner = value.kind() == XsdGroupValue.Kind.SEQUENCE
                     ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
                     : new JavaChoice(inner.type(), inner.inners(), inner.fields());
@@ -179,19 +179,19 @@ public class JavaParser {
             javaScope.declare(inner);
 
             inners.add(inner);
-            fields.add(new JavaField(type, new JavaType(null, null, name, false)));
+            fields.add(new JavaField(type, new JavaName(name)));
         } else {
             value.values().forEach(val -> parseValue(val, inners, fields));
         }
     }
 
     private JavaType parseType(XsdType type, boolean isList) {
-        return new JavaType(toPackage(type.scope()), getOuter(), type.name(), isList);
+        return new JavaType(toPackage(type.scope()), getOuter(), new JavaName(type.name()), isList);
     }
 
     private JavaType parseParent(XsdType type) {
         // TODO: figure out if the empty outer part causes problems as the parent might also be located inside an outer class
-        return new JavaType(toPackage(type.parentScope()), List.of(), type.parentName(), false);
+        return new JavaType(toPackage(type.parentScope()), List.of(), new JavaName(type.parentName()), false);
     }
 
     private String parseEnum(String value) {
@@ -267,7 +267,7 @@ public class JavaParser {
         }
     }
 
-    private List<String> getOuter() {
+    private List<JavaName> getOuter() {
         return Collections.unmodifiableList(outer);
     }
 }

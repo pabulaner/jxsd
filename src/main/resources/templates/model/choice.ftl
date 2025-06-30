@@ -4,7 +4,7 @@
 // CHOICE MODEL
 <@util.decl_class content.type.toModel() /> {
 
-    <@util.decl_inners "model" content.inners />
+    <@util.decl_inners "model" content />
 
     private final Object value;
 
@@ -19,7 +19,7 @@
 
     <#list content.fields as field>
         public boolean is${field.name.toUpper()}() {
-            return this.type instanceof ${field.type.toModel()};
+            return this.value instanceof ${field.type.toModel()};
         }
 
         public ${field.type.toModel()} get${field.name.toUpper()}() {

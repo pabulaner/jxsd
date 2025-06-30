@@ -1,15 +1,15 @@
 <#include "../header.ftl">
 
-public class ${util.to_builder(name, false)} {
+public class ${content.type.toBuilder()} {
 
     private final Object value;
 
-    public ${util.to_builder(name, false)}() {
+    public ${content.type.toBuilder()}() {
         this.value = null;
     }
 
     <#list types as type>
-    public ${util.to_builder(name, false)}(${util.to_builder(type, false)} value) {
+    public ${content.type.toBuilder()}(${type.toBuilder()} value) {
         this.value = value;
     }
     </#list>
@@ -23,8 +23,8 @@ public class ${util.to_builder(name, false)} {
     }
 
     <#list types as type>
-    public ${util.to_builder(name, false)} set{util.to_upper(type)}(${util.to_builder(type, false)}) {
-        return (${util.to_builder(type, false)}) this.value;
+    public ${content.type.toBuilder()} set{type.toUpper()}(${type.toBuilder()} value) {
+        return (${type.toBuilder()}) this.value;
     }
     </#list>
 }

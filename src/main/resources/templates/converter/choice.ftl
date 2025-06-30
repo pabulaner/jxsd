@@ -6,9 +6,9 @@
 <@util.decl_class content.type.toConverter() /> {
 
     <#if !outer??>
-        <@util.decl_inners "converter" content.inners />
+        <@util.decl_inners "converter" content />
 
-        <@converter_util.decl_constructor content/>
+        <@converter_util.decl_constructor content />
 
         <@converter_util.decl_from content /> {
             <#list content.fields as field>

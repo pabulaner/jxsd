@@ -2,23 +2,23 @@
 
 import java.util.ArrayList;
 
-public class ${util.to_builder(name, false)} {
+public class ${content.type.toBuilder()} {
 
-    private Collection<${util.to_model(parent, false)}> values;
+    private Collection<${content.item.toUpper()}> values;
 
-    public ${util.to_builder(name, false)}() {
+    public ${content.type.toBuilder()}() {
         this(new ArrayList<>());
     }
 
-    public ${util.to_builder(name, false)}(${util.to_model(name, false)} value) {
+    public ${content.type.toBuilder()}(${content.type.toModel()} value) {
         this.values = value;
     }
 
-    public ${util.to_model(name, false)} build() {
-        return new ${util.to_model(name, false)}(this.values);
+    public ${content.type.toModel()} build() {
+        return new ${content.type.toModel()}(this.values);
     }
 
-    public ${util.to_builder(name, false)} setValues(Collection<${util.to_model(parent, false)}> values) {
+    public ${content.type.toBuilder()} setValues(Collection<${content.item.toUpper()}> values) {
         this.values = values;
         return this;
     }

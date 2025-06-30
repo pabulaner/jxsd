@@ -4,7 +4,7 @@
 // SEQUENCE MODEL
 <@util.decl_class content.type.toModel() /> {
 
-    <@util.decl_inners "model" content.inners />
+    <@util.decl_inners "model" content />
 
     <#list content.fields as field>
         private final ${field.type.toModel()} ${field.name.toVar()};
