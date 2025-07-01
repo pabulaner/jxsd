@@ -10,6 +10,7 @@ import io.github.pabulaner.jxsd.xsd.XsdResult;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,17 +28,12 @@ public class Main {
         //pkgConverter.put("main", "");
         //pkgConverter.put("drawingml", "dml");
 
-        Set<String> additionalImports = new HashSet<>();
-        additionalImports.add("org.docx4j.dml.*");
-        additionalImports.add("org.docx4j.dml.chart.*");
-        additionalImports.add("org.docx4j.dml.chartDrawing.*");
-
         JavaParser.Config config = new JavaParser.Config(List.of("test"), pkgConverter);
 
         XsdResult xsd = new XsdParser().parse(Main.class.getResource("/xsd/dml/dml-chart.xsd"));
         JavaResult java = new JavaParser(config).parse(xsd);
-        OutWriter writer = new OutWriter(java, additionalImports);
+        OutWriter writer = new OutWriter(java);
 
-        writer.write(MODES);
+        writer.write(Path.of("generated"), MODES);
     }
 }

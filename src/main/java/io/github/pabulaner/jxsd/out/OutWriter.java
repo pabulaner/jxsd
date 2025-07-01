@@ -40,26 +40,22 @@ public class OutWriter {
         this.result = result;
     }
 
-    public void write(String output, List<String> modes) throws TemplateException, IOException {
+    public void write(Path path, List<String> modes) throws TemplateException, IOException {
         modes = new ArrayList<>(modes);
         modes.add(MODEL_MODE);
 
         for (String mode : modes) {
             for (JavaClass clazz : result.classes()) {
-                write(output, mode, clazz);
+                write(path, mode, clazz);
             }
         }
     }
 
-    private void write(String output, String mode, JavaClass clazz) throws IOException, TemplateException {
+    private void write(Path path, String mode, JavaClass clazz) throws IOException, TemplateException {
         ModelParserMap parser = new ModelParserMap();
         TypeSpec result = parser.parse(false, clazz);
         String pkg = OutParser.parsePkg(clazz.type().pkg());
 
-        Path path = Path.of(output, pkg.replace(".", "/"));
-        Files.createDirectories(path);
-
-        path = path.resolve(clazz.type().name().toModel());
         JavaFile.builder(pkg, result)
                 .build()
                 .writeTo(path);

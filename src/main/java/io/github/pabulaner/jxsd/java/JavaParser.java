@@ -133,7 +133,7 @@ public class JavaParser {
         List<JavaField> fields = new ArrayList<>();
 
         outer.push(type.name());
-        values.forEach(value -> parseValue(value, inners, fields));
+        values.forEach(value -> parseValue(struct.type().scope(), value, inners, fields));
         outer.pop();
 
         return isSequence
@@ -141,31 +141,32 @@ public class JavaParser {
                 : new JavaChoice(type, inners, fields);
     }
 
-    private void parseValue(XsdValue value, List<JavaClass> inners, List<JavaField> fields) {
+    private void parseValue(String scope, XsdValue value, List<JavaClass> inners, List<JavaField> fields) {
         switch (value) {
             case XsdElementValue casted -> parseElement(casted, inners, fields);
-            case XsdGroupValue casted -> parseGroup(casted, inners, fields);
+            case XsdGroupValue casted -> parseGroup(scope, casted, inners, fields);
             default -> throw new IllegalStateException("Unexpected value: " + value);
         }
     }
 
     private void parseElement(XsdElementValue value, List<JavaClass> inners, List<JavaField> fields) {
-        JavaType type = parseType(value.type(), value.maxOccurs() > 1);
+        JavaType type = parseType(value.type(), List.of(), value.maxOccurs() > 1);
         JavaName name = new JavaName(value.name());
         XsdStruct struct = value.struct();
 
         if (struct != null) {
+            type = parseType(value.type(), value.maxOccurs() > 1);
             inners.add(parse(struct));
         }
 
         fields.add(new JavaField(type, name));
     }
 
-    private void parseGroup(XsdGroupValue value, List<JavaClass> inners, List<JavaField> fields) {
+    private void parseGroup(String scope, XsdGroupValue value, List<JavaClass> inners, List<JavaField> fields) {
         if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
             String name = parseGroupName(value);
 
-            XsdType xsdType = new XsdType(null, name, null, null);
+            XsdType xsdType = new XsdType(scope, name, null, null);
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             JavaComplex inner = (JavaComplex) parse(xsdStruct);
@@ -181,12 +182,16 @@ public class JavaParser {
             inners.add(inner);
             fields.add(new JavaField(type, new JavaName(name)));
         } else {
-            value.values().forEach(val -> parseValue(val, inners, fields));
+            value.values().forEach(val -> parseValue(scope, val, inners, fields));
         }
     }
 
     private JavaType parseType(XsdType type, boolean isList) {
-        return new JavaType(toPackage(type.scope()), getOuter(), new JavaName(type.name()), isList);
+        return parseType(type, getOuter(), isList);
+    }
+
+    private JavaType parseType(XsdType type, List<JavaName> outer, boolean isList) {
+        return new JavaType(toPackage(type.scope()), outer, new JavaName(type.name()), isList);
     }
 
     private JavaType parseParent(XsdType type) {
@@ -268,6 +273,6 @@ public class JavaParser {
     }
 
     private List<JavaName> getOuter() {
-        return Collections.unmodifiableList(outer);
+        return List.copyOf(outer);
     }
 }

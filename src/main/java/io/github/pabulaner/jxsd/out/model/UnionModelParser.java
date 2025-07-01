@@ -25,7 +25,7 @@ public class UnionModelParser extends ModelParser<JavaUnion> {
             builder.addMethod(MethodSpec.constructorBuilder()
                             .addModifiers(Modifier.PUBLIC)
                             .addParameter(valueType, VALUE)
-                            .addCode("$N.$N = $N", THIS, VALUE, VALUE)
+                            .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
                             .build())
                     .addMethod(MethodSpec.methodBuilder(parseMethod(IS, valueName))
                             .addModifiers(Modifier.PUBLIC)

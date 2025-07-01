@@ -5,14 +5,19 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaName;
+import io.github.pabulaner.jxsd.java.JavaParser;
 import io.github.pabulaner.jxsd.java.JavaType;
 
 import javax.lang.model.element.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class OutParser<TClass extends JavaClass> {
 
@@ -63,12 +68,16 @@ public abstract class OutParser<TClass extends JavaClass> {
     }
 
     public static ClassName parseType(JavaType type, Function<JavaName, String> name) {
-        String[] outer = type.outer()
-                .stream()
-                .map(name)
-                .toArray(String[]::new);
+        Queue<JavaName> all = new LinkedList<>(type.outer());
+        all.add(type.name());
 
-        return ClassName.get(parsePkg(type.pkg()), name.apply(type.name()), outer);
+        ClassName result = ClassName.get(parsePkg(type.pkg()), name.apply(all.remove()));
+
+        while (!all.isEmpty()) {
+            result = result.nestedClass(name.apply(all.remove()));
+        }
+
+        return result;
     }
 
     public static String parseMethod(String... parts) {

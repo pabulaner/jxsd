@@ -7,7 +7,7 @@ public record JavaType(List<String> pkg, List<JavaName> outer, JavaName name, bo
 
     public static JavaType createPrimitive(String primitive) {
         List<String> pkg = switch (primitive) {
-            case "duration", "dateTime", "time", "date" -> List.of("java", "util", "time");
+            case "duration", "dateTime", "time", "date" -> List.of("java", "time");
             default -> List.of();
         };
 
