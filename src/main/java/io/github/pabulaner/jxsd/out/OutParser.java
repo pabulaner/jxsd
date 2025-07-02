@@ -1,23 +1,18 @@
 package io.github.pabulaner.jxsd.out;
 
 import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaName;
-import io.github.pabulaner.jxsd.java.JavaParser;
 import io.github.pabulaner.jxsd.java.JavaType;
 
 import javax.lang.model.element.Modifier;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public abstract class OutParser<TClass extends JavaClass> {
 

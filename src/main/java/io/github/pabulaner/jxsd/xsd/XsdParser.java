@@ -1,6 +1,5 @@
 package io.github.pabulaner.jxsd.xsd;
 
-import com.sun.xml.xsom.XSAnnotation;
 import com.sun.xml.xsom.XSAttributeDecl;
 import com.sun.xml.xsom.XSComplexType;
 import com.sun.xml.xsom.XSContentType;

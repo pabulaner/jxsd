@@ -34,7 +34,7 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
         
         // add fields and constructors
         builder.addField(TypeName.INT, TYPE, Modifier.PRIVATE)
-                .addField(modelType, VALUE, Modifier.PRIVATE)
+                .addField(Object.class, VALUE, Modifier.PRIVATE)
                 .addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)
                         .addStatement("$N.$N = -1", THIS, TYPE)
@@ -48,7 +48,7 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
             ClassName fieldType = parseType(field.type(), JavaName::toModel);
             String fieldName = field.name().toUpper();
 
-            build.addStatement("$N ($N.$N == $L) $N $T.$N($N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, parseMethod(NEW, fieldName), THIS, VALUE);
+            build.addStatement("$N ($N.$N == $L) $N $T.$N(($T) $N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, parseMethod(NEW, fieldName), fieldType, THIS, VALUE);
             from.beginControlFlow("$N ($N.$N())", IF, VALUE, parseMethod(IS, fieldName))
                     .addStatement("$N.$N = $L", THIS, TYPE, index[0])
                     .addStatement("$N.$N = $N.$N()", THIS, VALUE, VALUE, parseMethod(GET, fieldName))

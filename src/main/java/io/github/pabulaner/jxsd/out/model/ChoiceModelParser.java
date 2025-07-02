@@ -48,7 +48,7 @@ public class ChoiceModelParser extends ModelParser<JavaChoice> {
                             .build())
                     .addMethod(MethodSpec.methodBuilder(parseMethod(IS, fieldName))
                             .addModifiers(Modifier.PUBLIC)
-                            .returns(Boolean.class)
+                            .returns(TypeName.BOOLEAN)
                             .addStatement("$N $N.$N == $L", RETURN, THIS, TYPE, index[0])
                             .build())
                     .addMethod(MethodSpec.methodBuilder(parseMethod(GET, fieldName))

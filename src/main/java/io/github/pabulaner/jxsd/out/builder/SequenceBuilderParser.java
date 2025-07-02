@@ -48,7 +48,7 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
             }
 
             build.addCode("$N.$N", THIS, fieldName.toVar());
-            from.addStatement("$N.$N = $N.$N()", THIS, fieldName.toVar(), VALUE, parseMethod(GET, fieldName.toVar()));
+            from.addStatement("$N.$N = $N.$N()", THIS, fieldName.toVar(), VALUE, parseMethod(GET, fieldName.toUpper()));
 
             // add fields and setters
             builder.addField(fieldType, fieldName.toVar(), Modifier.PRIVATE)
@@ -64,6 +64,7 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
         // add constructor and return result
         return builder.addMethod(build.addCode(");")
                         .build())
-                .addMethod(from.build());
+                .addMethod(from.addStatement("$N $N", RETURN, THIS)
+                        .build());
     }
 }

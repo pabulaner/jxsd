@@ -39,6 +39,7 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
                             .build())
                     .addMethod(MethodSpec.methodBuilder(parseMethod(SET, valueName))
                             .addModifiers(Modifier.PUBLIC)
+                            .returns(builderType)
                             .addParameter(valueModelType, VALUE)
                             .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
                             .addStatement("$N $N", RETURN, THIS)

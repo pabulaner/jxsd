@@ -35,30 +35,15 @@
             <artifactId>docx4j-core</artifactId>
             <version>11.5.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.googlejavaformat</groupId>
+            <artifactId>google-java-format</artifactId>
+            <version>1.27.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.5.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sources>
-                        <source>src/main/resources/xsd/book.xsd</source>
-                    </sources>
-                    <outputDirectory>src/main/java/xsd</outputDirectory>
-                    <packageName>com.example.generated</packageName>
-                    <readOnly>true</readOnly>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -66,6 +51,18 @@
                     <source>21</source>
                     <target>21</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.sherter</groupId>
+                <artifactId>google-java-format-maven-plugin</artifactId>
+                <version>0.9</version> <!-- or latest -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

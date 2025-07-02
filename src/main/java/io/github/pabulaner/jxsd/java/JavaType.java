@@ -13,15 +13,15 @@ public record JavaType(List<String> pkg, List<JavaName> outer, JavaName name, bo
 
         String name = switch (primitive) {
             case "string", "NOTATION", "QName", "anyURI", "IDREFS" -> "String";
-            case "boolean" -> "boolean";
-            case "float" -> "float";
-            case "double" -> "double";
-            case "decimal" -> "long";
+            case "boolean" -> "Boolean";
+            case "float" -> "Float";
+            case "double" -> "Double";
+            case "decimal" -> "Long";
             case "duration" -> "Duration";
             case "dateTime" -> "LocalDateTime";
             case "time" -> "LocalTime";
             case "date" -> "LocalDate";
-            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "int";
+            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "Integer";
             case "hexBinary", "base64Binary" -> "byte[]";
             default -> throw new IllegalArgumentException("Unexpected value: " + primitive);
         };

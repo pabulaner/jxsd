@@ -2,6 +2,7 @@ package io.github.pabulaner.jxsd.out.model;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaName;
 import io.github.pabulaner.jxsd.java.JavaUnion;
@@ -29,7 +30,7 @@ public class UnionModelParser extends ModelParser<JavaUnion> {
                             .build())
                     .addMethod(MethodSpec.methodBuilder(parseMethod(IS, valueName))
                             .addModifiers(Modifier.PUBLIC)
-                            .returns(Boolean.class)
+                            .returns(TypeName.BOOLEAN)
                             .addStatement("$N $N.$N $N $T", RETURN, THIS, VALUE, INSTANCEOF, valueType)
                             .build())
                     .addMethod(MethodSpec.methodBuilder(parseMethod(GET, valueName))
