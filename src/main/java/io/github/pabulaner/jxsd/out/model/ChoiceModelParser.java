@@ -2,6 +2,7 @@ package io.github.pabulaner.jxsd.out.model;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.java.JavaName;
@@ -16,7 +17,7 @@ public class ChoiceModelParser extends ModelParser<JavaChoice> {
         clazz.inners().forEach(inner -> builder.addType(new ModelParserMap().parse(true, inner)));
 
         // add fields and constructors
-        builder.addField(Integer.class, TYPE, Modifier.PRIVATE, Modifier.FINAL)
+        builder.addField(TypeName.INT, TYPE, Modifier.PRIVATE, Modifier.FINAL)
                 .addField(Object.class, VALUE, Modifier.PRIVATE, Modifier.FINAL)
                 .addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)
@@ -36,21 +37,21 @@ public class ChoiceModelParser extends ModelParser<JavaChoice> {
         // parse fields
         clazz.fields().forEach(field -> {
             ClassName fieldType = parseType(field.type(), JavaName::toModel);
-            JavaName fieldName = field.name();
+            String fieldName = field.name().toUpper();
 
             // add static methods and is and get methods
-            builder.addMethod(MethodSpec.methodBuilder(parseMethod(NEW, fieldName.toUpper()))
+            builder.addMethod(MethodSpec.methodBuilder(parseMethod(NEW, fieldName))
                             .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                             .returns(type)
                             .addParameter(fieldType, VALUE)
                             .addStatement("$N $N $T($L, $N)", RETURN, NEW, type, index[0], VALUE)
                             .build())
-                    .addMethod(MethodSpec.methodBuilder(parseMethod(IS, fieldName.toUpper()))
+                    .addMethod(MethodSpec.methodBuilder(parseMethod(IS, fieldName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(Boolean.class)
                             .addStatement("$N $N.$N == $L", RETURN, THIS, TYPE, index[0])
                             .build())
-                    .addMethod(MethodSpec.methodBuilder(parseMethod(GET, fieldName.toUpper()))
+                    .addMethod(MethodSpec.methodBuilder(parseMethod(GET, fieldName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(fieldType)
                             .addStatement("$N ($T) $N.$N", RETURN, fieldType, THIS, VALUE)

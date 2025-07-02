@@ -15,6 +15,7 @@ import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaUnion;
+import io.github.pabulaner.jxsd.out.builder.BuilderParserMap;
 import io.github.pabulaner.jxsd.out.model.ModelParser;
 import io.github.pabulaner.jxsd.out.model.ModelParserMap;
 
@@ -46,18 +47,19 @@ public class OutWriter {
 
         for (String mode : modes) {
             for (JavaClass clazz : result.classes()) {
-                write(path, mode, clazz);
+                write(path, new BuilderParserMap(), clazz);
             }
         }
     }
 
-    private void write(Path path, String mode, JavaClass clazz) throws IOException, TemplateException {
-        ModelParserMap parser = new ModelParserMap();
-        TypeSpec result = parser.parse(false, clazz);
+    private void write(Path output, OutParserMap parsers, JavaClass clazz) throws IOException, TemplateException {
+        TypeSpec result = parsers.parse(false, clazz);
         String pkg = OutParser.parsePkg(clazz.type().pkg());
 
-        JavaFile.builder(pkg, result)
-                .build()
-                .writeTo(path);
+        if (result != null && clazz instanceof JavaSequence) {
+            JavaFile.builder(pkg, result)
+                    .build()
+                    .writeTo(System.out);
+        }
     }
 }

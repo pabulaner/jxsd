@@ -10,17 +10,17 @@ import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.OutParserMap;
 
-public class ModelParserMap implements OutParserMap {
+public class BuilderParserMap implements OutParserMap {
 
     @Override
     public TypeSpec parse(boolean isStatic, JavaClass clazz) {
         return switch (clazz) {
-            case JavaPrimitive casted -> new PrimitiveModelParser().parse(isStatic, casted);
-            case JavaRestriction casted -> new RestrictionModelParser().parse(isStatic, casted);
-            case JavaUnion casted -> new UnionModelParser().parse(isStatic, casted);
-            case JavaEnum casted -> new EnumModelParser().parse(isStatic, casted);
-            case JavaSequence casted -> new SequenceModelParser().parse(isStatic, casted);
-            case JavaChoice casted -> new ChoiceModelParser().parse(isStatic, casted);
+            case JavaPrimitive casted -> new PrimitiveBuilderParser().parse(isStatic, casted);
+            case JavaRestriction casted -> new RestrictionBuilderParser().parse(isStatic, casted);
+            case JavaUnion casted -> new UnionBuilderParser().parse(isStatic, casted);
+            case JavaEnum casted -> new EnumBuilderParser().parse(isStatic, casted);
+            case JavaSequence casted -> new SequenceBuilderParser().parse(isStatic, casted);
+            case JavaChoice casted -> new ChoiceBuilderParser().parse(isStatic, casted);
             default -> throw new IllegalStateException("Unexpected value: " + clazz);
         };
     }

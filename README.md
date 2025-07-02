@@ -2,6 +2,15 @@
 
 A converter from xsd to Java files using models, builders and docx4j converters.
 
+```
+new PersonBuilder()
+    .from(paul)
+    .setAddress(builder -> builder
+        .setStreet("peter")
+        .setNumber(10))
+    .build();
+```
+
 #### TODOS
 
 - _ Implement enums (1 hour)

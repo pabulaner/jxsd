@@ -24,7 +24,7 @@ public class PrimitiveModelParser extends ModelParser<JavaPrimitive> {
                 .addMethod(MethodSpec.methodBuilder(parseMethod(GET, VALUE))
                         .addModifiers(Modifier.PUBLIC)
                         .returns(primitiveType)
-                        .addStatement("return $N.$N", THIS, VALUE)
+                        .addStatement("$N $N.$N", RETURN, THIS, VALUE)
                         .build());
     }
 }
