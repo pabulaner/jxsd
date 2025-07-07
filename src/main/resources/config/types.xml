@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<names pkg="drawingml.chart">
+    <name outer="CT_PlotArea" before="AreaChartOrArea3DChartOrLineChart" after="IChart" />
+</names>

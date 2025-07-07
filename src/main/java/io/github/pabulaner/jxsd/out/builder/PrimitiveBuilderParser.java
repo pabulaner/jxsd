@@ -22,6 +22,13 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
                         .addModifiers(Modifier.PUBLIC)
                         .addStatement("$N.$N = $N", THIS, VALUE, NULL)
                         .build())
+                .addMethod(MethodSpec.methodBuilder(parseMethod(SET, VALUE))
+                        .addModifiers(Modifier.PUBLIC)
+                        .returns(builderType)
+                        .addParameter(primitiveType, VALUE)
+                        .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
+                        .addStatement("return $N", THIS)
+                        .build())
                 .addMethod(MethodSpec.methodBuilder(FROM)
                         .addModifiers(Modifier.PUBLIC)
                         .returns(builderType)
@@ -33,13 +40,6 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
                         .addModifiers(Modifier.PUBLIC)
                         .returns(modelType)
                         .addStatement("$N $N $T($N.$N)", RETURN, NEW, modelType, THIS, VALUE)
-                        .build())
-                .addMethod(MethodSpec.methodBuilder(parseMethod(SET, VALUE))
-                        .addModifiers(Modifier.PUBLIC)
-                        .returns(builderType)
-                        .addParameter(primitiveType, VALUE)
-                        .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
-                        .addStatement("return $N", THIS)
                         .build());
     }
 }

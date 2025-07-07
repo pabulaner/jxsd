@@ -30,14 +30,14 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
             String valueName = type.name().toUpper();
 
             build.addStatement("$N ($N.$N $N $T) $N $N $T(($T) $N.$N)", IF, THIS, VALUE, INSTANCEOF, valueModelType, RETURN, NEW, modelType, valueModelType, THIS, VALUE);
-            builder.addMethod(MethodSpec.methodBuilder(FROM)
+            builder.addMethod(MethodSpec.methodBuilder(parseMethod(SET, valueName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(builderType)
                             .addParameter(valueModelType, VALUE)
                             .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
                             .addStatement("$N $N", RETURN, THIS)
                             .build())
-                    .addMethod(MethodSpec.methodBuilder(parseMethod(SET, valueName))
+                    .addMethod(MethodSpec.methodBuilder(FROM)
                             .addModifiers(Modifier.PUBLIC)
                             .returns(builderType)
                             .addParameter(valueModelType, VALUE)

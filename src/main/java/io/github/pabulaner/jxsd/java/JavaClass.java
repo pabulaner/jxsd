@@ -1,10 +1,12 @@
 package io.github.pabulaner.jxsd.java;
 
+import java.util.List;
+
 public interface JavaClass {
 
     JavaType type();
 
-    default String name() {
-        return getClass().getSimpleName();
-    }
+    List<JavaType> interfaces();
+
+    JavaClass withType(JavaType type);
 }

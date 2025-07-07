@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interfaces pkg="drawingml.chart">
+    <interface name="IChart">
+        <implementations>
+            <implementation name="CT_AreaChart" />
+        </implementations>
+    </interface>
+    <interface name="IChartSer" />
+</interfaces>

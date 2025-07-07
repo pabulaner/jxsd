@@ -28,8 +28,6 @@ public abstract class OutParser<TClass extends JavaClass> {
 
     protected static final String INSTANCEOF = "instanceof";
 
-    protected static final String THROW = "throw";
-
     protected static final String NULL = "null";
 
     protected static final String VALUE = "value";
