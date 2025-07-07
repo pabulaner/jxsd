@@ -49,7 +49,7 @@ public class JavaParser {
                 .stream()
                 .map(this::parse)
                 .filter(Objects::nonNull)
-                .filter(clazz -> clazz.type().pkg() != null)
+                .filter(clazz -> clazz.getType().pkg() != null)
                 .toList();
 
         return new JavaResult(javaScope, classes);
@@ -168,11 +168,11 @@ public class JavaParser {
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             JavaComplex inner = (JavaComplex) parse(xsdStruct);
-            JavaType type = inner.type();
+            JavaType type = inner.getType();
 
             inner = value.kind() == XsdGroupValue.Kind.SEQUENCE
-                    ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
-                    : new JavaChoice(inner.type(), inner.inners(), inner.fields());
+                    ? new JavaSequence(inner.getType(), inner.getInners(), inner.getFields())
+                    : new JavaChoice(inner.getType(), inner.getInners(), inner.getFields());
             type = new JavaType(type.pkg(), type.outer(), type.name(), value.maxOccurs() > 1);
 
             javaScope.declare(inner);

@@ -4,11 +4,31 @@ import org.docx4j.convert.out.html.TagClass;
 
 import java.util.List;
 
-public interface JavaComplex extends JavaClass {
+public abstract class JavaComplex extends JavaClass {
 
-    List<JavaType> interfaces();
+    private List<JavaClass> inners;
 
-    List<JavaClass> inners();
+    private List<JavaField> fields;
 
-    List<JavaField> fields();
+    public JavaComplex(JavaType type, List<JavaClass> inners, List<JavaField> fields) {
+        super(type);
+        this.inners = inners;
+        this.fields = fields;
+    }
+
+    public List<JavaClass> getInners() {
+        return inners;
+    }
+
+    public void setInners(List<JavaClass> inners) {
+        this.inners = inners;
+    }
+
+    public List<JavaField> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<JavaField> fields) {
+        this.fields = fields;
+    }
 }

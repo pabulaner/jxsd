@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package name="drawingml.chart">
+    <interface name="IChart" />
+    <interface name="IChartSeries" />
+
+    <class name="CT_PlotArea">
+        <implements name="IChart" />
+        <replace value="AreaChartOrArea3DChartOrLineChart" with="IChart" />
+        <rename value="areaChartOrArea3DChartOrLineChart" with="charts" />
+    </class>
+</package>

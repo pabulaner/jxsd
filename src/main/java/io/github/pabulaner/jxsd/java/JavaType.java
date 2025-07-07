@@ -3,7 +3,26 @@ package io.github.pabulaner.jxsd.java;
 import java.util.List;
 import java.util.Objects;
 
-public record JavaType(List<String> pkg, List<JavaName> outer, JavaName name, boolean isList) {
+public class JavaType {
+
+    private List<String> pkg;
+
+    private List<JavaName> outer;
+
+    private JavaName name;
+
+    private boolean list;
+
+    public JavaType(List<String> pkg, JavaName name) {
+        this(pkg, List.of(), name, false);
+    }
+
+    public JavaType(List<String> pkg, List<JavaName> outer, JavaName name, boolean list) {
+        this.pkg = pkg;
+        this.outer = outer;
+        this.name = name;
+        this.list = list;
+    }
 
     public static JavaType createPrimitive(String primitive) {
         List<String> pkg = switch (primitive) {
@@ -27,6 +46,38 @@ public record JavaType(List<String> pkg, List<JavaName> outer, JavaName name, bo
         };
 
         return new JavaType(pkg, List.of(), new JavaName(name), false);
+    }
+
+    public List<String> getPkg() {
+        return pkg;
+    }
+
+    public void setPkg(List<String> pkg) {
+        this.pkg = pkg;
+    }
+
+    public List<JavaName> getOuter() {
+        return outer;
+    }
+
+    public void setOuter(List<JavaName> outer) {
+        this.outer = outer;
+    }
+
+    public JavaName getName() {
+        return name;
+    }
+
+    public void setName(JavaName name) {
+        this.name = name;
+    }
+
+    public boolean isList() {
+        return list;
+    }
+
+    public void setList(boolean list) {
+        this.list = list;
     }
 
     @Override

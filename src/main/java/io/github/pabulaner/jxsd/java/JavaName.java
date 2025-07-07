@@ -1,6 +1,12 @@
 package io.github.pabulaner.jxsd.java;
 
-public record JavaName(String name) {
+public class JavaName {
+
+    private final String name;
+
+    public JavaName(String name) {
+        this.name = name;
+    }
 
     public String toVar() {
         String value = toLower();
@@ -38,5 +44,9 @@ public record JavaName(String name) {
     public String clean(String suffix, boolean isList) {
         String value = toUpper().replace("_", "") + suffix;
         return isList ? "List<" + value + ">" : value;
+    }
+
+    public String getName() {
+        return name;
     }
 }

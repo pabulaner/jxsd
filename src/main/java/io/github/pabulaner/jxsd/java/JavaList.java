@@ -1,9 +1,19 @@
 package io.github.pabulaner.jxsd.java;
 
-public record JavaList(JavaType type, JavaType itemType) implements JavaClass {
+public class JavaList extends JavaClass {
 
-    @Override
-    public JavaList withType(JavaType type) {
-        return new JavaList(type, itemType);
+    private JavaType itemType;
+
+    public JavaList(JavaType type, JavaType itemType) {
+        super(type);
+        this.itemType = itemType;
+    }
+
+    public JavaType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(JavaType itemType) {
+        this.itemType = itemType;
     }
 }

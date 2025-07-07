@@ -1,9 +1,19 @@
 package io.github.pabulaner.jxsd.java;
 
-public record JavaPrimitive(JavaType type, JavaType primitive) implements JavaClass {
+public class JavaPrimitive extends JavaClass {
 
-    @Override
-    public JavaPrimitive withType(JavaType type) {
-        return new JavaPrimitive(type, primitive );
+    private JavaType primitive;
+
+    public JavaPrimitive(JavaType type, JavaType primitive) {
+        super(type);
+        this.primitive = primitive;
+    }
+
+    public JavaType getPrimitive() {
+        return primitive;
+    }
+
+    public void setPrimitive(JavaType primitive) {
+        this.primitive = primitive;
     }
 }

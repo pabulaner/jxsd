@@ -1,6 +1,7 @@
 package io.github.pabulaner.jxsd.transform;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import io.github.pabulaner.jxsd.java.JavaClass;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,24 +10,19 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
-public class NameTransformer {
+public class NameTransformer extends Transformer<Names> {
 
-    private final List<Interfaces> transforms;
 
     public NameTransformer(List<URL> xml) throws IOException {
-        XmlMapper mapper = new XmlMapper();
-        transforms = new ArrayList<>();
+        super(xml, Names::parse);
+    }
 
-        for (URL value : xml) {
-//            mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, new Interfaces("hello", List.of(
-//                    new Interfaces.Interface("1", List.of(new Interfaces.Interface.Implementation("2"), new Interfaces.Interface.Implementation("100"))),
-//                    new Interfaces.Interface("3", List.of(new Interfaces.Interface.Implementation("3"))),
-//                    new Interfaces.Interface("5", List.of(new Interfaces.Interface.Implementation("5"))))));
+    @Override
+    protected JavaClass transform(JavaClass input, Names names) {
 
-            System.out.println(mapper.readValue(value, Map.class));
-        }
 
-        System.out.println(transforms);
+        return input;
     }
 }

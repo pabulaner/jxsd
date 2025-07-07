@@ -2,10 +2,20 @@ package io.github.pabulaner.jxsd.java;
 
 import java.util.List;
 
-public record JavaEnum(JavaType type, List<String> values) implements JavaClass {
+public class JavaEnum extends JavaClass {
 
-    @Override
-    public JavaEnum withType(JavaType type) {
-        return new JavaEnum(type, values);
+    private List<String> values;
+
+    public JavaEnum(JavaType type, List<String> values) {
+        super(type);
+        this.values = values;
+    }
+
+    public List<String> getValues() {
+        return values;
+    }
+
+    public void setValues(List<String> values) {
+        this.values = values;
     }
 }

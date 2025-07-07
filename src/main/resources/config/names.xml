@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <names pkg="drawingml.chart">
+    <class name="CT_PlotArea">
+        <name before="" after="" />
+    </class>
     <name outer="CT_PlotArea" before="areaChartOrArea3DChartOrLineChart" after="charts" />
     <name outer="CT_PlotArea2" before="areaChartOrArea3DChartOrLineChart2" after="charts2" />
 </names>
