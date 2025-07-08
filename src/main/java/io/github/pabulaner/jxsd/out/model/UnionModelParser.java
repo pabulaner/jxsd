@@ -19,9 +19,9 @@ public class UnionModelParser extends ModelParser<JavaUnion> {
                         .addStatement("$N.$N = $N", THIS, VALUE, NULL)
                         .build());
 
-        clazz.types().forEach(type -> {
+        clazz.getTypes().forEach(type -> {
             ClassName valueType = parseType(type, JavaName::toModel);
-            String valueName = type.name().toUpper();
+            String valueName = type.getName().toUpper();
 
             builder.addMethod(MethodSpec.constructorBuilder()
                             .addModifiers(Modifier.PUBLIC)

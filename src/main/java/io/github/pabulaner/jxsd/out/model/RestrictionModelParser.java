@@ -12,10 +12,10 @@ public class RestrictionModelParser extends ModelParser<JavaRestriction> {
     @Override
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
         return builder
-                .superclass(parseType(clazz.parent(), JavaName::toModel))
+                .superclass(parseType(clazz.getParent(), JavaName::toModel))
                 .addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)
-                        .addParameter(parseType(clazz.primitive(), JavaName::name), VALUE)
+                        .addParameter(parseType(clazz.getPrimitive(), JavaName::getName), VALUE)
                         .addStatement("$N($N)", SUPER, VALUE)
                         .build());
     }

@@ -4,11 +4,13 @@ import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaEnum;
+import io.github.pabulaner.jxsd.java.JavaInterface;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.OutParserMap;
+import io.github.pabulaner.jxsd.out.builder.InterfaceBuilderParser;
 
 public class ModelParserMap implements OutParserMap {
 
@@ -21,6 +23,7 @@ public class ModelParserMap implements OutParserMap {
             case JavaEnum casted -> new EnumModelParser().parse(isStatic, casted);
             case JavaSequence casted -> new SequenceModelParser().parse(isStatic, casted);
             case JavaChoice casted -> new ChoiceModelParser().parse(isStatic, casted);
+            case JavaInterface casted -> new InterfaceModelParser().parse(isStatic, casted);
             default -> throw new IllegalStateException("Unexpected value: " + clazz);
         };
     }

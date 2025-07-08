@@ -14,11 +14,11 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaChoice clazz) {
         // add inners
-        clazz.inners().forEach(inner -> builder.addType(new BuilderParserMap().parse(true, inner)));
+        clazz.getInners().forEach(inner -> builder.addType(new BuilderParserMap().parse(true, inner)));
 
         // types
-        ClassName builderType = parseType(clazz.type(), JavaName::toBuilder);
-        ClassName modelType = parseType(clazz.type(), JavaName::toModel);
+        ClassName builderType = parseType(clazz.getType(), JavaName::toBuilder);
+        ClassName modelType = parseType(clazz.getType(), JavaName::toModel);
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -44,9 +44,9 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
         int[] index = { 0 };
 
         // parse fields
-        clazz.fields().forEach(field -> {
-            ClassName fieldType = parseType(field.type(), JavaName::toModel);
-            String fieldName = field.name().toUpper();
+        clazz.getFields().forEach(field -> {
+            ClassName fieldType = parseType(field.getType(), JavaName::toModel);
+            String fieldName = field.getName().toUpper();
 
             build.addStatement("$N ($N.$N == $L) $N $T.$N(($T) $N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, parseMethod(NEW, fieldName), fieldType, THIS, VALUE);
             from.beginControlFlow("$N ($N.$N())", IF, VALUE, parseMethod(IS, fieldName))

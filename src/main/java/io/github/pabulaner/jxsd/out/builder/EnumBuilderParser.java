@@ -12,8 +12,8 @@ public class EnumBuilderParser extends BuilderParser<JavaEnum> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaEnum clazz) {
-        ClassName builderType = parseType(clazz.type(), JavaName::toBuilder);
-        ClassName modelType = parseType(clazz.type(), JavaName::toModel);
+        ClassName builderType = parseType(clazz.getType(), JavaName::toBuilder);
+        ClassName modelType = parseType(clazz.getType(), JavaName::toModel);
 
         return builder
                 .addModifiers(Modifier.PUBLIC)

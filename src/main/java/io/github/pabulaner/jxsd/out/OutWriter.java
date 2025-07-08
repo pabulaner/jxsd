@@ -29,7 +29,7 @@ public class OutWriter {
     private void write(Path output, OutParserMap parser, JavaClass clazz) throws IOException, TemplateException {
         try {
             TypeSpec result = parser.parse(false, clazz);
-            String pkg = OutParser.parsePkg(clazz.type().pkg());
+            String pkg = OutParser.parsePkg(clazz.getType().getPkg());
 
             JavaFile.builder(pkg, result)
                     .build()

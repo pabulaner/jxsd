@@ -11,7 +11,7 @@ public class EnumModelParser extends ModelParser<JavaEnum> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaEnum clazz) {
-        clazz.values().forEach(builder::addEnumConstant);
+        clazz.getValues().forEach(builder::addEnumConstant);
         return builder;
     }
 }

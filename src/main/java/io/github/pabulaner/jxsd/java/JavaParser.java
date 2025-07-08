@@ -49,7 +49,7 @@ public class JavaParser {
                 .stream()
                 .map(this::parse)
                 .filter(Objects::nonNull)
-                .filter(clazz -> clazz.getType().pkg() != null)
+                .filter(clazz -> clazz.getType().getPkg() != null)
                 .toList();
 
         return new JavaResult(javaScope, classes);
@@ -130,7 +130,7 @@ public class JavaParser {
         List<JavaClass> inners = new ArrayList<>();
         List<JavaField> fields = new ArrayList<>();
 
-        outer.push(type.name());
+        outer.push(type.getName());
         values.forEach(value -> parseValue(struct.type().scope(), value, inners, fields));
         outer.pop();
 
@@ -173,7 +173,7 @@ public class JavaParser {
             inner = value.kind() == XsdGroupValue.Kind.SEQUENCE
                     ? new JavaSequence(inner.getType(), inner.getInners(), inner.getFields())
                     : new JavaChoice(inner.getType(), inner.getInners(), inner.getFields());
-            type = new JavaType(type.pkg(), type.outer(), type.name(), value.maxOccurs() > 1);
+            type = new JavaType(type.getPkg(), type.getOuter(), type.getName(), value.maxOccurs() > 1);
 
             javaScope.declare(inner);
 

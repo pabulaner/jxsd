@@ -54,7 +54,7 @@ public abstract class OutParser<TClass extends JavaClass> {
     }
 
     public TypeSpec parse(boolean isStatic, TClass clazz) {
-        String name = mapper.apply(clazz.type().name());
+        String name = mapper.apply(clazz.getType().getName());
         TypeSpec.Builder builder = isEnum
                 ? TypeSpec.enumBuilder(name)
                 : TypeSpec.classBuilder(name);
@@ -64,6 +64,9 @@ public abstract class OutParser<TClass extends JavaClass> {
         if (isStatic) {
             builder.addModifiers(Modifier.STATIC);
         }
+
+        clazz.getInterfaces().forEach(iface ->
+                builder.addSuperinterface(parseType(iface, mapper)));
 
         return parse(builder, clazz).build();
     }
@@ -75,10 +78,10 @@ public abstract class OutParser<TClass extends JavaClass> {
     }
 
     public static ClassName parseType(JavaType type, Function<JavaName, String> name) {
-        Queue<JavaName> all = new LinkedList<>(type.outer());
-        all.add(type.name());
+        Queue<JavaName> all = new LinkedList<>(type.getOuter());
+        all.add(type.getName());
 
-        ClassName result = ClassName.get(parsePkg(type.pkg()), name.apply(all.remove()));
+        ClassName result = ClassName.get(parsePkg(type.getPkg()), name.apply(all.remove()));
 
         while (!all.isEmpty()) {
             result = result.nestedClass(name.apply(all.remove()));

@@ -13,16 +13,16 @@ public class SequenceModelParser extends ModelParser<JavaSequence> {
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaSequence clazz) {
         // add inners
-        clazz.inners().forEach(inner -> builder.addType(new ModelParserMap().parse(true, inner)));
+        clazz.getInners().forEach(inner -> builder.addType(new ModelParserMap().parse(true, inner)));
 
         // init constructor
         MethodSpec.Builder constructor = MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PUBLIC);
 
         // parse fields
-        clazz.fields().forEach(field -> {
-            ClassName fieldType = parseType(field.type(), JavaName::toModel);
-            JavaName fieldName = field.name();
+        clazz.getFields().forEach(field -> {
+            ClassName fieldType = parseType(field.getType(), JavaName::toModel);
+            JavaName fieldName = field.getName();
 
             // add constructor params and assignments
             constructor.addParameter(fieldType, fieldName.toVar())

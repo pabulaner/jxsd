@@ -11,7 +11,7 @@ import javax.lang.model.element.Modifier;
 public class PrimitiveModelParser extends ModelParser<JavaPrimitive> {
 
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaPrimitive clazz) {
-        ClassName primitiveType = parseType(clazz.primitive(), JavaName::name);
+        ClassName primitiveType = parseType(clazz.getPrimitive(), JavaName::getName);
 
         return builder
                 .addModifiers(Modifier.PUBLIC)
