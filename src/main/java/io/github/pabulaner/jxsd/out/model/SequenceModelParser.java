@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.out.model;
 
-import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaName;
@@ -21,7 +21,7 @@ public class SequenceModelParser extends ModelParser<JavaSequence> {
 
         // parse fields
         clazz.getFields().forEach(field -> {
-            ClassName fieldType = parseType(field.getType(), JavaName::toModel);
+            TypeName fieldType = parseType(field.getType(), JavaName::toModel);
             JavaName fieldName = field.getName();
 
             // add constructor params and assignments

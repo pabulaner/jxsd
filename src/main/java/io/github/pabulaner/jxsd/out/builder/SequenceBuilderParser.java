@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.out.builder;
 
-import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaName;
@@ -16,8 +16,8 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
         clazz.getInners().forEach(inner -> builder.addType(new BuilderParserMap().parse(true, inner)));
 
         // types
-        ClassName builderType = parseType(clazz.getType(), JavaName::toBuilder);
-        ClassName modelType = parseType(clazz.getType(), JavaName::toModel);
+        TypeName builderType = parseType(clazz.getType(), JavaName::toBuilder);
+        TypeName modelType = parseType(clazz.getType(), JavaName::toModel);
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -38,7 +38,7 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
         // parse fields
         clazz.getFields().forEach(field -> {
-            ClassName fieldType = parseType(field.getType(), JavaName::toModel);
+            TypeName fieldType = parseType(field.getType(), JavaName::toModel);
             JavaName fieldName = field.getName();
 
             if (first[0]) {

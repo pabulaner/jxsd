@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.out.model;
 
-import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
@@ -20,7 +20,7 @@ public class UnionModelParser extends ModelParser<JavaUnion> {
                         .build());
 
         clazz.getTypes().forEach(type -> {
-            ClassName valueType = parseType(type, JavaName::toModel);
+            TypeName valueType = parseType(type, JavaName::toModel);
             String valueName = type.getName().toUpper();
 
             builder.addMethod(MethodSpec.constructorBuilder()

@@ -6,7 +6,7 @@ import io.github.pabulaner.jxsd.java.JavaEnum;
 public class EnumModelParser extends ModelParser<JavaEnum> {
 
     public EnumModelParser() {
-        super(true);
+        super(ClassType.ENUM);
     }
 
     @Override

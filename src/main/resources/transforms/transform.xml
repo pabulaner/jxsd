@@ -5,8 +5,11 @@
 
     <rename value="CT_PlotArea" with="PlotArea" />
 
-    <class name="CT_PlotArea">
+    <class name="CT_AreaChart">
         <implements name="IChart" />
+    </class>
+
+    <class name="CT_PlotArea">
         <replace value="AreaChartOrArea3DChartOrLineChart" with="IChart" />
         <rename value="areaChartOrArea3DChartOrLineChart" with="charts" />
     </class>

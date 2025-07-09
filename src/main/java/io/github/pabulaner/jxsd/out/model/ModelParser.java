@@ -7,10 +7,10 @@ import io.github.pabulaner.jxsd.out.OutParser;
 public abstract class ModelParser<TClass extends JavaClass> extends OutParser<TClass> {
 
     public ModelParser() {
-        this(false);
+        this(ClassType.CLASS);
     }
 
-    protected ModelParser(boolean isEnum) {
-        super(isEnum, JavaName::toModel);
+    protected ModelParser(ClassType classType) {
+        super(classType, JavaName::toModel);
     }
 }

@@ -1,6 +1,8 @@
 package io.github.pabulaner.jxsd.out;
 
 import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaName;
@@ -40,24 +42,29 @@ public abstract class OutParser<TClass extends JavaClass> {
 
     protected static final String TYPE = "type";
 
-    private final boolean isEnum;
+    protected enum ClassType {
+
+        CLASS,
+        ENUM,
+        INTERFACE,
+    }
+
+    private final ClassType classType;
 
     private final Function<JavaName, String> mapper;
 
-    protected OutParser(Function<JavaName, String> mapper) {
-        this(false, mapper);
-    }
-
-    protected OutParser(boolean isEnum, Function<JavaName, String> mapper) {
-        this.isEnum = isEnum;
+    protected OutParser(ClassType classType, Function<JavaName, String> mapper) {
+        this.classType = classType;
         this.mapper = mapper;
     }
 
     public TypeSpec parse(boolean isStatic, TClass clazz) {
         String name = mapper.apply(clazz.getType().getName());
-        TypeSpec.Builder builder = isEnum
-                ? TypeSpec.enumBuilder(name)
-                : TypeSpec.classBuilder(name);
+        TypeSpec.Builder builder = switch (classType) {
+            case CLASS -> TypeSpec.classBuilder(name);
+            case ENUM -> TypeSpec.enumBuilder(name);
+            case INTERFACE -> TypeSpec.interfaceBuilder(name);
+        };
 
         builder.addModifiers(Modifier.PUBLIC);
 
@@ -77,7 +84,7 @@ public abstract class OutParser<TClass extends JavaClass> {
         return String.join(".", pkg);
     }
 
-    public static ClassName parseType(JavaType type, Function<JavaName, String> name) {
+    public static TypeName parseType(JavaType type, Function<JavaName, String> name) {
         Queue<JavaName> all = new LinkedList<>(type.getOuter());
         all.add(type.getName());
 
@@ -87,7 +94,12 @@ public abstract class OutParser<TClass extends JavaClass> {
             result = result.nestedClass(name.apply(all.remove()));
         }
 
-        return result;
+        if (type.isList()) {
+            ClassName list = ClassName.get(List.class);
+            return ParameterizedTypeName.get(list, result);
+        } else {
+            return result;
+        }
     }
 
     public static String parseMethod(String... parts) {

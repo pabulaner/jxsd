@@ -271,6 +271,6 @@ public class JavaParser {
     }
 
     private List<JavaName> getOuter() {
-        return List.copyOf(outer);
+        return new ArrayList<>(outer);
     }
 }

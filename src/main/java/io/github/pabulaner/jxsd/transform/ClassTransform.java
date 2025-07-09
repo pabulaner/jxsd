@@ -2,7 +2,9 @@ package io.github.pabulaner.jxsd.transform;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import org.checkerframework.checker.units.qual.A;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +38,10 @@ public class ClassTransform {
             List<RefactorTransform> renames
     ) {
         this.name = name;
-        this.interfaces = interfaces;
+        this.interfaces = interfaces != null ? interfaces : new ArrayList<>();
         this.classes = new HashMap<>();
         this.replaces = new HashMap<>();
         this.renames = new HashMap<>();
-
-
 
         if (classes != null) classes.forEach(value -> this.classes.put(value.getName(), value));
         if (replaces != null) replaces.forEach(value -> this.replaces.put(value.getValue(), value));

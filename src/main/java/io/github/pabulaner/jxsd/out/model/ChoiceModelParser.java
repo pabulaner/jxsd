@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd.out.model;
 
-import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
@@ -31,12 +31,12 @@ public class ChoiceModelParser extends ModelParser<JavaChoice> {
                         .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
                         .build());
 
-        ClassName type = parseType(clazz.getType(), JavaName::toModel);
+        TypeName type = parseType(clazz.getType(), JavaName::toModel);
         int[] index = { 0 };
 
         // parse fields
         clazz.getFields().forEach(field -> {
-            ClassName fieldType = parseType(field.getType(), JavaName::toModel);
+            TypeName fieldType = parseType(field.getType(), JavaName::toModel);
             String fieldName = field.getName().toUpper();
 
             // add static methods and is and get methods

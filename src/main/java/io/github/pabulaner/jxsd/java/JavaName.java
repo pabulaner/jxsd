@@ -2,7 +2,7 @@ package io.github.pabulaner.jxsd.java;
 
 public class JavaName {
 
-    private final String name;
+    private String name;
 
     public JavaName(String name) {
         this.name = name;
@@ -48,5 +48,9 @@ public class JavaName {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

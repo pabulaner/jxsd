@@ -11,10 +11,10 @@ public abstract class BuilderParser<TClass extends JavaClass> extends OutParser<
     protected static final String FROM = "from";
 
     public BuilderParser() {
-        this(false);
+        this(ClassType.CLASS);
     }
 
-    protected BuilderParser(boolean isEnum) {
-        super(isEnum, JavaName::toBuilder);
+    protected BuilderParser(ClassType classType) {
+        super(classType, JavaName::toBuilder);
     }
 }

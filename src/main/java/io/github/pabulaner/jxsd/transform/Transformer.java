@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -34,6 +35,7 @@ public class Transformer {
 
     public JavaResult transform(JavaResult input) {
         List<JavaClass> result = new ArrayList<>(input.classes());
+        removeReplaced(result);
 
         result.forEach(value -> {
             transform(value, this::applyInterfaces);
@@ -45,11 +47,11 @@ public class Transformer {
     }
 
     private void transform(JavaClass input, Consumer<JavaClass> function) {
-        function.accept(input);
-
         if (input instanceof JavaComplex casted) {
             casted.getInners().forEach(inner -> transform(inner, function));
         }
+
+        function.accept(input);
     }
 
     private void applyInterfaces(JavaClass input) {
@@ -65,60 +67,45 @@ public class Transformer {
 
     private void applyRefactors(JavaClass input) {
         JavaType type = input.getType();
-        RefactorTransform rename = findRefactor(type, ClassTransform::getRename);
-
-        if (rename != null) {
-            type.setName(new JavaName(rename.getWith()));
-        }
 
         if (input instanceof JavaComplex casted) {
             casted.getFields().forEach(field -> {
                 JavaType fieldType = field.getType();
+                List<JavaName> outer = new ArrayList<>(type.getOuter());
+                outer.add(type.getName());
+
                 RefactorTransform fieldTypeReplace = findRefactor(fieldType, ClassTransform::getReplace);
                 RefactorTransform fieldTypeRename = findRefactor(fieldType, ClassTransform::getRename);
-                RefactorTransform fieldNameRename = findRefactor(type.getPkg(), type.getOuter(), field.getName().getName(), ClassTransform::getRename);
+                RefactorTransform fieldNameRename = findRefactor(type.getPkg(), outer, field.getName().toLower(), ClassTransform::getRename);
 
                 if (fieldTypeReplace != null) {
                     fieldType.getOuter().clear();
-                    fieldType.setName(new JavaName(fieldTypeReplace.getWith()));
+                    fieldType.getName().setName(fieldTypeReplace.getWith());
                 }
 
                 if (fieldTypeRename != null) {
-                    fieldType.setName(new JavaName(fieldTypeRename.getWith()));
+                    fieldType.getName().setName(fieldTypeRename.getWith());
                 }
 
                 if (fieldNameRename != null) {
-                    field.setName(new JavaName(fieldNameRename.getWith()));
+                    field.getName().setName(fieldNameRename.getWith());
                 }
             });
         }
-    }
 
-    private void applyRenames(JavaClass input, ClassTransform transform) {
-        String name = input.getType().getName().getName();
+        RefactorTransform rename = findRefactor(type, ClassTransform::getRename);
 
-        if (input instanceof JavaComplex casted) {
-            casted.getFields().forEach(field -> {
-                RefactorTransform fieldType = transform.getReplace(field.getType().getName().getName());
-                RefactorTransform fieldName = transform.getReplace(field.getName().getName());
-
-                if (fieldType != null) {
-                    field.getType().setName(new JavaName(fieldType.getWith()));
-                }
-
-                if (fieldName != null) {
-                    field.setName(new JavaName(fieldName.getWith()));
-                }
-            });
+        if (rename != null) {
+            type.getName().setName(rename.getWith());
         }
     }
 
     private RefactorTransform findRefactor(JavaType type, BiFunction<ClassTransform, String, RefactorTransform> refactor) {
-        return findRefactor(type.getPkg(), type.getOuter(), type.getName().getName(), refactor);
+        return findRefactor(type.getPkg(), type.getOuter(), type.getName().toUpper(), refactor);
     }
 
     private RefactorTransform findRefactor(List<String> pkg, List<JavaName> outer, String name, BiFunction<ClassTransform, String, RefactorTransform> refactor) {
-        ClassTransform transform = findTransform(pkg, outer, name);
+        ClassTransform transform = findTransform(pkg, outer, null);
 
         return transform != null
                 ? refactor.apply(transform, name)
@@ -132,13 +119,36 @@ public class Transformer {
     private ClassTransform findTransform(List<String> pkg, List<JavaName> outer, String name) {
         ClassTransform transform = transforms.get(pkg);
 
+        if (transform == null) {
+            return null;
+        }
+
         for (JavaName value : outer) {
-            if (transform != null) {
-                transform = transform.getClass(value.getName());
+            transform = transform.getClass(value.getName());
+
+            if (transform == null) {
+                return null;
             }
         }
 
+        if (name != null) {
+            transform = transform.getClass(name);
+        }
+
         return transform;
+    }
+
+    private void removeReplaced(List<JavaClass> input) {
+        for (Iterator<JavaClass> it = input.iterator(); it.hasNext(); ) {
+            JavaClass clazz = it.next();
+            RefactorTransform refactor = findRefactor(clazz.getType(), ClassTransform::getReplace);
+
+            if (refactor != null) {
+                it.remove();
+            } else if (clazz instanceof JavaComplex casted) {
+                removeReplaced(casted.getInners());
+            }
+        }
     }
 
     private List<JavaInterface> createInterfaces() {
