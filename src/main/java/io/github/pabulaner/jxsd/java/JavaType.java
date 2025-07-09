@@ -14,7 +14,11 @@ public class JavaType {
     private boolean list;
 
     public JavaType(List<String> pkg, JavaName name) {
-        this(pkg, List.of(), name, false);
+        this(pkg, name, false);
+    }
+
+    public JavaType(List<String> pkg, JavaName name, boolean list) {
+        this(pkg, List.of(), name, list);
     }
 
     public JavaType(List<String> pkg, List<JavaName> outer, JavaName name, boolean list) {

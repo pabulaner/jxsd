@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
@@ -158,7 +157,23 @@ public class Transformer {
                 .stream()
                 .map(iface -> {
                     JavaType type = new JavaType(transform.getPkg(), new JavaName(iface.getName()));
-                    return new JavaInterface(type);
+                    List<JavaInterface.Method> methods = iface.getMethods()
+                            .stream()
+                            .map(method -> {
+                                List<String> pkg = transform.getPkg();
+
+                                if(method.getPkg() != null) {
+                                    pkg = List.of(method.getPkg().split("\\."));
+                                }
+
+                                JavaName methodName = new JavaName(method.getName());
+                                JavaType methodType = new JavaType(pkg, new JavaName(method.getType()), method.isList());
+
+                                return new JavaInterface.Method(methodName, methodType, method.isWildcard());
+                            })
+                            .toList();
+
+                    return new JavaInterface(type, methods);
                 })
                 .forEach(result::add));
 

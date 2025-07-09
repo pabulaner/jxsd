@@ -1,7 +1,11 @@
 package io.github.pabulaner.jxsd.out.model;
 
+import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaInterface;
+import io.github.pabulaner.jxsd.java.JavaName;
+
+import javax.lang.model.element.Modifier;
 
 public class InterfaceModelParser extends ModelParser<JavaInterface> {
 
@@ -11,6 +15,11 @@ public class InterfaceModelParser extends ModelParser<JavaInterface> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaInterface clazz) {
+        clazz.getMethods().forEach(method -> builder.addMethod(MethodSpec.methodBuilder(GET + method.getName().toUpper())
+                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                .returns(parseType(method.getType(), JavaName::toModel, method.isWildcard()))
+                .build()));
+
         return builder;
     }
 }

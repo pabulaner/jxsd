@@ -4,6 +4,7 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
+import com.squareup.javapoet.WildcardTypeName;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaName;
 import io.github.pabulaner.jxsd.java.JavaType;
@@ -85,13 +86,21 @@ public abstract class OutParser<TClass extends JavaClass> {
     }
 
     public static TypeName parseType(JavaType type, Function<JavaName, String> name) {
+        return parseType(type, name, false);
+    }
+
+    public static TypeName parseType(JavaType type, Function<JavaName, String> name, boolean wildcard) {
         Queue<JavaName> all = new LinkedList<>(type.getOuter());
         all.add(type.getName());
 
-        ClassName result = ClassName.get(parsePkg(type.getPkg()), name.apply(all.remove()));
+        TypeName result = ClassName.get(parsePkg(type.getPkg()), name.apply(all.remove()));
 
         while (!all.isEmpty()) {
-            result = result.nestedClass(name.apply(all.remove()));
+            result = ((ClassName) result).nestedClass(name.apply(all.remove()));
+        }
+
+        if (wildcard) {
+            result = WildcardTypeName.subtypeOf(result);
         }
 
         if (type.isList()) {

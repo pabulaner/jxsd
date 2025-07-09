@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <transform pkg="models.drawingml.chart">
-    <interface name="IChart" />
-    <interface name="IChartSeries" />
-
-    <rename value="CT_PlotArea" with="PlotArea" />
+    <interface name="IAreaChart">
+        <method name="grouping" type="CT_Grouping" />
+        <method name="varyColors" type="CT_Boolean" />
+        <method name="dropLines" type="CT_ChartLines" />
+    </interface>
+    <interface name="IChart">
+        <method name="ser" type="ISeries" wildcard="true" list="true" />
+        <method name="dLbls" type="CT_DLbls" />
+        <method name="axId" type="CT_UnsignedInt" list="true" />
+        <method name="extLst" type="CT_ExtensionList" />
+    </interface>
+    <interface name="ISeries">
+        <method name="idx" type="CT_UnsignedInt" />
+        <method name="order" type="CT_UnsignedInt" />
+        <method name="tx" type="CT_SerTx" />
+        <method name="spPr" pkg="models.drawingml.main" type="CT_ShapeProperties" />
+        <method name="dPt" type="CT_DPt" list="true" />
+        <method name="dLbls" type="CT_DLbls" />
+        <method name="cat" type="CT_AxDataSource" />
+        <method name="val" type="CT_NumDataSource" />
+        <method name="extLst" type="CT_ExtensionList" />
+    </interface>
 
     <class name="CT_AreaChart">
+        <implements name="IAreaChart" />
+        <implements name="IChart" />
+    </class>
+    <class name="CT_AreaSer">
+        <implements name="ISeries" />
+    </class>
+    <class name="CT_Area3DChart">
+        <implements name="IAreaChart" />
         <implements name="IChart" />
     </class>
 
