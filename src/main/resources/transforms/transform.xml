@@ -1,16 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<transform pkg="models.drawingml.chart">
-    <interface name="IAreaChart">
-        <method name="grouping" type="CT_Grouping" />
-        <method name="varyColors" type="CT_Boolean" />
+<transform pkg="models.pkg.dml.chart">
+
+    <!-- COMPONENT -->
+
+    <interface name="IAxIdComponent">
+        <method name="axId" type="CT_UnsignedInt" list="true" />
+    </interface>
+    <interface name="IBarGroupingComponent">
+        <method name="grouping" type="CT_BarGrouping" />
+    </interface>
+    <interface name="IDropLinesComponent">
         <method name="dropLines" type="CT_ChartLines" />
     </interface>
-    <interface name="IChart">
-        <method name="ser" type="ISeries" wildcard="true" list="true" />
-        <method name="dLbls" type="CT_DLbls" />
-        <method name="axId" type="CT_UnsignedInt" list="true" />
-        <method name="extLst" type="CT_ExtensionList" />
+    <interface name="IErrBarsComponent">
+        <method name="errBars" type="CT_ErrBars" />
     </interface>
+    <interface name="IGapDepthComponent">
+        <method name="gapDepth" type="CT_GapAmount" />
+    </interface>
+    <interface name="IGroupingComponent">
+        <method name="grouping" type="CT_Grouping" />
+    </interface>
+    <interface name="IInvertIfNegativeComponent">
+        <method name="invertIfNegative" type="CT_Boolean" />
+    </interface>
+    <interface name="IMarkerComponent">
+        <method name="marker" type="CT_Marker" />
+    </interface>
+    <interface name="IPictureOptionsComponent">
+        <method name="pictureOptions" type="CT_PictureOptions" />
+    </interface>
+    <interface name="ISmoothComponent">
+        <method name="smooth" type="CT_Boolean" />
+    </interface>
+    <interface name="ITrendlineComponent">
+        <method name="trendline" type="CT_Trendline" />
+    </interface>
+
+    <!-- CHART -->
+
+    <interface name="IChart">
+        <method name="dLbls" type="CT_DLbls" />
+        <method name="extLst" type="CT_ExtensionList" />
+        <method name="ser" type="ISeries" wildcard="true" list="true" />
+        <method name="varyColors" type="CT_Boolean" />
+    </interface>
+    <interface name="IAreaChart">
+        <extends name="IChart" />
+        <extends name="IAxIdComponent" />
+        <extends name="IDropLinesComponent" />
+        <extends name="IGroupingComponent" />
+        <method name="dropLines" type="CT_ChartLines" />
+    </interface>
+    <interface name="IBarChart">
+        <extends name="IChart" />
+        <extends name="IAxIdComponent" />
+        <method name="barDir" type="CT_BarDir" />
+        <method name="gapWidth" type="CT_GapAmount" />
+    </interface>
+    <interface name="IBubbleChart">
+        <extends name="IChart" />
+        <method name="bubble3D" type="CT_Boolean" />
+        <method name="bubbleScale" type="CT_BubbleScale" />
+        <method name="showNegBubbles" type="CT_Boolean" />
+        <method name="sizeRepresents" type="CT_SizeRepresents" />
+    </interface>
+    <interface name="ILineChart">
+        <extends name="IChart" />
+    </interface>
+    <interface name="IPieChart">
+        <extends name="IChart" />
+        <method name="firstSliceAng" type="CT_FirstSliceAng" />
+    </interface>
+    <interface name="IScatterChart">
+        <extends name="IChart" />
+        <extends name="IAxIdComponent" />
+        <method name="scatterStyle" type="CT_ScatterStyle" />
+    </interface>
+
+    <!-- SERIES -->
+
     <interface name="ISeries">
         <method name="idx" type="CT_UnsignedInt" />
         <method name="order" type="CT_UnsignedInt" />
@@ -23,16 +92,71 @@
         <method name="extLst" type="CT_ExtensionList" />
     </interface>
 
+    <!-- CLASSES -->
+
     <class name="CT_AreaChart">
         <implements name="IAreaChart" />
-        <implements name="IChart" />
-    </class>
-    <class name="CT_AreaSer">
-        <implements name="ISeries" />
     </class>
     <class name="CT_Area3DChart">
         <implements name="IAreaChart" />
-        <implements name="IChart" />
+        <implements name="IGapDepthComponent" />
+    </class>
+    <class name="CT_BarChart">
+        <implements name="IBarChart" />
+    </class>
+    <class name="CT_Bar3DChart">
+        <implements name="IBarChart" />
+        <implements name="IGapDepthComponent" />
+    </class>
+    <class name="CT_BubbleChart">
+        <implements name="IBubbleChart" />
+    </class>
+    <class name="CT_LineChart">
+        <implements name="ILineChart" />
+    </class>
+    <class name="CT_Line3DChart">
+        <implements name="ILineChart" />
+        <implements name="IGapDepthComponent" />
+    </class>
+    <class name="CT_PieChart">
+        <implements name="IPieChart" />
+    </class>
+    <class name="CT_DoughnutChart">
+        <implements name="IPieChart" />
+    </class>
+    <class name="CT_ScatterChart">
+        <implements name="IScatterChart" />
+    </class>
+
+    <class name="CT_AreaSer">
+        <implements name="ISeries" />
+        <implements name="IPictureOptionsComponent" />
+    </class>
+    <class name="CT_BarSer">
+        <implements name="ISeries" />
+        <implements name="IInvertIfNegativeComponent" />
+        <implements name="IPictureOptionsComponent" />
+    </class>
+    <class name="CT_BubbleSer">
+        <implements name="ISeries" />
+        <implements name="IInvertIfNegativeComponent" />
+        <rename value="xVal" with="cat" />
+        <rename value="yVal" with="val" />
+    </class>
+    <class name="CT_LineSer">
+        <implements name="ISeries" />
+        <implements name="IMarkerComponent" />
+        <implements name="ISmoothComponent" />
+    </class>
+    <class name="CT_PieSer">
+        <implements name="ISeries" />
+    </class>
+    <class name="CT_ScatterSer">
+        <implements name="ISeries" />
+        <implements name="IMarkerComponent" />
+        <implements name="ISmoothComponent" />
+        <rename value="xVal" with="cat" />
+        <rename value="yVal" with="val" />
     </class>
 
     <class name="CT_PlotArea">

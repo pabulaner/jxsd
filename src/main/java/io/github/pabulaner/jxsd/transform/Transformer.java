@@ -157,6 +157,7 @@ public class Transformer {
                 .stream()
                 .map(iface -> {
                     JavaType type = new JavaType(transform.getPkg(), new JavaName(iface.getName()));
+
                     List<JavaInterface.Method> methods = iface.getMethods()
                             .stream()
                             .map(method -> {
@@ -173,7 +174,11 @@ public class Transformer {
                             })
                             .toList();
 
-                    return new JavaInterface(type, methods);
+                    JavaInterface value = new JavaInterface(type, methods);
+                    iface.getExt().forEach(ext ->
+                            value.getInterfaces().add(new JavaType(transform.getPkg(), new JavaName(ext.getName()))));
+
+                    return value;
                 })
                 .forEach(result::add));
 

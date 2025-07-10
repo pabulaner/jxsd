@@ -24,18 +24,11 @@ public class Main {
     private static final List<String> MODES = List.of("converter");
 
     public static void main(String[] args) throws SAXException, IOException, TemplateException {
-        Map<String, String> pkgConverter = new HashMap<>();
-        //pkgConverter.put("ooxml", "");
-        //pkgConverter.put("main", "");
-        //pkgConverter.put("drawingml", "dml");
-
-        JavaParser.Config config = new JavaParser.Config(List.of("models"), pkgConverter);
-
-        XsdResult xsd = new XsdParser().parse(Main.class.getResource("/xsd/dml/dml-chart.xsd"));
-        JavaResult java = new JavaParser(config).parse(xsd);
-        java = new Transformer(List.of(Main.class.getResource("/transforms/transform.xml"))).transform(java);
-        OutWriter writer = new OutWriter(java);
-
-        writer.write(Path.of("generated"), List.of(new ModelParserMap(), new BuilderParserMap()));
+        JXsdParser.parse(new JXsdParser.Config()
+                .addPkgConverter("drawingml", "dml")
+                .setBasePkg("models.pkg")
+                .setXsdFile(Main.class.getResource("/xsd/dml/dml-chart.xsd"))
+                .addTransformFile(Main.class.getResource("/transforms/transform.xml"))
+                .setOutputPath(Path.of("src/main/java/")));
     }
 }
