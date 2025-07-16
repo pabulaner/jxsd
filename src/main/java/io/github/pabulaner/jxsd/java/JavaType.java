@@ -3,29 +3,14 @@ package io.github.pabulaner.jxsd.java;
 import java.util.List;
 import java.util.Objects;
 
-public class JavaType {
+public record JavaType(List<String> pkg, List<String> outer, String name, boolean list) {
 
-    private List<String> pkg;
-
-    private List<JavaName> outer;
-
-    private JavaName name;
-
-    private boolean list;
-
-    public JavaType(List<String> pkg, JavaName name) {
+    public JavaType(List<String> pkg, String name) {
         this(pkg, name, false);
     }
 
-    public JavaType(List<String> pkg, JavaName name, boolean list) {
+    public JavaType(List<String> pkg, String name, boolean list) {
         this(pkg, List.of(), name, list);
-    }
-
-    public JavaType(List<String> pkg, List<JavaName> outer, JavaName name, boolean list) {
-        this.pkg = pkg;
-        this.outer = outer;
-        this.name = name;
-        this.list = list;
     }
 
     public static JavaType createPrimitive(String primitive) {
@@ -49,48 +34,12 @@ public class JavaType {
             default -> throw new IllegalArgumentException("Unexpected value: " + primitive);
         };
 
-        return new JavaType(pkg, List.of(), new JavaName(name), false);
-    }
-
-    public List<String> getPkg() {
-        return pkg;
-    }
-
-    public void setPkg(List<String> pkg) {
-        this.pkg = pkg;
-    }
-
-    public List<JavaName> getOuter() {
-        return outer;
-    }
-
-    public void setOuter(List<JavaName> outer) {
-        this.outer = outer;
-    }
-
-    public JavaName getName() {
-        return name;
-    }
-
-    public void setName(JavaName name) {
-        this.name = name;
-    }
-
-    public boolean isList() {
-        return list;
-    }
-
-    public void setList(boolean list) {
-        this.list = list;
+        return new JavaType(pkg, List.of(), name, false);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-
-        if (obj.getClass() != JavaType.class) {
+        if (obj == null || obj.getClass() != JavaType.class) {
             return false;
         }
 
@@ -102,6 +51,6 @@ public class JavaType {
 
     @Override
     public int hashCode() {
-        return Objects.hash(pkg, name);
+        return Objects.hash(pkg, outer, name);
     }
 }

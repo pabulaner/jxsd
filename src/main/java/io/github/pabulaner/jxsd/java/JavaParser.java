@@ -23,19 +23,13 @@ import java.util.Stack;
 
 public class JavaParser {
 
-    public record Config(List<String> basePkg, Map<String, String> pkgConverter) {
-    }
-
-    private final Config config;
-
     private XsdScope xsdScope;
 
     private JavaScope javaScope;
 
-    private final Stack<JavaName> outer;
+    private final Stack<String> outer;
 
-    public JavaParser(Config config) {
-        this.config = config;
+    public JavaParser() {
         this.xsdScope = null;
         this.javaScope = null;
         this.outer = new Stack<>();
@@ -49,7 +43,7 @@ public class JavaParser {
                 .stream()
                 .map(this::parse)
                 .filter(Objects::nonNull)
-                .filter(clazz -> clazz.getType().getPkg() != null)
+                .filter(clazz -> clazz.type().pkg() != null)
                 .toList();
 
         return new JavaResult(javaScope, classes);
@@ -85,7 +79,6 @@ public class JavaParser {
                 .stream()
                 .filter(restriction -> "enumeration".equals(restriction.name()))
                 .map(XsdRestriction::value)
-                .map(this::parseEnum)
                 .toList();
 
         if (enums.isEmpty()) {
@@ -130,7 +123,7 @@ public class JavaParser {
         List<JavaClass> inners = new ArrayList<>();
         List<JavaField> fields = new ArrayList<>();
 
-        outer.push(type.getName());
+        outer.push(type.name());
         values.forEach(value -> parseValue(struct.type().scope(), value, inners, fields));
         outer.pop();
 
@@ -168,12 +161,12 @@ public class JavaParser {
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             JavaComplex inner = (JavaComplex) parse(xsdStruct);
-            JavaType type = inner.getType();
+            JavaType type = inner.type();
 
             inner = value.kind() == XsdGroupValue.Kind.SEQUENCE
-                    ? new JavaSequence(inner.getType(), inner.getInners(), inner.getFields())
-                    : new JavaChoice(inner.getType(), inner.getInners(), inner.getFields());
-            type = new JavaType(type.getPkg(), type.getOuter(), type.getName(), value.maxOccurs() > 1);
+                    ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
+                    : new JavaChoice(inner.type(), inner.inners(), inner.fields());
+            type = new JavaType(type.pkg(), type.outer(), type.name(), value.maxOccurs() > 1);
 
             javaScope.declare(inner);
 
@@ -188,28 +181,12 @@ public class JavaParser {
         return parseType(type, getOuter(), isList);
     }
 
-    private JavaType parseType(XsdType type, List<JavaName> outer, boolean isList) {
-        return new JavaType(toPackage(type.scope()), outer, new JavaName(type.name()), isList);
+    private JavaType parseType(XsdType type, List<String> outer, boolean isList) {
+        return new JavaType(toPackage(type.scope()), outer, type.name(), isList);
     }
 
     private JavaType parseParent(XsdType type) {
-        // TODO: figure out if the empty outer part causes problems as the parent might also be located inside an outer class
-        return new JavaType(toPackage(type.parentScope()), List.of(), new JavaName(type.parentName()), false);
-    }
-
-    private String parseEnum(String value) {
-        for (int i = 1; i < value.length(); i++) {
-            if (Character.isUpperCase(value.charAt(i))) {
-                value = value.substring(0, i) + "_" + value.substring(i++);
-            }
-        }
-
-        // check if value begins with a digit
-        if (value.matches("^\\d.*")) {
-            value = "_" + value;
-        }
-
-        return value.toUpperCase();
+        return new JavaType(toPackage(type.parentScope()), List.of(), type.parentName(), false);
     }
 
     private String parseGroupName(XsdGroupValue value) {
@@ -244,33 +221,17 @@ public class JavaParser {
     }
 
     private List<String> toPackage(String scope) {
-        if (scope == null) {
-            return config.basePkg;
-        }
-
         try {
             URL url = URI.create(scope).toURL();
             String[] parts = url.getPath().split("/");
 
-            List<String> result = new ArrayList<>(config.basePkg);
-            result.addAll(Arrays.stream(parts)
-                    .filter(part -> !part.matches("\\d+") && !"".equals(config.pkgConverter.get(part)))
-                    .map(part -> {
-                        String converted = config.pkgConverter.get(part);
-                        return converted != null
-                                ? converted
-                                : part;
-                    })
-                    .filter(part -> !part.isEmpty())
-                    .toList());
-
-            return result;
+            return Arrays.asList(parts);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private List<JavaName> getOuter() {
+    private List<String> getOuter() {
         return new ArrayList<>(outer);
     }
 }
