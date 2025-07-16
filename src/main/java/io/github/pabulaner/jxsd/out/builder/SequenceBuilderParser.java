@@ -13,11 +13,11 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaSequence clazz) {
         // add inners
-        clazz.getInners().forEach(inner -> builder.addType(new BuilderParserMap().parse(true, inner)));
+        clazz.inners().forEach(inner -> builder.addType(new BuilderParserMap().parse(true, inner)));
 
         // types
-        TypeName builderType = parseType(clazz.getType(), JavaName::toBuilder);
-        TypeName modelType = parseType(clazz.getType(), JavaName::toModel);
+        TypeName builderType = parseType(clazz.type(), JavaName::toBuilder);
+        TypeName modelType = parseType(clazz.type(), JavaName::toModel);
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -37,9 +37,9 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
         boolean[] first = { true };
 
         // parse fields
-        clazz.getFields().forEach(field -> {
-            TypeName fieldType = parseType(field.getType(), JavaName::toModel);
-            JavaName fieldName = field.getName();
+        clazz.fields().forEach(field -> {
+            TypeName fieldType = parseType(field.type(), JavaName::toModel);
+            JavaName fieldName = field.name();
 
             if (first[0]) {
                 first[0] = false;

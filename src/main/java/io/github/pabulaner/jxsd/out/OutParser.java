@@ -60,7 +60,7 @@ public abstract class OutParser<TClass extends JavaClass> {
     }
 
     public TypeSpec parse(boolean isStatic, TClass clazz) {
-        String name = mapper.apply(clazz.getType().getName());
+        String name = mapper.apply(clazz.type().name());
         TypeSpec.Builder builder = switch (classType) {
             case CLASS -> TypeSpec.classBuilder(name);
             case ENUM -> TypeSpec.enumBuilder(name);
@@ -91,7 +91,7 @@ public abstract class OutParser<TClass extends JavaClass> {
 
     public static TypeName parseType(JavaType type, Function<JavaName, String> name, boolean wildcard) {
         Queue<JavaName> all = new LinkedList<>(type.getOuter());
-        all.add(type.getName());
+        all.add(type.name());
 
         TypeName result = ClassName.get(parsePkg(type.getPkg()), name.apply(all.remove()));
 

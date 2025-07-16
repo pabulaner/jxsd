@@ -2,16 +2,34 @@ package io.github.pabulaner.jxsd.transform;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+/**
+ * Defines a method inside an interface.
+ */
 public class MethodTransform {
 
+    /**
+     * The name of the method.
+     */
     private final String name;
 
+    /**
+     * The pkg of the type.
+     */
     private final String pkg;
 
+    /**
+     * The type of the method. This type can either refer to the return type or the parameter type.
+     */
     private final String type;
 
+    /**
+     * If true, the type is actually '? extends type'.
+     */
     private final boolean wildcard;
 
+    /**
+     * If true, the type is wrapped in a list.
+     */
     private final boolean list;
 
     public MethodTransform(

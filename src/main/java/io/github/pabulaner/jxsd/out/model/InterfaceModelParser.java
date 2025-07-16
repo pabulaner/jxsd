@@ -15,9 +15,9 @@ public class InterfaceModelParser extends ModelParser<JavaInterface> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaInterface clazz) {
-        clazz.getMethods().forEach(method -> builder.addMethod(MethodSpec.methodBuilder(GET + method.getName().toUpper())
+        clazz.getMethods().forEach(method -> builder.addMethod(MethodSpec.methodBuilder(GET + method.name().toUpper())
                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .returns(parseType(method.getType(), JavaName::toModel, method.isWildcard()))
+                .returns(parseType(method.type(), JavaName::toModel, method.isWildcard()))
                 .build()));
 
         return builder;

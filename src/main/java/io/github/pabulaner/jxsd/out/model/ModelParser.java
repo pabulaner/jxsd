@@ -6,7 +6,7 @@ import io.github.pabulaner.jxsd.out.OutParser;
 
 public abstract class ModelParser<TClass extends JavaClass> extends OutParser<TClass> {
 
-    public ModelParser() {
+    protected ModelParser() {
         this(ClassType.CLASS);
     }
 

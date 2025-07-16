@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -124,8 +125,15 @@ public class JavaParser {
         List<JavaField> fields = new ArrayList<>();
 
         outer.push(type.name());
-        values.forEach(value -> parseValue(struct.type().scope(), value, inners, fields));
+
+        for (XsdValue value : values) {
+            parseValue(struct.type().scope(), value, inners, fields);
+        }
+
         outer.pop();
+
+        inners = Collections.unmodifiableList(inners);
+        fields = Collections.unmodifiableList(fields);
 
         return isSequence
                 ? new JavaSequence(type, inners, fields)
@@ -142,7 +150,6 @@ public class JavaParser {
 
     private void parseElement(XsdElementValue value, List<JavaClass> inners, List<JavaField> fields) {
         JavaType type = parseType(value.type(), List.of(), value.maxOccurs() > 1);
-        JavaName name = new JavaName(value.name());
         XsdStruct struct = value.struct();
 
         if (struct != null) {
@@ -150,7 +157,7 @@ public class JavaParser {
             inners.add(parse(struct));
         }
 
-        fields.add(new JavaField(type, name));
+        fields.add(new JavaField(type, value.name()));
     }
 
     private void parseGroup(String scope, XsdGroupValue value, List<JavaClass> inners, List<JavaField> fields) {
@@ -171,7 +178,7 @@ public class JavaParser {
             javaScope.declare(inner);
 
             inners.add(inner);
-            fields.add(new JavaField(type, new JavaName(name)));
+            fields.add(new JavaField(type, name));
         } else {
             value.values().forEach(val -> parseValue(scope, val, inners, fields));
         }
@@ -232,6 +239,6 @@ public class JavaParser {
     }
 
     private List<String> getOuter() {
-        return new ArrayList<>(outer);
+        return Collections.unmodifiableList(outer);
     }
 }

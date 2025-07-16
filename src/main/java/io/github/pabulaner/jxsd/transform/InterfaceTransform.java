@@ -5,12 +5,24 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
 
+/**
+ * Defines a interface declaration.
+ */
 public final class InterfaceTransform {
 
+    /**
+     * The name of the interface.
+     */
     private final String name;
 
+    /**
+     * The super interfaces, if any.
+     */
     private final List<InterfaceTransform> ext;
 
+    /**
+     * The methods the interface defines.
+     */
     private final List<MethodTransform> methods;
 
     public InterfaceTransform(

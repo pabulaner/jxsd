@@ -9,16 +9,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Defines a class transform.
+ */
 public class ClassTransform {
 
+    /**
+     * The name of the target class.
+     */
     private final String name;
 
+    /**
+     * The interfaces the class implements.
+     */
     private final List<InterfaceTransform> interfaces;
 
+    /**
+     * The class transforms for inner classes, if any.
+     */
     private final Map<String, ClassTransform> classes;
 
+    /**
+     * The field types that should be replaced.
+     */
     private final Map<String, RefactorTransform> replaces;
 
+    /**
+     * The field names that should be renamed.
+     */
     private final Map<String, RefactorTransform> renames;
 
     public ClassTransform(

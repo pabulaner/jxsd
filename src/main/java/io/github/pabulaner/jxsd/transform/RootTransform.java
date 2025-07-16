@@ -6,9 +6,15 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.List;
 
+/**
+ * Defines the xml root for transforms.
+ */
 @JacksonXmlRootElement(localName = "transforms")
 public final class RootTransform extends ClassTransform {
 
+    /**
+     * The pkg the transform applies to.
+     */
     private final List<String> pkg;
 
     public RootTransform(
