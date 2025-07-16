@@ -15,14 +15,22 @@ public class Resolver {
         this.pkg = new ArrayList<>(pkg);
         this.kind = new Name(kind).toUpper();
 
-        pkg.add(kind);
+        this.pkg.add(kind);
     }
 
     public JavaType type(JavaType type) {
         List<String> fullPkg = new ArrayList<>(pkg);
-        fullPkg.addAll(type.pkg());
+        List<String> outer = type.outer()
+                .stream()
+                .map(value -> value + kind)
+                .toList();
 
-        return new JavaType(fullPkg, type.outer(), type.name() + kind, type.minOccurs(), type.maxOccurs());
+        fullPkg.addAll(type.pkg());
+        fullPkg = fullPkg.stream()
+                .filter(value -> !value.matches("\\d+"))
+                .toList();
+
+        return new JavaType(fullPkg, outer, type.name() + kind, type.minOccurs(), type.maxOccurs());
     }
 
     public Name name(JavaType outer, String name) {

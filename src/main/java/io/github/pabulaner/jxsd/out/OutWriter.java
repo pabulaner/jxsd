@@ -5,6 +5,7 @@ import com.squareup.javapoet.TypeSpec;
 import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaResult;
+import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -27,15 +28,11 @@ public class OutWriter {
     }
 
     private void write(Path output, OutParserMap parser, JavaClass clazz) throws IOException, TemplateException {
-        try {
-            TypeSpec result = parser.parse(false, clazz);
-            String pkg = OutParser.parsePkg(clazz.type().pkg());
+        TypeSpec result = parser.parse(false, clazz);
+        String pkg = OutParser.parsePkg(parser.getResolver().type(clazz.type()).pkg());
 
-            JavaFile.builder(pkg, result)
-                    .build()
-                    .writeTo(output);
-        } catch (Exception e) {
-            // empty
-        }
+        JavaFile.builder(pkg, result)
+                .build()
+                .writeTo(output);
     }
 }

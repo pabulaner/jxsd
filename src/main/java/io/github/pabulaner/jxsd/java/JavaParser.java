@@ -122,15 +122,8 @@ public class JavaParser {
         List<JavaField> fields = new ArrayList<>();
 
         outer.push(type.name());
-
-        for (XsdValue value : values) {
-            parseValue(struct.type().scope(), value, inners, fields);
-        }
-
+        values.forEach(value -> parseValue(struct.type().scope(), value, inners, fields));
         outer.pop();
-
-        inners = Collections.unmodifiableList(inners);
-        fields = Collections.unmodifiableList(fields);
 
         return isSequence
                 ? new JavaSequence(type, inners, fields)
@@ -231,7 +224,9 @@ public class JavaParser {
     private List<String> toPackage(String scope) {
         try {
             URL url = URI.create(scope).toURL();
-            String[] parts = url.getPath().split("/");
+            String[] parts = url.getPath()
+                    .substring(1)
+                    .split("/");
 
             return Arrays.asList(parts);
         } catch (MalformedURLException e) {
@@ -240,6 +235,6 @@ public class JavaParser {
     }
 
     private List<String> getOuter() {
-        return Collections.unmodifiableList(outer);
+        return new ArrayList<>(outer);
     }
 }

@@ -9,6 +9,9 @@ import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.OutParserMap;
+import io.github.pabulaner.jxsd.out.resolver.Resolver;
+
+import java.util.List;
 
 public class ModelParserMap implements OutParserMap {
 
@@ -23,5 +26,10 @@ public class ModelParserMap implements OutParserMap {
             case JavaChoice casted -> new ChoiceModelParser().parse(isStatic, casted);
             default -> throw new IllegalStateException("Unexpected value: " + clazz);
         };
+    }
+
+    @Override
+    public Resolver getResolver() {
+        return new Resolver(List.of(), "model");
     }
 }

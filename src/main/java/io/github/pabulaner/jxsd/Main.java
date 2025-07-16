@@ -17,6 +17,6 @@ public class Main {
                 .setBasePkg("models.pkg")
                 .setXsdFile(Main.class.getResource("/xsd/dml/dml-chart.xsd"))
                 .addTransformFile(Main.class.getResource("/transforms/transform.xml"))
-                .setOutputPath(Path.of("src/main/java/")));
+                .setOutputPath(Path.of("generated")));
     }
 }
