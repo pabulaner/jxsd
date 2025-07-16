@@ -8,7 +8,7 @@ public class RestrictionBuilderParser extends BuilderParser<JavaRestriction> {
 
     @Override
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
-        JavaPrimitive primitive = new JavaPrimitive(clazz.type(), clazz.getPrimitive());
+        JavaPrimitive primitive = new JavaPrimitive(clazz.type());
         return new PrimitiveBuilderParser().parse(builder, primitive);
     }
 }

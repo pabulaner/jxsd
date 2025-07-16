@@ -1,11 +1,9 @@
 package io.github.pabulaner.jxsd.out.model;
 
-import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
-import io.github.pabulaner.jxsd.java.JavaName;
 
 import javax.lang.model.element.Modifier;
 
@@ -31,13 +29,13 @@ public class ChoiceModelParser extends ModelParser<JavaChoice> {
                         .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
                         .build());
 
-        TypeName type = parseType(clazz.type(), JavaName::toModel);
+        TypeName type = parseType(clazz.type(), getResolver());
         int[] index = { 0 };
 
         // parse fields
         clazz.fields().forEach(field -> {
-            TypeName fieldType = parseType(field.type(), JavaName::toModel);
-            String fieldName = field.name().toUpper();
+            TypeName fieldType = parseType(field.type(), getResolver());
+            String fieldName = getResolver().name(field.type(), field.name()).toUpper();
 
             // add static methods and is and get methods
             builder.addMethod(MethodSpec.methodBuilder(parseMethod(NEW, fieldName))

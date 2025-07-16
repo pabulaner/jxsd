@@ -1,8 +1,10 @@
 package io.github.pabulaner.jxsd.out.builder;
 
 import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaName;
 import io.github.pabulaner.jxsd.out.OutParser;
+import io.github.pabulaner.jxsd.out.resolver.Resolver;
+
+import java.util.List;
 
 public abstract class BuilderParser<TClass extends JavaClass> extends OutParser<TClass> {
 
@@ -10,11 +12,18 @@ public abstract class BuilderParser<TClass extends JavaClass> extends OutParser<
 
     protected static final String FROM = "from";
 
+    private final Resolver modelResolver;
+
     public BuilderParser() {
         this(ClassType.CLASS);
     }
 
     protected BuilderParser(ClassType classType) {
-        super(classType, JavaName::toBuilder);
+        super(classType, new Resolver(List.of(), "builder"));
+        modelResolver = new Resolver(List.of(), "model");
+    }
+
+    public Resolver getModelResolver() {
+        return modelResolver;
     }
 }

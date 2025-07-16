@@ -7109,8 +7109,8 @@ PRINCIPLES:
 		If may have something to do with whether an element is defined 
 		inline in this group, ie with name= but not type=
 		
-		But it looks like its related to whether you have a list or not.
-		In a list (eg CTParaRPrOriginal), it is annotated with @XmlElementRefs
+		But it looks like its related to whether you have a isList or not.
+		In a isList (eg CTParaRPrOriginal), it is annotated with @XmlElementRefs
 		
 		If its just a bunch of fields (eg our RPrAbstract), it isn't. 
 		

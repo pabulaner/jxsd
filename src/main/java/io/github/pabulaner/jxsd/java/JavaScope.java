@@ -12,7 +12,7 @@ public class JavaScope {
     }
 
     public void declare(JavaClass clazz) {
-        classes.put(clazz.getType(), clazz);
+        classes.put(clazz.type(), clazz);
     }
 
     public JavaClass get(JavaType type) {

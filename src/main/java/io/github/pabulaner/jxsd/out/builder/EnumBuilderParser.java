@@ -1,10 +1,9 @@
 package io.github.pabulaner.jxsd.out.builder;
 
-import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaEnum;
-import io.github.pabulaner.jxsd.java.JavaName;
 
 import javax.lang.model.element.Modifier;
 
@@ -12,8 +11,8 @@ public class EnumBuilderParser extends BuilderParser<JavaEnum> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaEnum clazz) {
-        TypeName builderType = parseType(clazz.type(), JavaName::toBuilder);
-        TypeName modelType = parseType(clazz.type(), JavaName::toModel);
+        TypeName builderType = parseType(clazz.type(), getResolver());
+        TypeName modelType = parseType(clazz.type(), getModelResolver());
 
         return builder
                 .addModifiers(Modifier.PUBLIC)

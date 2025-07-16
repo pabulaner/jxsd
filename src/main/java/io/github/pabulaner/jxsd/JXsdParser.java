@@ -6,7 +6,6 @@ import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.out.OutWriter;
 import io.github.pabulaner.jxsd.out.builder.BuilderParserMap;
 import io.github.pabulaner.jxsd.out.model.ModelParserMap;
-import io.github.pabulaner.jxsd.transform.Transformer;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
 import org.xml.sax.SAXException;
@@ -65,11 +64,8 @@ public class JXsdParser {
     }
 
     public static void parse(Config config) throws SAXException, IOException, TemplateException {
-        JavaParser.Config javaConfig = new JavaParser.Config(List.of(config.basePkg.split("\\.")), config.pkgConverter);
-
         XsdResult xsd = new XsdParser().parse(config.xsdFile);
-        JavaResult java = new JavaParser(javaConfig).parse(xsd);
-        java = new Transformer(config.transformerFiles).transform(java);
+        JavaResult java = new JavaParser().parse(xsd);
         OutWriter writer = new OutWriter(java);
 
         writer.write(config.outputPath, List.of(new ModelParserMap(), new BuilderParserMap()));

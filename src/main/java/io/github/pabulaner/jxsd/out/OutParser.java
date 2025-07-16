@@ -4,17 +4,16 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import com.squareup.javapoet.WildcardTypeName;
 import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaName;
 import io.github.pabulaner.jxsd.java.JavaType;
+import io.github.pabulaner.jxsd.out.resolver.Name;
+import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import javax.lang.model.element.Modifier;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public abstract class OutParser<TClass extends JavaClass> {
@@ -52,15 +51,15 @@ public abstract class OutParser<TClass extends JavaClass> {
 
     private final ClassType classType;
 
-    private final Function<JavaName, String> mapper;
+    private final Resolver resolver;
 
-    protected OutParser(ClassType classType, Function<JavaName, String> mapper) {
+    protected OutParser(ClassType classType, Resolver resolver) {
         this.classType = classType;
-        this.mapper = mapper;
+        this.resolver = resolver;
     }
 
     public TypeSpec parse(boolean isStatic, TClass clazz) {
-        String name = mapper.apply(clazz.type().name());
+        String name = resolver.type(clazz.type()).name();
         TypeSpec.Builder builder = switch (classType) {
             case CLASS -> TypeSpec.classBuilder(name);
             case ENUM -> TypeSpec.enumBuilder(name);
@@ -73,9 +72,6 @@ public abstract class OutParser<TClass extends JavaClass> {
             builder.addModifiers(Modifier.STATIC);
         }
 
-        clazz.getInterfaces().forEach(iface ->
-                builder.addSuperinterface(parseType(iface, mapper)));
-
         return parse(builder, clazz).build();
     }
 
@@ -85,22 +81,41 @@ public abstract class OutParser<TClass extends JavaClass> {
         return String.join(".", pkg);
     }
 
-    public static TypeName parseType(JavaType type, Function<JavaName, String> name) {
-        return parseType(type, name, false);
+    public static TypeName parsePrimitive(JavaType type) {
+        String primitive = type.name();
+
+        String pkg = switch (primitive) {
+            case "duration", "dateTime", "time", "date" -> "java.time";
+            default -> "";
+        };
+
+        String name = switch (primitive) {
+            case "string", "NOTATION", "QName", "anyURI", "IDREFS" -> "String";
+            case "boolean" -> "Boolean";
+            case "float" -> "Float";
+            case "double" -> "Double";
+            case "decimal" -> "Long";
+            case "duration" -> "Duration";
+            case "dateTime" -> "LocalDateTime";
+            case "time" -> "LocalTime";
+            case "date" -> "LocalDate";
+            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "Integer";
+            case "hexBinary", "base64Binary" -> "byte[]";
+            default -> throw new IllegalArgumentException("Unexpected value: " + primitive);
+        };
+
+        return ClassName.get(pkg, name);
     }
 
-    public static TypeName parseType(JavaType type, Function<JavaName, String> name, boolean wildcard) {
-        Queue<JavaName> all = new LinkedList<>(type.getOuter());
-        all.add(type.name());
+    public static TypeName parseType(JavaType type, Resolver resolver) {
+        type = resolver.type(type);
+        Queue<String> all = new LinkedList<>(type.outer());
 
-        TypeName result = ClassName.get(parsePkg(type.getPkg()), name.apply(all.remove()));
+        all.add(type.name());
+        ClassName result = ClassName.get(parsePkg(type.pkg()), all.remove());
 
         while (!all.isEmpty()) {
-            result = ((ClassName) result).nestedClass(name.apply(all.remove()));
-        }
-
-        if (wildcard) {
-            result = WildcardTypeName.subtypeOf(result);
+            result = result.nestedClass(all.remove());
         }
 
         if (type.isList()) {
@@ -119,9 +134,13 @@ public abstract class OutParser<TClass extends JavaClass> {
                         first[0] = false;
                         return part;
                     } else {
-                        return new JavaName(part).toUpper();
+                        return new Name(part).toUpper();
                     }
                 })
                 .collect(Collectors.joining());
+    }
+
+    public Resolver getResolver() {
+        return resolver;
     }
 }

@@ -3,38 +3,22 @@ package io.github.pabulaner.jxsd.java;
 import java.util.List;
 import java.util.Objects;
 
-public record JavaType(List<String> pkg, List<String> outer, String name, boolean list) {
+public record JavaType(List<String> pkg, List<String> outer, String name, int minOccurs, int maxOccurs) {
 
     public JavaType(List<String> pkg, String name) {
-        this(pkg, name, false);
+        this(pkg, name, 1, 1);
     }
 
-    public JavaType(List<String> pkg, String name, boolean list) {
-        this(pkg, List.of(), name, list);
+    public JavaType(List<String> pkg, List<String> outer, String name) {
+        this(pkg, outer, name, 1, 1);
     }
 
-    public static JavaType createPrimitive(String primitive) {
-        List<String> pkg = switch (primitive) {
-            case "duration", "dateTime", "time", "date" -> List.of("java", "time");
-            default -> List.of();
-        };
+    public JavaType(List<String> pkg, String name, int minOccurs, int maxOccurs) {
+        this(pkg, List.of(), name, minOccurs, maxOccurs);
+    }
 
-        String name = switch (primitive) {
-            case "string", "NOTATION", "QName", "anyURI", "IDREFS" -> "String";
-            case "boolean" -> "Boolean";
-            case "float" -> "Float";
-            case "double" -> "Double";
-            case "decimal" -> "Long";
-            case "duration" -> "Duration";
-            case "dateTime" -> "LocalDateTime";
-            case "time" -> "LocalTime";
-            case "date" -> "LocalDate";
-            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "Integer";
-            case "hexBinary", "base64Binary" -> "byte[]";
-            default -> throw new IllegalArgumentException("Unexpected value: " + primitive);
-        };
-
-        return new JavaType(pkg, List.of(), name, false);
+    public boolean isList() {
+        return maxOccurs > 1;
     }
 
     @Override

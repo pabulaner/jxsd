@@ -29,11 +29,13 @@ public class OutWriter {
     private void write(Path output, OutParserMap parser, JavaClass clazz) throws IOException, TemplateException {
         try {
             TypeSpec result = parser.parse(false, clazz);
-            String pkg = OutParser.parsePkg(clazz.type().getPkg());
+            String pkg = OutParser.parsePkg(clazz.type().pkg());
 
             JavaFile.builder(pkg, result)
                     .build()
                     .writeTo(output);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            // empty
+        }
     }
 }

@@ -1,9 +1,8 @@
 package io.github.pabulaner.jxsd.out.builder;
 
-import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaName;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 
 import javax.lang.model.element.Modifier;
@@ -12,8 +11,8 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaUnion clazz) {
-        TypeName builderType = parseType(clazz.type(), JavaName::toBuilder);
-        TypeName modelType = parseType(clazz.type(), JavaName::toModel);
+        TypeName builderType = parseType(clazz.type(), getResolver());
+        TypeName modelType = parseType(clazz.type(), getModelResolver());
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -26,8 +25,8 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
                         .build());
 
         clazz.types().forEach(type -> {
-            TypeName valueModelType = parseType(type, JavaName::toModel);
-            String valueName = type.name().toUpper();
+            TypeName valueModelType = parseType(type, getModelResolver());
+            String valueName = getResolver().name(type, type.name()).toUpper();
 
             build.addStatement("$N ($N.$N $N $T) $N $N $T(($T) $N.$N)", IF, THIS, VALUE, INSTANCEOF, valueModelType, RETURN, NEW, modelType, valueModelType, THIS, VALUE);
             builder.addMethod(MethodSpec.methodBuilder(parseMethod(SET, valueName))

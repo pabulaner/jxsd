@@ -1,9 +1,8 @@
 package io.github.pabulaner.jxsd.out.model;
 
-import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaName;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 
 import javax.lang.model.element.Modifier;
@@ -11,7 +10,7 @@ import javax.lang.model.element.Modifier;
 public class PrimitiveModelParser extends ModelParser<JavaPrimitive> {
 
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaPrimitive clazz) {
-        TypeName primitiveType = parseType(clazz.getPrimitive(), JavaName::getName);
+        TypeName primitiveType = parsePrimitive(clazz.type());
 
         return builder
                 .addModifiers(Modifier.PUBLIC)

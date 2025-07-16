@@ -1,10 +1,10 @@
 package io.github.pabulaner.jxsd.out.builder;
 
-import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaName;
 import io.github.pabulaner.jxsd.java.JavaSequence;
+import io.github.pabulaner.jxsd.out.resolver.Name;
 
 import javax.lang.model.element.Modifier;
 
@@ -16,8 +16,8 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
         clazz.inners().forEach(inner -> builder.addType(new BuilderParserMap().parse(true, inner)));
 
         // types
-        TypeName builderType = parseType(clazz.type(), JavaName::toBuilder);
-        TypeName modelType = parseType(clazz.type(), JavaName::toModel);
+        TypeName builderType = parseType(clazz.type(), getResolver());
+        TypeName modelType = parseType(clazz.type(), getModelResolver());
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -38,8 +38,8 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
         // parse fields
         clazz.fields().forEach(field -> {
-            TypeName fieldType = parseType(field.type(), JavaName::toModel);
-            JavaName fieldName = field.name();
+            TypeName fieldType = parseType(field.type(), getModelResolver());
+            Name fieldName = getResolver().name(field.type(), field.name());
 
             if (first[0]) {
                 first[0] = false;
