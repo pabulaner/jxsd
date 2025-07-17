@@ -5,6 +5,7 @@ import io.github.pabulaner.jxsd.java.JavaParser;
 import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.out.OutWriter;
 import io.github.pabulaner.jxsd.out.builder.BuilderParserMap;
+import io.github.pabulaner.jxsd.out.converter.ConverterParserMap;
 import io.github.pabulaner.jxsd.out.model.ModelParserMap;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
@@ -68,6 +69,9 @@ public class JXsdParser {
         JavaResult java = new JavaParser().parse(xsd);
         OutWriter writer = new OutWriter(java);
 
-        writer.write(config.outputPath, List.of(new ModelParserMap(), new BuilderParserMap()));
+        writer.write(config.outputPath, List.of(
+                new ModelParserMap(),
+                new BuilderParserMap(),
+                new ConverterParserMap()));
     }
 }

@@ -4,15 +4,26 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
+import io.github.pabulaner.jxsd.java.JavaRestriction;
+import io.github.pabulaner.jxsd.java.JavaType;
 
 import javax.lang.model.element.Modifier;
 
 public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
 
+    public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
+        return parse(builder, clazz.type(), clazz.primitive());
+    }
+
+    @Override
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaPrimitive clazz) {
-        TypeName builderType = parseType(clazz.type(), getResolver());
-        TypeName modelType = parseType(clazz.type(), getModelResolver());
-        TypeName primitiveType = parsePrimitive(clazz.type());
+        return parse(builder, clazz.type(), clazz.type());
+    }
+
+    private TypeSpec.Builder parse(TypeSpec.Builder builder, JavaType type, JavaType primitive) {
+        TypeName builderType = parseType(type, getResolver());
+        TypeName modelType = parseType(type, getModelResolver());
+        TypeName primitiveType = parsePrimitive(primitive);
 
         return builder
                 .addModifiers(Modifier.PUBLIC)
