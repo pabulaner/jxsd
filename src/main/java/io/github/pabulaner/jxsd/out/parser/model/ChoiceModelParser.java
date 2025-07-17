@@ -19,10 +19,8 @@ public class ChoiceModelParser extends BaseParser<JavaChoice> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaChoice clazz) {
-        // add inners
         clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
-        // add fields and constructors
         builder.addField(TypeName.INT, TYPE, Modifier.PRIVATE, Modifier.FINAL)
                 .addField(Object.class, VALUE, Modifier.PRIVATE, Modifier.FINAL)
                 .addMethod(MethodSpec.constructorBuilder()
@@ -40,12 +38,10 @@ public class ChoiceModelParser extends BaseParser<JavaChoice> {
         TypeName type = ParserUtil.convertType(clazz.type(), getResolver());
         int[] index = { 0 };
 
-        // parse fields
         clazz.fields().forEach(field -> {
             TypeName fieldType = ParserUtil.convertType(field.type(), getResolver());
             String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toUpper();
 
-            // add static methods and is and get methods
             builder.addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(NEW, fieldName))
                             .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                             .returns(type)

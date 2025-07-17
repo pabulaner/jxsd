@@ -49,6 +49,10 @@ public final class ParserUtil {
     }
 
     public static TypeName convertType(JavaType type, Resolver resolver) {
+        return convertType(type, resolver, type.isList());
+    }
+
+    public static TypeName convertType(JavaType type, Resolver resolver, boolean isList) {
         type = resolver.resolve(type);
         Queue<String> all = new LinkedList<>(type.outer());
 
@@ -59,7 +63,7 @@ public final class ParserUtil {
             result = result.nestedClass(all.remove());
         }
 
-        if (type.isList()) {
+        if (isList) {
             ClassName list = ClassName.get(List.class);
             return ParameterizedTypeName.get(list, result);
         } else {

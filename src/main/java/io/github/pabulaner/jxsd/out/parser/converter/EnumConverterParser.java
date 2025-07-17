@@ -1,8 +1,13 @@
 package io.github.pabulaner.jxsd.out.parser.converter;
 
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import io.github.pabulaner.jxsd.java.JavaEnum;
+import io.github.pabulaner.jxsd.java.JavaType;
+import io.github.pabulaner.jxsd.out.Name;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
+import org.docx4j.dml.chart.STScatterStyle;
 
 public class EnumConverterParser extends ConverterParser<JavaEnum> {
 
@@ -12,7 +17,15 @@ public class EnumConverterParser extends ConverterParser<JavaEnum> {
 
     @Override
     protected MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaEnum clazz) {
-        return builder;
+        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
+        TypeName docx4jType = parseDocx4jType(clazz);
+
+        clazz.values().forEach(value -> {
+            value = new Name(value).toEnum();
+            builder.addStatement("$N ($N == $T.$N) $N $T.$N", IF, VALUE, docx4jType, value, RETURN, modelType, value);
+        });
+
+        return builder.addStatement("$N $N", RETURN, NULL);
     }
 
     @Override

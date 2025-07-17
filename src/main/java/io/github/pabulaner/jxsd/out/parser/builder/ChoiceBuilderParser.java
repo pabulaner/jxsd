@@ -18,10 +18,8 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaChoice clazz) {
-        // add inners
         clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
-        // types
         TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
         TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
 
@@ -36,8 +34,7 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
                 .addParameter(modelType, VALUE)
                 .addStatement("$N.$N = -1", THIS, TYPE)
                 .addStatement("$N.$N = $N", THIS, VALUE, NULL);
-        
-        // add fields and constructors
+
         builder.addField(TypeName.INT, TYPE, Modifier.PRIVATE)
                 .addField(Object.class, VALUE, Modifier.PRIVATE)
                 .addMethod(MethodSpec.constructorBuilder()
@@ -48,7 +45,6 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
 
         int[] index = { 0 };
 
-        // parse fields
         clazz.fields().forEach(field -> {
             TypeName fieldType = ParserUtil.convertType(field.type(), getModelResolver());
             String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toUpper();
@@ -59,7 +55,6 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
                     .addStatement("$N.$N = $N.$N()", THIS, VALUE, VALUE, ParserUtil.convertMethodName(GET, fieldName))
                     .endControlFlow();
 
-            // add setters
             builder.addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, fieldName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(builderType)

@@ -18,10 +18,8 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaSequence clazz) {
-        // add inners
         clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
-        // types
         TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
         TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
 
@@ -35,14 +33,12 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
                 .returns(builderType)
                 .addParameter(modelType, VALUE);
 
-        // init constructor
         builder.addMethod(MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PUBLIC)
                 .build());
 
         boolean[] first = { true };
 
-        // parse fields
         clazz.fields().forEach(field -> {
             TypeName fieldType = ParserUtil.convertType(field.type(), getModelResolver());
             Name fieldName = new Name(getResolver().resolve(field.type(), field.name()));
@@ -56,7 +52,6 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
             build.addCode("$N.$N", THIS, fieldName.toVar());
             from.addStatement("$N.$N = $N.$N()", THIS, fieldName.toVar(), VALUE, ParserUtil.convertMethodName(GET, fieldName.toUpper()));
 
-            // add fields and setters
             builder.addField(fieldType, fieldName.toVar(), Modifier.PRIVATE)
                     .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, fieldName.toUpper()))
                             .addModifiers(Modifier.PUBLIC)
@@ -67,7 +62,6 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
                             .build());
         });
 
-        // add constructor and return result
         return builder.addMethod(build.addCode(");")
                         .build())
                 .addMethod(from.addStatement("$N $N", RETURN, THIS)
