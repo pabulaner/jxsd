@@ -5,15 +5,12 @@ import io.github.pabulaner.jxsd.java.JavaType;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Resolves the type by putting it inside the provided pkg.
- */
-public class PkgResolver implements Resolver {
+public class PkgParentResolver implements Resolver {
 
     private final List<String> pkg;
 
-    public PkgResolver(List<String> pkg) {
-        this.pkg = new ArrayList<>(pkg);
+    public PkgParentResolver(List<String> pkg) {
+        this.pkg = pkg;
     }
 
     public JavaType resolve(JavaType type) {

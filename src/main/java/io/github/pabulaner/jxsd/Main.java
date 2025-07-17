@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws SAXException, IOException, TemplateException {
         JXsdParser.parse(new JXsdParser.Config()
                 .addPkgConverter("drawingml", "dml")
-                .setBasePkg("models.pkg")
+                .setBasePkg(List.of("com", "scell"))
                 .setXsdFile(Main.class.getResource("/xsd/dml/dml-chart.xsd"))
                 .addTransformFile(Main.class.getResource("/transforms/transform.xml"))
                 .setOutputPath(Path.of("generated")));

@@ -8,11 +8,9 @@ import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.Util;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 import io.github.pabulaner.jxsd.out.parser.model.ModelParserGroup;
-import io.github.pabulaner.jxsd.out.resolver.PkgResolver;
 import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import javax.lang.model.element.Modifier;
-import java.util.List;
 
 public abstract class ConverterParser<TClass extends JavaClass> extends BaseParser<TClass> {
 
