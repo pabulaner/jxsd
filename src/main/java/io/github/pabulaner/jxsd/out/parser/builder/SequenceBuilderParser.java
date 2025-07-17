@@ -6,15 +6,20 @@ import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
 public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
+    public SequenceBuilderParser(ParserGroup group) {
+        super(group);
+    }
+
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaSequence clazz) {
         // add inners
-        clazz.inners().forEach(inner -> builder.addType(new BuilderParserGroup().parse(true, inner)));
+        clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
         // types
         TypeName builderType = Util.convertType(clazz.type(), getResolver());
@@ -40,7 +45,7 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
         // parse fields
         clazz.fields().forEach(field -> {
             TypeName fieldType = Util.convertType(field.type(), getModelResolver());
-            Name fieldName = getResolver().name(field.type(), field.name());
+            Name fieldName = new Name(getResolver().resolve(field.type(), field.name()));
 
             if (first[0]) {
                 first[0] = false;

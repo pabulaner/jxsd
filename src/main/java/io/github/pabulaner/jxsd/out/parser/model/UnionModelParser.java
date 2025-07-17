@@ -5,10 +5,16 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.BaseParser;
+import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class UnionModelParser extends ModelParser<JavaUnion> {
+public class UnionModelParser extends BaseParser<JavaUnion> {
+
+    public UnionModelParser(ParserGroup group) {
+        super(group);
+    }
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaUnion clazz) {

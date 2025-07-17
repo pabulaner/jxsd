@@ -4,11 +4,12 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class RestrictionModelParser extends ModelParser<JavaRestriction> {
+public class RestrictionModelParser extends BaseParser<JavaRestriction> {
 
     public RestrictionModelParser(ParserGroup group) {
         super(group);

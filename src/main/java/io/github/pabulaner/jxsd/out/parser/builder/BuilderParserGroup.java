@@ -9,28 +9,30 @@ import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
+import io.github.pabulaner.jxsd.out.parser.ParserMap;
+import io.github.pabulaner.jxsd.out.parser.model.ChoiceModelParser;
+import io.github.pabulaner.jxsd.out.parser.model.EnumModelParser;
+import io.github.pabulaner.jxsd.out.parser.model.PrimitiveModelParser;
+import io.github.pabulaner.jxsd.out.parser.model.RestrictionModelParser;
+import io.github.pabulaner.jxsd.out.parser.model.SequenceModelParser;
+import io.github.pabulaner.jxsd.out.parser.model.UnionModelParser;
 import io.github.pabulaner.jxsd.out.resolver.PkgResolver;
 import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import java.util.List;
 
-public class BuilderParserGroup implements ParserGroup {
+public class BuilderParserGroup extends ParserGroup {
 
-    @Override
-    public TypeSpec parse(boolean isStatic, JavaClass clazz) {
-        return switch (clazz) {
-            case JavaPrimitive casted -> new PrimitiveBuilderParser().parse(isStatic, casted);
-            case JavaRestriction casted -> new RestrictionBuilderParser().parse(isStatic, casted);
-            case JavaUnion casted -> new UnionBuilderParser().parse(isStatic, casted);
-            case JavaEnum casted -> new EnumBuilderParser().parse(isStatic, casted);
-            case JavaSequence casted -> new SequenceBuilderParser().parse(isStatic, casted);
-            case JavaChoice casted -> new ChoiceBuilderParser().parse(isStatic, casted);
-            default -> throw new IllegalStateException("Unexpected value: " + clazz);
-        };
-    }
+    public static final String NAME = "builder";
 
-    @Override
-    public Resolver getResolver() {
-        return new PkgResolver(List.of(), "builder");
+    public BuilderParserGroup(ParserMap map, Resolver resolver) {
+        super(map, resolver);
+
+        addParser(JavaPrimitive.class, new PrimitiveBuilderParser(this));
+        addParser(JavaRestriction.class, new RestrictionBuilderParser(this));
+        addParser(JavaUnion.class, new UnionBuilderParser(this));
+        addParser(JavaEnum.class, new EnumBuilderParser(this));
+        addParser(JavaSequence.class, new SequenceBuilderParser(this));
+        addParser(JavaChoice.class, new ChoiceBuilderParser(this));
     }
 }

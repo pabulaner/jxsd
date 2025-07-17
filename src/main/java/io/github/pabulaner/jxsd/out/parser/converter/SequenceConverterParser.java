@@ -2,9 +2,13 @@ package io.github.pabulaner.jxsd.out.parser.converter;
 
 import com.squareup.javapoet.MethodSpec;
 import io.github.pabulaner.jxsd.java.JavaSequence;
+import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 public class SequenceConverterParser extends ConverterParser<JavaSequence> {
 
+    public SequenceConverterParser(ParserGroup group) {
+        super(group);
+    }
 
     @Override
     protected MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaSequence clazz) {

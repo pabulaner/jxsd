@@ -9,27 +9,30 @@ import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
+import io.github.pabulaner.jxsd.out.parser.ParserMap;
+import io.github.pabulaner.jxsd.out.parser.builder.ChoiceBuilderParser;
+import io.github.pabulaner.jxsd.out.parser.builder.EnumBuilderParser;
+import io.github.pabulaner.jxsd.out.parser.builder.PrimitiveBuilderParser;
+import io.github.pabulaner.jxsd.out.parser.builder.RestrictionBuilderParser;
+import io.github.pabulaner.jxsd.out.parser.builder.SequenceBuilderParser;
+import io.github.pabulaner.jxsd.out.parser.builder.UnionBuilderParser;
 import io.github.pabulaner.jxsd.out.resolver.PkgResolver;
+import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import java.util.List;
 
-public class ConverterParserGroup implements ParserGroup {
+public class ConverterParserGroup extends ParserGroup {
 
-    @Override
-    public TypeSpec parse(boolean isStatic, JavaClass clazz) {
-        return switch (clazz) {
-            case JavaPrimitive casted -> new PrimitiveConverterParser().parse(isStatic, casted);
-            case JavaRestriction casted -> new RestrictionConverterParser().parse(isStatic, casted);
-            case JavaUnion casted -> new UnionConverterParser().parse(isStatic, casted);
-            case JavaEnum casted -> new EnumConverterParser().parse(isStatic, casted);
-            case JavaSequence casted -> new SequenceConverterParser().parse(isStatic, casted);
-            case JavaChoice casted -> new ChoiceConverterParser().parse(isStatic, casted);
-            default -> throw new IllegalStateException("Unexpected value: " + clazz);
-        };
-    }
+    public static final String NAME = "converter";
 
-    @Override
-    public PkgResolver getResolver() {
-        return new PkgResolver(List.of(), "converter");
+    public ConverterParserGroup(ParserMap map, Resolver resolver) {
+        super(map, resolver);
+
+        addParser(JavaPrimitive.class, new PrimitiveConverterParser(this));
+        addParser(JavaRestriction.class, new RestrictionConverterParser(this));
+        addParser(JavaUnion.class, new UnionConverterParser(this));
+        addParser(JavaEnum.class, new EnumConverterParser(this));
+        addParser(JavaSequence.class, new SequenceConverterParser(this));
+        addParser(JavaChoice.class, new ChoiceConverterParser(this));
     }
 }

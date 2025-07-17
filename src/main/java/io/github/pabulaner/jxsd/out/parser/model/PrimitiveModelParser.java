@@ -5,11 +5,12 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class PrimitiveModelParser extends ModelParser<JavaPrimitive> {
+public class PrimitiveModelParser extends BaseParser<JavaPrimitive> {
 
     public PrimitiveModelParser(ParserGroup group) {
         super(group);

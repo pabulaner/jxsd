@@ -5,10 +5,15 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaEnum;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
 public class EnumBuilderParser extends BuilderParser<JavaEnum> {
+
+    public EnumBuilderParser(ParserGroup group) {
+        super(group);
+    }
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaEnum clazz) {

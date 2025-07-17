@@ -4,16 +4,22 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
+import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
 public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
 
+    public ChoiceBuilderParser(ParserGroup group) {
+        super(group);
+    }
+
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaChoice clazz) {
         // add inners
-        clazz.inners().forEach(inner -> builder.addType(new BuilderParserGroup().parse(true, inner)));
+        clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
         // types
         TypeName builderType = Util.convertType(clazz.type(), getResolver());
@@ -45,7 +51,7 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
         // parse fields
         clazz.fields().forEach(field -> {
             TypeName fieldType = Util.convertType(field.type(), getModelResolver());
-            String fieldName = getResolver().name(field.type(), field.name()).toUpper();
+            String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toUpper();
 
             build.addStatement("$N ($N.$N == $L) $N $T.$N(($T) $N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, Util.convertMethodName(NEW, fieldName), fieldType, THIS, VALUE);
             from.beginControlFlow("$N ($N.$N())", IF, VALUE, Util.convertMethodName(IS, fieldName))

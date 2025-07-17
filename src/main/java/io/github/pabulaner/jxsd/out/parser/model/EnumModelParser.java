@@ -3,10 +3,11 @@ package io.github.pabulaner.jxsd.out.parser.model;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaEnum;
 import io.github.pabulaner.jxsd.out.Name;
+import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 import io.github.pabulaner.jxsd.out.parser.ParserMap;
 
-public class EnumModelParser extends ModelParser<JavaEnum> {
+public class EnumModelParser extends BaseParser<JavaEnum> {
 
     public EnumModelParser(ParserGroup group) {
         super(group, ClassType.ENUM);

@@ -4,12 +4,15 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
+import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.BaseParser;
+import io.github.pabulaner.jxsd.out.parser.Parser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class ChoiceModelParser extends ModelParser<JavaChoice> {
+public class ChoiceModelParser extends BaseParser<JavaChoice> {
 
     public ChoiceModelParser(ParserGroup group) {
         super(group);
@@ -18,7 +21,7 @@ public class ChoiceModelParser extends ModelParser<JavaChoice> {
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaChoice clazz) {
         // add inners
-        clazz.inners().forEach(inner -> builder.addType(new ModelParserGroup().parse(true, inner)));
+        clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
         // add fields and constructors
         builder.addField(TypeName.INT, TYPE, Modifier.PRIVATE, Modifier.FINAL)
@@ -41,7 +44,7 @@ public class ChoiceModelParser extends ModelParser<JavaChoice> {
         // parse fields
         clazz.fields().forEach(field -> {
             TypeName fieldType = Util.convertType(field.type(), getResolver());
-            String fieldName = getResolver().name(field.type(), field.name()).toUpper();
+            String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toUpper();
 
             // add static methods and is and get methods
             builder.addMethod(MethodSpec.methodBuilder(Util.convertMethodName(NEW, fieldName))

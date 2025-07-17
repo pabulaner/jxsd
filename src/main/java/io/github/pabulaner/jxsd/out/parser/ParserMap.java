@@ -2,6 +2,7 @@ package io.github.pabulaner.jxsd.out.parser;
 
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
+import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import java.util.HashMap;
@@ -17,10 +18,10 @@ public class ParserMap {
         this.groups = new HashMap<>();
     }
 
-    public void parse(List<JavaClass> classes, BiConsumer<Resolver, TypeSpec> consumer) {
-        classes.forEach(clazz ->
-                groups.forEach((key, value) ->
-                        consumer.accept(value.getResolver(), value.parse(false, clazz))));
+    public void parse(List<JavaClass> classes, BiConsumer<JavaType, TypeSpec> consumer) {
+        classes.forEach(clazz -> groups.forEach((key, value) -> consumer.accept(
+                value.getResolver().resolve(clazz.type()),
+                value.parse(false, clazz))));
     }
 
     public void addGroup(String key, ParserGroup group) {

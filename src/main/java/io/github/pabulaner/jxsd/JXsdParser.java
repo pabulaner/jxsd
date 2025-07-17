@@ -4,6 +4,7 @@ import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.java.JavaParser;
 import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.out.Writer;
+import io.github.pabulaner.jxsd.out.parser.ParserMap;
 import io.github.pabulaner.jxsd.out.parser.builder.BuilderParserGroup;
 import io.github.pabulaner.jxsd.out.parser.converter.ConverterParserGroup;
 import io.github.pabulaner.jxsd.out.parser.model.ModelParserGroup;
@@ -69,9 +70,11 @@ public class JXsdParser {
         JavaResult java = new JavaParser().parse(xsd);
         Writer writer = new Writer(java);
 
-        writer.write(config.outputPath, List.of(
-                new ModelParserGroup(),
-                new BuilderParserGroup(),
-                new ConverterParserGroup()));
+        ParserMap map = new ParserMap();
+        map.addGroup(ModelParserGroup.NAME, new ModelParserGroup(map, null));
+        map.addGroup(BuilderParserGroup.NAME, new BuilderParserGroup(map, null));
+        map.addGroup(ConverterParserGroup.NAME, new ConverterParserGroup(map, null));
+
+        writer.write(config.outputPath, map);
     }
 }

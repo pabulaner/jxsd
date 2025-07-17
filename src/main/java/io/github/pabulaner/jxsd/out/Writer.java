@@ -5,7 +5,10 @@ import com.squareup.javapoet.TypeSpec;
 import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaResult;
+import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
+import io.github.pabulaner.jxsd.out.parser.ParserMap;
+import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,19 +22,24 @@ public class Writer {
         this.result = result;
     }
 
-    public void write(Path path, List<ParserGroup> parsers) throws TemplateException, IOException {
-        for (ParserGroup parser : parsers) {
-            for (JavaClass clazz : result.classes()) {
-                write(path, parser, clazz);
+    public void write(Path path, ParserMap map) throws IOException {
+        IOException[] exception = { null };
+
+        map.parse(result.classes(), (resolver, result) -> {
+            try {
+                write(path, resolver, result);
+            } catch (IOException e) {
+                exception[0] = e;
             }
+        });
+
+        if (exception[0] != null) {
+            throw exception[0];
         }
     }
 
-    private void write(Path output, ParserGroup parser, JavaClass clazz) throws IOException, TemplateException {
-        TypeSpec result = parser.parse(false, clazz);
-        String pkg = Util.convertPkg(parser.getResolver().resolve(clazz.type()).pkg());
-
-        JavaFile.builder(pkg, result)
+    private void write(Path output, JavaType type, TypeSpec result) throws IOException {
+        JavaFile.builder(Util.convertPkg(type.pkg()), result)
                 .build()
                 .writeTo(output);
     }

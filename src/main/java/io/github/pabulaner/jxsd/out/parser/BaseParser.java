@@ -2,6 +2,7 @@ package io.github.pabulaner.jxsd.out.parser;
 
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
+import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import javax.lang.model.element.Modifier;
 
@@ -70,4 +71,12 @@ public abstract class BaseParser<TClass extends JavaClass> implements Parser<TCl
     }
 
     protected abstract TypeSpec.Builder parse(TypeSpec.Builder builder, TClass clazz);
+
+    public ParserGroup getGroup() {
+        return group;
+    }
+
+    public Resolver getResolver() {
+        return group.getResolver();
+    }
 }

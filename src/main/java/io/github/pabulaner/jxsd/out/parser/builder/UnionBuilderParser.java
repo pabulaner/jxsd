@@ -4,11 +4,17 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaUnion;
+import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
 public class UnionBuilderParser extends BuilderParser<JavaUnion> {
+
+    public UnionBuilderParser(ParserGroup group) {
+        super(group);
+    }
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaUnion clazz) {
@@ -27,7 +33,7 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
 
         clazz.types().forEach(type -> {
             TypeName valueModelType = Util.convertType(type, getModelResolver());
-            String valueName = getResolver().name(type, type.name()).toUpper();
+            String valueName = new Name(getResolver().resolve(type, type.name())).toUpper();
 
             build.addStatement("$N ($N.$N $N $T) $N $N $T(($T) $N.$N)", IF, THIS, VALUE, INSTANCEOF, valueModelType, RETURN, NEW, modelType, valueModelType, THIS, VALUE);
             builder.addMethod(MethodSpec.methodBuilder(Util.convertMethodName(SET, valueName))

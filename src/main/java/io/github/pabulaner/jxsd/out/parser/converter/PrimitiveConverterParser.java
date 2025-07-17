@@ -6,8 +6,13 @@ import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 public class PrimitiveConverterParser extends ConverterParser<JavaPrimitive> {
+
+    public PrimitiveConverterParser(ParserGroup group) {
+        super(group);
+    }
 
     public MethodSpec.Builder parse(MethodSpec.Builder builder, JavaRestriction clazz) {
         return parse(builder, clazz.type(), clazz.primitive());

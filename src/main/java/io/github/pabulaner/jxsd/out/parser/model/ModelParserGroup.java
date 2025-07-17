@@ -12,14 +12,16 @@ import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 public class ModelParserGroup extends ParserGroup {
 
+    public static final String NAME = "model";
+
     public ModelParserGroup(ParserMap map, Resolver resolver) {
         super(map, resolver);
 
         addParser(JavaPrimitive.class, new PrimitiveModelParser(this));
-        addParser(JavaRestriction.class, RestrictionModelParser::new);
-        addParser(JavaUnion.class, UnionModelParser::new);
-        addParser(JavaEnum.class, EnumModelParser::new);
-        addParser(JavaSequence.class, SequenceModelParser::new);
-        addParser(JavaChoice.class, ChoiceModelParser::new);
+        addParser(JavaRestriction.class, new RestrictionModelParser(this));
+        addParser(JavaUnion.class, new UnionModelParser(this));
+        addParser(JavaEnum.class, new EnumModelParser(this));
+        addParser(JavaSequence.class, new SequenceModelParser(this));
+        addParser(JavaChoice.class, new ChoiceModelParser(this));
     }
 }
