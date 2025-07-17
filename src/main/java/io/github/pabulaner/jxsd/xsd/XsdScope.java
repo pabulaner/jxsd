@@ -20,7 +20,9 @@ public class XsdScope {
     public XsdType getTopParent(XsdType type) {
         XsdType result = type;
 
-        while (!XsdParser.SIMPLE_TYPE.equals(result.parentName()) && !XsdParser.ANY_SIMPLE_TYPE.equals(result.parentName())) {
+        while (!XsdParser.ANY_TYPE.equals(result.parentName())
+                && !XsdParser.SIMPLE_TYPE.equals(result.parentName())
+                && !XsdParser.ANY_SIMPLE_TYPE.equals(result.parentName())) {
             result = types.get(result.parentScope()).get(result.parentName());
         }
 

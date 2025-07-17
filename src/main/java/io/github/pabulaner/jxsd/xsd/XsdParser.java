@@ -27,6 +27,8 @@ import java.util.stream.Collectors;
 
 public class XsdParser {
 
+    public static final String ANY_TYPE = "anyType";
+
     public static final String SIMPLE_TYPE = "simpleType";
 
     public static final String ANY_SIMPLE_TYPE = "anySimpleType";
@@ -53,14 +55,21 @@ public class XsdParser {
         XSSchemaSet set = parser.getResult();
         List<XsdStruct> structs = new ArrayList<>();
 
-        set.getSchemas().forEach(schema -> schema.getTypes()
-                .values()
-                .stream()
-                .map(this::parse)
-                .filter(xs -> !SIMPLE_TYPE.equals(xs.type().name()))
-                .filter(xs -> !ANY_SIMPLE_TYPE.equals(xs.type().name()))
-                .filter(xs -> xs.type().parentName() != null)
-                .forEach(structs::add));
+        set.getSchemas().forEach(schema -> {
+            schema.getModelGroupDecls().forEach((key, value) -> {
+                System.out.println("key: " + key + ", group: " + value.getModelGroup());
+            });
+
+            schema.getTypes()
+                    .values()
+                    .stream()
+                    .map(this::parse)
+                    .filter(xs -> !ANY_TYPE.equals(xs.type().name()))
+                    .filter(xs -> !SIMPLE_TYPE.equals(xs.type().name()))
+                    .filter(xs -> !ANY_SIMPLE_TYPE.equals(xs.type().name()))
+                    .filter(xs -> xs.type().parentName() != null)
+                    .forEach(structs::add);
+        });
 
         return new XsdResult(scope, structs);
     }
