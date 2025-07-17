@@ -43,7 +43,7 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
             }
 
             if (fieldType.isList()) {
-                builder.addCode("$N.$N().$N().$N($N -> $T.$N($N.$N())).$N($T.$N())", VALUE, getter, STREAM, MAP, VAL, converterType, from, VAL, getter, COLLECT, COLLECTORS_TYPE, TO_LIST);
+                builder.addCode("$N.$N().$N().$N($T::$N).$N($T.$N())", VALUE, getter, STREAM, MAP, converterType, from, COLLECT, COLLECTORS_TYPE, TO_LIST);
             } else {
                 builder.addCode("$T.$N($N.$N())", converterType, from, VALUE, getter);
             }
