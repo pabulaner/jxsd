@@ -5,7 +5,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.out.Name;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
@@ -22,8 +22,8 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
         clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
         // types
-        TypeName builderType = Util.convertType(clazz.type(), getResolver());
-        TypeName modelType = Util.convertType(clazz.type(), getModelResolver());
+        TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
+        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -44,7 +44,7 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
         // parse fields
         clazz.fields().forEach(field -> {
-            TypeName fieldType = Util.convertType(field.type(), getModelResolver());
+            TypeName fieldType = ParserUtil.convertType(field.type(), getModelResolver());
             Name fieldName = new Name(getResolver().resolve(field.type(), field.name()));
 
             if (first[0]) {
@@ -54,11 +54,11 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
             }
 
             build.addCode("$N.$N", THIS, fieldName.toVar());
-            from.addStatement("$N.$N = $N.$N()", THIS, fieldName.toVar(), VALUE, Util.convertMethodName(GET, fieldName.toUpper()));
+            from.addStatement("$N.$N = $N.$N()", THIS, fieldName.toVar(), VALUE, ParserUtil.convertMethodName(GET, fieldName.toUpper()));
 
             // add fields and setters
             builder.addField(fieldType, fieldName.toVar(), Modifier.PRIVATE)
-                    .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(SET, fieldName.toUpper()))
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, fieldName.toUpper()))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(builderType)
                             .addParameter(fieldType, fieldName.toVar())

@@ -4,7 +4,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaUnion;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
@@ -25,7 +25,7 @@ public class UnionModelParser extends BaseParser<JavaUnion> {
                         .build());
 
         clazz.types().forEach(type -> {
-            TypeName valueType = Util.convertType(type, getResolver());
+            TypeName valueType = ParserUtil.convertType(type, getResolver());
             String valueName = type.name();
 
             builder.addMethod(MethodSpec.constructorBuilder()
@@ -33,12 +33,12 @@ public class UnionModelParser extends BaseParser<JavaUnion> {
                             .addParameter(valueType, VALUE)
                             .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
                             .build())
-                    .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(IS, valueName))
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(IS, valueName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(TypeName.BOOLEAN)
                             .addStatement("$N $N.$N $N $T", RETURN, THIS, VALUE, INSTANCEOF, valueType)
                             .build())
-                    .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(GET, valueName))
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(GET, valueName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(valueType)
                             .addStatement("$N ($T) $N.$N", RETURN, valueType, THIS, VALUE)

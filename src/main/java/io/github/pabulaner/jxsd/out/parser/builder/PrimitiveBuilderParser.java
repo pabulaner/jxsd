@@ -6,7 +6,7 @@ import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
@@ -27,9 +27,9 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
     }
 
     private TypeSpec.Builder parse(TypeSpec.Builder builder, JavaType type, JavaType primitive) {
-        TypeName builderType = Util.convertType(type, getResolver());
-        TypeName modelType = Util.convertType(type, getModelResolver());
-        TypeName primitiveType = Util.convertPrimitive(primitive);
+        TypeName builderType = ParserUtil.convertType(type, getResolver());
+        TypeName modelType = ParserUtil.convertType(type, getModelResolver());
+        TypeName primitiveType = ParserUtil.convertPrimitive(primitive);
 
         return builder
                 .addModifiers(Modifier.PUBLIC)
@@ -38,7 +38,7 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
                         .addModifiers(Modifier.PUBLIC)
                         .addStatement("$N.$N = $N", THIS, VALUE, NULL)
                         .build())
-                .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(SET, VALUE))
+                .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, VALUE))
                         .addModifiers(Modifier.PUBLIC)
                         .returns(builderType)
                         .addParameter(primitiveType, VALUE)
@@ -49,7 +49,7 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
                         .addModifiers(Modifier.PUBLIC)
                         .returns(builderType)
                         .addParameter(modelType, VALUE)
-                        .addStatement("$N.$N = $N.$N()", THIS, VALUE, VALUE, Util.convertMethodName(GET, VALUE))
+                        .addStatement("$N.$N = $N.$N()", THIS, VALUE, VALUE, ParserUtil.convertMethodName(GET, VALUE))
                         .addStatement("$N $N", RETURN, THIS)
                         .build())
                 .addMethod(MethodSpec.methodBuilder(BUILD)

@@ -5,7 +5,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.out.Name;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
@@ -22,8 +22,8 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
         clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
         // types
-        TypeName builderType = Util.convertType(clazz.type(), getResolver());
-        TypeName modelType = Util.convertType(clazz.type(), getModelResolver());
+        TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
+        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -50,17 +50,17 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
 
         // parse fields
         clazz.fields().forEach(field -> {
-            TypeName fieldType = Util.convertType(field.type(), getModelResolver());
+            TypeName fieldType = ParserUtil.convertType(field.type(), getModelResolver());
             String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toUpper();
 
-            build.addStatement("$N ($N.$N == $L) $N $T.$N(($T) $N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, Util.convertMethodName(NEW, fieldName), fieldType, THIS, VALUE);
-            from.beginControlFlow("$N ($N.$N())", IF, VALUE, Util.convertMethodName(IS, fieldName))
+            build.addStatement("$N ($N.$N == $L) $N $T.$N(($T) $N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, ParserUtil.convertMethodName(NEW, fieldName), fieldType, THIS, VALUE);
+            from.beginControlFlow("$N ($N.$N())", IF, VALUE, ParserUtil.convertMethodName(IS, fieldName))
                     .addStatement("$N.$N = $L", THIS, TYPE, index[0])
-                    .addStatement("$N.$N = $N.$N()", THIS, VALUE, VALUE, Util.convertMethodName(GET, fieldName))
+                    .addStatement("$N.$N = $N.$N()", THIS, VALUE, VALUE, ParserUtil.convertMethodName(GET, fieldName))
                     .endControlFlow();
 
             // add setters
-            builder.addMethod(MethodSpec.methodBuilder(Util.convertMethodName(SET, fieldName))
+            builder.addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, fieldName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(builderType)
                             .addParameter(fieldType, VALUE)

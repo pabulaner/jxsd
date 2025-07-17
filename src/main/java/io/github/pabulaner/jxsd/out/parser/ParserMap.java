@@ -3,7 +3,6 @@ package io.github.pabulaner.jxsd.out.parser;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import java.util.HashMap;
 import java.util.List;

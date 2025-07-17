@@ -4,8 +4,8 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
-import io.github.pabulaner.jxsd.out.Util;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 import io.github.pabulaner.jxsd.out.parser.model.ModelParserGroup;
 import io.github.pabulaner.jxsd.out.resolver.Resolver;
@@ -14,22 +14,28 @@ import javax.lang.model.element.Modifier;
 
 public abstract class ConverterParser<TClass extends JavaClass> extends BaseParser<TClass> {
 
+    protected static final String FROM = "from";
+
+    protected static final String TO = "to";
+
+    protected static final String DOCX4J = "docx4j";
+
     protected ConverterParser(ParserGroup group) {
         super(group);
     }
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, TClass clazz) {
-        MethodSpec.Builder convertFromDocx4j = MethodSpec.methodBuilder("fromDocx4j")
+        MethodSpec.Builder convertFromDocx4j = MethodSpec.methodBuilder(ParserUtil.convertMethodName(FROM, DOCX4J))
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(Util.convertType(clazz.type(), getModelResolver()))
+                .returns(ParserUtil.convertType(clazz.type(), getModelResolver()))
                 .addParameter(parseDocx4jType(clazz), VALUE)
                 .addStatement("$N ($N == $N) $N $N", IF, VALUE, NULL, RETURN, NULL);
 
-        MethodSpec.Builder convertToDocx4j = MethodSpec.methodBuilder("toDocx4j")
+        MethodSpec.Builder convertToDocx4j = MethodSpec.methodBuilder(ParserUtil.convertMethodName(TO, DOCX4J))
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(parseDocx4jType(clazz))
-                .addParameter(Util.convertType(clazz.type(), getModelResolver()), VALUE)
+                .addParameter(ParserUtil.convertType(clazz.type(), getModelResolver()), VALUE)
                 .addStatement("$N $N", RETURN, NULL);
 
         return builder.addMethod(MethodSpec.constructorBuilder()
@@ -44,7 +50,7 @@ public abstract class ConverterParser<TClass extends JavaClass> extends BasePars
     protected abstract MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, TClass clazz);
 
     public TypeName parseDocx4jType(TClass clazz) {
-        return Util.convertType(clazz.type(), getResolver());
+        return ParserUtil.convertType(clazz.type(), getResolver());
     }
 
     public Resolver getModelResolver() {
@@ -52,5 +58,9 @@ public abstract class ConverterParser<TClass extends JavaClass> extends BasePars
                 .getMap()
                 .getGroup(ModelParserGroup.NAME)
                 .getResolver();
+    }
+
+    public Resolver getDocx4jResolver() {
+        return ((ConverterParserGroup) getGroup()).getDocx4jResolver();
     }
 }

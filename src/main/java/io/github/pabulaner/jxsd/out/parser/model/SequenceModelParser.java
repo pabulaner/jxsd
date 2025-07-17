@@ -5,7 +5,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.out.Name;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
@@ -28,7 +28,7 @@ public class SequenceModelParser extends BaseParser<JavaSequence> {
 
         // parse fields
         clazz.fields().forEach(field -> {
-            TypeName fieldType = Util.convertType(field.type(), getResolver());
+            TypeName fieldType = ParserUtil.convertType(field.type(), getResolver());
             Name fieldName = new Name(getResolver().resolve(field.type(), field.name()));
 
             // add constructor params and assignments
@@ -37,7 +37,7 @@ public class SequenceModelParser extends BaseParser<JavaSequence> {
 
             // add fields and getters
             builder.addField(fieldType, fieldName.toVar(), Modifier.PRIVATE, Modifier.FINAL)
-                    .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(GET, fieldName.toUpper()))
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(GET, fieldName.toUpper()))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(fieldType)
                             .addStatement("$N $N.$N", RETURN, THIS, fieldName.toVar())

@@ -5,7 +5,6 @@ import io.github.pabulaner.jxsd.java.JavaEnum;
 import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
-import io.github.pabulaner.jxsd.out.parser.ParserMap;
 
 public class EnumModelParser extends BaseParser<JavaEnum> {
 

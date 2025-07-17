@@ -3,7 +3,6 @@ package io.github.pabulaner.jxsd.out.resolver;
 import io.github.pabulaner.jxsd.java.JavaType;
 
 import java.util.List;
-import java.util.Map;
 
 public class PkgCleanResolver implements Resolver {
 

@@ -1,7 +1,6 @@
 package io.github.pabulaner.jxsd.out.resolver;
 
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.Name;
 
 import java.util.List;
 import java.util.function.Function;

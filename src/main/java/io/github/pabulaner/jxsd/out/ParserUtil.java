@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
-public final class Util {
+public final class ParserUtil {
 
-    private Util() {
+    private ParserUtil() {
         // empty
     }
 

@@ -4,7 +4,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaEnum;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
@@ -17,8 +17,8 @@ public class EnumBuilderParser extends BuilderParser<JavaEnum> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaEnum clazz) {
-        TypeName builderType = Util.convertType(clazz.type(), getResolver());
-        TypeName modelType = Util.convertType(clazz.type(), getModelResolver());
+        TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
+        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
 
         return builder
                 .addModifiers(Modifier.PUBLIC)
@@ -39,7 +39,7 @@ public class EnumBuilderParser extends BuilderParser<JavaEnum> {
                         .returns(modelType)
                         .addStatement("$N $N.$N", RETURN, THIS, VALUE)
                         .build())
-                .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(SET, VALUE))
+                .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, VALUE))
                         .addModifiers(Modifier.PUBLIC)
                         .returns(builderType)
                         .addParameter(modelType, VALUE)

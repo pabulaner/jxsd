@@ -5,9 +5,8 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.out.Name;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
-import io.github.pabulaner.jxsd.out.parser.Parser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
@@ -38,27 +37,27 @@ public class ChoiceModelParser extends BaseParser<JavaChoice> {
                         .addStatement("$N.$N = $N", THIS, VALUE, VALUE)
                         .build());
 
-        TypeName type = Util.convertType(clazz.type(), getResolver());
+        TypeName type = ParserUtil.convertType(clazz.type(), getResolver());
         int[] index = { 0 };
 
         // parse fields
         clazz.fields().forEach(field -> {
-            TypeName fieldType = Util.convertType(field.type(), getResolver());
+            TypeName fieldType = ParserUtil.convertType(field.type(), getResolver());
             String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toUpper();
 
             // add static methods and is and get methods
-            builder.addMethod(MethodSpec.methodBuilder(Util.convertMethodName(NEW, fieldName))
+            builder.addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(NEW, fieldName))
                             .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                             .returns(type)
                             .addParameter(fieldType, VALUE)
                             .addStatement("$N $N $T($L, $N)", RETURN, NEW, type, index[0], VALUE)
                             .build())
-                    .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(IS, fieldName))
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(IS, fieldName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(TypeName.BOOLEAN)
                             .addStatement("$N $N.$N == $L", RETURN, THIS, TYPE, index[0])
                             .build())
-                    .addMethod(MethodSpec.methodBuilder(Util.convertMethodName(GET, fieldName))
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(GET, fieldName))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(fieldType)
                             .addStatement("$N ($T) $N.$N", RETURN, fieldType, THIS, VALUE)

@@ -2,17 +2,12 @@ package io.github.pabulaner.jxsd.out;
 
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
-import freemarker.template.TemplateException;
-import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 import io.github.pabulaner.jxsd.out.parser.ParserMap;
-import io.github.pabulaner.jxsd.out.resolver.Resolver;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 
 public class Writer {
 
@@ -39,7 +34,7 @@ public class Writer {
     }
 
     private void write(Path output, JavaType type, TypeSpec result) throws IOException {
-        JavaFile.builder(Util.convertPkg(type.pkg()), result)
+        JavaFile.builder(ParserUtil.convertPkg(type.pkg()), result)
                 .build()
                 .writeTo(output);
     }

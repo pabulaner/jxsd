@@ -3,7 +3,7 @@ package io.github.pabulaner.jxsd.out.parser.model;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
-import io.github.pabulaner.jxsd.out.Util;
+import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
@@ -18,10 +18,10 @@ public class RestrictionModelParser extends BaseParser<JavaRestriction> {
     @Override
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
         return builder
-                .superclass(Util.convertType(clazz.parent(), getResolver()))
+                .superclass(ParserUtil.convertType(clazz.parent(), getResolver()))
                 .addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)
-                        .addParameter(Util.convertPrimitive(clazz.primitive()), VALUE)
+                        .addParameter(ParserUtil.convertPrimitive(clazz.primitive()), VALUE)
                         .addStatement("$N($N)", SUPER, VALUE)
                         .build());
     }

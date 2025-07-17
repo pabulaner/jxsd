@@ -8,9 +8,6 @@ import io.github.pabulaner.jxsd.out.parser.ParserMap;
 import io.github.pabulaner.jxsd.out.parser.builder.BuilderParserGroup;
 import io.github.pabulaner.jxsd.out.parser.converter.ConverterParserGroup;
 import io.github.pabulaner.jxsd.out.parser.model.ModelParserGroup;
-import io.github.pabulaner.jxsd.out.resolver.PkgParentResolver;
-import io.github.pabulaner.jxsd.out.resolver.Resolver;
-import io.github.pabulaner.jxsd.out.resolver.TypeRenameResolver;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
 import org.xml.sax.SAXException;
@@ -76,7 +73,7 @@ public class JXsdParser {
 
         map.addGroup(ModelParserGroup.NAME, new ModelParserGroup(map, Resolvers.getDefault(config.basePkg, "model")));
         map.addGroup(BuilderParserGroup.NAME, new BuilderParserGroup(map, Resolvers.getDefault(config.basePkg, "builder")));
-        map.addGroup(ConverterParserGroup.NAME, new ConverterParserGroup(map, Resolvers.getDocx4j()));
+        map.addGroup(ConverterParserGroup.NAME, new ConverterParserGroup(map, Resolvers.getDefault(config.basePkg, "converter")));
 
         writer.write(config.outputPath, map);
     }
