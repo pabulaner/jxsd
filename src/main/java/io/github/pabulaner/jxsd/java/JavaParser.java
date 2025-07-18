@@ -111,7 +111,7 @@ public class JavaParser {
         if (values.size() == 1) {
             XsdValue value = values.getFirst();
 
-            if (value instanceof XsdGroupValue group && group.kind() == XsdGroupValue.Kind.UNION) {
+            if (value.maxOccurs() <= 1 && value instanceof XsdGroupValue group && group.kind() == XsdGroupValue.Kind.UNION) {
                 isSequence = false;
                 values = group.values();
             }
@@ -194,6 +194,10 @@ public class JavaParser {
     }
 
     private String parseGroupName(XsdGroupValue value, int maxNameCount) {
+        if (value.name() != null) {
+            return value.name();
+        }
+
         List<XsdValue> values = value.values();
         StringBuilder result = new StringBuilder();
 

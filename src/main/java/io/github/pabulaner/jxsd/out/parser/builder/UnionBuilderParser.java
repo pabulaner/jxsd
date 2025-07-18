@@ -33,7 +33,7 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
 
         clazz.types().forEach(type -> {
             TypeName valueModelType = ParserUtil.convertType(type, getModelResolver());
-            String valueName = new Name(getResolver().resolve(type, type.name())).toUpper();
+            String valueName = new Name(getResolver().resolve(type, type.name())).toVarUpper();
 
             build.addStatement("$N ($N.$N $N $T) $N $N $T(($T) $N.$N)", IF, THIS, VALUE, INSTANCEOF, valueModelType, RETURN, NEW, modelType, valueModelType, THIS, VALUE);
             builder.addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, valueName))

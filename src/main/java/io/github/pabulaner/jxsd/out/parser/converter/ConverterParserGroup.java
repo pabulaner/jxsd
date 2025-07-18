@@ -36,7 +36,7 @@ public class ConverterParserGroup extends ParserGroup {
                 new PkgRenameResolver(rename),
                 new PkgParentResolver(List.of("org", "docx4j")),
                 new PkgCleanResolver(),
-                new TypeRenameResolver(value -> new Name(value).toUpper().replace("_", "")));
+                new TypeRenameResolver(value -> new Name(value).toVarUpper()));
 
         addParser(JavaPrimitive.class, new PrimitiveConverterParser(this));
         addParser(JavaRestriction.class, new RestrictionConverterParser(this));

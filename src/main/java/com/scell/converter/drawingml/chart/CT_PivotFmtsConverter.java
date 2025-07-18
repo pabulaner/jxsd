@@ -1,0 +1,19 @@
+package com.scell.converter.drawingml.chart;
+
+import com.scell.model.drawingml.chart.CT_PivotFmtsModel;
+import java.util.stream.Collectors;
+import org.docx4j.dml.chart.CTPivotFmts;
+
+public class CT_PivotFmtsConverter {
+  private CT_PivotFmtsConverter() {
+  }
+
+  public static CT_PivotFmtsModel fromDocx4J(CTPivotFmts value) {
+    if (value == null) return null;
+    return new CT_PivotFmtsModel(value.getPivotFmt().stream().map(CT_PivotFmtConverter::fromDocx4J).collect(Collectors.toList()));
+  }
+
+  public static CTPivotFmts toDocx4J(CT_PivotFmtsModel value) {
+    return null;
+  }
+}

@@ -133,10 +133,10 @@ public class XsdParser {
                     String name = decl.getName();
                     Pair pair = parseAnonymous(name, decl.getType());
 
-                    return new XsdElementValue(1, 1,
+                    return new XsdElementValue(name,
+                            1, 1,
                             pair.struct,
                             pair.type,
-                            name,
                             parseString(attr.getDefaultValue()));
                 })
                 .collect(Collectors.toList());
@@ -159,9 +159,7 @@ public class XsdParser {
             XsdValue value = values.getFirst();
 
             if (value instanceof XsdGroupValue group) {
-                if (group.kind() == XsdGroupValue.Kind.SEQUENCE) {
-                    values = group.values();
-                } else if (group.values().size() == 1) {
+                if (group.kind() == XsdGroupValue.Kind.SEQUENCE || group.values().size() == 1) {
                     values = group.values();
                 } else {
                     break;
@@ -188,15 +186,18 @@ public class XsdParser {
             Pair pair = parseAnonymous(name, element.getType());
 
             return new XsdElementValue(
+                    name,
                     minOccurs,
                     maxOccurs,
                     pair.struct,
                     pair.type,
-                    name,
                     parseString(element.getDefaultValue()));
         }
 
         if (term.isModelGroup() || term.isModelGroupDecl()) {
+            String name = term.isModelGroupDecl()
+                    ? term.asModelGroupDecl().getName()
+                    : null;
             XSModelGroup group = term.isModelGroup()
                     ? term.asModelGroup()
                     : term.asModelGroupDecl().getModelGroup();
@@ -216,7 +217,7 @@ public class XsdParser {
                 }
             });
 
-            return new XsdGroupValue(minOccurs, maxOccurs, kind, values);
+            return new XsdGroupValue(name, minOccurs, maxOccurs, kind, values);
         }
 
         return null;

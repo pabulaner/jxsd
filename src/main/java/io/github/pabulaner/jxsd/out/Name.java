@@ -2,7 +2,11 @@ package io.github.pabulaner.jxsd.out;
 
 public record Name(String name) {
 
-    public String toVar() {
+    public String toVarUpper() {
+        return toUpper().replace("_", "");
+    }
+
+    public String toVarLower() {
         String value = toLower();
 
         return switch (value) {
@@ -13,11 +17,18 @@ public record Name(String name) {
 
     public String toEnum() {
         String value = name;
+        boolean wasNumber = false;
 
         for (int i = 1; i < value.length(); i++) {
-            if (Character.isUpperCase(value.charAt(i))) {
+            char c = value.charAt(i);
+            boolean isUpperCase = Character.isUpperCase(c);
+            boolean isNumber = Character.isDigit(c);
+
+            if (isUpperCase || (!wasNumber && isNumber)) {
                 value = value.substring(0, i) + "_" + value.substring(i++);
             }
+
+            wasNumber = isNumber;
         }
 
         // check if value begins with a digit
@@ -29,7 +40,11 @@ public record Name(String name) {
     }
 
     public String toLower() {
-        return name.substring(0, 1).toLowerCase() + name.substring(1);
+        int index = name.indexOf("_");
+
+        return index >= 0
+                ? name.substring(0, index).toLowerCase() + name.substring(index + 1)
+                : name.substring(0, 1).toLowerCase() + name.substring(1);
     }
 
     public String toUpper() {

@@ -49,15 +49,15 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
                 build.addCode(", ");
             }
 
-            build.addCode("$N.$N", THIS, fieldName.toVar());
-            from.addStatement("$N.$N = $N.$N()", THIS, fieldName.toVar(), VALUE, ParserUtil.convertMethodName(GET, fieldName.toUpper()));
+            build.addCode("$N.$N", THIS, fieldName.toVarLower());
+            from.addStatement("$N.$N = $N.$N()", THIS, fieldName.toVarLower(), VALUE, ParserUtil.convertMethodName(GET, fieldName.toVarUpper()));
 
-            builder.addField(fieldType, fieldName.toVar(), Modifier.PRIVATE)
-                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, fieldName.toUpper()))
+            builder.addField(fieldType, fieldName.toVarLower(), Modifier.PRIVATE)
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, fieldName.toVarUpper()))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(builderType)
-                            .addParameter(fieldType, fieldName.toVar())
-                            .addStatement("$N.$N = $N", THIS, fieldName.toVar(), fieldName.toVar())
+                            .addParameter(fieldType, fieldName.toVarLower())
+                            .addStatement("$N.$N = $N", THIS, fieldName.toVarLower(), fieldName.toVarLower())
                             .addStatement("$N $N", RETURN, THIS)
                             .build());
         });

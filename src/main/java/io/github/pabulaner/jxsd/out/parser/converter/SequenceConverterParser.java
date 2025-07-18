@@ -10,6 +10,7 @@ import io.github.pabulaner.jxsd.java.JavaField;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.java.JavaUnion;
+import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
@@ -43,19 +44,19 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
         
         clazz.fields().forEach(field -> {
             JavaType fieldType = getModelResolver().resolve(field.type());
-            TypeName convertedFieldType = ParserUtil.convertType(field.type(), getModelResolver());
-            String fieldName = getModelResolver().resolve(field.type(), field.name());
+            TypeName convertedFieldType = ParserUtil.convertType(field.type(), getModelResolver(), false);
+            Name fieldName = new Name(getModelResolver().resolve(field.type(), field.name()));
             TypeName converterType = ParserUtil.convertType(field.type(), getResolver(), false);
 
             String from = ParserUtil.convertMethodName(FROM, DOCX4J);
-            String getter = ParserUtil.convertMethodName(GET, fieldName);
+            String getter = ParserUtil.convertMethodName(GET, fieldName.toVarUpper());
 
             JavaChoice choice = getInnerChoice(clazz, field);
 
             if (choice != null) {
-                TypeName choiceType = ParserUtil.convertType(choice.type(), getModelResolver());
+                TypeName choiceType = ParserUtil.convertType(choice.type(), getModelResolver(), fieldType.isList());
                 innerBlock.addStatement("// look here " + field.type().isList());
-                innerBlock.add("$T $N = ", choiceType, fieldName);
+                innerBlock.add("$T $N = ", choiceType, fieldName.toVarLower());
 
                 if (fieldType.isList()) {
                     innerBlock.beginControlFlow("$N.$N().$N().$N($N ->", VALUE, getter, STREAM, MAP, VAL);
@@ -63,8 +64,9 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
                     choice.fields().forEach(choiceField -> {
                         TypeName choiceFieldType = ParserUtil.convertType(choiceField.type(), getDocx4jResolver());
                         TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
+                        String newModel = ParserUtil.convertMethodName(NEW, choiceField.name());
 
-                        innerBlock.addStatement("$N ($N $N $T) $N $T.$N(($T) $N)", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, choiceConverterType, from, choiceFieldType, VAL);
+                        innerBlock.addStatement("$N ($N $N $T) $N $T.$N($T.$N(($T) $N))", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, convertedFieldType, newModel, choiceConverterType, from, choiceFieldType, VAL);
                     });
 
                     innerBlock.addStatement("$N $N", RETURN, NULL);
@@ -79,7 +81,7 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
                         String choiceGetter = ParserUtil.convertMethodName(GET, choiceFieldName);
                         String choiceNewModel = ParserUtil.convertMethodName(NEW, choiceFieldName);
 
-                        innerBlock.addStatement("$N ($N.$N() != $N) $N = $T.$N($T.$N($N.$N()))", IF, VALUE, choiceGetter, NULL, fieldName, convertedFieldType, choiceNewModel, choiceConverterType, from, VALUE, choiceGetter);
+                        innerBlock.addStatement("$N ($N.$N() != $N) $N = $T.$N($T.$N($N.$N()))", IF, VALUE, choiceGetter, NULL, fieldName.toVarLower(), convertedFieldType, choiceNewModel, choiceConverterType, from, VALUE, choiceGetter);
                     });
                 }
             }
@@ -91,7 +93,7 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
             }
 
             if (choice != null) {
-                newBlock.add("$N", fieldName);
+                newBlock.add("$N", fieldName.toVarLower());
             } else if (fieldType.isList()) {
                 newBlock.add("$N.$N().$N().$N($T::$N).$N($T.$N())", VALUE, getter, STREAM, MAP, converterType, from, COLLECT, COLLECTORS_TYPE, TO_LIST);
             } else {

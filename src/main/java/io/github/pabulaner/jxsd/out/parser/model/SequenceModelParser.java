@@ -7,7 +7,6 @@ import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
-import io.github.pabulaner.jxsd.out.parser.Parser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
@@ -29,14 +28,14 @@ public class SequenceModelParser extends BaseParser<JavaSequence> {
             TypeName fieldType = ParserUtil.convertType(field.type(), getResolver());
             Name fieldName = new Name(getResolver().resolve(field.type(), field.name()));
 
-            constructor.addParameter(fieldType, fieldName.toVar())
-                    .addStatement("$N.$N = $N", THIS, fieldName.toVar(), fieldName.toVar());
+            constructor.addParameter(fieldType, fieldName.toVarLower())
+                    .addStatement("$N.$N = $N", THIS, fieldName.toVarLower(), fieldName.toVarLower());
 
-            builder.addField(fieldType, fieldName.toVar(), Modifier.PRIVATE, Modifier.FINAL)
-                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(GET, fieldName.toUpper()))
+            builder.addField(fieldType, fieldName.toVarLower(), Modifier.PRIVATE, Modifier.FINAL)
+                    .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(GET, fieldName.toVarUpper()))
                             .addModifiers(Modifier.PUBLIC)
                             .returns(fieldType)
-                            .addStatement("$N $N.$N", RETURN, THIS, fieldName.toVar())
+                            .addStatement("$N $N.$N", RETURN, THIS, fieldName.toVarLower())
                             .build());
         });
 

@@ -40,7 +40,7 @@ public class ChoiceModelParser extends BaseParser<JavaChoice> {
 
         clazz.fields().forEach(field -> {
             TypeName fieldType = ParserUtil.convertType(field.type(), getResolver());
-            String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toUpper();
+            String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toVarUpper();
 
             builder.addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(NEW, fieldName))
                             .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
