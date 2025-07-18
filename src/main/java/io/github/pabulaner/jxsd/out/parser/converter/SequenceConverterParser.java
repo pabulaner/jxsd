@@ -54,19 +54,34 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
 
             if (choice != null) {
                 TypeName choiceType = ParserUtil.convertType(choice.type(), getModelResolver());
-
                 innerBlock.addStatement("// look here " + field.type().isList());
-                innerBlock.addStatement("$T $N = $N $T()", choiceType, fieldName, NEW, choiceType);
+                innerBlock.add("$T $N = ", choiceType, fieldName);
 
-                choice.fields().forEach(choiceField -> {
-                    String choiceFieldName = getModelResolver().resolve(choiceField.type(), choiceField.name());
-                    TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
+                if (fieldType.isList()) {
+                    innerBlock.beginControlFlow("$N.$N().$N().$N($N ->", VALUE, getter, STREAM, MAP, VAL);
 
-                    String choiceGetter = ParserUtil.convertMethodName(GET, choiceFieldName);
-                    String choiceNewModel = ParserUtil.convertMethodName(NEW, choiceFieldName);
+                    choice.fields().forEach(choiceField -> {
+                        TypeName choiceFieldType = ParserUtil.convertType(choiceField.type(), getDocx4jResolver());
+                        TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
 
-                    innerBlock.addStatement("$N ($N.$N() != $N) $N = $T.$N($T.$N($N.$N()))", IF, VALUE, choiceGetter, NULL, fieldName, convertedFieldType, choiceNewModel, choiceConverterType, from, VALUE, choiceGetter);
-                });
+                        innerBlock.addStatement("$N ($N $N $T) $N $T.$N(($T) $N)", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, choiceConverterType, from, choiceFieldType, VAL);
+                    });
+
+                    innerBlock.addStatement("$N $N", RETURN, NULL);
+                    innerBlock.endControlFlow(").$N($T.$N())", COLLECT, COLLECTORS_TYPE, TO_LIST);
+                } else {
+                    innerBlock.addStatement("$N $T()", NEW, choiceType);
+
+                    choice.fields().forEach(choiceField -> {
+                        String choiceFieldName = getModelResolver().resolve(choiceField.type(), choiceField.name());
+                        TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
+
+                        String choiceGetter = ParserUtil.convertMethodName(GET, choiceFieldName);
+                        String choiceNewModel = ParserUtil.convertMethodName(NEW, choiceFieldName);
+
+                        innerBlock.addStatement("$N ($N.$N() != $N) $N = $T.$N($T.$N($N.$N()))", IF, VALUE, choiceGetter, NULL, fieldName, convertedFieldType, choiceNewModel, choiceConverterType, from, VALUE, choiceGetter);
+                    });
+                }
             }
 
             if (first[0]) {
