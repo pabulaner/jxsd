@@ -21,6 +21,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.SAXParserFactory;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -56,9 +57,14 @@ public class XsdParser {
         List<XsdStruct> structs = new ArrayList<>();
 
         set.getSchemas().forEach(schema -> {
-            schema.getModelGroupDecls().forEach((key, value) -> {
-                System.out.println("key: " + key + ", group: " + value.getModelGroup());
-            });
+//            schema.getModelGroupDecls().forEach((key, value) -> {
+//                XsdType type = new XsdType(schema.getTargetNamespace(), key, null, null);
+//                List<XsdValue> values = Arrays.stream(value.getModelGroup().getChildren())
+//                        .map(this::parseParticle)
+//                        .toList();
+//
+//                structs.add(new XsdComplexStruct(type, values));
+//            });
 
             schema.getTypes()
                     .values()

@@ -33,6 +33,19 @@ public record Name(String name) {
     }
 
     public String toUpper() {
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
+        StringBuilder value = new StringBuilder(name.substring(0, 1).toUpperCase() + name.substring(1));
+        boolean wasNumber = false;
+
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+
+            if (wasNumber) {
+                value.setCharAt(i, Character.toUpperCase(c));
+            }
+
+            wasNumber = Character.isDigit(c);
+        }
+
+        return value.toString();
     }
 }
