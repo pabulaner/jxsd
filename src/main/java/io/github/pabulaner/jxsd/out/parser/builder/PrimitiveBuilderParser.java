@@ -36,7 +36,6 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
                 .addField(primitiveType, VALUE, Modifier.PRIVATE)
                 .addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)
-                        .addStatement("$N.$N = $N", THIS, VALUE, NULL)
                         .build())
                 .addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, VALUE))
                         .addModifiers(Modifier.PUBLIC)

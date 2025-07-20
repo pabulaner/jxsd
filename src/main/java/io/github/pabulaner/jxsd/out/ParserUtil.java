@@ -31,17 +31,16 @@ public final class ParserUtil {
         };
 
         String name = switch (primitive) {
-            case "string", "NOTATION", "QName", "anyURI", "IDREFS" -> "String";
-            case "boolean" -> "Boolean";
-            case "float" -> "Float";
-            case "double" -> "Double";
-            case "decimal" -> "Long";
+            case "string", "NOTATION", "QName", "anyURI", "IDREFS", "hexBinary", "base64Binary" -> "String";
+            case "boolean" -> "boolean";
+            case "float" -> "float";
+            case "double" -> "double";
+            case "decimal" -> "long";
             case "duration" -> "Duration";
             case "dateTime" -> "LocalDateTime";
             case "time" -> "LocalTime";
             case "date" -> "LocalDate";
-            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "Integer";
-            case "hexBinary", "base64Binary" -> "byte[]";
+            case "gYearMonth", "gMonth", "gDay", "gMonthDay", "gYear" -> "int";
             default -> throw new IllegalArgumentException("Unexpected value: " + primitive);
         };
 
@@ -83,5 +82,16 @@ public final class ParserUtil {
                     }
                 })
                 .collect(Collectors.joining());
+    }
+
+    public static String convertGetterName(JavaType type, String name) {
+        String typeName = type.name();
+        String prefix = typeName.equals("boolean")
+                ? "is"
+                : "get";
+
+        System.out.println(type.name());
+
+        return prefix + new Name(name).toVarUpper();
     }
 }

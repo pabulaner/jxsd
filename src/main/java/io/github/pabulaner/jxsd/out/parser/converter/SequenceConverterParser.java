@@ -49,13 +49,12 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
             TypeName converterType = ParserUtil.convertType(field.type(), getResolver(), false);
 
             String from = ParserUtil.convertMethodName(FROM, DOCX4J);
-            String getter = ParserUtil.convertMethodName(GET, fieldName.toVarUpper());
+            String getter = ParserUtil.convertGetterName(field.type(), fieldName.name());
 
             JavaChoice choice = getInnerChoice(clazz, field);
 
             if (choice != null) {
                 TypeName choiceType = ParserUtil.convertType(choice.type(), getModelResolver(), fieldType.isList());
-                innerBlock.addStatement("// look here " + field.type().isList());
                 innerBlock.add("$T $N = ", choiceType, fieldName.toVarLower());
 
                 if (fieldType.isList()) {
@@ -66,10 +65,12 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
                         TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
                         String newModel = ParserUtil.convertMethodName(NEW, choiceField.name());
 
-                        innerBlock.addStatement("$N ($N $N $T) $N $T.$N($T.$N(($T) $N))", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, convertedFieldType, newModel, choiceConverterType, from, choiceFieldType, VAL);
+                        // innerBlock.addStatement("$N ($N $N $T) $N $T.$N($T.$N(($T) $N))", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, convertedFieldType, newModel, choiceConverterType, from, choiceFieldType, VAL);
                     });
 
-                    innerBlock.addStatement("$N $N", RETURN, NULL);
+                    choiceType = ParserUtil.convertType(choice.type(), getModelResolver(), false);
+
+                    innerBlock.addStatement("$N $N $T()", RETURN, NEW, choiceType);
                     innerBlock.endControlFlow(").$N($T.$N())", COLLECT, COLLECTORS_TYPE, TO_LIST);
                 } else {
                     innerBlock.addStatement("$N $T()", NEW, choiceType);
@@ -78,7 +79,7 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
                         String choiceFieldName = getModelResolver().resolve(choiceField.type(), choiceField.name());
                         TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
 
-                        String choiceGetter = ParserUtil.convertMethodName(GET, choiceFieldName);
+                        String choiceGetter = ParserUtil.convertGetterName(field.type(), choiceFieldName);
                         String choiceNewModel = ParserUtil.convertMethodName(NEW, choiceFieldName);
 
                         innerBlock.addStatement("$N ($N.$N() != $N) $N = $T.$N($T.$N($N.$N()))", IF, VALUE, choiceGetter, NULL, fieldName.toVarLower(), convertedFieldType, choiceNewModel, choiceConverterType, from, VALUE, choiceGetter);

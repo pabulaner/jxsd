@@ -20,7 +20,6 @@ public class PrimitiveModelParser extends BaseParser<JavaPrimitive> {
         TypeName primitiveType = ParserUtil.convertPrimitive(clazz.type());
 
         return builder
-                .addModifiers(Modifier.PUBLIC)
                 .addField(primitiveType, VALUE, Modifier.PRIVATE, Modifier.FINAL)
                 .addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)

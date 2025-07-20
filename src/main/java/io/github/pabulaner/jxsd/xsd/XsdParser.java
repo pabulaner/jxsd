@@ -1,5 +1,6 @@
 package io.github.pabulaner.jxsd.xsd;
 
+import com.sun.xml.xsom.XSAnnotation;
 import com.sun.xml.xsom.XSAttributeDecl;
 import com.sun.xml.xsom.XSComplexType;
 import com.sun.xml.xsom.XSContentType;
@@ -16,6 +17,9 @@ import com.sun.xml.xsom.XSUnionSimpleType;
 import com.sun.xml.xsom.XmlString;
 import com.sun.xml.xsom.parser.XSOMParser;
 import com.sun.xml.xsom.util.DomAnnotationParserFactory;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParserFactory;
@@ -24,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class XsdParser {
@@ -121,6 +126,15 @@ public class XsdParser {
         }
 
         throw new IllegalStateException("Unreachable");
+    }
+
+    private void print(Node node, String tabs) {
+        System.out.println(tabs + node.getLocalName() + ": " + ((node.getAttributes() != null) ? node.getAttributes().getNamedItem("name") : null));
+        for (int i = 0; i < node.getChildNodes().getLength(); i++) {
+            Node child = node.getChildNodes().item(i);
+            print(child, tabs + "\t");
+
+        }
     }
 
     private XsdComplexStruct parseComplexType(XSComplexType xs) {
@@ -232,11 +246,50 @@ public class XsdParser {
             name = anonymous.pop();
         }
 
+        XSType base = xs.getBaseType();
+
         return scope.declare(
                 xs.getTargetNamespace(),
-                name,
+                parseRename(xs, name),
                 xs.getBaseType().getTargetNamespace(),
-                xs.getBaseType().getName());
+                parseRename(base, base.getName()));
+    }
+
+    private String parseRename(XSType xs, String name) {
+        XSAnnotation annotation = xs.getAnnotation();
+
+        if (annotation != null) {
+            Element annotationElem = (Element) annotation.getAnnotation();
+            String rename = parseRename(annotationElem.getChildNodes());
+
+            if (rename != null) {
+                return rename;
+            }
+        }
+
+        return name;
+    }
+
+    private String parseRename(NodeList nodes) {
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+
+            if (node != null) {
+                if ("class".equals(node.getLocalName())) {
+                    return node.getAttributes()
+                            .getNamedItem("name")
+                            .getNodeValue();
+                }
+
+                String result = parseRename(node.getChildNodes());
+
+                if (result != null) {
+                    return result;
+                }
+            }
+        }
+
+        return null;
     }
 
     private Pair parseAnonymous(String name, XSType type) {

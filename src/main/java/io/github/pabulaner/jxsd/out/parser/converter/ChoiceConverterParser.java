@@ -31,7 +31,7 @@ public class ChoiceConverterParser extends ConverterParser<JavaChoice> {
             TypeName converterType = ParserUtil.convertType(field.type(), getResolver(), false);
 
             String from = ParserUtil.convertMethodName(FROM, DOCX4J);
-            String getter = ParserUtil.convertMethodName(GET, fieldName);
+            String getter = ParserUtil.convertGetterName(field.type(), fieldName);
             String newModel = ParserUtil.convertMethodName(NEW, fieldName);
 
             if (fieldType.isList()) {

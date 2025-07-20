@@ -5,6 +5,8 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
+import io.github.pabulaner.jxsd.java.JavaPrimitive;
+import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
@@ -43,8 +45,7 @@ public abstract class ConverterParser<TClass extends JavaClass> extends BasePars
         MethodSpec.Builder convertFromDocx4j = MethodSpec.methodBuilder(ParserUtil.convertMethodName(FROM, DOCX4J))
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(ParserUtil.convertType(clazz.type(), getModelResolver()))
-                .addParameter(parseDocx4jType(clazz), VALUE)
-                .addStatement("$N ($N == $N) $N $N", IF, VALUE, NULL, RETURN, NULL);
+                .addParameter(parseDocx4jType(clazz), VALUE);
 
         MethodSpec.Builder convertToDocx4j = MethodSpec.methodBuilder(ParserUtil.convertMethodName(TO, DOCX4J))
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
@@ -52,11 +53,15 @@ public abstract class ConverterParser<TClass extends JavaClass> extends BasePars
                 .addParameter(ParserUtil.convertType(clazz.type(), getModelResolver()), VALUE)
                 .addStatement("$N $N", RETURN, NULL);
 
+        if (!(clazz instanceof JavaPrimitive || clazz instanceof JavaRestriction)) {
+            convertFromDocx4j.addStatement("$N ($N == $N) $N $N", IF, VALUE, NULL, RETURN, NULL);
+        }
+
         return builder.addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PRIVATE)
                         .build())
-                .addMethod(parseFromDocx4j(convertFromDocx4j, clazz).build())
-                .addMethod(parseToDocx4j(convertToDocx4j, clazz).build());
+                .addMethod(parseFromDocx4j(convertFromDocx4j, clazz).build());
+                // .addMethod(parseToDocx4j(convertToDocx4j, clazz).build());
     }
 
     protected abstract MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, TClass clazz);
