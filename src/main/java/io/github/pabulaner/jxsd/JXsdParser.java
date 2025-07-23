@@ -80,7 +80,13 @@ public class JXsdParser {
         writer.write(config.outputPath, map);
 
         // TODO: find nice way to do this
-        Path path = config.outputPath.resolve("converter/drawingml/main");
+        Path path = config.outputPath;
+
+        for (String other : config.basePkg) {
+            path = path.resolve(other);
+        }
+
+        path = path.resolve("converter/drawingml/main/CT_SystemColorConverter.java");
         String content = Files.readString(path).replaceAll("ST_SystemColorValConverter.fromDocx4J\\(value.getVal\\(\\)\\), ST_HexBinary3Converter.fromDocx4J\\(value.getLastClr\\(\\)\\)", "null, null");
 
         Files.writeString(path, content);
