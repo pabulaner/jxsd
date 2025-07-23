@@ -2,6 +2,7 @@ package io.github.pabulaner.jxsd.out.parser;
 
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
+import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.java.JavaType;
 
 import java.util.HashMap;
@@ -11,9 +12,12 @@ import java.util.function.BiConsumer;
 
 public class ParserMap {
 
+    private final JavaScope scope;
+
     private final Map<String, ParserGroup> groups;
 
-    public ParserMap() {
+    public ParserMap(JavaScope scope) {
+        this.scope = scope;
         this.groups = new HashMap<>();
     }
 
@@ -25,6 +29,10 @@ public class ParserMap {
 
     public void addGroup(String key, ParserGroup group) {
         groups.put(key, group);
+    }
+
+    public JavaScope getScope() {
+        return scope;
     }
 
     public ParserGroup getGroup(String key) {

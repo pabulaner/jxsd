@@ -14,7 +14,9 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,13 +70,19 @@ public class JXsdParser {
     public static void parse(Config config) throws SAXException, IOException, TemplateException {
         XsdResult xsd = new XsdParser().parse(config.xsdFile);
         JavaResult java = new JavaParser().parse(xsd);
-        Writer writer = new Writer(java);
-        ParserMap map = new ParserMap();
+        Writer writer = new Writer(java.classes());
+        ParserMap map = new ParserMap(java.scope());
 
         map.addGroup(ModelParserGroup.NAME, new ModelParserGroup(map, Resolvers.getDefault(config.basePkg, "model")));
         map.addGroup(BuilderParserGroup.NAME, new BuilderParserGroup(map, Resolvers.getDefault(config.basePkg, "builder")));
         map.addGroup(ConverterParserGroup.NAME, new ConverterParserGroup(map, Resolvers.getDefault(config.basePkg, "converter")));
 
         writer.write(config.outputPath, map);
+
+        // TODO: find nice way to do this
+        Path path = config.outputPath.resolve("converter/drawingml/main");
+        String content = Files.readString(path).replaceAll("ST_SystemColorValConverter.fromDocx4J\\(value.getVal\\(\\)\\), ST_HexBinary3Converter.fromDocx4J\\(value.getLastClr\\(\\)\\)", "null, null");
+
+        Files.writeString(path, content);
     }
 }

@@ -14,6 +14,10 @@ import io.github.pabulaner.jxsd.out.Name;
 import io.github.pabulaner.jxsd.out.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class SequenceConverterParser extends ConverterParser<JavaSequence> {
 
     private JavaClass outer;
@@ -58,6 +62,7 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
                 innerBlock.add("$T $N = ", choiceType, fieldName.toVarLower());
 
                 if (fieldType.isList()) {
+                    boolean areTypesUnique = areTypesUnique(choice.fields());
                     innerBlock.beginControlFlow("$N.$N().$N().$N($N ->", VALUE, getter, STREAM, MAP, VAL);
 
                     choice.fields().forEach(choiceField -> {
@@ -65,7 +70,9 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
                         TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
                         String newModel = ParserUtil.convertMethodName(NEW, choiceField.name());
 
-                        // innerBlock.addStatement("$N ($N $N $T) $N $T.$N($T.$N(($T) $N))", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, convertedFieldType, newModel, choiceConverterType, from, choiceFieldType, VAL);
+                        if (areTypesUnique) {
+                            innerBlock.addStatement("$N ($N $N $T) $N $T.$N($T.$N(($T) $N))", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, convertedFieldType, newModel, choiceConverterType, from, choiceFieldType, VAL);
+                        }
                     });
 
                     choiceType = ParserUtil.convertType(choice.type(), getModelResolver(), false);
@@ -111,6 +118,22 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
     @Override
     protected MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, JavaSequence clazz) {
         return builder;
+    }
+
+    private boolean areTypesUnique(List<JavaField> fields) {
+        Set<JavaType> types = new HashSet<>();
+
+        for (JavaField field : fields) {
+            JavaType type = field.type();
+
+            if (types.contains(type)) {
+                return false;
+            }
+
+            types.add(type);
+        }
+
+        return true;
     }
     
     private JavaChoice getInnerChoice(JavaSequence clazz, JavaField field) {

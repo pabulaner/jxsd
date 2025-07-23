@@ -7,6 +7,7 @@ import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.out.ParserUtil;
+import io.github.pabulaner.jxsd.out.RestrictionUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
@@ -18,7 +19,8 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
     }
 
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
-        return parse(builder, clazz.type(), clazz.primitive());
+        JavaType primitive = RestrictionUtil.findPrimitive(getGroup().getMap().getScope(), clazz.type());
+        return parse(builder, clazz.type(), primitive);
     }
 
     @Override

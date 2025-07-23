@@ -53,9 +53,7 @@ public abstract class ConverterParser<TClass extends JavaClass> extends BasePars
                 .addParameter(ParserUtil.convertType(clazz.type(), getModelResolver()), VALUE)
                 .addStatement("$N $N", RETURN, NULL);
 
-        if (!(clazz instanceof JavaPrimitive || clazz instanceof JavaRestriction)) {
-            convertFromDocx4j.addStatement("$N ($N == $N) $N $N", IF, VALUE, NULL, RETURN, NULL);
-        }
+        convertFromDocx4j.addStatement("$N ($N == $N) $N $N", IF, VALUE, NULL, RETURN, NULL);
 
         return builder.addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PRIVATE)

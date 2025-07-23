@@ -1,5 +1,6 @@
 package io.github.pabulaner.jxsd.out.parser.converter;
 
+import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
@@ -35,6 +36,6 @@ public class PrimitiveConverterParser extends ConverterParser<JavaPrimitive> {
 
     @Override
     public TypeName parseDocx4jType(JavaPrimitive clazz) {
-        return ParserUtil.convertPrimitive(clazz.type());
+        return ParserUtil.convertPrimitive(clazz.type(), true);
     }
 }
