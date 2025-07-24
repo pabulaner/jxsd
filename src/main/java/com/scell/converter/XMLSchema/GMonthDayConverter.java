@@ -1,0 +1,13 @@
+package com.scell.converter.XMLSchema;
+
+import com.scell.model.XMLSchema.GMonthDayModel;
+
+public class GMonthDayConverter {
+  private GMonthDayConverter() {
+  }
+
+  public static GMonthDayModel fromDocx4J(Integer value) {
+    if (value == null) return null;
+    return new GMonthDayModel(value);
+  }
+}

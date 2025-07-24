@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd;
 
-import io.github.pabulaner.jxsd.out.Name;
+import io.github.pabulaner.jxsd.out.util.Name;
 import io.github.pabulaner.jxsd.out.resolver.PkgCleanResolver;
 import io.github.pabulaner.jxsd.out.resolver.PkgParentResolver;
 import io.github.pabulaner.jxsd.out.resolver.PkgRenameResolver;
@@ -25,7 +25,14 @@ public final class Resolvers {
         return Resolver.combine(
                 new PkgParentResolver(pkg),
                 new PkgCleanResolver(),
-                new TypeRenameResolver(value -> new Name(value).toUpper() + new Name(type).toUpper()));
+                new TypeRenameResolver(value -> {
+                    String result = new Name(value).toUpper() + new Name(type).toUpper();
+                    int index = result.indexOf("_");
+
+                    return index == 2
+                            ? result.substring(index + 1)
+                            : result;
+                }));
     }
 
     public static Resolver getDocx4j() {

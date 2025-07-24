@@ -5,6 +5,11 @@ import java.util.Objects;
 
 public record JavaType(List<String> pkg, List<String> outer, String name, int minOccurs, int maxOccurs) {
 
+    public JavaType {
+        pkg = List.copyOf(pkg);
+        outer = List.copyOf(outer);
+    }
+
     public JavaType(List<String> pkg, String name) {
         this(pkg, name, 1, 1);
     }

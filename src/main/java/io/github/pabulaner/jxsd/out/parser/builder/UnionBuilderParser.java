@@ -3,15 +3,12 @@ package io.github.pabulaner.jxsd.out.parser.builder;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.java.JavaUnion;
-import io.github.pabulaner.jxsd.out.Name;
-import io.github.pabulaner.jxsd.out.ParserUtil;
+import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
-import java.util.List;
 
 public class UnionBuilderParser extends BuilderParser<JavaUnion> {
 

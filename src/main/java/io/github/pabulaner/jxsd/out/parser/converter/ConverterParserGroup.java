@@ -6,7 +6,7 @@ import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaUnion;
-import io.github.pabulaner.jxsd.out.Name;
+import io.github.pabulaner.jxsd.out.util.Name;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 import io.github.pabulaner.jxsd.out.parser.ParserMap;
 import io.github.pabulaner.jxsd.out.resolver.PkgCleanResolver;

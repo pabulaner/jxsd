@@ -5,6 +5,7 @@ import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.out.parser.ParserMap;
+import io.github.pabulaner.jxsd.out.util.ParserUtil;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -22,7 +23,7 @@ public class Writer {
         IOException[] exception = { null };
 
         map.parse(result, (type, result) -> {
-            // TODO: figure out nice way for this
+            // TODO: figure out nice way to do this
             if (type.name().endsWith("SystemColorValConverter")) {
                 return;
             }

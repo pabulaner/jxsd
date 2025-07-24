@@ -4,9 +4,8 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
-import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.ParserUtil;
+import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 public class ChoiceConverterParser extends ConverterParser<JavaChoice> {

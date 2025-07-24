@@ -1,8 +1,10 @@
 package io.github.pabulaner.jxsd;
 
 import freemarker.template.TemplateException;
+import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaParser;
 import io.github.pabulaner.jxsd.java.JavaResult;
+import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.out.Writer;
 import io.github.pabulaner.jxsd.out.parser.ParserMap;
 import io.github.pabulaner.jxsd.out.parser.builder.BuilderParserGroup;
@@ -86,9 +88,19 @@ public class JXsdParser {
             path = path.resolve(other);
         }
 
-        path = path.resolve("converter/drawingml/main/CT_SystemColorConverter.java");
+        path = path.resolve("converter/drawingml/main/SystemColorConverter.java");
         String content = Files.readString(path).replaceAll("ST_SystemColorValConverter.fromDocx4J\\(value.getVal\\(\\)\\), ST_HexBinary3Converter.fromDocx4J\\(value.getLastClr\\(\\)\\)", "null, null");
 
         Files.writeString(path, content);
+    }
+
+    private static JavaResult filter(JavaResult result) {
+        JavaScope scope = result.scope();
+        List<JavaClass> classes = result.classes()
+                .stream()
+
+                .toList();
+
+        return new JavaResult(scope, classes);
     }
 }

@@ -9,9 +9,8 @@ import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaField;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.java.JavaUnion;
-import io.github.pabulaner.jxsd.out.Name;
-import io.github.pabulaner.jxsd.out.ParserUtil;
+import io.github.pabulaner.jxsd.out.util.Name;
+import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import java.util.HashSet;

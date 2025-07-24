@@ -4,7 +4,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
-import io.github.pabulaner.jxsd.out.ParserUtil;
+import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 

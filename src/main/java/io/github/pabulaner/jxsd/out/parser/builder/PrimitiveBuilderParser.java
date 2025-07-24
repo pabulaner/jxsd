@@ -6,8 +6,8 @@ import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.ParserUtil;
-import io.github.pabulaner.jxsd.out.RestrictionUtil;
+import io.github.pabulaner.jxsd.out.util.ParserUtil;
+import io.github.pabulaner.jxsd.out.util.RestrictionUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
