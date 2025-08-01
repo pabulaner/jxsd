@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.TickLblPosModel;
+import com.scell.model.drawingml.chart.TickLblPosValueModel;
 
 public class TickLblPosBuilder {
-  private TickLblPosModel val;
+  private TickLblPosValueModel val;
 
   public TickLblPosBuilder() {
   }
 
-  public TickLblPosBuilder setVal(TickLblPosModel val) {
+  public TickLblPosBuilder setVal(TickLblPosValueModel val) {
     this.val = val;
     return this;
   }

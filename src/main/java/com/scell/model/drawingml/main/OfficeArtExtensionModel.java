@@ -1,15 +1,15 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.TokenModel;
+import com.scell.model.XMLSchema.TokenValueModel;
 
 public class OfficeArtExtensionModel {
-  private final TokenModel uri;
+  private final TokenValueModel uri;
 
-  public OfficeArtExtensionModel(TokenModel uri) {
+  public OfficeArtExtensionModel(TokenValueModel uri) {
     this.uri = uri;
   }
 
-  public TokenModel getUri() {
+  public TokenValueModel getUri() {
     return this.uri;
   }
 }

@@ -9,7 +9,7 @@ import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaField;
 import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.util.Name;
+import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
@@ -28,7 +28,7 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaSequence clazz) {
-        clazz.inners().forEach(inner -> {
+        clazz.getInners().forEach(inner -> {
             if (!(inner instanceof JavaChoice)) {
                 builder.addType(getGroup().parse(true, inner));
             }
@@ -38,54 +38,54 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
 
     @Override
     protected MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaSequence clazz) {
-        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
+        TypeName modelType = ParserUtil.convertType(clazz.getType(), getModelResolver());
         boolean[] first = { true };
         
         CodeBlock.Builder innerBlock = CodeBlock.builder();
         CodeBlock.Builder newBlock = CodeBlock.builder()
                 .add("$N $N $T(", RETURN, NEW, modelType);
         
-        clazz.fields().forEach(field -> {
-            JavaType fieldType = getModelResolver().resolve(field.type());
-            TypeName convertedFieldType = ParserUtil.convertType(field.type(), getModelResolver(), false);
-            Name fieldName = new Name(getModelResolver().resolve(field.type(), field.name()));
-            TypeName converterType = ParserUtil.convertType(field.type(), getResolver(), false);
+        clazz.getFields().forEach(field -> {
+            JavaType fieldType = getModelResolver().resolve(field.getType());
+            TypeName convertedFieldType = ParserUtil.convertType(field.getType(), getModelResolver(), false);
+            Name fieldName = new Name(getModelResolver().resolve(field.getType(), field.getName()));
+            TypeName converterType = ParserUtil.convertType(field.getType(), getResolver(), false);
 
             String from = ParserUtil.convertMethodName(FROM, DOCX4J);
-            String getter = ParserUtil.convertGetterName(field.type(), fieldName.name());
+            String getter = ParserUtil.convertGetterName(field.getType(), fieldName.name());
 
             JavaChoice choice = getInnerChoice(clazz, field);
 
             if (choice != null) {
-                TypeName choiceType = ParserUtil.convertType(choice.type(), getModelResolver(), fieldType.isList());
+                TypeName choiceType = ParserUtil.convertType(choice.getType(), getModelResolver(), fieldType.isList());
                 innerBlock.add("$T $N = ", choiceType, fieldName.toVarLower());
 
                 if (fieldType.isList()) {
-                    boolean areTypesUnique = areTypesUnique(choice.fields());
+                    boolean areTypesUnique = areTypesUnique(choice.getFields());
                     innerBlock.beginControlFlow("$N.$N().$N().$N($N ->", VALUE, getter, STREAM, MAP, VAL);
 
-                    choice.fields().forEach(choiceField -> {
-                        TypeName choiceFieldType = ParserUtil.convertType(choiceField.type(), getDocx4jResolver());
-                        TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
-                        String newModel = ParserUtil.convertMethodName(NEW, choiceField.name());
+                    choice.getFields().forEach(choiceField -> {
+                        TypeName choiceFieldType = ParserUtil.convertType(choiceField.getType(), getDocx4jResolver());
+                        TypeName choiceConverterType = ParserUtil.convertType(choiceField.getType(), getResolver(), false);
+                        String newModel = ParserUtil.convertMethodName(NEW, choiceField.getName());
 
                         if (areTypesUnique) {
                             innerBlock.addStatement("$N ($N $N $T) $N $T.$N($T.$N(($T) $N))", IF, VAL, INSTANCEOF, choiceFieldType, RETURN, convertedFieldType, newModel, choiceConverterType, from, choiceFieldType, VAL);
                         }
                     });
 
-                    choiceType = ParserUtil.convertType(choice.type(), getModelResolver(), false);
+                    choiceType = ParserUtil.convertType(choice.getType(), getModelResolver(), false);
 
                     innerBlock.addStatement("$N $N $T()", RETURN, NEW, choiceType);
                     innerBlock.endControlFlow(").$N($T.$N())", COLLECT, COLLECTORS_TYPE, TO_LIST);
                 } else {
                     innerBlock.addStatement("$N $T()", NEW, choiceType);
 
-                    choice.fields().forEach(choiceField -> {
-                        String choiceFieldName = getModelResolver().resolve(choiceField.type(), choiceField.name());
-                        TypeName choiceConverterType = ParserUtil.convertType(choiceField.type(), getResolver(), false);
+                    choice.getFields().forEach(choiceField -> {
+                        String choiceFieldName = getModelResolver().resolve(choiceField.getType(), choiceField.getName());
+                        TypeName choiceConverterType = ParserUtil.convertType(choiceField.getType(), getResolver(), false);
 
-                        String choiceGetter = ParserUtil.convertGetterName(field.type(), choiceFieldName);
+                        String choiceGetter = ParserUtil.convertGetterName(field.getType(), choiceFieldName);
                         String choiceNewModel = ParserUtil.convertMethodName(NEW, choiceFieldName);
 
                         innerBlock.addStatement("$N ($N.$N() != $N) $N = $T.$N($T.$N($N.$N()))", IF, VALUE, choiceGetter, NULL, fieldName.toVarLower(), convertedFieldType, choiceNewModel, choiceConverterType, from, VALUE, choiceGetter);
@@ -123,7 +123,7 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
         Set<JavaType> types = new HashSet<>();
 
         for (JavaField field : fields) {
-            JavaType type = field.type();
+            JavaType type = field.getType();
 
             if (types.contains(type)) {
                 return false;
@@ -136,8 +136,8 @@ public class SequenceConverterParser extends ConverterParser<JavaSequence> {
     }
     
     private JavaChoice getInnerChoice(JavaSequence clazz, JavaField field) {
-        for (JavaClass inner : clazz.inners()) {
-            if (inner instanceof JavaChoice casted && inner.type().equals(field.type())) {
+        for (JavaClass inner : clazz.getInners()) {
+            if (inner instanceof JavaChoice casted && inner.getType().equals(field.getType())) {
                 return casted;
             }
         }

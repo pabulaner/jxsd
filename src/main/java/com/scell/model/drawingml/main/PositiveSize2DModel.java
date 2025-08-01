@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
 public class PositiveSize2DModel {
-  private final PositiveCoordinateModel cy;
+  private final PositiveCoordinateValueModel cy;
 
-  private final PositiveCoordinateModel cx;
+  private final PositiveCoordinateValueModel cx;
 
-  public PositiveSize2DModel(PositiveCoordinateModel cy, PositiveCoordinateModel cx) {
+  public PositiveSize2DModel(PositiveCoordinateValueModel cy, PositiveCoordinateValueModel cx) {
     this.cy = cy;
     this.cx = cx;
   }
 
-  public PositiveCoordinateModel getCy() {
+  public PositiveCoordinateValueModel getCy() {
     return this.cy;
   }
 
-  public PositiveCoordinateModel getCx() {
+  public PositiveCoordinateValueModel getCx() {
     return this.cx;
   }
 }

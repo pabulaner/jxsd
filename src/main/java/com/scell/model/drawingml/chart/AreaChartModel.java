@@ -2,7 +2,7 @@ package com.scell.model.drawingml.chart;
 
 import java.util.List;
 
-public class AreaChartModel {
+public class AreaChartModel implements IAreaChartValueModel {
   private final GroupingModel grouping;
 
   private final BooleanModel varyColors;

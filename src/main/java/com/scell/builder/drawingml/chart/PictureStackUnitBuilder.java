@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.PictureStackUnitModel;
+import com.scell.model.drawingml.chart.PictureStackUnitValueModel;
 
 public class PictureStackUnitBuilder {
-  private PictureStackUnitModel val;
+  private PictureStackUnitValueModel val;
 
   public PictureStackUnitBuilder() {
   }
 
-  public PictureStackUnitBuilder setVal(PictureStackUnitModel val) {
+  public PictureStackUnitBuilder setVal(PictureStackUnitValueModel val) {
     this.val = val;
     return this;
   }

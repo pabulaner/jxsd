@@ -5,24 +5,24 @@ import java.lang.Object;
 import java.util.List;
 
 public class SystemColorModel {
-  private final SystemColorValModel val;
+  private final SystemColorValValueModel val;
 
-  private final HexBinary3Model lastClr;
+  private final HexBinary3ValueModel lastClr;
 
   private final List<ColorTransformModel> egColorTransform;
 
-  public SystemColorModel(SystemColorValModel val, HexBinary3Model lastClr,
+  public SystemColorModel(SystemColorValValueModel val, HexBinary3ValueModel lastClr,
       List<ColorTransformModel> egColorTransform) {
     this.val = val;
     this.lastClr = lastClr;
     this.egColorTransform = egColorTransform;
   }
 
-  public SystemColorValModel getVal() {
+  public SystemColorValValueModel getVal() {
     return this.val;
   }
 
-  public HexBinary3Model getLastClr() {
+  public HexBinary3ValueModel getLastClr() {
     return this.lastClr;
   }
 

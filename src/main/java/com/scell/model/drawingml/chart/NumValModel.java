@@ -1,29 +1,29 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 
 public class NumValModel {
-  private final XstringModel formatCode;
+  private final XstringValueModel formatCode;
 
-  private final UnsignedIntModel idx;
+  private final UnsignedIntValueModel idx;
 
-  private final XstringModel v;
+  private final XstringValueModel v;
 
-  public NumValModel(XstringModel formatCode, UnsignedIntModel idx, XstringModel v) {
+  public NumValModel(XstringValueModel formatCode, UnsignedIntValueModel idx, XstringValueModel v) {
     this.formatCode = formatCode;
     this.idx = idx;
     this.v = v;
   }
 
-  public XstringModel getFormatCode() {
+  public XstringValueModel getFormatCode() {
     return this.formatCode;
   }
 
-  public UnsignedIntModel getIdx() {
+  public UnsignedIntValueModel getIdx() {
     return this.idx;
   }
 
-  public XstringModel getV() {
+  public XstringValueModel getV() {
     return this.v;
   }
 }

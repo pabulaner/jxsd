@@ -8,7 +8,7 @@ import com.scell.model.drawingml.chart.ExtensionListModel;
 import java.lang.Object;
 
 public class DispUnitsBuilder {
-  private DispUnitsModel.CustUnitOrBuiltInUnitModel custUnitOrBuiltInUnit;
+  private DispUnitsModel.CustUnitOrBuiltInUnitValueModel custUnitOrBuiltInUnit;
 
   private DispUnitsLblModel dispUnitsLbl;
 
@@ -18,7 +18,7 @@ public class DispUnitsBuilder {
   }
 
   public DispUnitsBuilder setCustUnitOrBuiltInUnit(
-      DispUnitsModel.CustUnitOrBuiltInUnitModel custUnitOrBuiltInUnit) {
+      DispUnitsModel.CustUnitOrBuiltInUnitValueModel custUnitOrBuiltInUnit) {
     this.custUnitOrBuiltInUnit = custUnitOrBuiltInUnit;
     return this;
   }
@@ -44,36 +44,37 @@ public class DispUnitsBuilder {
     return this;
   }
 
-  public static class CustUnitOrBuiltInUnitBuilder {
+  public static class CustUnitOrBuiltInUnitValueBuilder {
     private int type;
 
     private Object value;
 
-    public CustUnitOrBuiltInUnitBuilder() {
+    public CustUnitOrBuiltInUnitValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public CustUnitOrBuiltInUnitBuilder setCustUnit(DoubleModel value) {
+    public CustUnitOrBuiltInUnitValueBuilder setCustUnit(DoubleModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public CustUnitOrBuiltInUnitBuilder setBuiltInUnit(BuiltInUnitModel value) {
+    public CustUnitOrBuiltInUnitValueBuilder setBuiltInUnit(BuiltInUnitModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public DispUnitsModel.CustUnitOrBuiltInUnitModel build() {
-      if (this.type == -1) return new DispUnitsModel.CustUnitOrBuiltInUnitModel();
-      if (this.type == 0) return DispUnitsModel.CustUnitOrBuiltInUnitModel.newCustUnit((DoubleModel) this.value);
-      if (this.type == 1) return DispUnitsModel.CustUnitOrBuiltInUnitModel.newBuiltInUnit((BuiltInUnitModel) this.value);
+    public DispUnitsModel.CustUnitOrBuiltInUnitValueModel build() {
+      if (this.type == -1) return new DispUnitsModel.CustUnitOrBuiltInUnitValueModel();
+      if (this.type == 0) return DispUnitsModel.CustUnitOrBuiltInUnitValueModel.newCustUnit((DoubleModel) this.value);
+      if (this.type == 1) return DispUnitsModel.CustUnitOrBuiltInUnitValueModel.newBuiltInUnit((BuiltInUnitModel) this.value);
       return null;
     }
 
-    public CustUnitOrBuiltInUnitBuilder from(DispUnitsModel.CustUnitOrBuiltInUnitModel value) {
+    public CustUnitOrBuiltInUnitValueBuilder from(
+        DispUnitsModel.CustUnitOrBuiltInUnitValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isCustUnit()) {

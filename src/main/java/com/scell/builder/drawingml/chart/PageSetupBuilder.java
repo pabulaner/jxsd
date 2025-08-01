@@ -1,74 +1,74 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.IntModel;
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.IntValueModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 import com.scell.model.drawingml.chart.PageSetupModel;
-import com.scell.model.drawingml.chart.PageSetupOrientationModel;
+import com.scell.model.drawingml.chart.PageSetupOrientationValueModel;
 
 public class PageSetupBuilder {
-  private IntModel verticalDpi;
+  private IntValueModel verticalDpi;
 
-  private IntModel horizontalDpi;
+  private IntValueModel horizontalDpi;
 
-  private UnsignedIntModel firstPageNumber;
+  private UnsignedIntValueModel firstPageNumber;
 
-  private PageSetupOrientationModel orientation;
+  private PageSetupOrientationValueModel orientation;
 
-  private BooleanModel draft;
+  private BooleanValueModel draft;
 
-  private UnsignedIntModel copies;
+  private UnsignedIntValueModel copies;
 
-  private UnsignedIntModel paperSize;
+  private UnsignedIntValueModel paperSize;
 
-  private BooleanModel useFirstPageNumber;
+  private BooleanValueModel useFirstPageNumber;
 
-  private BooleanModel blackAndWhite;
+  private BooleanValueModel blackAndWhite;
 
   public PageSetupBuilder() {
   }
 
-  public PageSetupBuilder setVerticalDpi(IntModel verticalDpi) {
+  public PageSetupBuilder setVerticalDpi(IntValueModel verticalDpi) {
     this.verticalDpi = verticalDpi;
     return this;
   }
 
-  public PageSetupBuilder setHorizontalDpi(IntModel horizontalDpi) {
+  public PageSetupBuilder setHorizontalDpi(IntValueModel horizontalDpi) {
     this.horizontalDpi = horizontalDpi;
     return this;
   }
 
-  public PageSetupBuilder setFirstPageNumber(UnsignedIntModel firstPageNumber) {
+  public PageSetupBuilder setFirstPageNumber(UnsignedIntValueModel firstPageNumber) {
     this.firstPageNumber = firstPageNumber;
     return this;
   }
 
-  public PageSetupBuilder setOrientation(PageSetupOrientationModel orientation) {
+  public PageSetupBuilder setOrientation(PageSetupOrientationValueModel orientation) {
     this.orientation = orientation;
     return this;
   }
 
-  public PageSetupBuilder setDraft(BooleanModel draft) {
+  public PageSetupBuilder setDraft(BooleanValueModel draft) {
     this.draft = draft;
     return this;
   }
 
-  public PageSetupBuilder setCopies(UnsignedIntModel copies) {
+  public PageSetupBuilder setCopies(UnsignedIntValueModel copies) {
     this.copies = copies;
     return this;
   }
 
-  public PageSetupBuilder setPaperSize(UnsignedIntModel paperSize) {
+  public PageSetupBuilder setPaperSize(UnsignedIntValueModel paperSize) {
     this.paperSize = paperSize;
     return this;
   }
 
-  public PageSetupBuilder setUseFirstPageNumber(BooleanModel useFirstPageNumber) {
+  public PageSetupBuilder setUseFirstPageNumber(BooleanValueModel useFirstPageNumber) {
     this.useFirstPageNumber = useFirstPageNumber;
     return this;
   }
 
-  public PageSetupBuilder setBlackAndWhite(BooleanModel blackAndWhite) {
+  public PageSetupBuilder setBlackAndWhite(BooleanValueModel blackAndWhite) {
     this.blackAndWhite = blackAndWhite;
     return this;
   }

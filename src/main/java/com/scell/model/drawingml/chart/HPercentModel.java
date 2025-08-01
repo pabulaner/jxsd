@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class HPercentModel {
-  private final HPercentModel val;
+  private final HPercentValueModel val;
 
-  public HPercentModel(HPercentModel val) {
+  public HPercentModel(HPercentValueModel val) {
     this.val = val;
   }
 
-  public HPercentModel getVal() {
+  public HPercentValueModel getVal() {
     return this.val;
   }
 }

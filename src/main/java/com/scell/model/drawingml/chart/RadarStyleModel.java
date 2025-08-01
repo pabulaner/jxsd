@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class RadarStyleModel {
-  private final RadarStyleModel val;
+  private final RadarStyleValueModel val;
 
-  public RadarStyleModel(RadarStyleModel val) {
+  public RadarStyleModel(RadarStyleValueModel val) {
     this.val = val;
   }
 
-  public RadarStyleModel getVal() {
+  public RadarStyleValueModel getVal() {
     return this.val;
   }
 }

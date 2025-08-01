@@ -1,36 +1,36 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.PercentageModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
 import com.scell.model.drawingml.main.RelativeRectModel;
 
 public class RelativeRectBuilder {
-  private PercentageModel l;
+  private PercentageValueModel l;
 
-  private PercentageModel t;
+  private PercentageValueModel t;
 
-  private PercentageModel r;
+  private PercentageValueModel r;
 
-  private PercentageModel b;
+  private PercentageValueModel b;
 
   public RelativeRectBuilder() {
   }
 
-  public RelativeRectBuilder setL(PercentageModel l) {
+  public RelativeRectBuilder setL(PercentageValueModel l) {
     this.l = l;
     return this;
   }
 
-  public RelativeRectBuilder setT(PercentageModel t) {
+  public RelativeRectBuilder setT(PercentageValueModel t) {
     this.t = t;
     return this;
   }
 
-  public RelativeRectBuilder setR(PercentageModel r) {
+  public RelativeRectBuilder setR(PercentageValueModel r) {
     this.r = r;
     return this;
   }
 
-  public RelativeRectBuilder setB(PercentageModel b) {
+  public RelativeRectBuilder setB(PercentageValueModel b) {
     this.b = b;
     return this;
   }

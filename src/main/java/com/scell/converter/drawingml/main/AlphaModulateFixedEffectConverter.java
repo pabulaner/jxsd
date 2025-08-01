@@ -9,6 +9,6 @@ public class AlphaModulateFixedEffectConverter {
 
   public static AlphaModulateFixedEffectModel fromDocx4J(CTAlphaModulateFixedEffect value) {
     if (value == null) return null;
-    return new AlphaModulateFixedEffectModel(PositivePercentageConverter.fromDocx4J(value.getAmt()));
+    return new AlphaModulateFixedEffectModel(PositivePercentageValueConverter.fromDocx4J(value.getAmt()));
   }
 }

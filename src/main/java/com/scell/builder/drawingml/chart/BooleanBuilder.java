@@ -1,23 +1,24 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.drawingml.chart.BooleanModel;
 
 public class BooleanBuilder {
-  private BooleanModel val;
+  private BooleanValueModel val;
 
   public BooleanBuilder() {
   }
 
-  public BooleanBuilder setVal(BooleanModel val) {
+  public BooleanBuilder setVal(BooleanValueModel val) {
     this.val = val;
     return this;
   }
 
-  public com.scell.model.drawingml.chart.BooleanModel build() {
-    return new com.scell.model.drawingml.chart.BooleanModel(this.val);
+  public BooleanModel build() {
+    return new BooleanModel(this.val);
   }
 
-  public BooleanBuilder from(com.scell.model.drawingml.chart.BooleanModel value) {
+  public BooleanBuilder from(BooleanModel value) {
     this.val = value.getVal();
     return this;
   }

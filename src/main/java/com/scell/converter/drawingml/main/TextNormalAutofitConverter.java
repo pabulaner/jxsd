@@ -9,6 +9,6 @@ public class TextNormalAutofitConverter {
 
   public static TextNormalAutofitModel fromDocx4J(CTTextNormalAutofit value) {
     if (value == null) return null;
-    return new TextNormalAutofitModel(TextFontScalePercentConverter.fromDocx4J(value.getFontScale()), TextSpacingPercentConverter.fromDocx4J(value.getLnSpcReduction()));
+    return new TextNormalAutofitModel(TextFontScalePercentValueConverter.fromDocx4J(value.getFontScale()), TextSpacingPercentValueConverter.fromDocx4J(value.getLnSpcReduction()));
   }
 }

@@ -10,7 +10,7 @@ import java.lang.Object;
 public class LegendEntryBuilder {
   private UnsignedIntModel idx;
 
-  private LegendEntryModel.DeleteOrEG_LegendEntryDataModel deleteoregLegendEntryData;
+  private LegendEntryModel.DeleteOrLegendEntryDataValueModel deleteOrLegendEntryData;
 
   private ExtensionListModel extLst;
 
@@ -22,9 +22,9 @@ public class LegendEntryBuilder {
     return this;
   }
 
-  public LegendEntryBuilder setDeleteOrEGLegendEntryData(
-      LegendEntryModel.DeleteOrEG_LegendEntryDataModel deleteoregLegendEntryData) {
-    this.deleteoregLegendEntryData = deleteoregLegendEntryData;
+  public LegendEntryBuilder setDeleteOrLegendEntryData(
+      LegendEntryModel.DeleteOrLegendEntryDataValueModel deleteOrLegendEntryData) {
+    this.deleteOrLegendEntryData = deleteOrLegendEntryData;
     return this;
   }
 
@@ -34,47 +34,47 @@ public class LegendEntryBuilder {
   }
 
   public LegendEntryModel build() {
-    return new LegendEntryModel(this.idx, this.deleteoregLegendEntryData, this.extLst);
+    return new LegendEntryModel(this.idx, this.deleteOrLegendEntryData, this.extLst);
   }
 
   public LegendEntryBuilder from(LegendEntryModel value) {
     this.idx = value.getIdx();
-    this.deleteoregLegendEntryData = value.getDeleteOrEGLegendEntryData();
+    this.deleteOrLegendEntryData = value.getDeleteOrLegendEntryData();
     this.extLst = value.getExtLst();
     return this;
   }
 
-  public static class DeleteOrEG_LegendEntryDataBuilder {
+  public static class DeleteOrLegendEntryDataValueBuilder {
     private int type;
 
     private Object value;
 
-    public DeleteOrEG_LegendEntryDataBuilder() {
+    public DeleteOrLegendEntryDataValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public DeleteOrEG_LegendEntryDataBuilder setDelete(BooleanModel value) {
+    public DeleteOrLegendEntryDataValueBuilder setDelete(BooleanModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public DeleteOrEG_LegendEntryDataBuilder setTxPr(TextBodyModel value) {
+    public DeleteOrLegendEntryDataValueBuilder setTxPr(TextBodyModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public LegendEntryModel.DeleteOrEG_LegendEntryDataModel build() {
-      if (this.type == -1) return new LegendEntryModel.DeleteOrEG_LegendEntryDataModel();
-      if (this.type == 0) return LegendEntryModel.DeleteOrEG_LegendEntryDataModel.newDelete((BooleanModel) this.value);
-      if (this.type == 1) return LegendEntryModel.DeleteOrEG_LegendEntryDataModel.newTxPr((TextBodyModel) this.value);
+    public LegendEntryModel.DeleteOrLegendEntryDataValueModel build() {
+      if (this.type == -1) return new LegendEntryModel.DeleteOrLegendEntryDataValueModel();
+      if (this.type == 0) return LegendEntryModel.DeleteOrLegendEntryDataValueModel.newDelete((BooleanModel) this.value);
+      if (this.type == 1) return LegendEntryModel.DeleteOrLegendEntryDataValueModel.newTxPr((TextBodyModel) this.value);
       return null;
     }
 
-    public DeleteOrEG_LegendEntryDataBuilder from(
-        LegendEntryModel.DeleteOrEG_LegendEntryDataModel value) {
+    public DeleteOrLegendEntryDataValueBuilder from(
+        LegendEntryModel.DeleteOrLegendEntryDataValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isDelete()) {

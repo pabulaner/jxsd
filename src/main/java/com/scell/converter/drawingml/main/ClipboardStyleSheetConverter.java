@@ -9,6 +9,6 @@ public class ClipboardStyleSheetConverter {
 
   public static ClipboardStyleSheetModel fromDocx4J(CTClipboardStyleSheet value) {
     if (value == null) return null;
-    return new ClipboardStyleSheetModel(BaseStylesConverter.fromDocx4J(value.getThemeElements()), ColorMappingConverter.fromDocx4J(value.getClrMap()));
+    return new ClipboardStyleSheetModel(BaseStylesValueConverter.fromDocx4J(value.getThemeElements()), ColorMappingConverter.fromDocx4J(value.getClrMap()));
   }
 }

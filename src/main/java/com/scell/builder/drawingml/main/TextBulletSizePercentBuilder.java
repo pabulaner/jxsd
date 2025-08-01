@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.TextBulletSizePercentModel;
+import com.scell.model.drawingml.main.TextBulletSizePercentValueModel;
 
 public class TextBulletSizePercentBuilder {
-  private TextBulletSizePercentModel val;
+  private TextBulletSizePercentValueModel val;
 
   public TextBulletSizePercentBuilder() {
   }
 
-  public TextBulletSizePercentBuilder setVal(TextBulletSizePercentModel val) {
+  public TextBulletSizePercentBuilder setVal(TextBulletSizePercentValueModel val) {
     this.val = val;
     return this;
   }

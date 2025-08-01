@@ -9,6 +9,6 @@ public class StyleConverter {
 
   public static StyleModel fromDocx4J(CTStyle value) {
     if (value == null) return null;
-    return new StyleModel(StyleConverter.fromDocx4J(value.getVal()));
+    return new StyleModel(StyleValueConverter.fromDocx4J(value.getVal()));
   }
 }

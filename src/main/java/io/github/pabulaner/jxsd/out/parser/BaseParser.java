@@ -54,7 +54,7 @@ public abstract class BaseParser<TClass extends JavaClass> implements Parser<TCl
 
     @Override
     public TypeSpec parse(boolean isStatic, TClass clazz) {
-        String name = group.getResolver().resolve(clazz.type()).name();
+        String name = group.getResolver().resolve(clazz.getType()).getName();
         TypeSpec.Builder builder = switch (classType) {
             case CLASS -> TypeSpec.classBuilder(name);
             case ENUM -> TypeSpec.enumBuilder(name);

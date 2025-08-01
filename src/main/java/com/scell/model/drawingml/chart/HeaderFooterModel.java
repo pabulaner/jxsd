@@ -1,30 +1,30 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class HeaderFooterModel {
-  private final BooleanModel differentOddEven;
+  private final BooleanValueModel differentOddEven;
 
-  private final BooleanModel differentFirst;
+  private final BooleanValueModel differentFirst;
 
-  private final BooleanModel alignWithMargins;
+  private final BooleanValueModel alignWithMargins;
 
-  private final XstringModel oddHeader;
+  private final XstringValueModel oddHeader;
 
-  private final XstringModel oddFooter;
+  private final XstringValueModel oddFooter;
 
-  private final XstringModel evenHeader;
+  private final XstringValueModel evenHeader;
 
-  private final XstringModel evenFooter;
+  private final XstringValueModel evenFooter;
 
-  private final XstringModel firstHeader;
+  private final XstringValueModel firstHeader;
 
-  private final XstringModel firstFooter;
+  private final XstringValueModel firstFooter;
 
-  public HeaderFooterModel(BooleanModel differentOddEven, BooleanModel differentFirst,
-      BooleanModel alignWithMargins, XstringModel oddHeader, XstringModel oddFooter,
-      XstringModel evenHeader, XstringModel evenFooter, XstringModel firstHeader,
-      XstringModel firstFooter) {
+  public HeaderFooterModel(BooleanValueModel differentOddEven, BooleanValueModel differentFirst,
+      BooleanValueModel alignWithMargins, XstringValueModel oddHeader, XstringValueModel oddFooter,
+      XstringValueModel evenHeader, XstringValueModel evenFooter, XstringValueModel firstHeader,
+      XstringValueModel firstFooter) {
     this.differentOddEven = differentOddEven;
     this.differentFirst = differentFirst;
     this.alignWithMargins = alignWithMargins;
@@ -36,39 +36,39 @@ public class HeaderFooterModel {
     this.firstFooter = firstFooter;
   }
 
-  public BooleanModel getDifferentOddEven() {
+  public BooleanValueModel getDifferentOddEven() {
     return this.differentOddEven;
   }
 
-  public BooleanModel getDifferentFirst() {
+  public BooleanValueModel getDifferentFirst() {
     return this.differentFirst;
   }
 
-  public BooleanModel getAlignWithMargins() {
+  public BooleanValueModel getAlignWithMargins() {
     return this.alignWithMargins;
   }
 
-  public XstringModel getOddHeader() {
+  public XstringValueModel getOddHeader() {
     return this.oddHeader;
   }
 
-  public XstringModel getOddFooter() {
+  public XstringValueModel getOddFooter() {
     return this.oddFooter;
   }
 
-  public XstringModel getEvenHeader() {
+  public XstringValueModel getEvenHeader() {
     return this.evenHeader;
   }
 
-  public XstringModel getEvenFooter() {
+  public XstringValueModel getEvenFooter() {
     return this.evenFooter;
   }
 
-  public XstringModel getFirstHeader() {
+  public XstringValueModel getFirstHeader() {
     return this.firstHeader;
   }
 
-  public XstringModel getFirstFooter() {
+  public XstringValueModel getFirstFooter() {
     return this.firstFooter;
   }
 }

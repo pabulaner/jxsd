@@ -9,6 +9,6 @@ public class TextTabStopConverter {
 
   public static TextTabStopModel fromDocx4J(CTTextTabStop value) {
     if (value == null) return null;
-    return new TextTabStopModel(Coordinate32Converter.fromDocx4J(value.getPos()), TextTabAlignTypeConverter.fromDocx4J(value.getAlgn()));
+    return new TextTabStopModel(Coordinate32ValueConverter.fromDocx4J(value.getPos()), TextTabAlignTypeValueConverter.fromDocx4J(value.getAlgn()));
   }
 }

@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.DepthPercentModel;
+import com.scell.model.drawingml.chart.DepthPercentValueModel;
 
 public class DepthPercentBuilder {
-  private DepthPercentModel val;
+  private DepthPercentValueModel val;
 
   public DepthPercentBuilder() {
   }
 
-  public DepthPercentBuilder setVal(DepthPercentModel val) {
+  public DepthPercentBuilder setVal(DepthPercentValueModel val) {
     this.val = val;
     return this;
   }

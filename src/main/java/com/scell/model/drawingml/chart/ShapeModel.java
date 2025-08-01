@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class ShapeModel {
-  private final ShapeModel val;
+  private final ShapeValueModel val;
 
-  public ShapeModel(ShapeModel val) {
+  public ShapeModel(ShapeValueModel val) {
     this.val = val;
   }
 
-  public ShapeModel getVal() {
+  public ShapeValueModel getVal() {
     return this.val;
   }
 }

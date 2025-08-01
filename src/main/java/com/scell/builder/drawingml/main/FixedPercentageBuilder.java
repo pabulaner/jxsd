@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.FixedPercentageModel;
+import com.scell.model.drawingml.main.FixedPercentageValueModel;
 
 public class FixedPercentageBuilder {
-  private FixedPercentageModel val;
+  private FixedPercentageValueModel val;
 
   public FixedPercentageBuilder() {
   }
 
-  public FixedPercentageBuilder setVal(FixedPercentageModel val) {
+  public FixedPercentageBuilder setVal(FixedPercentageValueModel val) {
     this.val = val;
     return this;
   }

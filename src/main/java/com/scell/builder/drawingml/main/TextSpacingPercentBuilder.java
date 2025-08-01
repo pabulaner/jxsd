@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.TextSpacingPercentModel;
+import com.scell.model.drawingml.main.TextSpacingPercentValueModel;
 
 public class TextSpacingPercentBuilder {
-  private TextSpacingPercentModel val;
+  private TextSpacingPercentValueModel val;
 
   public TextSpacingPercentBuilder() {
   }
 
-  public TextSpacingPercentBuilder setVal(TextSpacingPercentModel val) {
+  public TextSpacingPercentBuilder setVal(TextSpacingPercentValueModel val) {
     this.val = val;
     return this;
   }

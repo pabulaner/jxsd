@@ -1,12 +1,12 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.chart.ExtensionListModel;
 import com.scell.model.drawingml.chart.StrDataModel;
 import com.scell.model.drawingml.chart.StrRefModel;
 
 public class StrRefBuilder {
-  private StringModel f;
+  private StringValueModel f;
 
   private StrDataModel strCache;
 
@@ -15,7 +15,7 @@ public class StrRefBuilder {
   public StrRefBuilder() {
   }
 
-  public StrRefBuilder setF(StringModel f) {
+  public StrRefBuilder setF(StringValueModel f) {
     this.f = f;
     return this;
   }

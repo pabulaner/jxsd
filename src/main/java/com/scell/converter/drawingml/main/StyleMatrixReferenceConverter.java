@@ -16,6 +16,6 @@ public class StyleMatrixReferenceConverter {
     if (value.getSysClr() != null) egColorChoice = StyleMatrixReferenceModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = StyleMatrixReferenceModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = StyleMatrixReferenceModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new StyleMatrixReferenceModel(StyleMatrixColumnIndexConverter.fromDocx4J(value.getIdx()), egColorChoice);
+    return new StyleMatrixReferenceModel(StyleMatrixColumnIndexValueConverter.fromDocx4J(value.getIdx()), egColorChoice);
   }
 }

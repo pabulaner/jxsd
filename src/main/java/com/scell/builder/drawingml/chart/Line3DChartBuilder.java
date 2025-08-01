@@ -11,7 +11,7 @@ import com.scell.model.drawingml.chart.LineSerModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
 import java.util.List;
 
-public class Line3DChartBuilder {
+public class Line3DChartBuilder implements ILineChartValueBuilder, IGapDepthComponentValueBuilder {
   private GroupingModel grouping;
 
   private BooleanModel varyColors;

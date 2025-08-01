@@ -9,6 +9,6 @@ public class FirstSliceAngConverter {
 
   public static FirstSliceAngModel fromDocx4J(CTFirstSliceAng value) {
     if (value == null) return null;
-    return new FirstSliceAngModel(FirstSliceAngConverter.fromDocx4J(value.getVal()));
+    return new FirstSliceAngModel(FirstSliceAngValueConverter.fromDocx4J(value.getVal()));
   }
 }

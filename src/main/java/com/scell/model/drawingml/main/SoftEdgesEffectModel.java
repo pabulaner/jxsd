@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class SoftEdgesEffectModel {
-  private final PositiveCoordinateModel rad;
+  private final PositiveCoordinateValueModel rad;
 
-  public SoftEdgesEffectModel(PositiveCoordinateModel rad) {
+  public SoftEdgesEffectModel(PositiveCoordinateValueModel rad) {
     this.rad = rad;
   }
 
-  public PositiveCoordinateModel getRad() {
+  public PositiveCoordinateValueModel getRad() {
     return this.rad;
   }
 }

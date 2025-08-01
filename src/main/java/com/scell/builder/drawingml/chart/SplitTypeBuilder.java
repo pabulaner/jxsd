@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.SplitTypeModel;
+import com.scell.model.drawingml.chart.SplitTypeValueModel;
 
 public class SplitTypeBuilder {
-  private SplitTypeModel val;
+  private SplitTypeValueModel val;
 
   public SplitTypeBuilder() {
   }
 
-  public SplitTypeBuilder setVal(SplitTypeModel val) {
+  public SplitTypeBuilder setVal(SplitTypeValueModel val) {
     this.val = val;
     return this;
   }

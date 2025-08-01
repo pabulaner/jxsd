@@ -1,112 +1,112 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.drawingml.main.FixedAngleModel;
-import com.scell.model.drawingml.main.PercentageModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
-import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
-import com.scell.model.drawingml.main.RectAlignmentModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.drawingml.main.FixedAngleValueModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
+import com.scell.model.drawingml.main.PositiveFixedPercentageValueModel;
+import com.scell.model.drawingml.main.RectAlignmentValueModel;
 import com.scell.model.drawingml.main.ReflectionEffectModel;
 
 public class ReflectionEffectBuilder {
-  private PositiveCoordinateModel blurRad;
+  private PositiveCoordinateValueModel blurRad;
 
-  private PositiveFixedPercentageModel endPos;
+  private PositiveFixedPercentageValueModel endPos;
 
-  private PercentageModel sy;
+  private PercentageValueModel sy;
 
-  private FixedAngleModel kx;
+  private FixedAngleValueModel kx;
 
-  private PositiveFixedPercentageModel stA;
+  private PositiveFixedPercentageValueModel stA;
 
-  private PositiveFixedPercentageModel stPos;
+  private PositiveFixedPercentageValueModel stPos;
 
-  private RectAlignmentModel algn;
+  private RectAlignmentValueModel algn;
 
-  private PositiveCoordinateModel dist;
+  private PositiveCoordinateValueModel dist;
 
-  private BooleanModel rotWithShape;
+  private BooleanValueModel rotWithShape;
 
-  private FixedAngleModel ky;
+  private FixedAngleValueModel ky;
 
-  private PositiveFixedAngleModel fadeDir;
+  private PositiveFixedAngleValueModel fadeDir;
 
-  private PercentageModel sx;
+  private PercentageValueModel sx;
 
-  private PositiveFixedAngleModel dir;
+  private PositiveFixedAngleValueModel dir;
 
-  private PositiveFixedPercentageModel endA;
+  private PositiveFixedPercentageValueModel endA;
 
   public ReflectionEffectBuilder() {
   }
 
-  public ReflectionEffectBuilder setBlurRad(PositiveCoordinateModel blurRad) {
+  public ReflectionEffectBuilder setBlurRad(PositiveCoordinateValueModel blurRad) {
     this.blurRad = blurRad;
     return this;
   }
 
-  public ReflectionEffectBuilder setEndPos(PositiveFixedPercentageModel endPos) {
+  public ReflectionEffectBuilder setEndPos(PositiveFixedPercentageValueModel endPos) {
     this.endPos = endPos;
     return this;
   }
 
-  public ReflectionEffectBuilder setSy(PercentageModel sy) {
+  public ReflectionEffectBuilder setSy(PercentageValueModel sy) {
     this.sy = sy;
     return this;
   }
 
-  public ReflectionEffectBuilder setKx(FixedAngleModel kx) {
+  public ReflectionEffectBuilder setKx(FixedAngleValueModel kx) {
     this.kx = kx;
     return this;
   }
 
-  public ReflectionEffectBuilder setStA(PositiveFixedPercentageModel stA) {
+  public ReflectionEffectBuilder setStA(PositiveFixedPercentageValueModel stA) {
     this.stA = stA;
     return this;
   }
 
-  public ReflectionEffectBuilder setStPos(PositiveFixedPercentageModel stPos) {
+  public ReflectionEffectBuilder setStPos(PositiveFixedPercentageValueModel stPos) {
     this.stPos = stPos;
     return this;
   }
 
-  public ReflectionEffectBuilder setAlgn(RectAlignmentModel algn) {
+  public ReflectionEffectBuilder setAlgn(RectAlignmentValueModel algn) {
     this.algn = algn;
     return this;
   }
 
-  public ReflectionEffectBuilder setDist(PositiveCoordinateModel dist) {
+  public ReflectionEffectBuilder setDist(PositiveCoordinateValueModel dist) {
     this.dist = dist;
     return this;
   }
 
-  public ReflectionEffectBuilder setRotWithShape(BooleanModel rotWithShape) {
+  public ReflectionEffectBuilder setRotWithShape(BooleanValueModel rotWithShape) {
     this.rotWithShape = rotWithShape;
     return this;
   }
 
-  public ReflectionEffectBuilder setKy(FixedAngleModel ky) {
+  public ReflectionEffectBuilder setKy(FixedAngleValueModel ky) {
     this.ky = ky;
     return this;
   }
 
-  public ReflectionEffectBuilder setFadeDir(PositiveFixedAngleModel fadeDir) {
+  public ReflectionEffectBuilder setFadeDir(PositiveFixedAngleValueModel fadeDir) {
     this.fadeDir = fadeDir;
     return this;
   }
 
-  public ReflectionEffectBuilder setSx(PercentageModel sx) {
+  public ReflectionEffectBuilder setSx(PercentageValueModel sx) {
     this.sx = sx;
     return this;
   }
 
-  public ReflectionEffectBuilder setDir(PositiveFixedAngleModel dir) {
+  public ReflectionEffectBuilder setDir(PositiveFixedAngleValueModel dir) {
     this.dir = dir;
     return this;
   }
 
-  public ReflectionEffectBuilder setEndA(PositiveFixedPercentageModel endA) {
+  public ReflectionEffectBuilder setEndA(PositiveFixedPercentageValueModel endA) {
     this.endA = endA;
     return this;
   }

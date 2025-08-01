@@ -4,7 +4,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
-import io.github.pabulaner.jxsd.out.util.Name;
+import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
@@ -18,10 +18,11 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaChoice clazz) {
-        clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
+        super.parse(builder, clazz);
+        clazz.getInners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
-        TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
-        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
+        TypeName builderType = ParserUtil.convertType(clazz.getType(), getResolver());
+        TypeName modelType = ParserUtil.convertType(clazz.getType(), getModelResolver());
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -45,9 +46,9 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
 
         int[] index = { 0 };
 
-        clazz.fields().forEach(field -> {
-            TypeName fieldType = ParserUtil.convertType(field.type(), getModelResolver());
-            String fieldName = new Name(getResolver().resolve(field.type(), field.name())).toVarUpper();
+        clazz.getFields().forEach(field -> {
+            TypeName fieldType = ParserUtil.convertType(field.getType(), getModelResolver());
+            String fieldName = new Name(getResolver().resolve(field.getType(), field.getName())).toVarUpper();
 
             build.addStatement("$N ($N.$N == $L) $N $T.$N(($T) $N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, ParserUtil.convertMethodName(NEW, fieldName), fieldType, THIS, VALUE);
             from.beginControlFlow("$N ($N.$N())", IF, VALUE, ParserUtil.convertMethodName(IS, fieldName))

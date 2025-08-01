@@ -1,23 +1,24 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
+import com.scell.model.drawingml.chart.UnsignedIntModel;
 
 public class UnsignedIntBuilder {
-  private UnsignedIntModel val;
+  private UnsignedIntValueModel val;
 
   public UnsignedIntBuilder() {
   }
 
-  public UnsignedIntBuilder setVal(UnsignedIntModel val) {
+  public UnsignedIntBuilder setVal(UnsignedIntValueModel val) {
     this.val = val;
     return this;
   }
 
-  public com.scell.model.drawingml.chart.UnsignedIntModel build() {
-    return new com.scell.model.drawingml.chart.UnsignedIntModel(this.val);
+  public UnsignedIntModel build() {
+    return new UnsignedIntModel(this.val);
   }
 
-  public UnsignedIntBuilder from(com.scell.model.drawingml.chart.UnsignedIntModel value) {
+  public UnsignedIntBuilder from(UnsignedIntModel value) {
     this.val = value.getVal();
     return this;
   }

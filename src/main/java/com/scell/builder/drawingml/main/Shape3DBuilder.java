@@ -2,20 +2,20 @@ package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.BevelModel;
 import com.scell.model.drawingml.main.ColorModel;
-import com.scell.model.drawingml.main.CoordinateModel;
+import com.scell.model.drawingml.main.CoordinateValueModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
-import com.scell.model.drawingml.main.PresetMaterialTypeModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
+import com.scell.model.drawingml.main.PresetMaterialTypeValueModel;
 import com.scell.model.drawingml.main.Shape3DModel;
 
 public class Shape3DBuilder {
-  private PositiveCoordinateModel contourW;
+  private PositiveCoordinateValueModel contourW;
 
-  private PositiveCoordinateModel extrusionH;
+  private PositiveCoordinateValueModel extrusionH;
 
-  private PresetMaterialTypeModel prstMaterial;
+  private PresetMaterialTypeValueModel prstMaterial;
 
-  private CoordinateModel z;
+  private CoordinateValueModel z;
 
   private BevelModel bevelT;
 
@@ -30,22 +30,22 @@ public class Shape3DBuilder {
   public Shape3DBuilder() {
   }
 
-  public Shape3DBuilder setContourW(PositiveCoordinateModel contourW) {
+  public Shape3DBuilder setContourW(PositiveCoordinateValueModel contourW) {
     this.contourW = contourW;
     return this;
   }
 
-  public Shape3DBuilder setExtrusionH(PositiveCoordinateModel extrusionH) {
+  public Shape3DBuilder setExtrusionH(PositiveCoordinateValueModel extrusionH) {
     this.extrusionH = extrusionH;
     return this;
   }
 
-  public Shape3DBuilder setPrstMaterial(PresetMaterialTypeModel prstMaterial) {
+  public Shape3DBuilder setPrstMaterial(PresetMaterialTypeValueModel prstMaterial) {
     this.prstMaterial = prstMaterial;
     return this;
   }
 
-  public Shape3DBuilder setZ(CoordinateModel z) {
+  public Shape3DBuilder setZ(CoordinateValueModel z) {
     this.z = z;
     return this;
   }

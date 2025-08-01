@@ -4,16 +4,16 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class GlowEffectModel {
-  private final PositiveCoordinateModel rad;
+  private final PositiveCoordinateValueModel rad;
 
   private final ColorChoiceModel egColorChoice;
 
-  public GlowEffectModel(PositiveCoordinateModel rad, ColorChoiceModel egColorChoice) {
+  public GlowEffectModel(PositiveCoordinateValueModel rad, ColorChoiceModel egColorChoice) {
     this.rad = rad;
     this.egColorChoice = egColorChoice;
   }
 
-  public PositiveCoordinateModel getRad() {
+  public PositiveCoordinateValueModel getRad() {
     return this.rad;
   }
 

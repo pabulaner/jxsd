@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class OfPieTypeModel {
-  private final OfPieTypeModel val;
+  private final OfPieTypeValueModel val;
 
-  public OfPieTypeModel(OfPieTypeModel val) {
+  public OfPieTypeModel(OfPieTypeValueModel val) {
     this.val = val;
   }
 
-  public OfPieTypeModel getVal() {
+  public OfPieTypeValueModel getVal() {
     return this.val;
   }
 }

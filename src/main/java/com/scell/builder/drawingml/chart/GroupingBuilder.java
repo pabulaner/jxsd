@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.GroupingModel;
+import com.scell.model.drawingml.chart.GroupingValueModel;
 
 public class GroupingBuilder {
-  private GroupingModel val;
+  private GroupingValueModel val;
 
   public GroupingBuilder() {
   }
 
-  public GroupingBuilder setVal(GroupingModel val) {
+  public GroupingBuilder setVal(GroupingValueModel val) {
     this.val = val;
     return this;
   }

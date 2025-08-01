@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.OfPieTypeModel;
+import com.scell.model.drawingml.chart.OfPieTypeValueModel;
 
 public class OfPieTypeBuilder {
-  private OfPieTypeModel val;
+  private OfPieTypeValueModel val;
 
   public OfPieTypeBuilder() {
   }
 
-  public OfPieTypeBuilder setVal(OfPieTypeModel val) {
+  public OfPieTypeBuilder setVal(OfPieTypeValueModel val) {
     this.val = val;
     return this;
   }

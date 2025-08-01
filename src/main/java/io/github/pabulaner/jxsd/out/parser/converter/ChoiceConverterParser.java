@@ -16,21 +16,21 @@ public class ChoiceConverterParser extends ConverterParser<JavaChoice> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaChoice clazz) {
-        clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
+        clazz.getInners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
         return super.parse(builder, clazz);
     }
 
     @Override
     protected MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaChoice clazz) {
-        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
+        TypeName modelType = ParserUtil.convertType(clazz.getType(), getModelResolver());
 
-        clazz.fields().forEach(field -> {
-            JavaType fieldType = getModelResolver().resolve(field.type());
-            String fieldName = getModelResolver().resolve(field.type(), field.name());
-            TypeName converterType = ParserUtil.convertType(field.type(), getResolver(), false);
+        clazz.getFields().forEach(field -> {
+            JavaType fieldType = getModelResolver().resolve(field.getType());
+            String fieldName = getModelResolver().resolve(field.getType(), field.getName());
+            TypeName converterType = ParserUtil.convertType(field.getType(), getResolver(), false);
 
             String from = ParserUtil.convertMethodName(FROM, DOCX4J);
-            String getter = ParserUtil.convertGetterName(field.type(), fieldName);
+            String getter = ParserUtil.convertGetterName(field.getType(), fieldName);
             String newModel = ParserUtil.convertMethodName(NEW, fieldName);
 
             if (fieldType.isList()) {

@@ -5,7 +5,7 @@ import com.scell.model.drawingml.main.ComplementTransformModel;
 import com.scell.model.drawingml.main.FixedPercentageModel;
 import com.scell.model.drawingml.main.GammaTransformModel;
 import com.scell.model.drawingml.main.GrayscaleTransformModel;
-import com.scell.model.drawingml.main.HexBinary3Model;
+import com.scell.model.drawingml.main.HexBinary3ValueModel;
 import com.scell.model.drawingml.main.InverseGammaTransformModel;
 import com.scell.model.drawingml.main.InverseTransformModel;
 import com.scell.model.drawingml.main.PercentageModel;
@@ -17,14 +17,14 @@ import java.lang.Object;
 import java.util.List;
 
 public class SRgbColorBuilder {
-  private HexBinary3Model val;
+  private HexBinary3ValueModel val;
 
   private List<SRgbColorModel.ColorTransformModel> egColorTransform;
 
   public SRgbColorBuilder() {
   }
 
-  public SRgbColorBuilder setVal(HexBinary3Model val) {
+  public SRgbColorBuilder setVal(HexBinary3ValueModel val) {
     this.val = val;
     return this;
   }

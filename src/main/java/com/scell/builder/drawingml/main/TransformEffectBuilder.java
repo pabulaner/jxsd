@@ -1,52 +1,52 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.CoordinateModel;
-import com.scell.model.drawingml.main.FixedAngleModel;
-import com.scell.model.drawingml.main.PercentageModel;
+import com.scell.model.drawingml.main.CoordinateValueModel;
+import com.scell.model.drawingml.main.FixedAngleValueModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
 import com.scell.model.drawingml.main.TransformEffectModel;
 
 public class TransformEffectBuilder {
-  private PercentageModel sy;
+  private PercentageValueModel sy;
 
-  private FixedAngleModel ky;
+  private FixedAngleValueModel ky;
 
-  private PercentageModel sx;
+  private PercentageValueModel sx;
 
-  private CoordinateModel ty;
+  private CoordinateValueModel ty;
 
-  private FixedAngleModel kx;
+  private FixedAngleValueModel kx;
 
-  private CoordinateModel tx;
+  private CoordinateValueModel tx;
 
   public TransformEffectBuilder() {
   }
 
-  public TransformEffectBuilder setSy(PercentageModel sy) {
+  public TransformEffectBuilder setSy(PercentageValueModel sy) {
     this.sy = sy;
     return this;
   }
 
-  public TransformEffectBuilder setKy(FixedAngleModel ky) {
+  public TransformEffectBuilder setKy(FixedAngleValueModel ky) {
     this.ky = ky;
     return this;
   }
 
-  public TransformEffectBuilder setSx(PercentageModel sx) {
+  public TransformEffectBuilder setSx(PercentageValueModel sx) {
     this.sx = sx;
     return this;
   }
 
-  public TransformEffectBuilder setTy(CoordinateModel ty) {
+  public TransformEffectBuilder setTy(CoordinateValueModel ty) {
     this.ty = ty;
     return this;
   }
 
-  public TransformEffectBuilder setKx(FixedAngleModel kx) {
+  public TransformEffectBuilder setKx(FixedAngleValueModel kx) {
     this.kx = kx;
     return this;
   }
 
-  public TransformEffectBuilder setTx(CoordinateModel tx) {
+  public TransformEffectBuilder setTx(CoordinateValueModel tx) {
     this.tx = tx;
     return this;
   }

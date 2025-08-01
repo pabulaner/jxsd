@@ -9,6 +9,6 @@ public class Vector3DConverter {
 
   public static Vector3DModel fromDocx4J(CTVector3D value) {
     if (value == null) return null;
-    return new Vector3DModel(CoordinateConverter.fromDocx4J(value.getDz()), CoordinateConverter.fromDocx4J(value.getDy()), CoordinateConverter.fromDocx4J(value.getDx()));
+    return new Vector3DModel(CoordinateValueConverter.fromDocx4J(value.getDz()), CoordinateValueConverter.fromDocx4J(value.getDy()), CoordinateValueConverter.fromDocx4J(value.getDx()));
   }
 }

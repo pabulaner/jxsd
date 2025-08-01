@@ -1,28 +1,28 @@
 package com.scell.model.drawingml.main;
 
 public class LineEndPropertiesModel {
-  private final LineEndTypeModel type;
+  private final LineEndTypeValueModel type;
 
-  private final LineEndWidthModel w;
+  private final LineEndWidthValueModel w;
 
-  private final LineEndLengthModel len;
+  private final LineEndLengthValueModel len;
 
-  public LineEndPropertiesModel(LineEndTypeModel type, LineEndWidthModel w,
-      LineEndLengthModel len) {
+  public LineEndPropertiesModel(LineEndTypeValueModel type, LineEndWidthValueModel w,
+      LineEndLengthValueModel len) {
     this.type = type;
     this.w = w;
     this.len = len;
   }
 
-  public LineEndTypeModel getType() {
+  public LineEndTypeValueModel getType() {
     return this.type;
   }
 
-  public LineEndWidthModel getW() {
+  public LineEndWidthValueModel getW() {
     return this.w;
   }
 
-  public LineEndLengthModel getLen() {
+  public LineEndLengthValueModel getLen() {
     return this.len;
   }
 }

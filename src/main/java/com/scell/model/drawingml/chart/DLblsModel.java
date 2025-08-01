@@ -1,6 +1,6 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import com.scell.model.drawingml.main.TextBodyModel;
 import java.lang.Integer;
@@ -10,14 +10,14 @@ import java.util.List;
 public class DLblsModel {
   private final List<DLblModel> dLbl;
 
-  private final DeleteOrGroup_DLblsModel deleteorgroupDLbls;
+  private final DeleteOrDLblsValueModel deleteOrDLbls;
 
   private final ExtensionListModel extLst;
 
-  public DLblsModel(List<DLblModel> dLbl, DeleteOrGroup_DLblsModel deleteorgroupDLbls,
+  public DLblsModel(List<DLblModel> dLbl, DeleteOrDLblsValueModel deleteOrDLbls,
       ExtensionListModel extLst) {
     this.dLbl = dLbl;
-    this.deleteorgroupDLbls = deleteorgroupDLbls;
+    this.deleteOrDLbls = deleteOrDLbls;
     this.extLst = extLst;
   }
 
@@ -25,30 +25,30 @@ public class DLblsModel {
     return this.dLbl;
   }
 
-  public DeleteOrGroup_DLblsModel getDeleteOrGroupDLbls() {
-    return this.deleteorgroupDLbls;
+  public DeleteOrDLblsValueModel getDeleteOrDLbls() {
+    return this.deleteOrDLbls;
   }
 
   public ExtensionListModel getExtLst() {
     return this.extLst;
   }
 
-  public static class DeleteOrGroup_DLblsModel {
+  public static class DeleteOrDLblsValueModel {
     private final int type;
 
     private final Object value;
 
-    public DeleteOrGroup_DLblsModel() {
+    public DeleteOrDLblsValueModel() {
       this(-1, null);
     }
 
-    private DeleteOrGroup_DLblsModel(Integer type, Object value) {
+    private DeleteOrDLblsValueModel(Integer type, Object value) {
       this.type = type;
       this.value = value;
     }
 
-    public static DeleteOrGroup_DLblsModel newDelete(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(0, value);
+    public static DeleteOrDLblsValueModel newDelete(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(0, value);
     }
 
     public boolean isDelete() {
@@ -59,8 +59,8 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newNumFmt(NumFmtModel value) {
-      return new DeleteOrGroup_DLblsModel(1, value);
+    public static DeleteOrDLblsValueModel newNumFmt(NumFmtModel value) {
+      return new DeleteOrDLblsValueModel(1, value);
     }
 
     public boolean isNumFmt() {
@@ -71,8 +71,8 @@ public class DLblsModel {
       return (NumFmtModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newSpPr(ShapePropertiesModel value) {
-      return new DeleteOrGroup_DLblsModel(2, value);
+    public static DeleteOrDLblsValueModel newSpPr(ShapePropertiesModel value) {
+      return new DeleteOrDLblsValueModel(2, value);
     }
 
     public boolean isSpPr() {
@@ -83,8 +83,8 @@ public class DLblsModel {
       return (ShapePropertiesModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newTxPr(TextBodyModel value) {
-      return new DeleteOrGroup_DLblsModel(3, value);
+    public static DeleteOrDLblsValueModel newTxPr(TextBodyModel value) {
+      return new DeleteOrDLblsValueModel(3, value);
     }
 
     public boolean isTxPr() {
@@ -95,8 +95,8 @@ public class DLblsModel {
       return (TextBodyModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newDLblPos(DLblPosModel value) {
-      return new DeleteOrGroup_DLblsModel(4, value);
+    public static DeleteOrDLblsValueModel newDLblPos(DLblPosModel value) {
+      return new DeleteOrDLblsValueModel(4, value);
     }
 
     public boolean isDLblPos() {
@@ -107,8 +107,8 @@ public class DLblsModel {
       return (DLblPosModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newShowLegendKey(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(5, value);
+    public static DeleteOrDLblsValueModel newShowLegendKey(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(5, value);
     }
 
     public boolean isShowLegendKey() {
@@ -119,8 +119,8 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newShowVal(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(6, value);
+    public static DeleteOrDLblsValueModel newShowVal(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(6, value);
     }
 
     public boolean isShowVal() {
@@ -131,8 +131,8 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newShowCatName(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(7, value);
+    public static DeleteOrDLblsValueModel newShowCatName(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(7, value);
     }
 
     public boolean isShowCatName() {
@@ -143,8 +143,8 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newShowSerName(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(8, value);
+    public static DeleteOrDLblsValueModel newShowSerName(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(8, value);
     }
 
     public boolean isShowSerName() {
@@ -155,8 +155,8 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newShowPercent(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(9, value);
+    public static DeleteOrDLblsValueModel newShowPercent(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(9, value);
     }
 
     public boolean isShowPercent() {
@@ -167,8 +167,8 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newShowBubbleSize(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(10, value);
+    public static DeleteOrDLblsValueModel newShowBubbleSize(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(10, value);
     }
 
     public boolean isShowBubbleSize() {
@@ -179,20 +179,20 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newSeparator(StringModel value) {
-      return new DeleteOrGroup_DLblsModel(11, value);
+    public static DeleteOrDLblsValueModel newSeparator(StringValueModel value) {
+      return new DeleteOrDLblsValueModel(11, value);
     }
 
     public boolean isSeparator() {
       return this.type == 11;
     }
 
-    public StringModel getSeparator() {
-      return (StringModel) this.value;
+    public StringValueModel getSeparator() {
+      return (StringValueModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newShowLeaderLines(BooleanModel value) {
-      return new DeleteOrGroup_DLblsModel(12, value);
+    public static DeleteOrDLblsValueModel newShowLeaderLines(BooleanModel value) {
+      return new DeleteOrDLblsValueModel(12, value);
     }
 
     public boolean isShowLeaderLines() {
@@ -203,8 +203,8 @@ public class DLblsModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrGroup_DLblsModel newLeaderLines(ChartLinesModel value) {
-      return new DeleteOrGroup_DLblsModel(13, value);
+    public static DeleteOrDLblsValueModel newLeaderLines(ChartLinesModel value) {
+      return new DeleteOrDLblsValueModel(13, value);
     }
 
     public boolean isLeaderLines() {

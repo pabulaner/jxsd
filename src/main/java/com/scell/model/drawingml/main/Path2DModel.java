@@ -1,26 +1,26 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 import java.util.List;
 
 public class Path2DModel {
-  private final PathFillModeModel fill;
+  private final PathFillModeValueModel fill;
 
-  private final BooleanModel extrusionOk;
+  private final BooleanValueModel extrusionOk;
 
-  private final PositiveCoordinateModel h;
+  private final PositiveCoordinateValueModel h;
 
-  private final PositiveCoordinateModel w;
+  private final PositiveCoordinateValueModel w;
 
-  private final BooleanModel stroke;
+  private final BooleanValueModel stroke;
 
-  private final List<CloseOrMoveToOrLnToModel> closeOrMoveToOrLnTo;
+  private final List<CloseOrMoveToOrLnToValueModel> closeOrMoveToOrLnTo;
 
-  public Path2DModel(PathFillModeModel fill, BooleanModel extrusionOk, PositiveCoordinateModel h,
-      PositiveCoordinateModel w, BooleanModel stroke,
-      List<CloseOrMoveToOrLnToModel> closeOrMoveToOrLnTo) {
+  public Path2DModel(PathFillModeValueModel fill, BooleanValueModel extrusionOk,
+      PositiveCoordinateValueModel h, PositiveCoordinateValueModel w, BooleanValueModel stroke,
+      List<CloseOrMoveToOrLnToValueModel> closeOrMoveToOrLnTo) {
     this.fill = fill;
     this.extrusionOk = extrusionOk;
     this.h = h;
@@ -29,46 +29,46 @@ public class Path2DModel {
     this.closeOrMoveToOrLnTo = closeOrMoveToOrLnTo;
   }
 
-  public PathFillModeModel getFill() {
+  public PathFillModeValueModel getFill() {
     return this.fill;
   }
 
-  public BooleanModel getExtrusionOk() {
+  public BooleanValueModel getExtrusionOk() {
     return this.extrusionOk;
   }
 
-  public PositiveCoordinateModel getH() {
+  public PositiveCoordinateValueModel getH() {
     return this.h;
   }
 
-  public PositiveCoordinateModel getW() {
+  public PositiveCoordinateValueModel getW() {
     return this.w;
   }
 
-  public BooleanModel getStroke() {
+  public BooleanValueModel getStroke() {
     return this.stroke;
   }
 
-  public List<CloseOrMoveToOrLnToModel> getCloseOrMoveToOrLnTo() {
+  public List<CloseOrMoveToOrLnToValueModel> getCloseOrMoveToOrLnTo() {
     return this.closeOrMoveToOrLnTo;
   }
 
-  public static class CloseOrMoveToOrLnToModel {
+  public static class CloseOrMoveToOrLnToValueModel {
     private final int type;
 
     private final Object value;
 
-    public CloseOrMoveToOrLnToModel() {
+    public CloseOrMoveToOrLnToValueModel() {
       this(-1, null);
     }
 
-    private CloseOrMoveToOrLnToModel(Integer type, Object value) {
+    private CloseOrMoveToOrLnToValueModel(Integer type, Object value) {
       this.type = type;
       this.value = value;
     }
 
-    public static CloseOrMoveToOrLnToModel newClose(Path2DCloseModel value) {
-      return new CloseOrMoveToOrLnToModel(0, value);
+    public static CloseOrMoveToOrLnToValueModel newClose(Path2DCloseModel value) {
+      return new CloseOrMoveToOrLnToValueModel(0, value);
     }
 
     public boolean isClose() {
@@ -79,8 +79,8 @@ public class Path2DModel {
       return (Path2DCloseModel) this.value;
     }
 
-    public static CloseOrMoveToOrLnToModel newMoveTo(Path2DMoveToModel value) {
-      return new CloseOrMoveToOrLnToModel(1, value);
+    public static CloseOrMoveToOrLnToValueModel newMoveTo(Path2DMoveToModel value) {
+      return new CloseOrMoveToOrLnToValueModel(1, value);
     }
 
     public boolean isMoveTo() {
@@ -91,8 +91,8 @@ public class Path2DModel {
       return (Path2DMoveToModel) this.value;
     }
 
-    public static CloseOrMoveToOrLnToModel newLnTo(Path2DLineToModel value) {
-      return new CloseOrMoveToOrLnToModel(2, value);
+    public static CloseOrMoveToOrLnToValueModel newLnTo(Path2DLineToModel value) {
+      return new CloseOrMoveToOrLnToValueModel(2, value);
     }
 
     public boolean isLnTo() {
@@ -103,8 +103,8 @@ public class Path2DModel {
       return (Path2DLineToModel) this.value;
     }
 
-    public static CloseOrMoveToOrLnToModel newArcTo(Path2DArcToModel value) {
-      return new CloseOrMoveToOrLnToModel(3, value);
+    public static CloseOrMoveToOrLnToValueModel newArcTo(Path2DArcToModel value) {
+      return new CloseOrMoveToOrLnToValueModel(3, value);
     }
 
     public boolean isArcTo() {
@@ -115,8 +115,8 @@ public class Path2DModel {
       return (Path2DArcToModel) this.value;
     }
 
-    public static CloseOrMoveToOrLnToModel newQuadBezTo(Path2DQuadBezierToModel value) {
-      return new CloseOrMoveToOrLnToModel(4, value);
+    public static CloseOrMoveToOrLnToValueModel newQuadBezTo(Path2DQuadBezierToModel value) {
+      return new CloseOrMoveToOrLnToValueModel(4, value);
     }
 
     public boolean isQuadBezTo() {
@@ -127,8 +127,8 @@ public class Path2DModel {
       return (Path2DQuadBezierToModel) this.value;
     }
 
-    public static CloseOrMoveToOrLnToModel newCubicBezTo(Path2DCubicBezierToModel value) {
-      return new CloseOrMoveToOrLnToModel(5, value);
+    public static CloseOrMoveToOrLnToValueModel newCubicBezTo(Path2DCubicBezierToModel value) {
+      return new CloseOrMoveToOrLnToValueModel(5, value);
     }
 
     public boolean isCubicBezTo() {

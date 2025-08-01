@@ -9,6 +9,6 @@ public class GeomGuideConverter {
 
   public static GeomGuideModel fromDocx4J(CTGeomGuide value) {
     if (value == null) return null;
-    return new GeomGuideModel(GeomGuideFormulaConverter.fromDocx4J(value.getFmla()), GeomGuideNameConverter.fromDocx4J(value.getName()));
+    return new GeomGuideModel(GeomGuideFormulaValueConverter.fromDocx4J(value.getFmla()), GeomGuideNameValueConverter.fromDocx4J(value.getName()));
   }
 }

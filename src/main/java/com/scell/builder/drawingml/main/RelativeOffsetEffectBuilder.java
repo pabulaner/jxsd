@@ -1,22 +1,22 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.PercentageModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
 import com.scell.model.drawingml.main.RelativeOffsetEffectModel;
 
 public class RelativeOffsetEffectBuilder {
-  private PercentageModel ty;
+  private PercentageValueModel ty;
 
-  private PercentageModel tx;
+  private PercentageValueModel tx;
 
   public RelativeOffsetEffectBuilder() {
   }
 
-  public RelativeOffsetEffectBuilder setTy(PercentageModel ty) {
+  public RelativeOffsetEffectBuilder setTy(PercentageValueModel ty) {
     this.ty = ty;
     return this;
   }
 
-  public RelativeOffsetEffectBuilder setTx(PercentageModel tx) {
+  public RelativeOffsetEffectBuilder setTx(PercentageValueModel tx) {
     this.tx = tx;
     return this;
   }

@@ -9,6 +9,6 @@ public class BlendEffectConverter {
 
   public static BlendEffectModel fromDocx4J(CTBlendEffect value) {
     if (value == null) return null;
-    return new BlendEffectModel(BlendModeConverter.fromDocx4J(value.getBlend()), EffectContainerConverter.fromDocx4J(value.getCont()));
+    return new BlendEffectModel(BlendModeValueConverter.fromDocx4J(value.getBlend()), EffectContainerConverter.fromDocx4J(value.getCont()));
   }
 }

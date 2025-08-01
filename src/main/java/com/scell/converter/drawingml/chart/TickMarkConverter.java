@@ -9,6 +9,6 @@ public class TickMarkConverter {
 
   public static TickMarkModel fromDocx4J(CTTickMark value) {
     if (value == null) return null;
-    return new TickMarkModel(TickMarkConverter.fromDocx4J(value.getVal()));
+    return new TickMarkModel(TickMarkValueConverter.fromDocx4J(value.getVal()));
   }
 }

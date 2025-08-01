@@ -1,22 +1,22 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class NumFmtModel {
-  private final XstringModel formatCode;
+  private final XstringValueModel formatCode;
 
-  private final BooleanModel sourceLinked;
+  private final BooleanValueModel sourceLinked;
 
-  public NumFmtModel(XstringModel formatCode, BooleanModel sourceLinked) {
+  public NumFmtModel(XstringValueModel formatCode, BooleanValueModel sourceLinked) {
     this.formatCode = formatCode;
     this.sourceLinked = sourceLinked;
   }
 
-  public XstringModel getFormatCode() {
+  public XstringValueModel getFormatCode() {
     return this.formatCode;
   }
 
-  public BooleanModel getSourceLinked() {
+  public BooleanValueModel getSourceLinked() {
     return this.sourceLinked;
   }
 }

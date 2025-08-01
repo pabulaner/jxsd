@@ -1,12 +1,29 @@
 package io.github.pabulaner.jxsd.java;
 
-import java.util.Collections;
 import java.util.List;
 
-public record JavaChoice(JavaType type, List<JavaClass> inners, List<JavaField> fields) implements JavaComplex {
+public final class JavaChoice extends JavaComplex {
 
-    public JavaChoice {
-        inners = List.copyOf(inners);
-        fields = List.copyOf(fields);
+    private JavaChoice(JavaType type, List<JavaType> interfaces, List<JavaClass> inners, List<JavaField> fields) {
+        super(type, interfaces, inners, fields);
+    }
+
+    @Override
+    public Builder builder() {
+        return new Builder(this);
+    }
+
+    public static final class Builder extends JavaComplex.Builder<Builder, JavaChoice> {
+
+        public Builder() {
+        }
+
+        public Builder(JavaChoice other) {
+            super(other);
+        }
+
+        public JavaChoice build() {
+            return new JavaChoice(type, interfaces, inners, fields);
+        }
     }
 }

@@ -1,22 +1,22 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.DoubleModel;
+import com.scell.model.XMLSchema.DoubleValueModel;
 
 public class PageMarginsModel {
-  private final DoubleModel footer;
+  private final DoubleValueModel footer;
 
-  private final DoubleModel l;
+  private final DoubleValueModel l;
 
-  private final DoubleModel t;
+  private final DoubleValueModel t;
 
-  private final DoubleModel header;
+  private final DoubleValueModel header;
 
-  private final DoubleModel r;
+  private final DoubleValueModel r;
 
-  private final DoubleModel b;
+  private final DoubleValueModel b;
 
-  public PageMarginsModel(DoubleModel footer, DoubleModel l, DoubleModel t, DoubleModel header,
-      DoubleModel r, DoubleModel b) {
+  public PageMarginsModel(DoubleValueModel footer, DoubleValueModel l, DoubleValueModel t,
+      DoubleValueModel header, DoubleValueModel r, DoubleValueModel b) {
     this.footer = footer;
     this.l = l;
     this.t = t;
@@ -25,27 +25,27 @@ public class PageMarginsModel {
     this.b = b;
   }
 
-  public DoubleModel getFooter() {
+  public DoubleValueModel getFooter() {
     return this.footer;
   }
 
-  public DoubleModel getL() {
+  public DoubleValueModel getL() {
     return this.l;
   }
 
-  public DoubleModel getT() {
+  public DoubleValueModel getT() {
     return this.t;
   }
 
-  public DoubleModel getHeader() {
+  public DoubleValueModel getHeader() {
     return this.header;
   }
 
-  public DoubleModel getR() {
+  public DoubleValueModel getR() {
     return this.r;
   }
 
-  public DoubleModel getB() {
+  public DoubleValueModel getB() {
     return this.b;
   }
 }

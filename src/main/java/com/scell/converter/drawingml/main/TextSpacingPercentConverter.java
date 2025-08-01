@@ -9,6 +9,6 @@ public class TextSpacingPercentConverter {
 
   public static TextSpacingPercentModel fromDocx4J(CTTextSpacingPercent value) {
     if (value == null) return null;
-    return new TextSpacingPercentModel(TextSpacingPercentConverter.fromDocx4J(value.getVal()));
+    return new TextSpacingPercentModel(TextSpacingPercentValueConverter.fromDocx4J(value.getVal()));
   }
 }

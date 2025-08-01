@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class OverlapModel {
-  private final OverlapModel val;
+  private final OverlapValueModel val;
 
-  public OverlapModel(OverlapModel val) {
+  public OverlapModel(OverlapValueModel val) {
     this.val = val;
   }
 
-  public OverlapModel getVal() {
+  public OverlapValueModel getVal() {
     return this.val;
   }
 }

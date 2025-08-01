@@ -4,16 +4,16 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class GradientStopModel {
-  private final PositiveFixedPercentageModel pos;
+  private final PositiveFixedPercentageValueModel pos;
 
   private final ColorChoiceModel egColorChoice;
 
-  public GradientStopModel(PositiveFixedPercentageModel pos, ColorChoiceModel egColorChoice) {
+  public GradientStopModel(PositiveFixedPercentageValueModel pos, ColorChoiceModel egColorChoice) {
     this.pos = pos;
     this.egColorChoice = egColorChoice;
   }
 
-  public PositiveFixedPercentageModel getPos() {
+  public PositiveFixedPercentageValueModel getPos() {
     return this.pos;
   }
 

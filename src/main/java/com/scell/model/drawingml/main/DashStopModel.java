@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
 public class DashStopModel {
-  private final PositivePercentageModel sp;
+  private final PositivePercentageValueModel sp;
 
-  private final PositivePercentageModel d;
+  private final PositivePercentageValueModel d;
 
-  public DashStopModel(PositivePercentageModel sp, PositivePercentageModel d) {
+  public DashStopModel(PositivePercentageValueModel sp, PositivePercentageValueModel d) {
     this.sp = sp;
     this.d = d;
   }
 
-  public PositivePercentageModel getSp() {
+  public PositivePercentageValueModel getSp() {
     return this.sp;
   }
 
-  public PositivePercentageModel getD() {
+  public PositivePercentageValueModel getD() {
     return this.d;
   }
 }

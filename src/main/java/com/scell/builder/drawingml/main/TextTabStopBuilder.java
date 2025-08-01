@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.Coordinate32Model;
-import com.scell.model.drawingml.main.TextTabAlignTypeModel;
+import com.scell.model.drawingml.main.Coordinate32ValueModel;
+import com.scell.model.drawingml.main.TextTabAlignTypeValueModel;
 import com.scell.model.drawingml.main.TextTabStopModel;
 
 public class TextTabStopBuilder {
-  private Coordinate32Model pos;
+  private Coordinate32ValueModel pos;
 
-  private TextTabAlignTypeModel algn;
+  private TextTabAlignTypeValueModel algn;
 
   public TextTabStopBuilder() {
   }
 
-  public TextTabStopBuilder setPos(Coordinate32Model pos) {
+  public TextTabStopBuilder setPos(Coordinate32ValueModel pos) {
     this.pos = pos;
     return this;
   }
 
-  public TextTabStopBuilder setAlgn(TextTabAlignTypeModel algn) {
+  public TextTabStopBuilder setAlgn(TextTabAlignTypeValueModel algn) {
     this.algn = algn;
     return this;
   }

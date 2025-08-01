@@ -15,11 +15,13 @@ public class PkgRenameResolver implements Resolver {
 
     @Override
     public JavaType resolve(JavaType type) {
-        List<String> pkg = type.pkg()
+        List<String> pkg = type.getPkg()
                 .stream()
                 .map(value -> rename.getOrDefault(value, value))
                 .toList();
 
-        return new JavaType(pkg, type.outer(), type.name(), type.minOccurs(), type.maxOccurs());
+        return new JavaType.Builder(type)
+                .setPkg(pkg)
+                .build();
     }
 }

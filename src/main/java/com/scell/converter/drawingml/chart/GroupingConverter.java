@@ -9,6 +9,6 @@ public class GroupingConverter {
 
   public static GroupingModel fromDocx4J(CTGrouping value) {
     if (value == null) return null;
-    return new GroupingModel(GroupingConverter.fromDocx4J(value.getVal()));
+    return new GroupingModel(GroupingValueConverter.fromDocx4J(value.getVal()));
   }
 }

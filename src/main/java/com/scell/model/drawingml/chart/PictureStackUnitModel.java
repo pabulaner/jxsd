@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class PictureStackUnitModel {
-  private final PictureStackUnitModel val;
+  private final PictureStackUnitValueModel val;
 
-  public PictureStackUnitModel(PictureStackUnitModel val) {
+  public PictureStackUnitModel(PictureStackUnitValueModel val) {
     this.val = val;
   }
 
-  public PictureStackUnitModel getVal() {
+  public PictureStackUnitValueModel getVal() {
     return this.val;
   }
 }

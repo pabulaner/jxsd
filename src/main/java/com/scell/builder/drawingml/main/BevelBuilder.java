@@ -1,30 +1,30 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.BevelModel;
-import com.scell.model.drawingml.main.BevelPresetTypeModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
+import com.scell.model.drawingml.main.BevelPresetTypeValueModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
 
 public class BevelBuilder {
-  private PositiveCoordinateModel h;
+  private PositiveCoordinateValueModel h;
 
-  private PositiveCoordinateModel w;
+  private PositiveCoordinateValueModel w;
 
-  private BevelPresetTypeModel prst;
+  private BevelPresetTypeValueModel prst;
 
   public BevelBuilder() {
   }
 
-  public BevelBuilder setH(PositiveCoordinateModel h) {
+  public BevelBuilder setH(PositiveCoordinateValueModel h) {
     this.h = h;
     return this;
   }
 
-  public BevelBuilder setW(PositiveCoordinateModel w) {
+  public BevelBuilder setW(PositiveCoordinateValueModel w) {
     this.w = w;
     return this;
   }
 
-  public BevelBuilder setPrst(BevelPresetTypeModel prst) {
+  public BevelBuilder setPrst(BevelPresetTypeValueModel prst) {
     this.prst = prst;
     return this;
   }

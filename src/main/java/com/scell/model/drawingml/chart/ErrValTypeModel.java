@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class ErrValTypeModel {
-  private final ErrValTypeModel val;
+  private final ErrValTypeValueModel val;
 
-  public ErrValTypeModel(ErrValTypeModel val) {
+  public ErrValTypeModel(ErrValTypeValueModel val) {
     this.val = val;
   }
 
-  public ErrValTypeModel getVal() {
+  public ErrValTypeValueModel getVal() {
     return this.val;
   }
 }

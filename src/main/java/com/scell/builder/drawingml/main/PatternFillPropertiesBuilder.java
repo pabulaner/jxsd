@@ -2,10 +2,10 @@ package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.ColorModel;
 import com.scell.model.drawingml.main.PatternFillPropertiesModel;
-import com.scell.model.drawingml.main.PresetPatternValModel;
+import com.scell.model.drawingml.main.PresetPatternValValueModel;
 
 public class PatternFillPropertiesBuilder {
-  private PresetPatternValModel prst;
+  private PresetPatternValValueModel prst;
 
   private ColorModel fgClr;
 
@@ -14,7 +14,7 @@ public class PatternFillPropertiesBuilder {
   public PatternFillPropertiesBuilder() {
   }
 
-  public PatternFillPropertiesBuilder setPrst(PresetPatternValModel prst) {
+  public PatternFillPropertiesBuilder setPrst(PresetPatternValValueModel prst) {
     this.prst = prst;
     return this;
   }

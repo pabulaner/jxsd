@@ -9,6 +9,6 @@ public class TextBulletSizePercentConverter {
 
   public static TextBulletSizePercentModel fromDocx4J(CTTextBulletSizePercent value) {
     if (value == null) return null;
-    return new TextBulletSizePercentModel(TextBulletSizePercentConverter.fromDocx4J(value.getVal()));
+    return new TextBulletSizePercentModel(TextBulletSizePercentValueConverter.fromDocx4J(value.getVal()));
   }
 }

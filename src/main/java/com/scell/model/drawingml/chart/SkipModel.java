@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class SkipModel {
-  private final SkipModel val;
+  private final SkipValueModel val;
 
-  public SkipModel(SkipModel val) {
+  public SkipModel(SkipValueModel val) {
     this.val = val;
   }
 
-  public SkipModel getVal() {
+  public SkipValueModel getVal() {
     return this.val;
   }
 }

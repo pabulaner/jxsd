@@ -15,7 +15,7 @@ public class GroupShapeBuilder {
 
   private GroupShapePropertiesModel grpSpPr;
 
-  private List<GroupShapeModel.SpOrGrpSpOrGraphicFrameModel> spOrGrpSpOrGraphicFrame;
+  private List<GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel> spOrGrpSpOrGraphicFrame;
 
   public GroupShapeBuilder() {
   }
@@ -31,7 +31,7 @@ public class GroupShapeBuilder {
   }
 
   public GroupShapeBuilder setSpOrGrpSpOrGraphicFrame(
-      List<GroupShapeModel.SpOrGrpSpOrGraphicFrameModel> spOrGrpSpOrGraphicFrame) {
+      List<GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel> spOrGrpSpOrGraphicFrame) {
     this.spOrGrpSpOrGraphicFrame = spOrGrpSpOrGraphicFrame;
     return this;
   }
@@ -47,57 +47,58 @@ public class GroupShapeBuilder {
     return this;
   }
 
-  public static class SpOrGrpSpOrGraphicFrameBuilder {
+  public static class SpOrGrpSpOrGraphicFrameValueBuilder {
     private int type;
 
     private Object value;
 
-    public SpOrGrpSpOrGraphicFrameBuilder() {
+    public SpOrGrpSpOrGraphicFrameValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setSp(ShapeModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setSp(ShapeModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setGrpSp(GroupShapeModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setGrpSp(GroupShapeModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setGraphicFrame(GraphicFrameModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setGraphicFrame(GraphicFrameModel value) {
       this.type = 2;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setCxnSp(ConnectorModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setCxnSp(ConnectorModel value) {
       this.type = 3;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setPic(PictureModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setPic(PictureModel value) {
       this.type = 4;
       this.value = value;
       return this;
     }
 
-    public GroupShapeModel.SpOrGrpSpOrGraphicFrameModel build() {
-      if (this.type == -1) return new GroupShapeModel.SpOrGrpSpOrGraphicFrameModel();
-      if (this.type == 0) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newSp((ShapeModel) this.value);
-      if (this.type == 1) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newGrpSp((GroupShapeModel) this.value);
-      if (this.type == 2) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newGraphicFrame((GraphicFrameModel) this.value);
-      if (this.type == 3) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newCxnSp((ConnectorModel) this.value);
-      if (this.type == 4) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newPic((PictureModel) this.value);
+    public GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel build() {
+      if (this.type == -1) return new GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel();
+      if (this.type == 0) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newSp((ShapeModel) this.value);
+      if (this.type == 1) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newGrpSp((GroupShapeModel) this.value);
+      if (this.type == 2) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newGraphicFrame((GraphicFrameModel) this.value);
+      if (this.type == 3) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newCxnSp((ConnectorModel) this.value);
+      if (this.type == 4) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newPic((PictureModel) this.value);
       return null;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder from(GroupShapeModel.SpOrGrpSpOrGraphicFrameModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder from(
+        GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isSp()) {

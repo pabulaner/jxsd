@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.DLblPosModel;
+import com.scell.model.drawingml.chart.DLblPosValueModel;
 
 public class DLblPosBuilder {
-  private DLblPosModel val;
+  private DLblPosValueModel val;
 
   public DLblPosBuilder() {
   }
 
-  public DLblPosBuilder setVal(DLblPosModel val) {
+  public DLblPosBuilder setVal(DLblPosValueModel val) {
     this.val = val;
     return this;
   }

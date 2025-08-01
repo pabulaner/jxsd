@@ -1,16 +1,16 @@
 package com.scell.model.drawingml.main;
 
 public class PathShadePropertiesModel {
-  private final PathShadeTypeModel path;
+  private final PathShadeTypeValueModel path;
 
   private final RelativeRectModel fillToRect;
 
-  public PathShadePropertiesModel(PathShadeTypeModel path, RelativeRectModel fillToRect) {
+  public PathShadePropertiesModel(PathShadeTypeValueModel path, RelativeRectModel fillToRect) {
     this.path = path;
     this.fillToRect = fillToRect;
   }
 
-  public PathShadeTypeModel getPath() {
+  public PathShadeTypeValueModel getPath() {
     return this.path;
   }
 

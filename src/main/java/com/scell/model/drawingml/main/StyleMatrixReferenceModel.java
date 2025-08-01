@@ -4,17 +4,17 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class StyleMatrixReferenceModel {
-  private final StyleMatrixColumnIndexModel idx;
+  private final StyleMatrixColumnIndexValueModel idx;
 
   private final ColorChoiceModel egColorChoice;
 
-  public StyleMatrixReferenceModel(StyleMatrixColumnIndexModel idx,
+  public StyleMatrixReferenceModel(StyleMatrixColumnIndexValueModel idx,
       ColorChoiceModel egColorChoice) {
     this.idx = idx;
     this.egColorChoice = egColorChoice;
   }
 
-  public StyleMatrixColumnIndexModel getIdx() {
+  public StyleMatrixColumnIndexValueModel getIdx() {
     return this.idx;
   }
 

@@ -1,6 +1,6 @@
 package com.scell.converter.drawingml.main;
 
-import com.scell.converter.XMLSchema.BooleanConverter;
+import com.scell.converter.XMLSchema.BooleanValueConverter;
 import com.scell.model.drawingml.main.OuterShadowEffectModel;
 import org.docx4j.dml.CTOuterShadowEffect;
 
@@ -17,6 +17,6 @@ public class OuterShadowEffectConverter {
     if (value.getSysClr() != null) egColorChoice = OuterShadowEffectModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = OuterShadowEffectModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = OuterShadowEffectModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new OuterShadowEffectModel(PositiveCoordinateConverter.fromDocx4J(value.getBlurRad()), PositiveCoordinateConverter.fromDocx4J(value.getDist()), BooleanConverter.fromDocx4J(value.isRotWithShape()), PercentageConverter.fromDocx4J(value.getSy()), FixedAngleConverter.fromDocx4J(value.getKy()), PercentageConverter.fromDocx4J(value.getSx()), FixedAngleConverter.fromDocx4J(value.getKx()), PositiveFixedAngleConverter.fromDocx4J(value.getDir()), RectAlignmentConverter.fromDocx4J(value.getAlgn()), egColorChoice);
+    return new OuterShadowEffectModel(PositiveCoordinateValueConverter.fromDocx4J(value.getBlurRad()), PositiveCoordinateValueConverter.fromDocx4J(value.getDist()), BooleanValueConverter.fromDocx4J(value.isRotWithShape()), PercentageValueConverter.fromDocx4J(value.getSy()), FixedAngleValueConverter.fromDocx4J(value.getKy()), PercentageValueConverter.fromDocx4J(value.getSx()), FixedAngleValueConverter.fromDocx4J(value.getKx()), PositiveFixedAngleValueConverter.fromDocx4J(value.getDir()), RectAlignmentValueConverter.fromDocx4J(value.getAlgn()), egColorChoice);
   }
 }

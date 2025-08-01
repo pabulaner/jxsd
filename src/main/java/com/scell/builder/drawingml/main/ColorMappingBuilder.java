@@ -1,95 +1,95 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.ColorMappingModel;
-import com.scell.model.drawingml.main.ColorSchemeIndexModel;
+import com.scell.model.drawingml.main.ColorSchemeIndexValueModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 
 public class ColorMappingBuilder {
-  private ColorSchemeIndexModel tx1;
+  private ColorSchemeIndexValueModel tx1;
 
-  private ColorSchemeIndexModel accent3;
+  private ColorSchemeIndexValueModel accent3;
 
-  private ColorSchemeIndexModel accent2;
+  private ColorSchemeIndexValueModel accent2;
 
-  private ColorSchemeIndexModel hlink;
+  private ColorSchemeIndexValueModel hlink;
 
-  private ColorSchemeIndexModel accent1;
+  private ColorSchemeIndexValueModel accent1;
 
-  private ColorSchemeIndexModel folHlink;
+  private ColorSchemeIndexValueModel folHlink;
 
-  private ColorSchemeIndexModel accent6;
+  private ColorSchemeIndexValueModel accent6;
 
-  private ColorSchemeIndexModel bg2;
+  private ColorSchemeIndexValueModel bg2;
 
-  private ColorSchemeIndexModel accent5;
+  private ColorSchemeIndexValueModel accent5;
 
-  private ColorSchemeIndexModel bg1;
+  private ColorSchemeIndexValueModel bg1;
 
-  private ColorSchemeIndexModel tx2;
+  private ColorSchemeIndexValueModel tx2;
 
-  private ColorSchemeIndexModel accent4;
+  private ColorSchemeIndexValueModel accent4;
 
   private OfficeArtExtensionListModel extLst;
 
   public ColorMappingBuilder() {
   }
 
-  public ColorMappingBuilder setTx1(ColorSchemeIndexModel tx1) {
+  public ColorMappingBuilder setTx1(ColorSchemeIndexValueModel tx1) {
     this.tx1 = tx1;
     return this;
   }
 
-  public ColorMappingBuilder setAccent3(ColorSchemeIndexModel accent3) {
+  public ColorMappingBuilder setAccent3(ColorSchemeIndexValueModel accent3) {
     this.accent3 = accent3;
     return this;
   }
 
-  public ColorMappingBuilder setAccent2(ColorSchemeIndexModel accent2) {
+  public ColorMappingBuilder setAccent2(ColorSchemeIndexValueModel accent2) {
     this.accent2 = accent2;
     return this;
   }
 
-  public ColorMappingBuilder setHlink(ColorSchemeIndexModel hlink) {
+  public ColorMappingBuilder setHlink(ColorSchemeIndexValueModel hlink) {
     this.hlink = hlink;
     return this;
   }
 
-  public ColorMappingBuilder setAccent1(ColorSchemeIndexModel accent1) {
+  public ColorMappingBuilder setAccent1(ColorSchemeIndexValueModel accent1) {
     this.accent1 = accent1;
     return this;
   }
 
-  public ColorMappingBuilder setFolHlink(ColorSchemeIndexModel folHlink) {
+  public ColorMappingBuilder setFolHlink(ColorSchemeIndexValueModel folHlink) {
     this.folHlink = folHlink;
     return this;
   }
 
-  public ColorMappingBuilder setAccent6(ColorSchemeIndexModel accent6) {
+  public ColorMappingBuilder setAccent6(ColorSchemeIndexValueModel accent6) {
     this.accent6 = accent6;
     return this;
   }
 
-  public ColorMappingBuilder setBg2(ColorSchemeIndexModel bg2) {
+  public ColorMappingBuilder setBg2(ColorSchemeIndexValueModel bg2) {
     this.bg2 = bg2;
     return this;
   }
 
-  public ColorMappingBuilder setAccent5(ColorSchemeIndexModel accent5) {
+  public ColorMappingBuilder setAccent5(ColorSchemeIndexValueModel accent5) {
     this.accent5 = accent5;
     return this;
   }
 
-  public ColorMappingBuilder setBg1(ColorSchemeIndexModel bg1) {
+  public ColorMappingBuilder setBg1(ColorSchemeIndexValueModel bg1) {
     this.bg1 = bg1;
     return this;
   }
 
-  public ColorMappingBuilder setTx2(ColorSchemeIndexModel tx2) {
+  public ColorMappingBuilder setTx2(ColorSchemeIndexValueModel tx2) {
     this.tx2 = tx2;
     return this;
   }
 
-  public ColorMappingBuilder setAccent4(ColorSchemeIndexModel accent4) {
+  public ColorMappingBuilder setAccent4(ColorSchemeIndexValueModel accent4) {
     this.accent4 = accent4;
     return this;
   }

@@ -9,6 +9,6 @@ public class PositivePercentageConverter {
 
   public static PositivePercentageModel fromDocx4J(CTPositivePercentage value) {
     if (value == null) return null;
-    return new PositivePercentageModel(PositivePercentageConverter.fromDocx4J(value.getVal()));
+    return new PositivePercentageModel(PositivePercentageValueConverter.fromDocx4J(value.getVal()));
   }
 }

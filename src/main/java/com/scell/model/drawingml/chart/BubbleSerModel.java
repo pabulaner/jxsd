@@ -3,7 +3,7 @@ package com.scell.model.drawingml.chart;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class BubbleSerModel {
+public class BubbleSerModel implements ISeriesValueModel, IInvertIfNegativeComponentValueModel {
   private final UnsignedIntModel idx;
 
   private final UnsignedIntModel order;

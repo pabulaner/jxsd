@@ -14,6 +14,6 @@ public class HslColorConverter {
     List<HslColorModel.ColorTransformModel> egColorTransform = value.getEGColorTransform().stream().map(val -> {
       return new HslColorModel.ColorTransformModel();
     } ).collect(Collectors.toList());
-    return new HslColorModel(PositiveFixedAngleConverter.fromDocx4J(value.getHue()), PercentageConverter.fromDocx4J(value.getLum()), PercentageConverter.fromDocx4J(value.getSat()), egColorTransform);
+    return new HslColorModel(PositiveFixedAngleValueConverter.fromDocx4J(value.getHue()), PercentageValueConverter.fromDocx4J(value.getLum()), PercentageValueConverter.fromDocx4J(value.getSat()), egColorTransform);
   }
 }

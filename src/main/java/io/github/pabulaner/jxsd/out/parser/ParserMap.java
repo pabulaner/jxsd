@@ -14,17 +14,25 @@ public class ParserMap {
 
     private final JavaScope scope;
 
+    private final Map<JavaType, List<JavaType>> implementations;
+
     private final Map<String, ParserGroup> groups;
 
-    public ParserMap(JavaScope scope) {
+    public ParserMap(JavaScope scope, Map<JavaType, List<JavaType>> implementations) {
         this.scope = scope;
+        this.implementations = implementations;
         this.groups = new HashMap<>();
     }
 
     public void parse(List<JavaClass> classes, BiConsumer<JavaType, TypeSpec> consumer) {
-        classes.forEach(clazz -> groups.forEach((key, value) -> consumer.accept(
-                value.getResolver().resolve(clazz.type()),
-                value.parse(false, clazz))));
+        classes.forEach(clazz -> groups.forEach((key, value) -> {
+            JavaType type = value.getResolver().resolve(clazz.getType());
+            TypeSpec result = value.parse(false, clazz);
+
+            if (result != null) {
+                consumer.accept(type, result);
+            }
+        }));
     }
 
     public void addGroup(String key, ParserGroup group) {
@@ -33,6 +41,10 @@ public class ParserMap {
 
     public JavaScope getScope() {
         return scope;
+    }
+
+    public Map<JavaType, List<JavaType>> getImplementations() {
+        return implementations;
     }
 
     public ParserGroup getGroup(String key) {

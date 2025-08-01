@@ -1,23 +1,24 @@
 package com.scell.model.drawingml.main;
 
 public class LightRigModel {
-  private final LightRigTypeModel rig;
+  private final LightRigTypeValueModel rig;
 
-  private final LightRigDirectionModel dir;
+  private final LightRigDirectionValueModel dir;
 
   private final SphereCoordsModel rot;
 
-  public LightRigModel(LightRigTypeModel rig, LightRigDirectionModel dir, SphereCoordsModel rot) {
+  public LightRigModel(LightRigTypeValueModel rig, LightRigDirectionValueModel dir,
+      SphereCoordsModel rot) {
     this.rig = rig;
     this.dir = dir;
     this.rot = rot;
   }
 
-  public LightRigTypeModel getRig() {
+  public LightRigTypeValueModel getRig() {
     return this.rig;
   }
 
-  public LightRigDirectionModel getDir() {
+  public LightRigDirectionValueModel getDir() {
     return this.dir;
   }
 

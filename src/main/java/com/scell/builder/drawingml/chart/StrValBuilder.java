@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 import com.scell.model.drawingml.chart.StrValModel;
-import com.scell.model.drawingml.chart.XstringModel;
+import com.scell.model.drawingml.chart.XstringValueModel;
 
 public class StrValBuilder {
-  private UnsignedIntModel idx;
+  private UnsignedIntValueModel idx;
 
-  private XstringModel v;
+  private XstringValueModel v;
 
   public StrValBuilder() {
   }
 
-  public StrValBuilder setIdx(UnsignedIntModel idx) {
+  public StrValBuilder setIdx(UnsignedIntValueModel idx) {
     this.idx = idx;
     return this;
   }
 
-  public StrValBuilder setV(XstringModel v) {
+  public StrValBuilder setV(XstringValueModel v) {
     this.v = v;
     return this;
   }

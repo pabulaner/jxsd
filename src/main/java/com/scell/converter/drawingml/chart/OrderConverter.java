@@ -9,6 +9,6 @@ public class OrderConverter {
 
   public static OrderModel fromDocx4J(CTOrder value) {
     if (value == null) return null;
-    return new OrderModel(OrderConverter.fromDocx4J(value.getVal()));
+    return new OrderModel(OrderValueConverter.fromDocx4J(value.getVal()));
   }
 }

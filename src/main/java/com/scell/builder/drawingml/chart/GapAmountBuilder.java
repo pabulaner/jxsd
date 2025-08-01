@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.GapAmountModel;
+import com.scell.model.drawingml.chart.GapAmountValueModel;
 
 public class GapAmountBuilder {
-  private GapAmountModel val;
+  private GapAmountValueModel val;
 
   public GapAmountBuilder() {
   }
 
-  public GapAmountBuilder setVal(GapAmountModel val) {
+  public GapAmountBuilder setVal(GapAmountValueModel val) {
     this.val = val;
     return this;
   }

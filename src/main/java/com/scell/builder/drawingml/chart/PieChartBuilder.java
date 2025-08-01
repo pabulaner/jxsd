@@ -8,7 +8,7 @@ import com.scell.model.drawingml.chart.PieChartModel;
 import com.scell.model.drawingml.chart.PieSerModel;
 import java.util.List;
 
-public class PieChartBuilder {
+public class PieChartBuilder implements IPieChartValueBuilder {
   private BooleanModel varyColors;
 
   private List<PieSerModel> ser;

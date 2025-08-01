@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.AxisUnitModel;
+import com.scell.model.drawingml.chart.AxisUnitValueModel;
 
 public class AxisUnitBuilder {
-  private AxisUnitModel val;
+  private AxisUnitValueModel val;
 
   public AxisUnitBuilder() {
   }
 
-  public AxisUnitBuilder setVal(AxisUnitModel val) {
+  public AxisUnitBuilder setVal(AxisUnitValueModel val) {
     this.val = val;
     return this;
   }

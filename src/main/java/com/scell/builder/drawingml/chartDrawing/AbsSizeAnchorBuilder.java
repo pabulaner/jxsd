@@ -15,7 +15,7 @@ public class AbsSizeAnchorBuilder {
 
   private PositiveSize2DModel ext;
 
-  private AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel spOrGrpSpOrGraphicFrame;
+  private AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel spOrGrpSpOrGraphicFrame;
 
   public AbsSizeAnchorBuilder() {
   }
@@ -31,7 +31,7 @@ public class AbsSizeAnchorBuilder {
   }
 
   public AbsSizeAnchorBuilder setSpOrGrpSpOrGraphicFrame(
-      AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel spOrGrpSpOrGraphicFrame) {
+      AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel spOrGrpSpOrGraphicFrame) {
     this.spOrGrpSpOrGraphicFrame = spOrGrpSpOrGraphicFrame;
     return this;
   }
@@ -47,58 +47,58 @@ public class AbsSizeAnchorBuilder {
     return this;
   }
 
-  public static class SpOrGrpSpOrGraphicFrameBuilder {
+  public static class SpOrGrpSpOrGraphicFrameValueBuilder {
     private int type;
 
     private Object value;
 
-    public SpOrGrpSpOrGraphicFrameBuilder() {
+    public SpOrGrpSpOrGraphicFrameValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setSp(ShapeModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setSp(ShapeModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setGrpSp(GroupShapeModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setGrpSp(GroupShapeModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setGraphicFrame(GraphicFrameModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setGraphicFrame(GraphicFrameModel value) {
       this.type = 2;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setCxnSp(ConnectorModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setCxnSp(ConnectorModel value) {
       this.type = 3;
       this.value = value;
       return this;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder setPic(PictureModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder setPic(PictureModel value) {
       this.type = 4;
       this.value = value;
       return this;
     }
 
-    public AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel build() {
-      if (this.type == -1) return new AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel();
-      if (this.type == 0) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel.newSp((ShapeModel) this.value);
-      if (this.type == 1) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel.newGrpSp((GroupShapeModel) this.value);
-      if (this.type == 2) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel.newGraphicFrame((GraphicFrameModel) this.value);
-      if (this.type == 3) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel.newCxnSp((ConnectorModel) this.value);
-      if (this.type == 4) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel.newPic((PictureModel) this.value);
+    public AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel build() {
+      if (this.type == -1) return new AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel();
+      if (this.type == 0) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel.newSp((ShapeModel) this.value);
+      if (this.type == 1) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel.newGrpSp((GroupShapeModel) this.value);
+      if (this.type == 2) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel.newGraphicFrame((GraphicFrameModel) this.value);
+      if (this.type == 3) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel.newCxnSp((ConnectorModel) this.value);
+      if (this.type == 4) return AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel.newPic((PictureModel) this.value);
       return null;
     }
 
-    public SpOrGrpSpOrGraphicFrameBuilder from(
-        AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameModel value) {
+    public SpOrGrpSpOrGraphicFrameValueBuilder from(
+        AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrameValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isSp()) {

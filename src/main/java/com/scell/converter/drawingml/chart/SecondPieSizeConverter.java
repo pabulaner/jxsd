@@ -9,6 +9,6 @@ public class SecondPieSizeConverter {
 
   public static SecondPieSizeModel fromDocx4J(CTSecondPieSize value) {
     if (value == null) return null;
-    return new SecondPieSizeModel(SecondPieSizeConverter.fromDocx4J(value.getVal()));
+    return new SecondPieSizeModel(SecondPieSizeValueConverter.fromDocx4J(value.getVal()));
   }
 }

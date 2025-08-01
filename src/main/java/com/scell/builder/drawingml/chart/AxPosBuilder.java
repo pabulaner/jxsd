@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.AxPosModel;
+import com.scell.model.drawingml.chart.AxPosValueModel;
 
 public class AxPosBuilder {
-  private AxPosModel val;
+  private AxPosValueModel val;
 
   public AxPosBuilder() {
   }
 
-  public AxPosBuilder setVal(AxPosModel val) {
+  public AxPosBuilder setVal(AxPosValueModel val) {
     this.val = val;
     return this;
   }

@@ -9,6 +9,6 @@ public class LightRigConverter {
 
   public static LightRigModel fromDocx4J(CTLightRig value) {
     if (value == null) return null;
-    return new LightRigModel(LightRigTypeConverter.fromDocx4J(value.getRig()), LightRigDirectionConverter.fromDocx4J(value.getDir()), SphereCoordsConverter.fromDocx4J(value.getRot()));
+    return new LightRigModel(LightRigTypeValueConverter.fromDocx4J(value.getRig()), LightRigDirectionValueConverter.fromDocx4J(value.getDir()), SphereCoordsConverter.fromDocx4J(value.getRot()));
   }
 }

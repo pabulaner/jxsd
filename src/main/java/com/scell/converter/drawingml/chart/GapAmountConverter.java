@@ -9,6 +9,6 @@ public class GapAmountConverter {
 
   public static GapAmountModel fromDocx4J(CTGapAmount value) {
     if (value == null) return null;
-    return new GapAmountModel(GapAmountConverter.fromDocx4J(value.getVal()));
+    return new GapAmountModel(GapAmountValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
 public class GeomGuideModel {
-  private final GeomGuideFormulaModel fmla;
+  private final GeomGuideFormulaValueModel fmla;
 
-  private final GeomGuideNameModel name;
+  private final GeomGuideNameValueModel name;
 
-  public GeomGuideModel(GeomGuideFormulaModel fmla, GeomGuideNameModel name) {
+  public GeomGuideModel(GeomGuideFormulaValueModel fmla, GeomGuideNameValueModel name) {
     this.fmla = fmla;
     this.name = name;
   }
 
-  public GeomGuideFormulaModel getFmla() {
+  public GeomGuideFormulaValueModel getFmla() {
     return this.fmla;
   }
 
-  public GeomGuideNameModel getName() {
+  public GeomGuideNameValueModel getName() {
     return this.name;
   }
 }

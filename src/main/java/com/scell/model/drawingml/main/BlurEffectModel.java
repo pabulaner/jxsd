@@ -1,22 +1,22 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class BlurEffectModel {
-  private final PositiveCoordinateModel rad;
+  private final PositiveCoordinateValueModel rad;
 
-  private final BooleanModel grow;
+  private final BooleanValueModel grow;
 
-  public BlurEffectModel(PositiveCoordinateModel rad, BooleanModel grow) {
+  public BlurEffectModel(PositiveCoordinateValueModel rad, BooleanValueModel grow) {
     this.rad = rad;
     this.grow = grow;
   }
 
-  public PositiveCoordinateModel getRad() {
+  public PositiveCoordinateValueModel getRad() {
     return this.rad;
   }
 
-  public BooleanModel getGrow() {
+  public BooleanValueModel getGrow() {
     return this.grow;
   }
 }

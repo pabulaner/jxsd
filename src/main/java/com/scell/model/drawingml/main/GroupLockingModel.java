@@ -1,27 +1,27 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class GroupLockingModel {
-  private final BooleanModel noResize;
+  private final BooleanValueModel noResize;
 
-  private final BooleanModel noChangeAspect;
+  private final BooleanValueModel noChangeAspect;
 
-  private final BooleanModel noSelect;
+  private final BooleanValueModel noSelect;
 
-  private final BooleanModel noUngrp;
+  private final BooleanValueModel noUngrp;
 
-  private final BooleanModel noGrp;
+  private final BooleanValueModel noGrp;
 
-  private final BooleanModel noMove;
+  private final BooleanValueModel noMove;
 
-  private final BooleanModel noRot;
+  private final BooleanValueModel noRot;
 
   private final OfficeArtExtensionListModel extLst;
 
-  public GroupLockingModel(BooleanModel noResize, BooleanModel noChangeAspect,
-      BooleanModel noSelect, BooleanModel noUngrp, BooleanModel noGrp, BooleanModel noMove,
-      BooleanModel noRot, OfficeArtExtensionListModel extLst) {
+  public GroupLockingModel(BooleanValueModel noResize, BooleanValueModel noChangeAspect,
+      BooleanValueModel noSelect, BooleanValueModel noUngrp, BooleanValueModel noGrp,
+      BooleanValueModel noMove, BooleanValueModel noRot, OfficeArtExtensionListModel extLst) {
     this.noResize = noResize;
     this.noChangeAspect = noChangeAspect;
     this.noSelect = noSelect;
@@ -32,31 +32,31 @@ public class GroupLockingModel {
     this.extLst = extLst;
   }
 
-  public BooleanModel getNoResize() {
+  public BooleanValueModel getNoResize() {
     return this.noResize;
   }
 
-  public BooleanModel getNoChangeAspect() {
+  public BooleanValueModel getNoChangeAspect() {
     return this.noChangeAspect;
   }
 
-  public BooleanModel getNoSelect() {
+  public BooleanValueModel getNoSelect() {
     return this.noSelect;
   }
 
-  public BooleanModel getNoUngrp() {
+  public BooleanValueModel getNoUngrp() {
     return this.noUngrp;
   }
 
-  public BooleanModel getNoGrp() {
+  public BooleanValueModel getNoGrp() {
     return this.noGrp;
   }
 
-  public BooleanModel getNoMove() {
+  public BooleanValueModel getNoMove() {
     return this.noMove;
   }
 
-  public BooleanModel getNoRot() {
+  public BooleanValueModel getNoRot() {
     return this.noRot;
   }
 

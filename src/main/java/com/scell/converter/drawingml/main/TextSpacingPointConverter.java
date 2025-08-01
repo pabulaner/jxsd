@@ -9,6 +9,6 @@ public class TextSpacingPointConverter {
 
   public static TextSpacingPointModel fromDocx4J(CTTextSpacingPoint value) {
     if (value == null) return null;
-    return new TextSpacingPointModel(TextSpacingPointConverter.fromDocx4J(value.getVal()));
+    return new TextSpacingPointModel(TextSpacingPointValueConverter.fromDocx4J(value.getVal()));
   }
 }

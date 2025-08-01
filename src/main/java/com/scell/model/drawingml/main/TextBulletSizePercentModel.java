@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class TextBulletSizePercentModel {
-  private final TextBulletSizePercentModel val;
+  private final TextBulletSizePercentValueModel val;
 
-  public TextBulletSizePercentModel(TextBulletSizePercentModel val) {
+  public TextBulletSizePercentModel(TextBulletSizePercentValueModel val) {
     this.val = val;
   }
 
-  public TextBulletSizePercentModel getVal() {
+  public TextBulletSizePercentValueModel getVal() {
     return this.val;
   }
 }

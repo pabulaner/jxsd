@@ -1,27 +1,27 @@
 package com.scell.model.drawingml.main;
 
 public class Vector3DModel {
-  private final CoordinateModel dz;
+  private final CoordinateValueModel dz;
 
-  private final CoordinateModel dy;
+  private final CoordinateValueModel dy;
 
-  private final CoordinateModel dx;
+  private final CoordinateValueModel dx;
 
-  public Vector3DModel(CoordinateModel dz, CoordinateModel dy, CoordinateModel dx) {
+  public Vector3DModel(CoordinateValueModel dz, CoordinateValueModel dy, CoordinateValueModel dx) {
     this.dz = dz;
     this.dy = dy;
     this.dx = dx;
   }
 
-  public CoordinateModel getDz() {
+  public CoordinateValueModel getDz() {
     return this.dz;
   }
 
-  public CoordinateModel getDy() {
+  public CoordinateValueModel getDy() {
     return this.dy;
   }
 
-  public CoordinateModel getDx() {
+  public CoordinateValueModel getDx() {
     return this.dx;
   }
 }

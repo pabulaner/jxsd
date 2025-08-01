@@ -15,12 +15,12 @@ public class PrimitiveConverterParser extends ConverterParser<JavaPrimitive> {
     }
 
     public MethodSpec.Builder parse(MethodSpec.Builder builder, JavaRestriction clazz) {
-        return parse(builder, clazz.type(), clazz.primitive());
+        return parse(builder, clazz.getType(), clazz.getPrimitive());
     }
 
     @Override
     public MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaPrimitive clazz) {
-        return parse(builder, clazz.type(), clazz.type());
+        return parse(builder, clazz.getType(), clazz.getType());
     }
 
     @Override
@@ -35,6 +35,6 @@ public class PrimitiveConverterParser extends ConverterParser<JavaPrimitive> {
 
     @Override
     public TypeName parseDocx4jType(JavaPrimitive clazz) {
-        return ParserUtil.convertPrimitive(clazz.type(), true);
+        return ParserUtil.convertPrimitive(clazz.getType(), true);
     }
 }

@@ -9,6 +9,6 @@ public class SphereCoordsConverter {
 
   public static SphereCoordsModel fromDocx4J(CTSphereCoords value) {
     if (value == null) return null;
-    return new SphereCoordsModel(PositiveFixedAngleConverter.fromDocx4J(value.getLat()), PositiveFixedAngleConverter.fromDocx4J(value.getRev()), PositiveFixedAngleConverter.fromDocx4J(value.getLon()));
+    return new SphereCoordsModel(PositiveFixedAngleValueConverter.fromDocx4J(value.getLat()), PositiveFixedAngleValueConverter.fromDocx4J(value.getRev()), PositiveFixedAngleValueConverter.fromDocx4J(value.getLon()));
   }
 }

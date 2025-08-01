@@ -9,6 +9,6 @@ public class FixedPercentageConverter {
 
   public static FixedPercentageModel fromDocx4J(CTFixedPercentage value) {
     if (value == null) return null;
-    return new FixedPercentageModel(FixedPercentageConverter.fromDocx4J(value.getVal()));
+    return new FixedPercentageModel(FixedPercentageValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -9,6 +9,6 @@ public class AxPosConverter {
 
   public static AxPosModel fromDocx4J(CTAxPos value) {
     if (value == null) return null;
-    return new AxPosModel(AxPosConverter.fromDocx4J(value.getVal()));
+    return new AxPosModel(AxPosValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -4,7 +4,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaSequence;
-import io.github.pabulaner.jxsd.out.util.Name;
+import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
@@ -18,10 +18,11 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaSequence clazz) {
-        clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
+        super.parse(builder, clazz);
+        clazz.getInners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
-        TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
-        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
+        TypeName builderType = ParserUtil.convertType(clazz.getType(), getResolver());
+        TypeName modelType = ParserUtil.convertType(clazz.getType(), getModelResolver());
 
         MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
                 .addModifiers(Modifier.PUBLIC)
@@ -39,9 +40,9 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
         boolean[] first = { true };
 
-        clazz.fields().forEach(field -> {
-            TypeName fieldType = ParserUtil.convertType(field.type(), getModelResolver());
-            Name fieldName = new Name(getResolver().resolve(field.type(), field.name()));
+        clazz.getFields().forEach(field -> {
+            TypeName fieldType = ParserUtil.convertType(field.getType(), getModelResolver());
+            Name fieldName = new Name(getResolver().resolve(field.getType(), field.getName()));
 
             if (first[0]) {
                 first[0] = false;

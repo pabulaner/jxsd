@@ -9,7 +9,7 @@ import com.scell.model.drawingml.chart.ScatterStyleModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
 import java.util.List;
 
-public class ScatterChartBuilder {
+public class ScatterChartBuilder implements IScatterChartValueBuilder {
   private ScatterStyleModel scatterStyle;
 
   private BooleanModel varyColors;

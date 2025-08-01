@@ -5,16 +5,16 @@ import java.lang.Object;
 import java.util.List;
 
 public class SRgbColorModel {
-  private final HexBinary3Model val;
+  private final HexBinary3ValueModel val;
 
   private final List<ColorTransformModel> egColorTransform;
 
-  public SRgbColorModel(HexBinary3Model val, List<ColorTransformModel> egColorTransform) {
+  public SRgbColorModel(HexBinary3ValueModel val, List<ColorTransformModel> egColorTransform) {
     this.val = val;
     this.egColorTransform = egColorTransform;
   }
 
-  public HexBinary3Model getVal() {
+  public HexBinary3ValueModel getVal() {
     return this.val;
   }
 

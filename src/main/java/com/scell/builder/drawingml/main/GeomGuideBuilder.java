@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.GeomGuideFormulaModel;
+import com.scell.model.drawingml.main.GeomGuideFormulaValueModel;
 import com.scell.model.drawingml.main.GeomGuideModel;
-import com.scell.model.drawingml.main.GeomGuideNameModel;
+import com.scell.model.drawingml.main.GeomGuideNameValueModel;
 
 public class GeomGuideBuilder {
-  private GeomGuideFormulaModel fmla;
+  private GeomGuideFormulaValueModel fmla;
 
-  private GeomGuideNameModel name;
+  private GeomGuideNameValueModel name;
 
   public GeomGuideBuilder() {
   }
 
-  public GeomGuideBuilder setFmla(GeomGuideFormulaModel fmla) {
+  public GeomGuideBuilder setFmla(GeomGuideFormulaValueModel fmla) {
     this.fmla = fmla;
     return this;
   }
 
-  public GeomGuideBuilder setName(GeomGuideNameModel name) {
+  public GeomGuideBuilder setName(GeomGuideNameValueModel name) {
     this.name = name;
     return this;
   }

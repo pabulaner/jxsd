@@ -1,33 +1,34 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
-import com.scell.model.officeDocument.relationships.RelationshipIdModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
+import com.scell.model.officeDocument.relationships.RelationshipIdValueModel;
 
 public class HyperlinkModel {
-  private final StringModel invalidUrl;
+  private final StringValueModel invalidUrl;
 
-  private final StringModel tgtFrame;
+  private final StringValueModel tgtFrame;
 
-  private final RelationshipIdModel id;
+  private final RelationshipIdValueModel id;
 
-  private final BooleanModel history;
+  private final BooleanValueModel history;
 
-  private final StringModel tooltip;
+  private final StringValueModel tooltip;
 
-  private final BooleanModel highlightClick;
+  private final BooleanValueModel highlightClick;
 
-  private final StringModel action;
+  private final StringValueModel action;
 
-  private final BooleanModel endSnd;
+  private final BooleanValueModel endSnd;
 
   private final EmbeddedWAVAudioFileModel snd;
 
   private final OfficeArtExtensionListModel extLst;
 
-  public HyperlinkModel(StringModel invalidUrl, StringModel tgtFrame, RelationshipIdModel id,
-      BooleanModel history, StringModel tooltip, BooleanModel highlightClick, StringModel action,
-      BooleanModel endSnd, EmbeddedWAVAudioFileModel snd, OfficeArtExtensionListModel extLst) {
+  public HyperlinkModel(StringValueModel invalidUrl, StringValueModel tgtFrame,
+      RelationshipIdValueModel id, BooleanValueModel history, StringValueModel tooltip,
+      BooleanValueModel highlightClick, StringValueModel action, BooleanValueModel endSnd,
+      EmbeddedWAVAudioFileModel snd, OfficeArtExtensionListModel extLst) {
     this.invalidUrl = invalidUrl;
     this.tgtFrame = tgtFrame;
     this.id = id;
@@ -40,35 +41,35 @@ public class HyperlinkModel {
     this.extLst = extLst;
   }
 
-  public StringModel getInvalidUrl() {
+  public StringValueModel getInvalidUrl() {
     return this.invalidUrl;
   }
 
-  public StringModel getTgtFrame() {
+  public StringValueModel getTgtFrame() {
     return this.tgtFrame;
   }
 
-  public RelationshipIdModel getId() {
+  public RelationshipIdValueModel getId() {
     return this.id;
   }
 
-  public BooleanModel getHistory() {
+  public BooleanValueModel getHistory() {
     return this.history;
   }
 
-  public StringModel getTooltip() {
+  public StringValueModel getTooltip() {
     return this.tooltip;
   }
 
-  public BooleanModel getHighlightClick() {
+  public BooleanValueModel getHighlightClick() {
     return this.highlightClick;
   }
 
-  public StringModel getAction() {
+  public StringValueModel getAction() {
     return this.action;
   }
 
-  public BooleanModel getEndSnd() {
+  public BooleanValueModel getEndSnd() {
     return this.endSnd;
   }
 

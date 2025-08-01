@@ -1,35 +1,35 @@
 package com.scell.model.drawingml.main;
 
 public class Path2DArcToModel {
-  private final AdjAngleModel stAng;
+  private final AdjAngleValueModel stAng;
 
-  private final AdjAngleModel swAng;
+  private final AdjAngleValueModel swAng;
 
-  private final AdjCoordinateModel wR;
+  private final AdjCoordinateValueModel wR;
 
-  private final AdjCoordinateModel hR;
+  private final AdjCoordinateValueModel hR;
 
-  public Path2DArcToModel(AdjAngleModel stAng, AdjAngleModel swAng, AdjCoordinateModel wR,
-      AdjCoordinateModel hR) {
+  public Path2DArcToModel(AdjAngleValueModel stAng, AdjAngleValueModel swAng,
+      AdjCoordinateValueModel wR, AdjCoordinateValueModel hR) {
     this.stAng = stAng;
     this.swAng = swAng;
     this.wR = wR;
     this.hR = hR;
   }
 
-  public AdjAngleModel getStAng() {
+  public AdjAngleValueModel getStAng() {
     return this.stAng;
   }
 
-  public AdjAngleModel getSwAng() {
+  public AdjAngleValueModel getSwAng() {
     return this.swAng;
   }
 
-  public AdjCoordinateModel getWR() {
+  public AdjCoordinateValueModel getWR() {
     return this.wR;
   }
 
-  public AdjCoordinateModel getHR() {
+  public AdjCoordinateValueModel getHR() {
     return this.hR;
   }
 }

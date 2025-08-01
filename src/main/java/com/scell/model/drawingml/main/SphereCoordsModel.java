@@ -1,28 +1,28 @@
 package com.scell.model.drawingml.main;
 
 public class SphereCoordsModel {
-  private final PositiveFixedAngleModel lat;
+  private final PositiveFixedAngleValueModel lat;
 
-  private final PositiveFixedAngleModel rev;
+  private final PositiveFixedAngleValueModel rev;
 
-  private final PositiveFixedAngleModel lon;
+  private final PositiveFixedAngleValueModel lon;
 
-  public SphereCoordsModel(PositiveFixedAngleModel lat, PositiveFixedAngleModel rev,
-      PositiveFixedAngleModel lon) {
+  public SphereCoordsModel(PositiveFixedAngleValueModel lat, PositiveFixedAngleValueModel rev,
+      PositiveFixedAngleValueModel lon) {
     this.lat = lat;
     this.rev = rev;
     this.lon = lon;
   }
 
-  public PositiveFixedAngleModel getLat() {
+  public PositiveFixedAngleValueModel getLat() {
     return this.lat;
   }
 
-  public PositiveFixedAngleModel getRev() {
+  public PositiveFixedAngleValueModel getRev() {
     return this.rev;
   }
 
-  public PositiveFixedAngleModel getLon() {
+  public PositiveFixedAngleValueModel getLon() {
     return this.lon;
   }
 }

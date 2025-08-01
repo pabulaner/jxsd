@@ -1,13 +1,15 @@
 package com.scell.model.drawingml.chart;
 
-public class UnsignedIntModel {
-  private final com.scell.model.XMLSchema.UnsignedIntModel val;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 
-  public UnsignedIntModel(com.scell.model.XMLSchema.UnsignedIntModel val) {
+public class UnsignedIntModel {
+  private final UnsignedIntValueModel val;
+
+  public UnsignedIntModel(UnsignedIntValueModel val) {
     this.val = val;
   }
 
-  public com.scell.model.XMLSchema.UnsignedIntModel getVal() {
+  public UnsignedIntValueModel getVal() {
     return this.val;
   }
 }

@@ -9,6 +9,6 @@ public class GeomRectConverter {
 
   public static GeomRectModel fromDocx4J(CTGeomRect value) {
     if (value == null) return null;
-    return new GeomRectModel(AdjCoordinateConverter.fromDocx4J(value.getL()), AdjCoordinateConverter.fromDocx4J(value.getT()), AdjCoordinateConverter.fromDocx4J(value.getR()), AdjCoordinateConverter.fromDocx4J(value.getB()));
+    return new GeomRectModel(AdjCoordinateValueConverter.fromDocx4J(value.getL()), AdjCoordinateValueConverter.fromDocx4J(value.getT()), AdjCoordinateValueConverter.fromDocx4J(value.getR()), AdjCoordinateValueConverter.fromDocx4J(value.getB()));
   }
 }

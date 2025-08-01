@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.PeriodModel;
+import com.scell.model.drawingml.chart.PeriodValueModel;
 
 public class PeriodBuilder {
-  private PeriodModel val;
+  private PeriodValueModel val;
 
   public PeriodBuilder() {
   }
 
-  public PeriodBuilder setVal(PeriodModel val) {
+  public PeriodBuilder setVal(PeriodValueModel val) {
     this.val = val;
     return this;
   }

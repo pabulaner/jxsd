@@ -1,6 +1,6 @@
 package com.scell.converter.drawingml.main;
 
-import com.scell.converter.XMLSchema.TokenConverter;
+import com.scell.converter.XMLSchema.TokenValueConverter;
 import com.scell.model.drawingml.main.EffectContainerModel;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,6 +74,6 @@ public class EffectContainerConverter {
       if (val instanceof CTTransformEffect) return EffectContainerModel.EffectModel.newXfrm(TransformEffectConverter.fromDocx4J((CTTransformEffect) val));
       return new EffectContainerModel.EffectModel();
     } ).collect(Collectors.toList());
-    return new EffectContainerModel(EffectContainerTypeConverter.fromDocx4J(value.getType()), TokenConverter.fromDocx4J(value.getName()), egEffect);
+    return new EffectContainerModel(EffectContainerTypeValueConverter.fromDocx4J(value.getType()), TokenValueConverter.fromDocx4J(value.getName()), egEffect);
   }
 }

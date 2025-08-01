@@ -9,6 +9,6 @@ public class LogBaseConverter {
 
   public static LogBaseModel fromDocx4J(CTLogBase value) {
     if (value == null) return null;
-    return new LogBaseModel(LogBaseConverter.fromDocx4J(value.getVal()));
+    return new LogBaseModel(LogBaseValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -1,25 +1,25 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class GraphicalObjectFrameLockingModel {
-  private final BooleanModel noDrilldown;
+  private final BooleanValueModel noDrilldown;
 
-  private final BooleanModel noResize;
+  private final BooleanValueModel noResize;
 
-  private final BooleanModel noChangeAspect;
+  private final BooleanValueModel noChangeAspect;
 
-  private final BooleanModel noSelect;
+  private final BooleanValueModel noSelect;
 
-  private final BooleanModel noGrp;
+  private final BooleanValueModel noGrp;
 
-  private final BooleanModel noMove;
+  private final BooleanValueModel noMove;
 
   private final OfficeArtExtensionListModel extLst;
 
-  public GraphicalObjectFrameLockingModel(BooleanModel noDrilldown, BooleanModel noResize,
-      BooleanModel noChangeAspect, BooleanModel noSelect, BooleanModel noGrp, BooleanModel noMove,
-      OfficeArtExtensionListModel extLst) {
+  public GraphicalObjectFrameLockingModel(BooleanValueModel noDrilldown, BooleanValueModel noResize,
+      BooleanValueModel noChangeAspect, BooleanValueModel noSelect, BooleanValueModel noGrp,
+      BooleanValueModel noMove, OfficeArtExtensionListModel extLst) {
     this.noDrilldown = noDrilldown;
     this.noResize = noResize;
     this.noChangeAspect = noChangeAspect;
@@ -29,27 +29,27 @@ public class GraphicalObjectFrameLockingModel {
     this.extLst = extLst;
   }
 
-  public BooleanModel getNoDrilldown() {
+  public BooleanValueModel getNoDrilldown() {
     return this.noDrilldown;
   }
 
-  public BooleanModel getNoResize() {
+  public BooleanValueModel getNoResize() {
     return this.noResize;
   }
 
-  public BooleanModel getNoChangeAspect() {
+  public BooleanValueModel getNoChangeAspect() {
     return this.noChangeAspect;
   }
 
-  public BooleanModel getNoSelect() {
+  public BooleanValueModel getNoSelect() {
     return this.noSelect;
   }
 
-  public BooleanModel getNoGrp() {
+  public BooleanValueModel getNoGrp() {
     return this.noGrp;
   }
 
-  public BooleanModel getNoMove() {
+  public BooleanValueModel getNoMove() {
     return this.noMove;
   }
 

@@ -1,31 +1,31 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.EmbeddedWAVAudioFileModel;
-import com.scell.model.officeDocument.relationships.RelationshipIdModel;
+import com.scell.model.officeDocument.relationships.RelationshipIdValueModel;
 
 public class EmbeddedWAVAudioFileBuilder {
-  private RelationshipIdModel embed;
+  private RelationshipIdValueModel embed;
 
-  private BooleanModel builtIn;
+  private BooleanValueModel builtIn;
 
-  private StringModel name;
+  private StringValueModel name;
 
   public EmbeddedWAVAudioFileBuilder() {
   }
 
-  public EmbeddedWAVAudioFileBuilder setEmbed(RelationshipIdModel embed) {
+  public EmbeddedWAVAudioFileBuilder setEmbed(RelationshipIdValueModel embed) {
     this.embed = embed;
     return this;
   }
 
-  public EmbeddedWAVAudioFileBuilder setBuiltIn(BooleanModel builtIn) {
+  public EmbeddedWAVAudioFileBuilder setBuiltIn(BooleanValueModel builtIn) {
     this.builtIn = builtIn;
     return this;
   }
 
-  public EmbeddedWAVAudioFileBuilder setName(StringModel name) {
+  public EmbeddedWAVAudioFileBuilder setName(StringValueModel name) {
     this.name = name;
     return this;
   }

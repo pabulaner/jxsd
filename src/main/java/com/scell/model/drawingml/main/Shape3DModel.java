@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class Shape3DModel {
-  private final PositiveCoordinateModel contourW;
+  private final PositiveCoordinateValueModel contourW;
 
-  private final PositiveCoordinateModel extrusionH;
+  private final PositiveCoordinateValueModel extrusionH;
 
-  private final PresetMaterialTypeModel prstMaterial;
+  private final PresetMaterialTypeValueModel prstMaterial;
 
-  private final CoordinateModel z;
+  private final CoordinateValueModel z;
 
   private final BevelModel bevelT;
 
@@ -19,9 +19,10 @@ public class Shape3DModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public Shape3DModel(PositiveCoordinateModel contourW, PositiveCoordinateModel extrusionH,
-      PresetMaterialTypeModel prstMaterial, CoordinateModel z, BevelModel bevelT, BevelModel bevelB,
-      ColorModel extrusionClr, ColorModel contourClr, OfficeArtExtensionListModel extLst) {
+  public Shape3DModel(PositiveCoordinateValueModel contourW,
+      PositiveCoordinateValueModel extrusionH, PresetMaterialTypeValueModel prstMaterial,
+      CoordinateValueModel z, BevelModel bevelT, BevelModel bevelB, ColorModel extrusionClr,
+      ColorModel contourClr, OfficeArtExtensionListModel extLst) {
     this.contourW = contourW;
     this.extrusionH = extrusionH;
     this.prstMaterial = prstMaterial;
@@ -33,19 +34,19 @@ public class Shape3DModel {
     this.extLst = extLst;
   }
 
-  public PositiveCoordinateModel getContourW() {
+  public PositiveCoordinateValueModel getContourW() {
     return this.contourW;
   }
 
-  public PositiveCoordinateModel getExtrusionH() {
+  public PositiveCoordinateValueModel getExtrusionH() {
     return this.extrusionH;
   }
 
-  public PresetMaterialTypeModel getPrstMaterial() {
+  public PresetMaterialTypeValueModel getPrstMaterial() {
     return this.prstMaterial;
   }
 
-  public CoordinateModel getZ() {
+  public CoordinateValueModel getZ() {
     return this.z;
   }
 

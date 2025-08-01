@@ -3,7 +3,7 @@ package com.scell.model.drawingml.chart;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class LineSerModel {
+public class LineSerModel implements ISeriesValueModel, IMarkerComponentValueModel, ISmoothComponentValueModel {
   private final UnsignedIntModel idx;
 
   private final UnsignedIntModel order;

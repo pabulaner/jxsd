@@ -1,23 +1,24 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.officeDocument.relationships.RelationshipIdModel;
+import com.scell.model.officeDocument.relationships.RelationshipIdValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 import java.util.List;
 
 public class BlipModel {
-  private final BlipCompressionModel cstate;
+  private final BlipCompressionValueModel cstate;
 
-  private final RelationshipIdModel embed;
+  private final RelationshipIdValueModel embed;
 
-  private final RelationshipIdModel link;
+  private final RelationshipIdValueModel link;
 
-  private final List<AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor;
+  private final List<AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor;
 
   private final OfficeArtExtensionListModel extLst;
 
-  public BlipModel(BlipCompressionModel cstate, RelationshipIdModel embed, RelationshipIdModel link,
-      List<AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor,
+  public BlipModel(BlipCompressionValueModel cstate, RelationshipIdValueModel embed,
+      RelationshipIdValueModel link,
+      List<AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor,
       OfficeArtExtensionListModel extLst) {
     this.cstate = cstate;
     this.embed = embed;
@@ -26,19 +27,19 @@ public class BlipModel {
     this.extLst = extLst;
   }
 
-  public BlipCompressionModel getCstate() {
+  public BlipCompressionValueModel getCstate() {
     return this.cstate;
   }
 
-  public RelationshipIdModel getEmbed() {
+  public RelationshipIdValueModel getEmbed() {
     return this.embed;
   }
 
-  public RelationshipIdModel getLink() {
+  public RelationshipIdValueModel getLink() {
     return this.link;
   }
 
-  public List<AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel> getAlphaBiLevelOrAlphaCeilingOrAlphaFloor(
+  public List<AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel> getAlphaBiLevelOrAlphaCeilingOrAlphaFloor(
       ) {
     return this.alphaBiLevelOrAlphaCeilingOrAlphaFloor;
   }
@@ -47,23 +48,23 @@ public class BlipModel {
     return this.extLst;
   }
 
-  public static class AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel {
+  public static class AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel {
     private final int type;
 
     private final Object value;
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel() {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel() {
       this(-1, null);
     }
 
-    private AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(Integer type, Object value) {
+    private AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(Integer type, Object value) {
       this.type = type;
       this.value = value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newAlphaBiLevel(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newAlphaBiLevel(
         AlphaBiLevelEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(0, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(0, value);
     }
 
     public boolean isAlphaBiLevel() {
@@ -74,9 +75,9 @@ public class BlipModel {
       return (AlphaBiLevelEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newAlphaCeiling(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newAlphaCeiling(
         AlphaCeilingEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(1, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(1, value);
     }
 
     public boolean isAlphaCeiling() {
@@ -87,9 +88,9 @@ public class BlipModel {
       return (AlphaCeilingEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newAlphaFloor(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newAlphaFloor(
         AlphaFloorEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(2, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(2, value);
     }
 
     public boolean isAlphaFloor() {
@@ -100,9 +101,9 @@ public class BlipModel {
       return (AlphaFloorEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newAlphaInv(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newAlphaInv(
         AlphaInverseEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(3, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(3, value);
     }
 
     public boolean isAlphaInv() {
@@ -113,9 +114,9 @@ public class BlipModel {
       return (AlphaInverseEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newAlphaMod(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newAlphaMod(
         AlphaModulateEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(4, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(4, value);
     }
 
     public boolean isAlphaMod() {
@@ -126,9 +127,9 @@ public class BlipModel {
       return (AlphaModulateEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newAlphaModFix(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newAlphaModFix(
         AlphaModulateFixedEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(5, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(5, value);
     }
 
     public boolean isAlphaModFix() {
@@ -139,9 +140,9 @@ public class BlipModel {
       return (AlphaModulateFixedEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newAlphaRepl(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newAlphaRepl(
         AlphaReplaceEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(6, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(6, value);
     }
 
     public boolean isAlphaRepl() {
@@ -152,8 +153,9 @@ public class BlipModel {
       return (AlphaReplaceEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newBiLevel(BiLevelEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(7, value);
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newBiLevel(
+        BiLevelEffectModel value) {
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(7, value);
     }
 
     public boolean isBiLevel() {
@@ -164,8 +166,8 @@ public class BlipModel {
       return (BiLevelEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newBlur(BlurEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(8, value);
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newBlur(BlurEffectModel value) {
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(8, value);
     }
 
     public boolean isBlur() {
@@ -176,9 +178,9 @@ public class BlipModel {
       return (BlurEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newClrChange(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newClrChange(
         ColorChangeEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(9, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(9, value);
     }
 
     public boolean isClrChange() {
@@ -189,9 +191,9 @@ public class BlipModel {
       return (ColorChangeEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newClrRepl(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newClrRepl(
         ColorReplaceEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(10, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(10, value);
     }
 
     public boolean isClrRepl() {
@@ -202,8 +204,9 @@ public class BlipModel {
       return (ColorReplaceEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newDuotone(DuotoneEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(11, value);
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newDuotone(
+        DuotoneEffectModel value) {
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(11, value);
     }
 
     public boolean isDuotone() {
@@ -214,9 +217,9 @@ public class BlipModel {
       return (DuotoneEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newFillOverlay(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newFillOverlay(
         FillOverlayEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(12, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(12, value);
     }
 
     public boolean isFillOverlay() {
@@ -227,9 +230,9 @@ public class BlipModel {
       return (FillOverlayEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newGrayscl(
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newGrayscl(
         GrayscaleEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(13, value);
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(13, value);
     }
 
     public boolean isGrayscl() {
@@ -240,8 +243,8 @@ public class BlipModel {
       return (GrayscaleEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newHsl(HSLEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(14, value);
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newHsl(HSLEffectModel value) {
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(14, value);
     }
 
     public boolean isHsl() {
@@ -252,8 +255,9 @@ public class BlipModel {
       return (HSLEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newLum(LuminanceEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(15, value);
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newLum(
+        LuminanceEffectModel value) {
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(15, value);
     }
 
     public boolean isLum() {
@@ -264,8 +268,8 @@ public class BlipModel {
       return (LuminanceEffectModel) this.value;
     }
 
-    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel newTint(TintEffectModel value) {
-      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel(16, value);
+    public static AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel newTint(TintEffectModel value) {
+      return new AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel(16, value);
     }
 
     public boolean isTint() {

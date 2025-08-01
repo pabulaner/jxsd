@@ -9,6 +9,6 @@ public class LineJoinMiterPropertiesConverter {
 
   public static LineJoinMiterPropertiesModel fromDocx4J(CTLineJoinMiterProperties value) {
     if (value == null) return null;
-    return new LineJoinMiterPropertiesModel(PositivePercentageConverter.fromDocx4J(value.getLim()));
+    return new LineJoinMiterPropertiesModel(PositivePercentageValueConverter.fromDocx4J(value.getLim()));
   }
 }

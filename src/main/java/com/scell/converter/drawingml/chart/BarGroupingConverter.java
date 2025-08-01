@@ -9,6 +9,6 @@ public class BarGroupingConverter {
 
   public static BarGroupingModel fromDocx4J(CTBarGrouping value) {
     if (value == null) return null;
-    return new BarGroupingModel(BarGroupingConverter.fromDocx4J(value.getVal()));
+    return new BarGroupingModel(BarGroupingValueConverter.fromDocx4J(value.getVal()));
   }
 }

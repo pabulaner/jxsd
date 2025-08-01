@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.RelIdModel;
-import com.scell.model.officeDocument.relationships.RelationshipIdModel;
+import com.scell.model.officeDocument.relationships.RelationshipIdValueModel;
 
 public class RelIdBuilder {
-  private RelationshipIdModel id;
+  private RelationshipIdValueModel id;
 
   public RelIdBuilder() {
   }
 
-  public RelIdBuilder setId(RelationshipIdModel id) {
+  public RelIdBuilder setId(RelationshipIdValueModel id) {
     this.id = id;
     return this;
   }

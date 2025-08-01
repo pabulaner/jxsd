@@ -9,6 +9,6 @@ public class ErrDirConverter {
 
   public static ErrDirModel fromDocx4J(CTErrDir value) {
     if (value == null) return null;
-    return new ErrDirModel(ErrDirConverter.fromDocx4J(value.getVal()));
+    return new ErrDirModel(ErrDirValueConverter.fromDocx4J(value.getVal()));
   }
 }

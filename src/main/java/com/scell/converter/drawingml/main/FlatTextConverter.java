@@ -9,6 +9,6 @@ public class FlatTextConverter {
 
   public static FlatTextModel fromDocx4J(CTFlatText value) {
     if (value == null) return null;
-    return new FlatTextModel(CoordinateConverter.fromDocx4J(value.getZ()));
+    return new FlatTextModel(CoordinateValueConverter.fromDocx4J(value.getZ()));
   }
 }

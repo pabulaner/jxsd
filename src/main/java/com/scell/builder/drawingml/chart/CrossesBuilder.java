@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.CrossesModel;
+import com.scell.model.drawingml.chart.CrossesValueModel;
 
 public class CrossesBuilder {
-  private CrossesModel val;
+  private CrossesValueModel val;
 
   public CrossesBuilder() {
   }
 
-  public CrossesBuilder setVal(CrossesModel val) {
+  public CrossesBuilder setVal(CrossesValueModel val) {
     this.val = val;
     return this;
   }

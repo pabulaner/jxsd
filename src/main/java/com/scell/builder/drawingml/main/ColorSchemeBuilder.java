@@ -1,12 +1,12 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.ColorModel;
 import com.scell.model.drawingml.main.ColorSchemeModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 
 public class ColorSchemeBuilder {
-  private StringModel name;
+  private StringValueModel name;
 
   private ColorModel dk1;
 
@@ -37,7 +37,7 @@ public class ColorSchemeBuilder {
   public ColorSchemeBuilder() {
   }
 
-  public ColorSchemeBuilder setName(StringModel name) {
+  public ColorSchemeBuilder setName(StringValueModel name) {
     this.name = name;
     return this;
   }

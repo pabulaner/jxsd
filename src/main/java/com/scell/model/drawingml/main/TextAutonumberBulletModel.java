@@ -1,21 +1,21 @@
 package com.scell.model.drawingml.main;
 
 public class TextAutonumberBulletModel {
-  private final TextAutonumberSchemeModel type;
+  private final TextAutonumberSchemeValueModel type;
 
-  private final TextBulletStartAtNumModel startAt;
+  private final TextBulletStartAtNumValueModel startAt;
 
-  public TextAutonumberBulletModel(TextAutonumberSchemeModel type,
-      TextBulletStartAtNumModel startAt) {
+  public TextAutonumberBulletModel(TextAutonumberSchemeValueModel type,
+      TextBulletStartAtNumValueModel startAt) {
     this.type = type;
     this.startAt = startAt;
   }
 
-  public TextAutonumberSchemeModel getType() {
+  public TextAutonumberSchemeValueModel getType() {
     return this.type;
   }
 
-  public TextBulletStartAtNumModel getStartAt() {
+  public TextBulletStartAtNumValueModel getStartAt() {
     return this.startAt;
   }
 }

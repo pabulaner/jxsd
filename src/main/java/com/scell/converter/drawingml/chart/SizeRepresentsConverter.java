@@ -9,6 +9,6 @@ public class SizeRepresentsConverter {
 
   public static SizeRepresentsModel fromDocx4J(CTSizeRepresents value) {
     if (value == null) return null;
-    return new SizeRepresentsModel(SizeRepresentsConverter.fromDocx4J(value.getVal()));
+    return new SizeRepresentsModel(SizeRepresentsValueConverter.fromDocx4J(value.getVal()));
   }
 }

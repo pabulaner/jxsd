@@ -1,6 +1,6 @@
 package com.scell.converter.drawingml.main;
 
-import com.scell.converter.XMLSchema.BooleanConverter;
+import com.scell.converter.XMLSchema.BooleanValueConverter;
 import com.scell.model.drawingml.main.Path2DModel;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,15 +18,15 @@ public class Path2DConverter {
 
   public static Path2DModel fromDocx4J(CTPath2D value) {
     if (value == null) return null;
-    List<Path2DModel.CloseOrMoveToOrLnToModel> closeOrMoveToOrLnTo = value.getCloseOrMoveToOrLnTo().stream().map(val -> {
-      if (val instanceof CTPath2DClose) return Path2DModel.CloseOrMoveToOrLnToModel.newClose(Path2DCloseConverter.fromDocx4J((CTPath2DClose) val));
-      if (val instanceof CTPath2DMoveTo) return Path2DModel.CloseOrMoveToOrLnToModel.newMoveTo(Path2DMoveToConverter.fromDocx4J((CTPath2DMoveTo) val));
-      if (val instanceof CTPath2DLineTo) return Path2DModel.CloseOrMoveToOrLnToModel.newLnTo(Path2DLineToConverter.fromDocx4J((CTPath2DLineTo) val));
-      if (val instanceof CTPath2DArcTo) return Path2DModel.CloseOrMoveToOrLnToModel.newArcTo(Path2DArcToConverter.fromDocx4J((CTPath2DArcTo) val));
-      if (val instanceof CTPath2DQuadBezierTo) return Path2DModel.CloseOrMoveToOrLnToModel.newQuadBezTo(Path2DQuadBezierToConverter.fromDocx4J((CTPath2DQuadBezierTo) val));
-      if (val instanceof CTPath2DCubicBezierTo) return Path2DModel.CloseOrMoveToOrLnToModel.newCubicBezTo(Path2DCubicBezierToConverter.fromDocx4J((CTPath2DCubicBezierTo) val));
-      return new Path2DModel.CloseOrMoveToOrLnToModel();
+    List<Path2DModel.CloseOrMoveToOrLnToValueModel> closeOrMoveToOrLnTo = value.getCloseOrMoveToOrLnTo().stream().map(val -> {
+      if (val instanceof CTPath2DClose) return Path2DModel.CloseOrMoveToOrLnToValueModel.newClose(Path2DCloseConverter.fromDocx4J((CTPath2DClose) val));
+      if (val instanceof CTPath2DMoveTo) return Path2DModel.CloseOrMoveToOrLnToValueModel.newMoveTo(Path2DMoveToConverter.fromDocx4J((CTPath2DMoveTo) val));
+      if (val instanceof CTPath2DLineTo) return Path2DModel.CloseOrMoveToOrLnToValueModel.newLnTo(Path2DLineToConverter.fromDocx4J((CTPath2DLineTo) val));
+      if (val instanceof CTPath2DArcTo) return Path2DModel.CloseOrMoveToOrLnToValueModel.newArcTo(Path2DArcToConverter.fromDocx4J((CTPath2DArcTo) val));
+      if (val instanceof CTPath2DQuadBezierTo) return Path2DModel.CloseOrMoveToOrLnToValueModel.newQuadBezTo(Path2DQuadBezierToConverter.fromDocx4J((CTPath2DQuadBezierTo) val));
+      if (val instanceof CTPath2DCubicBezierTo) return Path2DModel.CloseOrMoveToOrLnToValueModel.newCubicBezTo(Path2DCubicBezierToConverter.fromDocx4J((CTPath2DCubicBezierTo) val));
+      return new Path2DModel.CloseOrMoveToOrLnToValueModel();
     } ).collect(Collectors.toList());
-    return new Path2DModel(PathFillModeConverter.fromDocx4J(value.getFill()), BooleanConverter.fromDocx4J(value.isExtrusionOk()), PositiveCoordinateConverter.fromDocx4J(value.getH()), PositiveCoordinateConverter.fromDocx4J(value.getW()), BooleanConverter.fromDocx4J(value.isStroke()), closeOrMoveToOrLnTo);
+    return new Path2DModel(PathFillModeValueConverter.fromDocx4J(value.getFill()), BooleanValueConverter.fromDocx4J(value.isExtrusionOk()), PositiveCoordinateValueConverter.fromDocx4J(value.getH()), PositiveCoordinateValueConverter.fromDocx4J(value.getW()), BooleanValueConverter.fromDocx4J(value.isStroke()), closeOrMoveToOrLnTo);
   }
 }

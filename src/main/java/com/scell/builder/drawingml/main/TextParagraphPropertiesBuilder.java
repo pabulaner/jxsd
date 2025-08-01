@@ -1,10 +1,10 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.ColorModel;
-import com.scell.model.drawingml.main.Coordinate32Model;
+import com.scell.model.drawingml.main.Coordinate32ValueModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
-import com.scell.model.drawingml.main.TextAlignTypeModel;
+import com.scell.model.drawingml.main.TextAlignTypeValueModel;
 import com.scell.model.drawingml.main.TextAutonumberBulletModel;
 import com.scell.model.drawingml.main.TextBlipBulletModel;
 import com.scell.model.drawingml.main.TextBulletColorFollowTextModel;
@@ -14,11 +14,11 @@ import com.scell.model.drawingml.main.TextBulletSizePointModel;
 import com.scell.model.drawingml.main.TextBulletTypefaceFollowTextModel;
 import com.scell.model.drawingml.main.TextCharBulletModel;
 import com.scell.model.drawingml.main.TextCharacterPropertiesModel;
-import com.scell.model.drawingml.main.TextFontAlignTypeModel;
-import com.scell.model.drawingml.main.TextFontModel;
-import com.scell.model.drawingml.main.TextIndentLevelTypeModel;
-import com.scell.model.drawingml.main.TextIndentModel;
-import com.scell.model.drawingml.main.TextMarginModel;
+import com.scell.model.drawingml.main.TextFontAlignTypeValueModel;
+import com.scell.model.drawingml.main.TextFontValueModel;
+import com.scell.model.drawingml.main.TextIndentLevelTypeValueModel;
+import com.scell.model.drawingml.main.TextIndentValueModel;
+import com.scell.model.drawingml.main.TextMarginValueModel;
 import com.scell.model.drawingml.main.TextNoBulletModel;
 import com.scell.model.drawingml.main.TextParagraphPropertiesModel;
 import com.scell.model.drawingml.main.TextSpacingModel;
@@ -26,27 +26,27 @@ import com.scell.model.drawingml.main.TextTabStopListModel;
 import java.lang.Object;
 
 public class TextParagraphPropertiesBuilder {
-  private TextIndentModel indent;
+  private TextIndentValueModel indent;
 
-  private BooleanModel latinLnBrk;
+  private BooleanValueModel latinLnBrk;
 
-  private TextMarginModel marR;
+  private TextMarginValueModel marR;
 
-  private BooleanModel hangingPunct;
+  private BooleanValueModel hangingPunct;
 
-  private TextFontAlignTypeModel fontAlgn;
+  private TextFontAlignTypeValueModel fontAlgn;
 
-  private BooleanModel eaLnBrk;
+  private BooleanValueModel eaLnBrk;
 
-  private BooleanModel rtl;
+  private BooleanValueModel rtl;
 
-  private TextIndentLevelTypeModel lvl;
+  private TextIndentLevelTypeValueModel lvl;
 
-  private TextMarginModel marL;
+  private TextMarginValueModel marL;
 
-  private Coordinate32Model defTabSz;
+  private Coordinate32ValueModel defTabSz;
 
-  private TextAlignTypeModel algn;
+  private TextAlignTypeValueModel algn;
 
   private TextSpacingModel lnSpc;
 
@@ -71,57 +71,57 @@ public class TextParagraphPropertiesBuilder {
   public TextParagraphPropertiesBuilder() {
   }
 
-  public TextParagraphPropertiesBuilder setIndent(TextIndentModel indent) {
+  public TextParagraphPropertiesBuilder setIndent(TextIndentValueModel indent) {
     this.indent = indent;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setLatinLnBrk(BooleanModel latinLnBrk) {
+  public TextParagraphPropertiesBuilder setLatinLnBrk(BooleanValueModel latinLnBrk) {
     this.latinLnBrk = latinLnBrk;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setMarR(TextMarginModel marR) {
+  public TextParagraphPropertiesBuilder setMarR(TextMarginValueModel marR) {
     this.marR = marR;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setHangingPunct(BooleanModel hangingPunct) {
+  public TextParagraphPropertiesBuilder setHangingPunct(BooleanValueModel hangingPunct) {
     this.hangingPunct = hangingPunct;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setFontAlgn(TextFontAlignTypeModel fontAlgn) {
+  public TextParagraphPropertiesBuilder setFontAlgn(TextFontAlignTypeValueModel fontAlgn) {
     this.fontAlgn = fontAlgn;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setEaLnBrk(BooleanModel eaLnBrk) {
+  public TextParagraphPropertiesBuilder setEaLnBrk(BooleanValueModel eaLnBrk) {
     this.eaLnBrk = eaLnBrk;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setRtl(BooleanModel rtl) {
+  public TextParagraphPropertiesBuilder setRtl(BooleanValueModel rtl) {
     this.rtl = rtl;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setLvl(TextIndentLevelTypeModel lvl) {
+  public TextParagraphPropertiesBuilder setLvl(TextIndentLevelTypeValueModel lvl) {
     this.lvl = lvl;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setMarL(TextMarginModel marL) {
+  public TextParagraphPropertiesBuilder setMarL(TextMarginValueModel marL) {
     this.marL = marL;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setDefTabSz(Coordinate32Model defTabSz) {
+  public TextParagraphPropertiesBuilder setDefTabSz(Coordinate32ValueModel defTabSz) {
     this.defTabSz = defTabSz;
     return this;
   }
 
-  public TextParagraphPropertiesBuilder setAlgn(TextAlignTypeModel algn) {
+  public TextParagraphPropertiesBuilder setAlgn(TextAlignTypeValueModel algn) {
     this.algn = algn;
     return this;
   }
@@ -324,7 +324,7 @@ public class TextParagraphPropertiesBuilder {
       return this;
     }
 
-    public TextBulletTypefaceBuilder setBuFont(TextFontModel value) {
+    public TextBulletTypefaceBuilder setBuFont(TextFontValueModel value) {
       this.type = 1;
       this.value = value;
       return this;
@@ -333,7 +333,7 @@ public class TextParagraphPropertiesBuilder {
     public TextParagraphPropertiesModel.TextBulletTypefaceModel build() {
       if (this.type == -1) return new TextParagraphPropertiesModel.TextBulletTypefaceModel();
       if (this.type == 0) return TextParagraphPropertiesModel.TextBulletTypefaceModel.newBuFontTx((TextBulletTypefaceFollowTextModel) this.value);
-      if (this.type == 1) return TextParagraphPropertiesModel.TextBulletTypefaceModel.newBuFont((TextFontModel) this.value);
+      if (this.type == 1) return TextParagraphPropertiesModel.TextBulletTypefaceModel.newBuFont((TextFontValueModel) this.value);
       return null;
     }
 

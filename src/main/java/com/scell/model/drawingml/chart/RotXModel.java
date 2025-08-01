@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class RotXModel {
-  private final RotXModel val;
+  private final RotXValueModel val;
 
-  public RotXModel(RotXModel val) {
+  public RotXModel(RotXValueModel val) {
     this.val = val;
   }
 
-  public RotXModel getVal() {
+  public RotXValueModel getVal() {
     return this.val;
   }
 }

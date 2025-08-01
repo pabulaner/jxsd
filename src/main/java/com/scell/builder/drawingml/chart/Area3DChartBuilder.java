@@ -11,7 +11,7 @@ import com.scell.model.drawingml.chart.GroupingModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
 import java.util.List;
 
-public class Area3DChartBuilder {
+public class Area3DChartBuilder implements IAreaChartValueBuilder, IGapDepthComponentValueBuilder {
   private GroupingModel grouping;
 
   private BooleanModel varyColors;

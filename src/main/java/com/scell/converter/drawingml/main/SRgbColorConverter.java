@@ -14,6 +14,6 @@ public class SRgbColorConverter {
     List<SRgbColorModel.ColorTransformModel> egColorTransform = value.getEGColorTransform().stream().map(val -> {
       return new SRgbColorModel.ColorTransformModel();
     } ).collect(Collectors.toList());
-    return new SRgbColorModel(HexBinary3Converter.fromDocx4J(value.getVal()), egColorTransform);
+    return new SRgbColorModel(HexBinary3ValueConverter.fromDocx4J(value.getVal()), egColorTransform);
   }
 }

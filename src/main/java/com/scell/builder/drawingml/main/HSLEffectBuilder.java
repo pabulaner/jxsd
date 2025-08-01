@@ -1,30 +1,30 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.FixedPercentageModel;
+import com.scell.model.drawingml.main.FixedPercentageValueModel;
 import com.scell.model.drawingml.main.HSLEffectModel;
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 
 public class HSLEffectBuilder {
-  private PositiveFixedAngleModel hue;
+  private PositiveFixedAngleValueModel hue;
 
-  private FixedPercentageModel lum;
+  private FixedPercentageValueModel lum;
 
-  private FixedPercentageModel sat;
+  private FixedPercentageValueModel sat;
 
   public HSLEffectBuilder() {
   }
 
-  public HSLEffectBuilder setHue(PositiveFixedAngleModel hue) {
+  public HSLEffectBuilder setHue(PositiveFixedAngleValueModel hue) {
     this.hue = hue;
     return this;
   }
 
-  public HSLEffectBuilder setLum(FixedPercentageModel lum) {
+  public HSLEffectBuilder setLum(FixedPercentageValueModel lum) {
     this.lum = lum;
     return this;
   }
 
-  public HSLEffectBuilder setSat(FixedPercentageModel sat) {
+  public HSLEffectBuilder setSat(FixedPercentageValueModel sat) {
     this.sat = sat;
     return this;
   }

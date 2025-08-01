@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.chartDrawing;
 
 public class MarkerModel {
-  private final MarkerCoordinateModel x;
+  private final MarkerCoordinateValueModel x;
 
-  private final MarkerCoordinateModel y;
+  private final MarkerCoordinateValueModel y;
 
-  public MarkerModel(MarkerCoordinateModel x, MarkerCoordinateModel y) {
+  public MarkerModel(MarkerCoordinateValueModel x, MarkerCoordinateValueModel y) {
     this.x = x;
     this.y = y;
   }
 
-  public MarkerCoordinateModel getX() {
+  public MarkerCoordinateValueModel getX() {
     return this.x;
   }
 
-  public MarkerCoordinateModel getY() {
+  public MarkerCoordinateValueModel getY() {
     return this.y;
   }
 }

@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.SecondPieSizeModel;
+import com.scell.model.drawingml.chart.SecondPieSizeValueModel;
 
 public class SecondPieSizeBuilder {
-  private SecondPieSizeModel val;
+  private SecondPieSizeValueModel val;
 
   public SecondPieSizeBuilder() {
   }
 
-  public SecondPieSizeBuilder setVal(SecondPieSizeModel val) {
+  public SecondPieSizeBuilder setVal(SecondPieSizeValueModel val) {
     this.val = val;
     return this;
   }

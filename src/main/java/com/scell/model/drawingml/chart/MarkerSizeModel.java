@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class MarkerSizeModel {
-  private final MarkerSizeModel val;
+  private final MarkerSizeValueModel val;
 
-  public MarkerSizeModel(MarkerSizeModel val) {
+  public MarkerSizeModel(MarkerSizeValueModel val) {
     this.val = val;
   }
 
-  public MarkerSizeModel getVal() {
+  public MarkerSizeValueModel getVal() {
     return this.val;
   }
 }

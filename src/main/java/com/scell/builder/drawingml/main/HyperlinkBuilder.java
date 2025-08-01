@@ -1,28 +1,28 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.EmbeddedWAVAudioFileModel;
 import com.scell.model.drawingml.main.HyperlinkModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
-import com.scell.model.officeDocument.relationships.RelationshipIdModel;
+import com.scell.model.officeDocument.relationships.RelationshipIdValueModel;
 
 public class HyperlinkBuilder {
-  private StringModel invalidUrl;
+  private StringValueModel invalidUrl;
 
-  private StringModel tgtFrame;
+  private StringValueModel tgtFrame;
 
-  private RelationshipIdModel id;
+  private RelationshipIdValueModel id;
 
-  private BooleanModel history;
+  private BooleanValueModel history;
 
-  private StringModel tooltip;
+  private StringValueModel tooltip;
 
-  private BooleanModel highlightClick;
+  private BooleanValueModel highlightClick;
 
-  private StringModel action;
+  private StringValueModel action;
 
-  private BooleanModel endSnd;
+  private BooleanValueModel endSnd;
 
   private EmbeddedWAVAudioFileModel snd;
 
@@ -31,42 +31,42 @@ public class HyperlinkBuilder {
   public HyperlinkBuilder() {
   }
 
-  public HyperlinkBuilder setInvalidUrl(StringModel invalidUrl) {
+  public HyperlinkBuilder setInvalidUrl(StringValueModel invalidUrl) {
     this.invalidUrl = invalidUrl;
     return this;
   }
 
-  public HyperlinkBuilder setTgtFrame(StringModel tgtFrame) {
+  public HyperlinkBuilder setTgtFrame(StringValueModel tgtFrame) {
     this.tgtFrame = tgtFrame;
     return this;
   }
 
-  public HyperlinkBuilder setId(RelationshipIdModel id) {
+  public HyperlinkBuilder setId(RelationshipIdValueModel id) {
     this.id = id;
     return this;
   }
 
-  public HyperlinkBuilder setHistory(BooleanModel history) {
+  public HyperlinkBuilder setHistory(BooleanValueModel history) {
     this.history = history;
     return this;
   }
 
-  public HyperlinkBuilder setTooltip(StringModel tooltip) {
+  public HyperlinkBuilder setTooltip(StringValueModel tooltip) {
     this.tooltip = tooltip;
     return this;
   }
 
-  public HyperlinkBuilder setHighlightClick(BooleanModel highlightClick) {
+  public HyperlinkBuilder setHighlightClick(BooleanValueModel highlightClick) {
     this.highlightClick = highlightClick;
     return this;
   }
 
-  public HyperlinkBuilder setAction(StringModel action) {
+  public HyperlinkBuilder setAction(StringValueModel action) {
     this.action = action;
     return this;
   }
 
-  public HyperlinkBuilder setEndSnd(BooleanModel endSnd) {
+  public HyperlinkBuilder setEndSnd(BooleanValueModel endSnd) {
     this.endSnd = endSnd;
     return this;
   }

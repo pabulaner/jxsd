@@ -16,6 +16,6 @@ public class GradientStopConverter {
     if (value.getSysClr() != null) egColorChoice = GradientStopModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = GradientStopModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = GradientStopModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new GradientStopModel(PositiveFixedPercentageConverter.fromDocx4J(value.getPos()), egColorChoice);
+    return new GradientStopModel(PositiveFixedPercentageValueConverter.fromDocx4J(value.getPos()), egColorChoice);
   }
 }

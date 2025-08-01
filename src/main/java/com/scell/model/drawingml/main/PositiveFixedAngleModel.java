@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class PositiveFixedAngleModel {
-  private final PositiveFixedAngleModel val;
+  private final PositiveFixedAngleValueModel val;
 
-  public PositiveFixedAngleModel(PositiveFixedAngleModel val) {
+  public PositiveFixedAngleModel(PositiveFixedAngleValueModel val) {
     this.val = val;
   }
 
-  public PositiveFixedAngleModel getVal() {
+  public PositiveFixedAngleValueModel getVal() {
     return this.val;
   }
 }

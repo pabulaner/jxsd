@@ -9,6 +9,6 @@ public class DepthPercentConverter {
 
   public static DepthPercentModel fromDocx4J(CTDepthPercent value) {
     if (value == null) return null;
-    return new DepthPercentModel(DepthPercentConverter.fromDocx4J(value.getVal()));
+    return new DepthPercentModel(DepthPercentValueConverter.fromDocx4J(value.getVal()));
   }
 }

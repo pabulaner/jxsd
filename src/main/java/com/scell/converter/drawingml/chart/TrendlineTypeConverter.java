@@ -9,6 +9,6 @@ public class TrendlineTypeConverter {
 
   public static TrendlineTypeModel fromDocx4J(CTTrendlineType value) {
     if (value == null) return null;
-    return new TrendlineTypeModel(TrendlineTypeConverter.fromDocx4J(value.getVal()));
+    return new TrendlineTypeModel(TrendlineTypeValueConverter.fromDocx4J(value.getVal()));
   }
 }

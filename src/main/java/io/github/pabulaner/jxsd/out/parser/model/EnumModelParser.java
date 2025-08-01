@@ -2,11 +2,10 @@ package io.github.pabulaner.jxsd.out.parser.model;
 
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaEnum;
-import io.github.pabulaner.jxsd.out.util.Name;
-import io.github.pabulaner.jxsd.out.parser.BaseParser;
+import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
-public class EnumModelParser extends BaseParser<JavaEnum> {
+public class EnumModelParser extends ModelParser<JavaEnum> {
 
     public EnumModelParser(ParserGroup group) {
         super(group, ClassType.ENUM);
@@ -14,7 +13,9 @@ public class EnumModelParser extends BaseParser<JavaEnum> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaEnum clazz) {
-        clazz.values()
+        super.parse(builder, clazz);
+
+        clazz.getValues()
                 .stream()
                 .map(value -> new Name(value).toEnum())
                 .forEach(builder::addEnumConstant);

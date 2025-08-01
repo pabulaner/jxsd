@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class StyleModel {
-  private final StyleModel val;
+  private final StyleValueModel val;
 
-  public StyleModel(StyleModel val) {
+  public StyleModel(StyleValueModel val) {
     this.val = val;
   }
 
-  public StyleModel getVal() {
+  public StyleValueModel getVal() {
     return this.val;
   }
 }

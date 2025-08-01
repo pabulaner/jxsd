@@ -1,49 +1,49 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 
 public class TextCharacterPropertiesModel {
-  private final TextStrikeTypeModel strike;
+  private final TextStrikeTypeValueModel strike;
 
-  private final BooleanModel noProof;
+  private final BooleanValueModel noProof;
 
-  private final StringModel bmk;
+  private final StringValueModel bmk;
 
-  private final PercentageModel baseline;
+  private final PercentageValueModel baseline;
 
-  private final BooleanModel dirty;
+  private final BooleanValueModel dirty;
 
-  private final BooleanModel smtClean;
+  private final BooleanValueModel smtClean;
 
-  private final BooleanModel err;
+  private final BooleanValueModel err;
 
-  private final BooleanModel kumimoji;
+  private final BooleanValueModel kumimoji;
 
-  private final BooleanModel b;
+  private final BooleanValueModel b;
 
-  private final BooleanModel i;
+  private final BooleanValueModel i;
 
-  private final TextLanguageIDModel lang;
+  private final TextLanguageIDValueModel lang;
 
-  private final TextFontSizeModel sz;
+  private final TextFontSizeValueModel sz;
 
-  private final UnsignedIntModel smtId;
+  private final UnsignedIntValueModel smtId;
 
-  private final BooleanModel normalizeH;
+  private final BooleanValueModel normalizeH;
 
-  private final TextUnderlineTypeModel u;
+  private final TextUnderlineTypeValueModel u;
 
-  private final TextNonNegativePointModel kern;
+  private final TextNonNegativePointValueModel kern;
 
-  private final TextCapsTypeModel cap;
+  private final TextCapsTypeValueModel cap;
 
-  private final TextLanguageIDModel altLang;
+  private final TextLanguageIDValueModel altLang;
 
-  private final TextPointModel spc;
+  private final TextPointValueModel spc;
 
   private final LinePropertiesModel ln;
 
@@ -57,13 +57,13 @@ public class TextCharacterPropertiesModel {
 
   private final TextUnderlineFillModel egTextUnderlineFill;
 
-  private final TextFontModel latin;
+  private final TextFontValueModel latin;
 
-  private final TextFontModel ea;
+  private final TextFontValueModel ea;
 
-  private final TextFontModel cs;
+  private final TextFontValueModel cs;
 
-  private final TextFontModel sym;
+  private final TextFontValueModel sym;
 
   private final HyperlinkModel hlinkClick;
 
@@ -71,17 +71,18 @@ public class TextCharacterPropertiesModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public TextCharacterPropertiesModel(TextStrikeTypeModel strike, BooleanModel noProof,
-      StringModel bmk, PercentageModel baseline, BooleanModel dirty, BooleanModel smtClean,
-      BooleanModel err, BooleanModel kumimoji, BooleanModel b, BooleanModel i,
-      TextLanguageIDModel lang, TextFontSizeModel sz, UnsignedIntModel smtId,
-      BooleanModel normalizeH, TextUnderlineTypeModel u, TextNonNegativePointModel kern,
-      TextCapsTypeModel cap, TextLanguageIDModel altLang, TextPointModel spc,
+  public TextCharacterPropertiesModel(TextStrikeTypeValueModel strike, BooleanValueModel noProof,
+      StringValueModel bmk, PercentageValueModel baseline, BooleanValueModel dirty,
+      BooleanValueModel smtClean, BooleanValueModel err, BooleanValueModel kumimoji,
+      BooleanValueModel b, BooleanValueModel i, TextLanguageIDValueModel lang,
+      TextFontSizeValueModel sz, UnsignedIntValueModel smtId, BooleanValueModel normalizeH,
+      TextUnderlineTypeValueModel u, TextNonNegativePointValueModel kern,
+      TextCapsTypeValueModel cap, TextLanguageIDValueModel altLang, TextPointValueModel spc,
       LinePropertiesModel ln, FillPropertiesModel egFillProperties,
       EffectPropertiesModel egEffectProperties, ColorModel highlight,
       TextUnderlineLineModel egTextUnderlineLine, TextUnderlineFillModel egTextUnderlineFill,
-      TextFontModel latin, TextFontModel ea, TextFontModel cs, TextFontModel sym,
-      HyperlinkModel hlinkClick, HyperlinkModel hlinkMouseOver,
+      TextFontValueModel latin, TextFontValueModel ea, TextFontValueModel cs,
+      TextFontValueModel sym, HyperlinkModel hlinkClick, HyperlinkModel hlinkMouseOver,
       OfficeArtExtensionListModel extLst) {
     this.strike = strike;
     this.noProof = noProof;
@@ -117,79 +118,79 @@ public class TextCharacterPropertiesModel {
     this.extLst = extLst;
   }
 
-  public TextStrikeTypeModel getStrike() {
+  public TextStrikeTypeValueModel getStrike() {
     return this.strike;
   }
 
-  public BooleanModel getNoProof() {
+  public BooleanValueModel getNoProof() {
     return this.noProof;
   }
 
-  public StringModel getBmk() {
+  public StringValueModel getBmk() {
     return this.bmk;
   }
 
-  public PercentageModel getBaseline() {
+  public PercentageValueModel getBaseline() {
     return this.baseline;
   }
 
-  public BooleanModel getDirty() {
+  public BooleanValueModel getDirty() {
     return this.dirty;
   }
 
-  public BooleanModel getSmtClean() {
+  public BooleanValueModel getSmtClean() {
     return this.smtClean;
   }
 
-  public BooleanModel getErr() {
+  public BooleanValueModel getErr() {
     return this.err;
   }
 
-  public BooleanModel getKumimoji() {
+  public BooleanValueModel getKumimoji() {
     return this.kumimoji;
   }
 
-  public BooleanModel getB() {
+  public BooleanValueModel getB() {
     return this.b;
   }
 
-  public BooleanModel getI() {
+  public BooleanValueModel getI() {
     return this.i;
   }
 
-  public TextLanguageIDModel getLang() {
+  public TextLanguageIDValueModel getLang() {
     return this.lang;
   }
 
-  public TextFontSizeModel getSz() {
+  public TextFontSizeValueModel getSz() {
     return this.sz;
   }
 
-  public UnsignedIntModel getSmtId() {
+  public UnsignedIntValueModel getSmtId() {
     return this.smtId;
   }
 
-  public BooleanModel getNormalizeH() {
+  public BooleanValueModel getNormalizeH() {
     return this.normalizeH;
   }
 
-  public TextUnderlineTypeModel getU() {
+  public TextUnderlineTypeValueModel getU() {
     return this.u;
   }
 
-  public TextNonNegativePointModel getKern() {
+  public TextNonNegativePointValueModel getKern() {
     return this.kern;
   }
 
-  public TextCapsTypeModel getCap() {
+  public TextCapsTypeValueModel getCap() {
     return this.cap;
   }
 
-  public TextLanguageIDModel getAltLang() {
+  public TextLanguageIDValueModel getAltLang() {
     return this.altLang;
   }
 
-  public TextPointModel getSpc() {
+  public TextPointValueModel getSpc() {
     return this.spc;
   }
 
@@ -217,19 +218,19 @@ public class TextCharacterPropertiesModel {
     return this.egTextUnderlineFill;
   }
 
-  public TextFontModel getLatin() {
+  public TextFontValueModel getLatin() {
     return this.latin;
   }
 
-  public TextFontModel getEa() {
+  public TextFontValueModel getEa() {
     return this.ea;
   }
 
-  public TextFontModel getCs() {
+  public TextFontValueModel getCs() {
     return this.cs;
   }
 
-  public TextFontModel getSym() {
+  public TextFontValueModel getSym() {
     return this.sym;
   }
 

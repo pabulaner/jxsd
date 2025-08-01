@@ -8,10 +8,10 @@ public class RelSizeAnchorModel {
 
   private final MarkerModel to;
 
-  private final SpOrGrpSpOrGraphicFrameModel spOrGrpSpOrGraphicFrame;
+  private final SpOrGrpSpOrGraphicFrameValueModel spOrGrpSpOrGraphicFrame;
 
   public RelSizeAnchorModel(MarkerModel from, MarkerModel to,
-      SpOrGrpSpOrGraphicFrameModel spOrGrpSpOrGraphicFrame) {
+      SpOrGrpSpOrGraphicFrameValueModel spOrGrpSpOrGraphicFrame) {
     this.from = from;
     this.to = to;
     this.spOrGrpSpOrGraphicFrame = spOrGrpSpOrGraphicFrame;
@@ -25,26 +25,26 @@ public class RelSizeAnchorModel {
     return this.to;
   }
 
-  public SpOrGrpSpOrGraphicFrameModel getSpOrGrpSpOrGraphicFrame() {
+  public SpOrGrpSpOrGraphicFrameValueModel getSpOrGrpSpOrGraphicFrame() {
     return this.spOrGrpSpOrGraphicFrame;
   }
 
-  public static class SpOrGrpSpOrGraphicFrameModel {
+  public static class SpOrGrpSpOrGraphicFrameValueModel {
     private final int type;
 
     private final Object value;
 
-    public SpOrGrpSpOrGraphicFrameModel() {
+    public SpOrGrpSpOrGraphicFrameValueModel() {
       this(-1, null);
     }
 
-    private SpOrGrpSpOrGraphicFrameModel(Integer type, Object value) {
+    private SpOrGrpSpOrGraphicFrameValueModel(Integer type, Object value) {
       this.type = type;
       this.value = value;
     }
 
-    public static SpOrGrpSpOrGraphicFrameModel newSp(ShapeModel value) {
-      return new SpOrGrpSpOrGraphicFrameModel(0, value);
+    public static SpOrGrpSpOrGraphicFrameValueModel newSp(ShapeModel value) {
+      return new SpOrGrpSpOrGraphicFrameValueModel(0, value);
     }
 
     public boolean isSp() {
@@ -55,8 +55,8 @@ public class RelSizeAnchorModel {
       return (ShapeModel) this.value;
     }
 
-    public static SpOrGrpSpOrGraphicFrameModel newGrpSp(GroupShapeModel value) {
-      return new SpOrGrpSpOrGraphicFrameModel(1, value);
+    public static SpOrGrpSpOrGraphicFrameValueModel newGrpSp(GroupShapeModel value) {
+      return new SpOrGrpSpOrGraphicFrameValueModel(1, value);
     }
 
     public boolean isGrpSp() {
@@ -67,8 +67,8 @@ public class RelSizeAnchorModel {
       return (GroupShapeModel) this.value;
     }
 
-    public static SpOrGrpSpOrGraphicFrameModel newGraphicFrame(GraphicFrameModel value) {
-      return new SpOrGrpSpOrGraphicFrameModel(2, value);
+    public static SpOrGrpSpOrGraphicFrameValueModel newGraphicFrame(GraphicFrameModel value) {
+      return new SpOrGrpSpOrGraphicFrameValueModel(2, value);
     }
 
     public boolean isGraphicFrame() {
@@ -79,8 +79,8 @@ public class RelSizeAnchorModel {
       return (GraphicFrameModel) this.value;
     }
 
-    public static SpOrGrpSpOrGraphicFrameModel newCxnSp(ConnectorModel value) {
-      return new SpOrGrpSpOrGraphicFrameModel(3, value);
+    public static SpOrGrpSpOrGraphicFrameValueModel newCxnSp(ConnectorModel value) {
+      return new SpOrGrpSpOrGraphicFrameValueModel(3, value);
     }
 
     public boolean isCxnSp() {
@@ -91,8 +91,8 @@ public class RelSizeAnchorModel {
       return (ConnectorModel) this.value;
     }
 
-    public static SpOrGrpSpOrGraphicFrameModel newPic(PictureModel value) {
-      return new SpOrGrpSpOrGraphicFrameModel(4, value);
+    public static SpOrGrpSpOrGraphicFrameValueModel newPic(PictureModel value) {
+      return new SpOrGrpSpOrGraphicFrameValueModel(4, value);
     }
 
     public boolean isPic() {

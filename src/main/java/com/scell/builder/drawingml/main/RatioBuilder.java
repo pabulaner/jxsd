@@ -1,22 +1,22 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.LongModel;
+import com.scell.model.XMLSchema.LongValueModel;
 import com.scell.model.drawingml.main.RatioModel;
 
 public class RatioBuilder {
-  private LongModel n;
+  private LongValueModel n;
 
-  private LongModel d;
+  private LongValueModel d;
 
   public RatioBuilder() {
   }
 
-  public RatioBuilder setN(LongModel n) {
+  public RatioBuilder setN(LongValueModel n) {
     this.n = n;
     return this;
   }
 
-  public RatioBuilder setD(LongModel d) {
+  public RatioBuilder setD(LongValueModel d) {
     this.d = d;
     return this;
   }

@@ -1,50 +1,50 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.DoubleModel;
+import com.scell.model.XMLSchema.DoubleValueModel;
 import com.scell.model.drawingml.chart.PageMarginsModel;
 
 public class PageMarginsBuilder {
-  private DoubleModel footer;
+  private DoubleValueModel footer;
 
-  private DoubleModel l;
+  private DoubleValueModel l;
 
-  private DoubleModel t;
+  private DoubleValueModel t;
 
-  private DoubleModel header;
+  private DoubleValueModel header;
 
-  private DoubleModel r;
+  private DoubleValueModel r;
 
-  private DoubleModel b;
+  private DoubleValueModel b;
 
   public PageMarginsBuilder() {
   }
 
-  public PageMarginsBuilder setFooter(DoubleModel footer) {
+  public PageMarginsBuilder setFooter(DoubleValueModel footer) {
     this.footer = footer;
     return this;
   }
 
-  public PageMarginsBuilder setL(DoubleModel l) {
+  public PageMarginsBuilder setL(DoubleValueModel l) {
     this.l = l;
     return this;
   }
 
-  public PageMarginsBuilder setT(DoubleModel t) {
+  public PageMarginsBuilder setT(DoubleValueModel t) {
     this.t = t;
     return this;
   }
 
-  public PageMarginsBuilder setHeader(DoubleModel header) {
+  public PageMarginsBuilder setHeader(DoubleValueModel header) {
     this.header = header;
     return this;
   }
 
-  public PageMarginsBuilder setR(DoubleModel r) {
+  public PageMarginsBuilder setR(DoubleValueModel r) {
     this.r = r;
     return this;
   }
 
-  public PageMarginsBuilder setB(DoubleModel b) {
+  public PageMarginsBuilder setB(DoubleValueModel b) {
     this.b = b;
     return this;
   }

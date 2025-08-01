@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class DispBlanksAsModel {
-  private final DispBlanksAsModel val;
+  private final DispBlanksAsValueModel val;
 
-  public DispBlanksAsModel(DispBlanksAsModel val) {
+  public DispBlanksAsModel(DispBlanksAsValueModel val) {
     this.val = val;
   }
 
-  public DispBlanksAsModel getVal() {
+  public DispBlanksAsValueModel getVal() {
     return this.val;
   }
 }

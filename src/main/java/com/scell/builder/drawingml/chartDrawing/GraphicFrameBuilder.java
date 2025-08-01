@@ -1,32 +1,32 @@
 package com.scell.builder.drawingml.chartDrawing;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.chartDrawing.GraphicFrameModel;
 import com.scell.model.drawingml.chartDrawing.GraphicFrameNonVisualModel;
-import com.scell.model.drawingml.main.GraphicModel;
+import com.scell.model.drawingml.main.GraphicValueModel;
 import com.scell.model.drawingml.main.Transform2DModel;
 
 public class GraphicFrameBuilder {
-  private BooleanModel fPublished;
+  private BooleanValueModel fPublished;
 
-  private StringModel macro;
+  private StringValueModel macro;
 
   private GraphicFrameNonVisualModel nvGraphicFramePr;
 
   private Transform2DModel xfrm;
 
-  private GraphicModel graphic;
+  private GraphicValueModel graphic;
 
   public GraphicFrameBuilder() {
   }
 
-  public GraphicFrameBuilder setFPublished(BooleanModel fPublished) {
+  public GraphicFrameBuilder setFPublished(BooleanValueModel fPublished) {
     this.fPublished = fPublished;
     return this;
   }
 
-  public GraphicFrameBuilder setMacro(StringModel macro) {
+  public GraphicFrameBuilder setMacro(StringValueModel macro) {
     this.macro = macro;
     return this;
   }
@@ -41,7 +41,7 @@ public class GraphicFrameBuilder {
     return this;
   }
 
-  public GraphicFrameBuilder setGraphic(GraphicModel graphic) {
+  public GraphicFrameBuilder setGraphic(GraphicValueModel graphic) {
     this.graphic = graphic;
     return this;
   }

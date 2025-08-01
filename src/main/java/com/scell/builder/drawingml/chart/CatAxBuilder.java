@@ -49,7 +49,7 @@ public class CatAxBuilder {
 
   private UnsignedIntModel crossAx;
 
-  private CatAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt;
+  private CatAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt;
 
   private BooleanModel auto;
 
@@ -138,7 +138,8 @@ public class CatAxBuilder {
     return this;
   }
 
-  public CatAxBuilder setCrossesOrCrossesAt(CatAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt) {
+  public CatAxBuilder setCrossesOrCrossesAt(
+      CatAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt) {
     this.crossesOrCrossesAt = crossesOrCrossesAt;
     return this;
   }
@@ -208,36 +209,36 @@ public class CatAxBuilder {
     return this;
   }
 
-  public static class CrossesOrCrossesAtBuilder {
+  public static class CrossesOrCrossesAtValueBuilder {
     private int type;
 
     private Object value;
 
-    public CrossesOrCrossesAtBuilder() {
+    public CrossesOrCrossesAtValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public CrossesOrCrossesAtBuilder setCrosses(CrossesModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrosses(CrossesModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public CrossesOrCrossesAtBuilder setCrossesAt(DoubleModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrossesAt(DoubleModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public CatAxModel.CrossesOrCrossesAtModel build() {
-      if (this.type == -1) return new CatAxModel.CrossesOrCrossesAtModel();
-      if (this.type == 0) return CatAxModel.CrossesOrCrossesAtModel.newCrosses((CrossesModel) this.value);
-      if (this.type == 1) return CatAxModel.CrossesOrCrossesAtModel.newCrossesAt((DoubleModel) this.value);
+    public CatAxModel.CrossesOrCrossesAtValueModel build() {
+      if (this.type == -1) return new CatAxModel.CrossesOrCrossesAtValueModel();
+      if (this.type == 0) return CatAxModel.CrossesOrCrossesAtValueModel.newCrosses((CrossesModel) this.value);
+      if (this.type == 1) return CatAxModel.CrossesOrCrossesAtValueModel.newCrossesAt((DoubleModel) this.value);
       return null;
     }
 
-    public CrossesOrCrossesAtBuilder from(CatAxModel.CrossesOrCrossesAtModel value) {
+    public CrossesOrCrossesAtValueBuilder from(CatAxModel.CrossesOrCrossesAtValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isCrosses()) {

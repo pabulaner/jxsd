@@ -10,7 +10,7 @@ import com.scell.model.drawingml.chart.SizeRepresentsModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
 import java.util.List;
 
-public class BubbleChartBuilder {
+public class BubbleChartBuilder implements IBubbleChartValueBuilder {
   private BooleanModel varyColors;
 
   private List<BubbleSerModel> ser;

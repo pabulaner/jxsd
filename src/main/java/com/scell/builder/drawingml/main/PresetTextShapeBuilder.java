@@ -2,17 +2,17 @@ package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.GeomGuideListModel;
 import com.scell.model.drawingml.main.PresetTextShapeModel;
-import com.scell.model.drawingml.main.TextShapeTypeModel;
+import com.scell.model.drawingml.main.TextShapeTypeValueModel;
 
 public class PresetTextShapeBuilder {
-  private TextShapeTypeModel prst;
+  private TextShapeTypeValueModel prst;
 
   private GeomGuideListModel avLst;
 
   public PresetTextShapeBuilder() {
   }
 
-  public PresetTextShapeBuilder setPrst(TextShapeTypeModel prst) {
+  public PresetTextShapeBuilder setPrst(TextShapeTypeValueModel prst) {
     this.prst = prst;
     return this;
   }

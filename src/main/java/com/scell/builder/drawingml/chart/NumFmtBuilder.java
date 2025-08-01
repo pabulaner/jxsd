@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.chart.NumFmtModel;
-import com.scell.model.drawingml.chart.XstringModel;
+import com.scell.model.drawingml.chart.XstringValueModel;
 
 public class NumFmtBuilder {
-  private XstringModel formatCode;
+  private XstringValueModel formatCode;
 
-  private BooleanModel sourceLinked;
+  private BooleanValueModel sourceLinked;
 
   public NumFmtBuilder() {
   }
 
-  public NumFmtBuilder setFormatCode(XstringModel formatCode) {
+  public NumFmtBuilder setFormatCode(XstringValueModel formatCode) {
     this.formatCode = formatCode;
     return this;
   }
 
-  public NumFmtBuilder setSourceLinked(BooleanModel sourceLinked) {
+  public NumFmtBuilder setSourceLinked(BooleanValueModel sourceLinked) {
     this.sourceLinked = sourceLinked;
     return this;
   }

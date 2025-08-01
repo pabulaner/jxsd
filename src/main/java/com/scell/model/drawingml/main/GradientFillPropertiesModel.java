@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 
 public class GradientFillPropertiesModel {
-  private final BooleanModel rotWithShape;
+  private final BooleanValueModel rotWithShape;
 
-  private final TileFlipModeModel flip;
+  private final TileFlipModeValueModel flip;
 
   private final GradientStopListModel gsLst;
 
@@ -15,7 +15,7 @@ public class GradientFillPropertiesModel {
 
   private final RelativeRectModel tileRect;
 
-  public GradientFillPropertiesModel(BooleanModel rotWithShape, TileFlipModeModel flip,
+  public GradientFillPropertiesModel(BooleanValueModel rotWithShape, TileFlipModeValueModel flip,
       GradientStopListModel gsLst, ShadePropertiesModel egShadeProperties,
       RelativeRectModel tileRect) {
     this.rotWithShape = rotWithShape;
@@ -25,11 +25,11 @@ public class GradientFillPropertiesModel {
     this.tileRect = tileRect;
   }
 
-  public BooleanModel getRotWithShape() {
+  public BooleanValueModel getRotWithShape() {
     return this.rotWithShape;
   }
 
-  public TileFlipModeModel getFlip() {
+  public TileFlipModeValueModel getFlip() {
     return this.flip;
   }
 

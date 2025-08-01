@@ -9,6 +9,6 @@ public class LineEndPropertiesConverter {
 
   public static LineEndPropertiesModel fromDocx4J(CTLineEndProperties value) {
     if (value == null) return null;
-    return new LineEndPropertiesModel(LineEndTypeConverter.fromDocx4J(value.getType()), LineEndWidthConverter.fromDocx4J(value.getW()), LineEndLengthConverter.fromDocx4J(value.getLen()));
+    return new LineEndPropertiesModel(LineEndTypeValueConverter.fromDocx4J(value.getType()), LineEndWidthValueConverter.fromDocx4J(value.getW()), LineEndLengthValueConverter.fromDocx4J(value.getLen()));
   }
 }

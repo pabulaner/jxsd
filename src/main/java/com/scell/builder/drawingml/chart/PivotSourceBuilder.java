@@ -3,11 +3,11 @@ package com.scell.builder.drawingml.chart;
 import com.scell.model.drawingml.chart.ExtensionListModel;
 import com.scell.model.drawingml.chart.PivotSourceModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
-import com.scell.model.drawingml.chart.XstringModel;
+import com.scell.model.drawingml.chart.XstringValueModel;
 import java.util.List;
 
 public class PivotSourceBuilder {
-  private XstringModel name;
+  private XstringValueModel name;
 
   private UnsignedIntModel fmtId;
 
@@ -16,7 +16,7 @@ public class PivotSourceBuilder {
   public PivotSourceBuilder() {
   }
 
-  public PivotSourceBuilder setName(XstringModel name) {
+  public PivotSourceBuilder setName(XstringValueModel name) {
     this.name = name;
     return this;
   }

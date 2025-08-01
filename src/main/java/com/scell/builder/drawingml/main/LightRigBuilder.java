@@ -1,26 +1,26 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.LightRigDirectionModel;
+import com.scell.model.drawingml.main.LightRigDirectionValueModel;
 import com.scell.model.drawingml.main.LightRigModel;
-import com.scell.model.drawingml.main.LightRigTypeModel;
+import com.scell.model.drawingml.main.LightRigTypeValueModel;
 import com.scell.model.drawingml.main.SphereCoordsModel;
 
 public class LightRigBuilder {
-  private LightRigTypeModel rig;
+  private LightRigTypeValueModel rig;
 
-  private LightRigDirectionModel dir;
+  private LightRigDirectionValueModel dir;
 
   private SphereCoordsModel rot;
 
   public LightRigBuilder() {
   }
 
-  public LightRigBuilder setRig(LightRigTypeModel rig) {
+  public LightRigBuilder setRig(LightRigTypeValueModel rig) {
     this.rig = rig;
     return this;
   }
 
-  public LightRigBuilder setDir(LightRigDirectionModel dir) {
+  public LightRigBuilder setDir(LightRigDirectionValueModel dir) {
     this.dir = dir;
     return this;
   }

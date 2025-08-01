@@ -9,6 +9,6 @@ public class PeriodConverter {
 
   public static PeriodModel fromDocx4J(CTPeriod value) {
     if (value == null) return null;
-    return new PeriodModel(PeriodConverter.fromDocx4J(value.getVal()));
+    return new PeriodModel(PeriodValueConverter.fromDocx4J(value.getVal()));
   }
 }

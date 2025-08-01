@@ -9,6 +9,6 @@ public class TimeUnitConverter {
 
   public static TimeUnitModel fromDocx4J(CTTimeUnit value) {
     if (value == null) return null;
-    return new TimeUnitModel(TimeUnitConverter.fromDocx4J(value.getVal()));
+    return new TimeUnitModel(TimeUnitValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.LblAlgnModel;
+import com.scell.model.drawingml.chart.LblAlgnValueModel;
 
 public class LblAlgnBuilder {
-  private LblAlgnModel val;
+  private LblAlgnValueModel val;
 
   public LblAlgnBuilder() {
   }
 
-  public LblAlgnBuilder setVal(LblAlgnModel val) {
+  public LblAlgnBuilder setVal(LblAlgnValueModel val) {
     this.val = val;
     return this;
   }

@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class BarDirModel {
-  private final BarDirModel val;
+  private final BarDirValueModel val;
 
-  public BarDirModel(BarDirModel val) {
+  public BarDirModel(BarDirValueModel val) {
     this.val = val;
   }
 
-  public BarDirModel getVal() {
+  public BarDirValueModel getVal() {
     return this.val;
   }
 }

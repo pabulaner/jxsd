@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class GroupTransform2DModel {
-  private final BooleanModel flipV;
+  private final BooleanValueModel flipV;
 
-  private final AngleModel rot;
+  private final AngleValueModel rot;
 
-  private final BooleanModel flipH;
+  private final BooleanValueModel flipH;
 
   private final Point2DModel off;
 
@@ -17,8 +17,9 @@ public class GroupTransform2DModel {
 
   private final PositiveSize2DModel chExt;
 
-  public GroupTransform2DModel(BooleanModel flipV, AngleModel rot, BooleanModel flipH,
-      Point2DModel off, PositiveSize2DModel ext, Point2DModel chOff, PositiveSize2DModel chExt) {
+  public GroupTransform2DModel(BooleanValueModel flipV, AngleValueModel rot,
+      BooleanValueModel flipH, Point2DModel off, PositiveSize2DModel ext, Point2DModel chOff,
+      PositiveSize2DModel chExt) {
     this.flipV = flipV;
     this.rot = rot;
     this.flipH = flipH;
@@ -28,15 +29,15 @@ public class GroupTransform2DModel {
     this.chExt = chExt;
   }
 
-  public BooleanModel getFlipV() {
+  public BooleanValueModel getFlipV() {
     return this.flipV;
   }
 
-  public AngleModel getRot() {
+  public AngleValueModel getRot() {
     return this.rot;
   }
 
-  public BooleanModel getFlipH() {
+  public BooleanValueModel getFlipH() {
     return this.flipH;
   }
 

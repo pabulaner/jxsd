@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class TickMarkModel {
-  private final TickMarkModel val;
+  private final TickMarkValueModel val;
 
-  public TickMarkModel(TickMarkModel val) {
+  public TickMarkModel(TickMarkValueModel val) {
     this.val = val;
   }
 
-  public TickMarkModel getVal() {
+  public TickMarkValueModel getVal() {
     return this.val;
   }
 }

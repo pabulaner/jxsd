@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.PresetLineDashPropertiesModel;
-import com.scell.model.drawingml.main.PresetLineDashValModel;
+import com.scell.model.drawingml.main.PresetLineDashValValueModel;
 
 public class PresetLineDashPropertiesBuilder {
-  private PresetLineDashValModel val;
+  private PresetLineDashValValueModel val;
 
   public PresetLineDashPropertiesBuilder() {
   }
 
-  public PresetLineDashPropertiesBuilder setVal(PresetLineDashValModel val) {
+  public PresetLineDashPropertiesBuilder setVal(PresetLineDashValValueModel val) {
     this.val = val;
     return this;
   }

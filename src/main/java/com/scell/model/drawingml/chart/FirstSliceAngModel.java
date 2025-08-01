@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class FirstSliceAngModel {
-  private final FirstSliceAngModel val;
+  private final FirstSliceAngValueModel val;
 
-  public FirstSliceAngModel(FirstSliceAngModel val) {
+  public FirstSliceAngModel(FirstSliceAngValueModel val) {
     this.val = val;
   }
 
-  public FirstSliceAngModel getVal() {
+  public FirstSliceAngValueModel getVal() {
     return this.val;
   }
 }

@@ -1,72 +1,72 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.chart.HeaderFooterModel;
-import com.scell.model.drawingml.chart.XstringModel;
+import com.scell.model.drawingml.chart.XstringValueModel;
 
 public class HeaderFooterBuilder {
-  private BooleanModel differentOddEven;
+  private BooleanValueModel differentOddEven;
 
-  private BooleanModel differentFirst;
+  private BooleanValueModel differentFirst;
 
-  private BooleanModel alignWithMargins;
+  private BooleanValueModel alignWithMargins;
 
-  private XstringModel oddHeader;
+  private XstringValueModel oddHeader;
 
-  private XstringModel oddFooter;
+  private XstringValueModel oddFooter;
 
-  private XstringModel evenHeader;
+  private XstringValueModel evenHeader;
 
-  private XstringModel evenFooter;
+  private XstringValueModel evenFooter;
 
-  private XstringModel firstHeader;
+  private XstringValueModel firstHeader;
 
-  private XstringModel firstFooter;
+  private XstringValueModel firstFooter;
 
   public HeaderFooterBuilder() {
   }
 
-  public HeaderFooterBuilder setDifferentOddEven(BooleanModel differentOddEven) {
+  public HeaderFooterBuilder setDifferentOddEven(BooleanValueModel differentOddEven) {
     this.differentOddEven = differentOddEven;
     return this;
   }
 
-  public HeaderFooterBuilder setDifferentFirst(BooleanModel differentFirst) {
+  public HeaderFooterBuilder setDifferentFirst(BooleanValueModel differentFirst) {
     this.differentFirst = differentFirst;
     return this;
   }
 
-  public HeaderFooterBuilder setAlignWithMargins(BooleanModel alignWithMargins) {
+  public HeaderFooterBuilder setAlignWithMargins(BooleanValueModel alignWithMargins) {
     this.alignWithMargins = alignWithMargins;
     return this;
   }
 
-  public HeaderFooterBuilder setOddHeader(XstringModel oddHeader) {
+  public HeaderFooterBuilder setOddHeader(XstringValueModel oddHeader) {
     this.oddHeader = oddHeader;
     return this;
   }
 
-  public HeaderFooterBuilder setOddFooter(XstringModel oddFooter) {
+  public HeaderFooterBuilder setOddFooter(XstringValueModel oddFooter) {
     this.oddFooter = oddFooter;
     return this;
   }
 
-  public HeaderFooterBuilder setEvenHeader(XstringModel evenHeader) {
+  public HeaderFooterBuilder setEvenHeader(XstringValueModel evenHeader) {
     this.evenHeader = evenHeader;
     return this;
   }
 
-  public HeaderFooterBuilder setEvenFooter(XstringModel evenFooter) {
+  public HeaderFooterBuilder setEvenFooter(XstringValueModel evenFooter) {
     this.evenFooter = evenFooter;
     return this;
   }
 
-  public HeaderFooterBuilder setFirstHeader(XstringModel firstHeader) {
+  public HeaderFooterBuilder setFirstHeader(XstringValueModel firstHeader) {
     this.firstHeader = firstHeader;
     return this;
   }
 
-  public HeaderFooterBuilder setFirstFooter(XstringModel firstFooter) {
+  public HeaderFooterBuilder setFirstFooter(XstringValueModel firstFooter) {
     this.firstFooter = firstFooter;
     return this;
   }

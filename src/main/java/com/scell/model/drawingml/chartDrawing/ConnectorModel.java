@@ -1,14 +1,14 @@
 package com.scell.model.drawingml.chartDrawing;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import com.scell.model.drawingml.main.ShapeStyleModel;
 
 public class ConnectorModel {
-  private final BooleanModel fPublished;
+  private final BooleanValueModel fPublished;
 
-  private final StringModel macro;
+  private final StringValueModel macro;
 
   private final ConnectorNonVisualModel nvCxnSpPr;
 
@@ -16,7 +16,7 @@ public class ConnectorModel {
 
   private final ShapeStyleModel style;
 
-  public ConnectorModel(BooleanModel fPublished, StringModel macro,
+  public ConnectorModel(BooleanValueModel fPublished, StringValueModel macro,
       ConnectorNonVisualModel nvCxnSpPr, ShapePropertiesModel spPr, ShapeStyleModel style) {
     this.fPublished = fPublished;
     this.macro = macro;
@@ -25,11 +25,11 @@ public class ConnectorModel {
     this.style = style;
   }
 
-  public BooleanModel getFPublished() {
+  public BooleanValueModel getFPublished() {
     return this.fPublished;
   }
 
-  public StringModel getMacro() {
+  public StringValueModel getMacro() {
     return this.macro;
   }
 

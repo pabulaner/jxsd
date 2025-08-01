@@ -11,7 +11,7 @@ import com.scell.model.drawingml.chart.UnsignedIntModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class PieSerBuilder {
+public class PieSerBuilder implements ISeriesValueBuilder {
   private UnsignedIntModel idx;
 
   private UnsignedIntModel order;

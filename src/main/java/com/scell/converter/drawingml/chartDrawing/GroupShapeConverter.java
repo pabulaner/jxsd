@@ -16,13 +16,13 @@ public class GroupShapeConverter {
 
   public static GroupShapeModel fromDocx4J(CTGroupShape value) {
     if (value == null) return null;
-    List<GroupShapeModel.SpOrGrpSpOrGraphicFrameModel> spOrGrpSpOrGraphicFrame = value.getSpOrGrpSpOrGraphicFrame().stream().map(val -> {
-      if (val instanceof CTShape) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newSp(ShapeConverter.fromDocx4J((CTShape) val));
-      if (val instanceof CTGroupShape) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newGrpSp(GroupShapeConverter.fromDocx4J((CTGroupShape) val));
-      if (val instanceof CTGraphicFrame) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newGraphicFrame(GraphicFrameConverter.fromDocx4J((CTGraphicFrame) val));
-      if (val instanceof CTConnector) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newCxnSp(ConnectorConverter.fromDocx4J((CTConnector) val));
-      if (val instanceof CTPicture) return GroupShapeModel.SpOrGrpSpOrGraphicFrameModel.newPic(PictureConverter.fromDocx4J((CTPicture) val));
-      return new GroupShapeModel.SpOrGrpSpOrGraphicFrameModel();
+    List<GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel> spOrGrpSpOrGraphicFrame = value.getSpOrGrpSpOrGraphicFrame().stream().map(val -> {
+      if (val instanceof CTShape) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newSp(ShapeConverter.fromDocx4J((CTShape) val));
+      if (val instanceof CTGroupShape) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newGrpSp(GroupShapeConverter.fromDocx4J((CTGroupShape) val));
+      if (val instanceof CTGraphicFrame) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newGraphicFrame(GraphicFrameConverter.fromDocx4J((CTGraphicFrame) val));
+      if (val instanceof CTConnector) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newCxnSp(ConnectorConverter.fromDocx4J((CTConnector) val));
+      if (val instanceof CTPicture) return GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel.newPic(PictureConverter.fromDocx4J((CTPicture) val));
+      return new GroupShapeModel.SpOrGrpSpOrGraphicFrameValueModel();
     } ).collect(Collectors.toList());
     return new GroupShapeModel(GroupShapeNonVisualConverter.fromDocx4J(value.getNvGrpSpPr()), GroupShapePropertiesConverter.fromDocx4J(value.getGrpSpPr()), spOrGrpSpOrGraphicFrame);
   }

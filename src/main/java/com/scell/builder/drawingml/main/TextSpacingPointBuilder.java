@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.TextSpacingPointModel;
+import com.scell.model.drawingml.main.TextSpacingPointValueModel;
 
 public class TextSpacingPointBuilder {
-  private TextSpacingPointModel val;
+  private TextSpacingPointValueModel val;
 
   public TextSpacingPointBuilder() {
   }
 
-  public TextSpacingPointBuilder setVal(TextSpacingPointModel val) {
+  public TextSpacingPointBuilder setVal(TextSpacingPointValueModel val) {
     this.val = val;
     return this;
   }

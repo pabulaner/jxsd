@@ -1,6 +1,6 @@
 package com.scell.converter.drawingml.main;
 
-import com.scell.converter.XMLSchema.BooleanConverter;
+import com.scell.converter.XMLSchema.BooleanValueConverter;
 import com.scell.model.drawingml.main.ConnectorLockingModel;
 import org.docx4j.dml.CTConnectorLocking;
 
@@ -10,6 +10,6 @@ public class ConnectorLockingConverter {
 
   public static ConnectorLockingModel fromDocx4J(CTConnectorLocking value) {
     if (value == null) return null;
-    return new ConnectorLockingModel(BooleanConverter.fromDocx4J(value.isNoResize()), BooleanConverter.fromDocx4J(value.isNoChangeAspect()), BooleanConverter.fromDocx4J(value.isNoEditPoints()), BooleanConverter.fromDocx4J(value.isNoChangeArrowheads()), BooleanConverter.fromDocx4J(value.isNoSelect()), BooleanConverter.fromDocx4J(value.isNoGrp()), BooleanConverter.fromDocx4J(value.isNoMove()), BooleanConverter.fromDocx4J(value.isNoRot()), BooleanConverter.fromDocx4J(value.isNoChangeShapeType()), BooleanConverter.fromDocx4J(value.isNoAdjustHandles()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
+    return new ConnectorLockingModel(BooleanValueConverter.fromDocx4J(value.isNoResize()), BooleanValueConverter.fromDocx4J(value.isNoChangeAspect()), BooleanValueConverter.fromDocx4J(value.isNoEditPoints()), BooleanValueConverter.fromDocx4J(value.isNoChangeArrowheads()), BooleanValueConverter.fromDocx4J(value.isNoSelect()), BooleanValueConverter.fromDocx4J(value.isNoGrp()), BooleanValueConverter.fromDocx4J(value.isNoMove()), BooleanValueConverter.fromDocx4J(value.isNoRot()), BooleanValueConverter.fromDocx4J(value.isNoChangeShapeType()), BooleanValueConverter.fromDocx4J(value.isNoAdjustHandles()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
   }
 }

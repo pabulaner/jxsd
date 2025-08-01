@@ -1,88 +1,88 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.PictureLockingModel;
 
 public class PictureLockingBuilder {
-  private BooleanModel noResize;
+  private BooleanValueModel noResize;
 
-  private BooleanModel noChangeAspect;
+  private BooleanValueModel noChangeAspect;
 
-  private BooleanModel noEditPoints;
+  private BooleanValueModel noEditPoints;
 
-  private BooleanModel noChangeArrowheads;
+  private BooleanValueModel noChangeArrowheads;
 
-  private BooleanModel noCrop;
+  private BooleanValueModel noCrop;
 
-  private BooleanModel noSelect;
+  private BooleanValueModel noSelect;
 
-  private BooleanModel noGrp;
+  private BooleanValueModel noGrp;
 
-  private BooleanModel noMove;
+  private BooleanValueModel noMove;
 
-  private BooleanModel noRot;
+  private BooleanValueModel noRot;
 
-  private BooleanModel noChangeShapeType;
+  private BooleanValueModel noChangeShapeType;
 
-  private BooleanModel noAdjustHandles;
+  private BooleanValueModel noAdjustHandles;
 
   private OfficeArtExtensionListModel extLst;
 
   public PictureLockingBuilder() {
   }
 
-  public PictureLockingBuilder setNoResize(BooleanModel noResize) {
+  public PictureLockingBuilder setNoResize(BooleanValueModel noResize) {
     this.noResize = noResize;
     return this;
   }
 
-  public PictureLockingBuilder setNoChangeAspect(BooleanModel noChangeAspect) {
+  public PictureLockingBuilder setNoChangeAspect(BooleanValueModel noChangeAspect) {
     this.noChangeAspect = noChangeAspect;
     return this;
   }
 
-  public PictureLockingBuilder setNoEditPoints(BooleanModel noEditPoints) {
+  public PictureLockingBuilder setNoEditPoints(BooleanValueModel noEditPoints) {
     this.noEditPoints = noEditPoints;
     return this;
   }
 
-  public PictureLockingBuilder setNoChangeArrowheads(BooleanModel noChangeArrowheads) {
+  public PictureLockingBuilder setNoChangeArrowheads(BooleanValueModel noChangeArrowheads) {
     this.noChangeArrowheads = noChangeArrowheads;
     return this;
   }
 
-  public PictureLockingBuilder setNoCrop(BooleanModel noCrop) {
+  public PictureLockingBuilder setNoCrop(BooleanValueModel noCrop) {
     this.noCrop = noCrop;
     return this;
   }
 
-  public PictureLockingBuilder setNoSelect(BooleanModel noSelect) {
+  public PictureLockingBuilder setNoSelect(BooleanValueModel noSelect) {
     this.noSelect = noSelect;
     return this;
   }
 
-  public PictureLockingBuilder setNoGrp(BooleanModel noGrp) {
+  public PictureLockingBuilder setNoGrp(BooleanValueModel noGrp) {
     this.noGrp = noGrp;
     return this;
   }
 
-  public PictureLockingBuilder setNoMove(BooleanModel noMove) {
+  public PictureLockingBuilder setNoMove(BooleanValueModel noMove) {
     this.noMove = noMove;
     return this;
   }
 
-  public PictureLockingBuilder setNoRot(BooleanModel noRot) {
+  public PictureLockingBuilder setNoRot(BooleanValueModel noRot) {
     this.noRot = noRot;
     return this;
   }
 
-  public PictureLockingBuilder setNoChangeShapeType(BooleanModel noChangeShapeType) {
+  public PictureLockingBuilder setNoChangeShapeType(BooleanValueModel noChangeShapeType) {
     this.noChangeShapeType = noChangeShapeType;
     return this;
   }
 
-  public PictureLockingBuilder setNoAdjustHandles(BooleanModel noAdjustHandles) {
+  public PictureLockingBuilder setNoAdjustHandles(BooleanValueModel noAdjustHandles) {
     this.noAdjustHandles = noAdjustHandles;
     return this;
   }

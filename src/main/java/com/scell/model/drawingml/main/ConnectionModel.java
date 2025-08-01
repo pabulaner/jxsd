@@ -1,22 +1,22 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 
 public class ConnectionModel {
-  private final DrawingElementIdModel id;
+  private final DrawingElementIdValueModel id;
 
-  private final UnsignedIntModel idx;
+  private final UnsignedIntValueModel idx;
 
-  public ConnectionModel(DrawingElementIdModel id, UnsignedIntModel idx) {
+  public ConnectionModel(DrawingElementIdValueModel id, UnsignedIntValueModel idx) {
     this.id = id;
     this.idx = idx;
   }
 
-  public DrawingElementIdModel getId() {
+  public DrawingElementIdValueModel getId() {
     return this.id;
   }
 
-  public UnsignedIntModel getIdx() {
+  public UnsignedIntValueModel getIdx() {
     return this.idx;
   }
 }

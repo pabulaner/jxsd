@@ -2,17 +2,17 @@ package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.GeomGuideListModel;
 import com.scell.model.drawingml.main.PresetGeometry2DModel;
-import com.scell.model.drawingml.main.ShapeTypeModel;
+import com.scell.model.drawingml.main.ShapeTypeValueModel;
 
 public class PresetGeometry2DBuilder {
-  private ShapeTypeModel prst;
+  private ShapeTypeValueModel prst;
 
   private GeomGuideListModel avLst;
 
   public PresetGeometry2DBuilder() {
   }
 
-  public PresetGeometry2DBuilder setPrst(ShapeTypeModel prst) {
+  public PresetGeometry2DBuilder setPrst(ShapeTypeValueModel prst) {
     this.prst = prst;
     return this;
   }

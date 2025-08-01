@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
 public class AdjPoint2DModel {
-  private final AdjCoordinateModel y;
+  private final AdjCoordinateValueModel y;
 
-  private final AdjCoordinateModel x;
+  private final AdjCoordinateValueModel x;
 
-  public AdjPoint2DModel(AdjCoordinateModel y, AdjCoordinateModel x) {
+  public AdjPoint2DModel(AdjCoordinateValueModel y, AdjCoordinateValueModel x) {
     this.y = y;
     this.x = x;
   }
 
-  public AdjCoordinateModel getY() {
+  public AdjCoordinateValueModel getY() {
     return this.y;
   }
 
-  public AdjCoordinateModel getX() {
+  public AdjCoordinateValueModel getX() {
     return this.x;
   }
 }

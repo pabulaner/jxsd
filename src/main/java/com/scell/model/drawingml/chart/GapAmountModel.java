@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class GapAmountModel {
-  private final GapAmountModel val;
+  private final GapAmountValueModel val;
 
-  public GapAmountModel(GapAmountModel val) {
+  public GapAmountModel(GapAmountValueModel val) {
     this.val = val;
   }
 
-  public GapAmountModel getVal() {
+  public GapAmountValueModel getVal() {
     return this.val;
   }
 }

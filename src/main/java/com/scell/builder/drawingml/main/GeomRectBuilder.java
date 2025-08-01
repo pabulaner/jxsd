@@ -1,36 +1,36 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.AdjCoordinateModel;
+import com.scell.model.drawingml.main.AdjCoordinateValueModel;
 import com.scell.model.drawingml.main.GeomRectModel;
 
 public class GeomRectBuilder {
-  private AdjCoordinateModel l;
+  private AdjCoordinateValueModel l;
 
-  private AdjCoordinateModel t;
+  private AdjCoordinateValueModel t;
 
-  private AdjCoordinateModel r;
+  private AdjCoordinateValueModel r;
 
-  private AdjCoordinateModel b;
+  private AdjCoordinateValueModel b;
 
   public GeomRectBuilder() {
   }
 
-  public GeomRectBuilder setL(AdjCoordinateModel l) {
+  public GeomRectBuilder setL(AdjCoordinateValueModel l) {
     this.l = l;
     return this;
   }
 
-  public GeomRectBuilder setT(AdjCoordinateModel t) {
+  public GeomRectBuilder setT(AdjCoordinateValueModel t) {
     this.t = t;
     return this;
   }
 
-  public GeomRectBuilder setR(AdjCoordinateModel r) {
+  public GeomRectBuilder setR(AdjCoordinateValueModel r) {
     this.r = r;
     return this;
   }
 
-  public GeomRectBuilder setB(AdjCoordinateModel b) {
+  public GeomRectBuilder setB(AdjCoordinateValueModel b) {
     this.b = b;
     return this;
   }

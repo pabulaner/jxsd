@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.LinearShadePropertiesModel;
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 
 public class LinearShadePropertiesBuilder {
-  private BooleanModel scaled;
+  private BooleanValueModel scaled;
 
-  private PositiveFixedAngleModel ang;
+  private PositiveFixedAngleValueModel ang;
 
   public LinearShadePropertiesBuilder() {
   }
 
-  public LinearShadePropertiesBuilder setScaled(BooleanModel scaled) {
+  public LinearShadePropertiesBuilder setScaled(BooleanValueModel scaled) {
     this.scaled = scaled;
     return this;
   }
 
-  public LinearShadePropertiesBuilder setAng(PositiveFixedAngleModel ang) {
+  public LinearShadePropertiesBuilder setAng(PositiveFixedAngleValueModel ang) {
     this.ang = ang;
     return this;
   }

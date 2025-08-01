@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
 import com.scell.model.drawingml.main.SoftEdgesEffectModel;
 
 public class SoftEdgesEffectBuilder {
-  private PositiveCoordinateModel rad;
+  private PositiveCoordinateValueModel rad;
 
   public SoftEdgesEffectBuilder() {
   }
 
-  public SoftEdgesEffectBuilder setRad(PositiveCoordinateModel rad) {
+  public SoftEdgesEffectBuilder setRad(PositiveCoordinateValueModel rad) {
     this.rad = rad;
     return this;
   }

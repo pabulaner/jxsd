@@ -1,8 +1,8 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 import com.scell.model.drawingml.main.BlipFillPropertiesModel;
 import com.scell.model.drawingml.main.ColorModel;
 import com.scell.model.drawingml.main.EffectContainerModel;
@@ -14,60 +14,60 @@ import com.scell.model.drawingml.main.LinePropertiesModel;
 import com.scell.model.drawingml.main.NoFillPropertiesModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.PatternFillPropertiesModel;
-import com.scell.model.drawingml.main.PercentageModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
 import com.scell.model.drawingml.main.SolidColorFillPropertiesModel;
-import com.scell.model.drawingml.main.TextCapsTypeModel;
+import com.scell.model.drawingml.main.TextCapsTypeValueModel;
 import com.scell.model.drawingml.main.TextCharacterPropertiesModel;
-import com.scell.model.drawingml.main.TextFontModel;
-import com.scell.model.drawingml.main.TextFontSizeModel;
-import com.scell.model.drawingml.main.TextLanguageIDModel;
-import com.scell.model.drawingml.main.TextNonNegativePointModel;
-import com.scell.model.drawingml.main.TextPointModel;
-import com.scell.model.drawingml.main.TextStrikeTypeModel;
+import com.scell.model.drawingml.main.TextFontSizeValueModel;
+import com.scell.model.drawingml.main.TextFontValueModel;
+import com.scell.model.drawingml.main.TextLanguageIDValueModel;
+import com.scell.model.drawingml.main.TextNonNegativePointValueModel;
+import com.scell.model.drawingml.main.TextPointValueModel;
+import com.scell.model.drawingml.main.TextStrikeTypeValueModel;
 import com.scell.model.drawingml.main.TextUnderlineFillFollowTextModel;
 import com.scell.model.drawingml.main.TextUnderlineFillGroupWrapperModel;
 import com.scell.model.drawingml.main.TextUnderlineLineFollowTextModel;
-import com.scell.model.drawingml.main.TextUnderlineTypeModel;
+import com.scell.model.drawingml.main.TextUnderlineTypeValueModel;
 import java.lang.Object;
 
 public class TextCharacterPropertiesBuilder {
-  private TextStrikeTypeModel strike;
+  private TextStrikeTypeValueModel strike;
 
-  private BooleanModel noProof;
+  private BooleanValueModel noProof;
 
-  private StringModel bmk;
+  private StringValueModel bmk;
 
-  private PercentageModel baseline;
+  private PercentageValueModel baseline;
 
-  private BooleanModel dirty;
+  private BooleanValueModel dirty;
 
-  private BooleanModel smtClean;
+  private BooleanValueModel smtClean;
 
-  private BooleanModel err;
+  private BooleanValueModel err;
 
-  private BooleanModel kumimoji;
+  private BooleanValueModel kumimoji;
 
-  private BooleanModel b;
+  private BooleanValueModel b;
 
-  private BooleanModel i;
+  private BooleanValueModel i;
 
-  private TextLanguageIDModel lang;
+  private TextLanguageIDValueModel lang;
 
-  private TextFontSizeModel sz;
+  private TextFontSizeValueModel sz;
 
-  private UnsignedIntModel smtId;
+  private UnsignedIntValueModel smtId;
 
-  private BooleanModel normalizeH;
+  private BooleanValueModel normalizeH;
 
-  private TextUnderlineTypeModel u;
+  private TextUnderlineTypeValueModel u;
 
-  private TextNonNegativePointModel kern;
+  private TextNonNegativePointValueModel kern;
 
-  private TextCapsTypeModel cap;
+  private TextCapsTypeValueModel cap;
 
-  private TextLanguageIDModel altLang;
+  private TextLanguageIDValueModel altLang;
 
-  private TextPointModel spc;
+  private TextPointValueModel spc;
 
   private LinePropertiesModel ln;
 
@@ -81,13 +81,13 @@ public class TextCharacterPropertiesBuilder {
 
   private TextCharacterPropertiesModel.TextUnderlineFillModel egTextUnderlineFill;
 
-  private TextFontModel latin;
+  private TextFontValueModel latin;
 
-  private TextFontModel ea;
+  private TextFontValueModel ea;
 
-  private TextFontModel cs;
+  private TextFontValueModel cs;
 
-  private TextFontModel sym;
+  private TextFontValueModel sym;
 
   private HyperlinkModel hlinkClick;
 
@@ -98,97 +98,97 @@ public class TextCharacterPropertiesBuilder {
   public TextCharacterPropertiesBuilder() {
   }
 
-  public TextCharacterPropertiesBuilder setStrike(TextStrikeTypeModel strike) {
+  public TextCharacterPropertiesBuilder setStrike(TextStrikeTypeValueModel strike) {
     this.strike = strike;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setNoProof(BooleanModel noProof) {
+  public TextCharacterPropertiesBuilder setNoProof(BooleanValueModel noProof) {
     this.noProof = noProof;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setBmk(StringModel bmk) {
+  public TextCharacterPropertiesBuilder setBmk(StringValueModel bmk) {
     this.bmk = bmk;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setBaseline(PercentageModel baseline) {
+  public TextCharacterPropertiesBuilder setBaseline(PercentageValueModel baseline) {
     this.baseline = baseline;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setDirty(BooleanModel dirty) {
+  public TextCharacterPropertiesBuilder setDirty(BooleanValueModel dirty) {
     this.dirty = dirty;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setSmtClean(BooleanModel smtClean) {
+  public TextCharacterPropertiesBuilder setSmtClean(BooleanValueModel smtClean) {
     this.smtClean = smtClean;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setErr(BooleanModel err) {
+  public TextCharacterPropertiesBuilder setErr(BooleanValueModel err) {
     this.err = err;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setKumimoji(BooleanModel kumimoji) {
+  public TextCharacterPropertiesBuilder setKumimoji(BooleanValueModel kumimoji) {
     this.kumimoji = kumimoji;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setB(BooleanModel b) {
+  public TextCharacterPropertiesBuilder setB(BooleanValueModel b) {
     this.b = b;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setI(BooleanModel i) {
+  public TextCharacterPropertiesBuilder setI(BooleanValueModel i) {
     this.i = i;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setLang(TextLanguageIDModel lang) {
+  public TextCharacterPropertiesBuilder setLang(TextLanguageIDValueModel lang) {
     this.lang = lang;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setSz(TextFontSizeModel sz) {
+  public TextCharacterPropertiesBuilder setSz(TextFontSizeValueModel sz) {
     this.sz = sz;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setSmtId(UnsignedIntModel smtId) {
+  public TextCharacterPropertiesBuilder setSmtId(UnsignedIntValueModel smtId) {
     this.smtId = smtId;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setNormalizeH(BooleanModel normalizeH) {
+  public TextCharacterPropertiesBuilder setNormalizeH(BooleanValueModel normalizeH) {
     this.normalizeH = normalizeH;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setU(TextUnderlineTypeModel u) {
+  public TextCharacterPropertiesBuilder setU(TextUnderlineTypeValueModel u) {
     this.u = u;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setKern(TextNonNegativePointModel kern) {
+  public TextCharacterPropertiesBuilder setKern(TextNonNegativePointValueModel kern) {
     this.kern = kern;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setCap(TextCapsTypeModel cap) {
+  public TextCharacterPropertiesBuilder setCap(TextCapsTypeValueModel cap) {
     this.cap = cap;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setAltLang(TextLanguageIDModel altLang) {
+  public TextCharacterPropertiesBuilder setAltLang(TextLanguageIDValueModel altLang) {
     this.altLang = altLang;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setSpc(TextPointModel spc) {
+  public TextCharacterPropertiesBuilder setSpc(TextPointValueModel spc) {
     this.spc = spc;
     return this;
   }
@@ -227,22 +227,22 @@ public class TextCharacterPropertiesBuilder {
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setLatin(TextFontModel latin) {
+  public TextCharacterPropertiesBuilder setLatin(TextFontValueModel latin) {
     this.latin = latin;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setEa(TextFontModel ea) {
+  public TextCharacterPropertiesBuilder setEa(TextFontValueModel ea) {
     this.ea = ea;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setCs(TextFontModel cs) {
+  public TextCharacterPropertiesBuilder setCs(TextFontValueModel cs) {
     this.cs = cs;
     return this;
   }
 
-  public TextCharacterPropertiesBuilder setSym(TextFontModel sym) {
+  public TextCharacterPropertiesBuilder setSym(TextFontValueModel sym) {
     this.sym = sym;
     return this;
   }

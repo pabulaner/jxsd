@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.BubbleScaleModel;
+import com.scell.model.drawingml.chart.BubbleScaleValueModel;
 
 public class BubbleScaleBuilder {
-  private BubbleScaleModel val;
+  private BubbleScaleValueModel val;
 
   public BubbleScaleBuilder() {
   }
 
-  public BubbleScaleBuilder setVal(BubbleScaleModel val) {
+  public BubbleScaleBuilder setVal(BubbleScaleValueModel val) {
     this.val = val;
     return this;
   }

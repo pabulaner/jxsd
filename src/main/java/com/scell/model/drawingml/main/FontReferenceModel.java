@@ -4,16 +4,16 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class FontReferenceModel {
-  private final FontCollectionIndexModel idx;
+  private final FontCollectionIndexValueModel idx;
 
   private final ColorChoiceModel egColorChoice;
 
-  public FontReferenceModel(FontCollectionIndexModel idx, ColorChoiceModel egColorChoice) {
+  public FontReferenceModel(FontCollectionIndexValueModel idx, ColorChoiceModel egColorChoice) {
     this.idx = idx;
     this.egColorChoice = egColorChoice;
   }
 
-  public FontCollectionIndexModel getIdx() {
+  public FontCollectionIndexValueModel getIdx() {
     return this.idx;
   }
 

@@ -1,29 +1,29 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.TokenModel;
+import com.scell.model.XMLSchema.TokenValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 import java.util.List;
 
 public class EffectContainerModel {
-  private final EffectContainerTypeModel type;
+  private final EffectContainerTypeValueModel type;
 
-  private final TokenModel name;
+  private final TokenValueModel name;
 
   private final List<EffectModel> egEffect;
 
-  public EffectContainerModel(EffectContainerTypeModel type, TokenModel name,
+  public EffectContainerModel(EffectContainerTypeValueModel type, TokenValueModel name,
       List<EffectModel> egEffect) {
     this.type = type;
     this.name = name;
     this.egEffect = egEffect;
   }
 
-  public EffectContainerTypeModel getType() {
+  public EffectContainerTypeValueModel getType() {
     return this.type;
   }
 
-  public TokenModel getName() {
+  public TokenValueModel getName() {
     return this.name;
   }
 

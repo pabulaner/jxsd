@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.PictureFormatModel;
+import com.scell.model.drawingml.chart.PictureFormatValueModel;
 
 public class PictureFormatBuilder {
-  private PictureFormatModel val;
+  private PictureFormatValueModel val;
 
   public PictureFormatBuilder() {
   }
 
-  public PictureFormatBuilder setVal(PictureFormatModel val) {
+  public PictureFormatBuilder setVal(PictureFormatValueModel val) {
     this.val = val;
     return this;
   }

@@ -1,7 +1,7 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 import com.scell.model.drawingml.main.BlipFillPropertiesModel;
 import com.scell.model.drawingml.main.BlipModel;
 import com.scell.model.drawingml.main.RelativeRectModel;
@@ -10,9 +10,9 @@ import com.scell.model.drawingml.main.TileInfoPropertiesModel;
 import java.lang.Object;
 
 public class BlipFillPropertiesBuilder {
-  private BooleanModel rotWithShape;
+  private BooleanValueModel rotWithShape;
 
-  private UnsignedIntModel dpi;
+  private UnsignedIntValueModel dpi;
 
   private BlipModel blip;
 
@@ -23,12 +23,12 @@ public class BlipFillPropertiesBuilder {
   public BlipFillPropertiesBuilder() {
   }
 
-  public BlipFillPropertiesBuilder setRotWithShape(BooleanModel rotWithShape) {
+  public BlipFillPropertiesBuilder setRotWithShape(BooleanValueModel rotWithShape) {
     this.rotWithShape = rotWithShape;
     return this;
   }
 
-  public BlipFillPropertiesBuilder setDpi(UnsignedIntModel dpi) {
+  public BlipFillPropertiesBuilder setDpi(UnsignedIntValueModel dpi) {
     this.dpi = dpi;
     return this;
   }

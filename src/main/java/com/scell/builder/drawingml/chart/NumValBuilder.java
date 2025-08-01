@@ -1,30 +1,30 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 import com.scell.model.drawingml.chart.NumValModel;
-import com.scell.model.drawingml.chart.XstringModel;
+import com.scell.model.drawingml.chart.XstringValueModel;
 
 public class NumValBuilder {
-  private XstringModel formatCode;
+  private XstringValueModel formatCode;
 
-  private UnsignedIntModel idx;
+  private UnsignedIntValueModel idx;
 
-  private XstringModel v;
+  private XstringValueModel v;
 
   public NumValBuilder() {
   }
 
-  public NumValBuilder setFormatCode(XstringModel formatCode) {
+  public NumValBuilder setFormatCode(XstringValueModel formatCode) {
     this.formatCode = formatCode;
     return this;
   }
 
-  public NumValBuilder setIdx(UnsignedIntModel idx) {
+  public NumValBuilder setIdx(UnsignedIntValueModel idx) {
     this.idx = idx;
     return this;
   }
 
-  public NumValBuilder setV(XstringModel v) {
+  public NumValBuilder setV(XstringValueModel v) {
     this.v = v;
     return this;
   }

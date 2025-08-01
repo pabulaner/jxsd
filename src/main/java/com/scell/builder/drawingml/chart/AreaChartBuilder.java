@@ -10,7 +10,7 @@ import com.scell.model.drawingml.chart.GroupingModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
 import java.util.List;
 
-public class AreaChartBuilder {
+public class AreaChartBuilder implements IAreaChartValueBuilder {
   private GroupingModel grouping;
 
   private BooleanModel varyColors;

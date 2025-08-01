@@ -1,20 +1,21 @@
 package com.scell.model.drawingml.main;
 
 public class TransformEffectModel {
-  private final PercentageModel sy;
+  private final PercentageValueModel sy;
 
-  private final FixedAngleModel ky;
+  private final FixedAngleValueModel ky;
 
-  private final PercentageModel sx;
+  private final PercentageValueModel sx;
 
-  private final CoordinateModel ty;
+  private final CoordinateValueModel ty;
 
-  private final FixedAngleModel kx;
+  private final FixedAngleValueModel kx;
 
-  private final CoordinateModel tx;
+  private final CoordinateValueModel tx;
 
-  public TransformEffectModel(PercentageModel sy, FixedAngleModel ky, PercentageModel sx,
-      CoordinateModel ty, FixedAngleModel kx, CoordinateModel tx) {
+  public TransformEffectModel(PercentageValueModel sy, FixedAngleValueModel ky,
+      PercentageValueModel sx, CoordinateValueModel ty, FixedAngleValueModel kx,
+      CoordinateValueModel tx) {
     this.sy = sy;
     this.ky = ky;
     this.sx = sx;
@@ -23,27 +24,27 @@ public class TransformEffectModel {
     this.tx = tx;
   }
 
-  public PercentageModel getSy() {
+  public PercentageValueModel getSy() {
     return this.sy;
   }
 
-  public FixedAngleModel getKy() {
+  public FixedAngleValueModel getKy() {
     return this.ky;
   }
 
-  public PercentageModel getSx() {
+  public PercentageValueModel getSx() {
     return this.sx;
   }
 
-  public CoordinateModel getTy() {
+  public CoordinateValueModel getTy() {
     return this.ty;
   }
 
-  public FixedAngleModel getKx() {
+  public FixedAngleValueModel getKx() {
     return this.kx;
   }
 
-  public CoordinateModel getTx() {
+  public CoordinateValueModel getTx() {
     return this.tx;
   }
 }

@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.FontCollectionIndexModel;
+import com.scell.model.drawingml.main.FontCollectionIndexValueModel;
 import com.scell.model.drawingml.main.FontReferenceModel;
 import com.scell.model.drawingml.main.HslColorModel;
 import com.scell.model.drawingml.main.PresetColorModel;
@@ -11,14 +11,14 @@ import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class FontReferenceBuilder {
-  private FontCollectionIndexModel idx;
+  private FontCollectionIndexValueModel idx;
 
   private FontReferenceModel.ColorChoiceModel egColorChoice;
 
   public FontReferenceBuilder() {
   }
 
-  public FontReferenceBuilder setIdx(FontCollectionIndexModel idx) {
+  public FontReferenceBuilder setIdx(FontCollectionIndexValueModel idx) {
     this.idx = idx;
     return this;
   }

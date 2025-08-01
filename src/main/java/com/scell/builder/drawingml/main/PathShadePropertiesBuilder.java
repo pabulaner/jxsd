@@ -1,18 +1,18 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.PathShadePropertiesModel;
-import com.scell.model.drawingml.main.PathShadeTypeModel;
+import com.scell.model.drawingml.main.PathShadeTypeValueModel;
 import com.scell.model.drawingml.main.RelativeRectModel;
 
 public class PathShadePropertiesBuilder {
-  private PathShadeTypeModel path;
+  private PathShadeTypeValueModel path;
 
   private RelativeRectModel fillToRect;
 
   public PathShadePropertiesBuilder() {
   }
 
-  public PathShadePropertiesBuilder setPath(PathShadeTypeModel path) {
+  public PathShadePropertiesBuilder setPath(PathShadeTypeValueModel path) {
     this.path = path;
     return this;
   }

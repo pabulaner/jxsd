@@ -2,7 +2,7 @@ package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.GradientStopModel;
 import com.scell.model.drawingml.main.HslColorModel;
-import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
+import com.scell.model.drawingml.main.PositiveFixedPercentageValueModel;
 import com.scell.model.drawingml.main.PresetColorModel;
 import com.scell.model.drawingml.main.SRgbColorModel;
 import com.scell.model.drawingml.main.ScRgbColorModel;
@@ -11,14 +11,14 @@ import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class GradientStopBuilder {
-  private PositiveFixedPercentageModel pos;
+  private PositiveFixedPercentageValueModel pos;
 
   private GradientStopModel.ColorChoiceModel egColorChoice;
 
   public GradientStopBuilder() {
   }
 
-  public GradientStopBuilder setPos(PositiveFixedPercentageModel pos) {
+  public GradientStopBuilder setPos(PositiveFixedPercentageValueModel pos) {
     this.pos = pos;
     return this;
   }

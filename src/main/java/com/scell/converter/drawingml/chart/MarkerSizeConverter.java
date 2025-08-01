@@ -9,6 +9,6 @@ public class MarkerSizeConverter {
 
   public static MarkerSizeModel fromDocx4J(CTMarkerSize value) {
     if (value == null) return null;
-    return new MarkerSizeModel(MarkerSizeConverter.fromDocx4J(value.getVal()));
+    return new MarkerSizeModel(MarkerSizeValueConverter.fromDocx4J(value.getVal()));
   }
 }

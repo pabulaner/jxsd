@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
 public class TintEffectModel {
-  private final PositiveFixedAngleModel hue;
+  private final PositiveFixedAngleValueModel hue;
 
-  private final FixedPercentageModel amt;
+  private final FixedPercentageValueModel amt;
 
-  public TintEffectModel(PositiveFixedAngleModel hue, FixedPercentageModel amt) {
+  public TintEffectModel(PositiveFixedAngleValueModel hue, FixedPercentageValueModel amt) {
     this.hue = hue;
     this.amt = amt;
   }
 
-  public PositiveFixedAngleModel getHue() {
+  public PositiveFixedAngleValueModel getHue() {
     return this.hue;
   }
 
-  public FixedPercentageModel getAmt() {
+  public FixedPercentageValueModel getAmt() {
     return this.amt;
   }
 }

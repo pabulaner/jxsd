@@ -1,12 +1,12 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.NonVisualDrawingShapePropsModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.ShapeLockingModel;
 
 public class NonVisualDrawingShapePropsBuilder {
-  private BooleanModel txBox;
+  private BooleanValueModel txBox;
 
   private ShapeLockingModel spLocks;
 
@@ -15,7 +15,7 @@ public class NonVisualDrawingShapePropsBuilder {
   public NonVisualDrawingShapePropsBuilder() {
   }
 
-  public NonVisualDrawingShapePropsBuilder setTxBox(BooleanModel txBox) {
+  public NonVisualDrawingShapePropsBuilder setTxBox(BooleanValueModel txBox) {
     this.txBox = txBox;
     return this;
   }

@@ -15,8 +15,10 @@ public class PkgParentResolver implements Resolver {
 
     public JavaType resolve(JavaType type) {
         List<String> fullPkg = new ArrayList<>(pkg);
-        fullPkg.addAll(type.pkg());
+        fullPkg.addAll(type.getPkg());
 
-        return new JavaType(fullPkg, type.outer(), type.name(), type.minOccurs(), type.maxOccurs());
+        return new JavaType.Builder(type)
+                .setPkg(fullPkg)
+                .build();
     }
 }

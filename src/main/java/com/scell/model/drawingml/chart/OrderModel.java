@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class OrderModel {
-  private final OrderModel val;
+  private final OrderValueModel val;
 
-  public OrderModel(OrderModel val) {
+  public OrderModel(OrderValueModel val) {
     this.val = val;
   }
 
-  public OrderModel getVal() {
+  public OrderValueModel getVal() {
     return this.val;
   }
 }

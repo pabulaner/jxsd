@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class LogBaseModel {
-  private final LogBaseModel val;
+  private final LogBaseValueModel val;
 
-  public LogBaseModel(LogBaseModel val) {
+  public LogBaseModel(LogBaseValueModel val) {
     this.val = val;
   }
 
-  public LogBaseModel getVal() {
+  public LogBaseValueModel getVal() {
     return this.val;
   }
 }

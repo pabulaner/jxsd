@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class LegendPosModel {
-  private final LegendPosModel val;
+  private final LegendPosValueModel val;
 
-  public LegendPosModel(LegendPosModel val) {
+  public LegendPosModel(LegendPosValueModel val) {
     this.val = val;
   }
 
-  public LegendPosModel getVal() {
+  public LegendPosValueModel getVal() {
     return this.val;
   }
 }

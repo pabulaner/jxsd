@@ -9,6 +9,6 @@ public class RotYConverter {
 
   public static RotYModel fromDocx4J(CTRotY value) {
     if (value == null) return null;
-    return new RotYModel(RotYConverter.fromDocx4J(value.getVal()));
+    return new RotYModel(RotYValueConverter.fromDocx4J(value.getVal()));
   }
 }

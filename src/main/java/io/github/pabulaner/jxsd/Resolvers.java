@@ -1,6 +1,6 @@
 package io.github.pabulaner.jxsd;
 
-import io.github.pabulaner.jxsd.out.util.Name;
+import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.out.resolver.PkgCleanResolver;
 import io.github.pabulaner.jxsd.out.resolver.PkgParentResolver;
 import io.github.pabulaner.jxsd.out.resolver.PkgRenameResolver;
@@ -26,12 +26,27 @@ public final class Resolvers {
                 new PkgParentResolver(pkg),
                 new PkgCleanResolver(),
                 new TypeRenameResolver(value -> {
-                    String result = new Name(value).toUpper() + new Name(type).toUpper();
-                    int index = result.indexOf("_");
+                    String result = new Name(value).toUpper();
+                    String suffix = new Name(type).toUpper();
 
-                    return index == 2
-                            ? result.substring(index + 1)
-                            : result;
+                    int index = result.indexOf("_");
+                    boolean isValue = false;
+
+                    if (index >= 0) {
+                        String prefix = result.substring(0, index);
+
+                        if (prefix.equals("ST")) {
+                            isValue = true;
+                        }
+                    } else {
+                        isValue = true;
+                    }
+
+                    if (isValue) {
+                        suffix = "Value" + suffix;
+                    }
+
+                    return result.substring(index + 1) + suffix;
                 }));
     }
 

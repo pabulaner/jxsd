@@ -8,6 +8,7 @@ import com.scell.model.drawingml.main.GrayscaleTransformModel;
 import com.scell.model.drawingml.main.InverseGammaTransformModel;
 import com.scell.model.drawingml.main.InverseTransformModel;
 import com.scell.model.drawingml.main.PercentageModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
 import com.scell.model.drawingml.main.PositiveFixedAngleModel;
 import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
 import com.scell.model.drawingml.main.PositivePercentageModel;
@@ -16,28 +17,28 @@ import java.lang.Object;
 import java.util.List;
 
 public class ScRgbColorBuilder {
-  private PercentageModel g;
+  private PercentageValueModel g;
 
-  private PercentageModel r;
+  private PercentageValueModel r;
 
-  private PercentageModel b;
+  private PercentageValueModel b;
 
   private List<ScRgbColorModel.ColorTransformModel> egColorTransform;
 
   public ScRgbColorBuilder() {
   }
 
-  public ScRgbColorBuilder setG(PercentageModel g) {
+  public ScRgbColorBuilder setG(PercentageValueModel g) {
     this.g = g;
     return this;
   }
 
-  public ScRgbColorBuilder setR(PercentageModel r) {
+  public ScRgbColorBuilder setR(PercentageValueModel r) {
     this.r = r;
     return this;
   }
 
-  public ScRgbColorBuilder setB(PercentageModel b) {
+  public ScRgbColorBuilder setB(PercentageValueModel b) {
     this.b = b;
     return this;
   }

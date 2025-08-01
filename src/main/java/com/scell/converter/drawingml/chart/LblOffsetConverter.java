@@ -9,6 +9,6 @@ public class LblOffsetConverter {
 
   public static LblOffsetModel fromDocx4J(CTLblOffset value) {
     if (value == null) return null;
-    return new LblOffsetModel(LblOffsetConverter.fromDocx4J(value.getVal()));
+    return new LblOffsetModel(LblOffsetValueConverter.fromDocx4J(value.getVal()));
   }
 }

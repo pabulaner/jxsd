@@ -16,6 +16,6 @@ public class PresetShadowEffectConverter {
     if (value.getSysClr() != null) egColorChoice = PresetShadowEffectModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = PresetShadowEffectModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = PresetShadowEffectModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new PresetShadowEffectModel(PositiveCoordinateConverter.fromDocx4J(value.getDist()), PresetShadowValConverter.fromDocx4J(value.getPrst()), PositiveFixedAngleConverter.fromDocx4J(value.getDir()), egColorChoice);
+    return new PresetShadowEffectModel(PositiveCoordinateValueConverter.fromDocx4J(value.getDist()), PresetShadowValValueConverter.fromDocx4J(value.getPrst()), PositiveFixedAngleValueConverter.fromDocx4J(value.getDir()), egColorChoice);
   }
 }

@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class HoleSizeModel {
-  private final HoleSizeModel val;
+  private final HoleSizeValueModel val;
 
-  public HoleSizeModel(HoleSizeModel val) {
+  public HoleSizeModel(HoleSizeValueModel val) {
     this.val = val;
   }
 
-  public HoleSizeModel getVal() {
+  public HoleSizeValueModel getVal() {
     return this.val;
   }
 }

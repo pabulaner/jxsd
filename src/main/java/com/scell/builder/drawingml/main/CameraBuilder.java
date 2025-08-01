@@ -1,34 +1,34 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.CameraModel;
-import com.scell.model.drawingml.main.FOVAngleModel;
-import com.scell.model.drawingml.main.PositivePercentageModel;
-import com.scell.model.drawingml.main.PresetCameraTypeModel;
+import com.scell.model.drawingml.main.FOVAngleValueModel;
+import com.scell.model.drawingml.main.PositivePercentageValueModel;
+import com.scell.model.drawingml.main.PresetCameraTypeValueModel;
 import com.scell.model.drawingml.main.SphereCoordsModel;
 
 public class CameraBuilder {
-  private PresetCameraTypeModel prst;
+  private PresetCameraTypeValueModel prst;
 
-  private FOVAngleModel fov;
+  private FOVAngleValueModel fov;
 
-  private PositivePercentageModel zoom;
+  private PositivePercentageValueModel zoom;
 
   private SphereCoordsModel rot;
 
   public CameraBuilder() {
   }
 
-  public CameraBuilder setPrst(PresetCameraTypeModel prst) {
+  public CameraBuilder setPrst(PresetCameraTypeValueModel prst) {
     this.prst = prst;
     return this;
   }
 
-  public CameraBuilder setFov(FOVAngleModel fov) {
+  public CameraBuilder setFov(FOVAngleValueModel fov) {
     this.fov = fov;
     return this;
   }
 
-  public CameraBuilder setZoom(PositivePercentageModel zoom) {
+  public CameraBuilder setZoom(PositivePercentageValueModel zoom) {
     this.zoom = zoom;
     return this;
   }

@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.TrendlineTypeModel;
+import com.scell.model.drawingml.chart.TrendlineTypeValueModel;
 
 public class TrendlineTypeBuilder {
-  private TrendlineTypeModel val;
+  private TrendlineTypeValueModel val;
 
   public TrendlineTypeBuilder() {
   }
 
-  public TrendlineTypeBuilder setVal(TrendlineTypeModel val) {
+  public TrendlineTypeBuilder setVal(TrendlineTypeValueModel val) {
     this.val = val;
     return this;
   }

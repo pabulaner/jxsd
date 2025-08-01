@@ -1,31 +1,31 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 
 public class TextParagraphPropertiesModel {
-  private final TextIndentModel indent;
+  private final TextIndentValueModel indent;
 
-  private final BooleanModel latinLnBrk;
+  private final BooleanValueModel latinLnBrk;
 
-  private final TextMarginModel marR;
+  private final TextMarginValueModel marR;
 
-  private final BooleanModel hangingPunct;
+  private final BooleanValueModel hangingPunct;
 
-  private final TextFontAlignTypeModel fontAlgn;
+  private final TextFontAlignTypeValueModel fontAlgn;
 
-  private final BooleanModel eaLnBrk;
+  private final BooleanValueModel eaLnBrk;
 
-  private final BooleanModel rtl;
+  private final BooleanValueModel rtl;
 
-  private final TextIndentLevelTypeModel lvl;
+  private final TextIndentLevelTypeValueModel lvl;
 
-  private final TextMarginModel marL;
+  private final TextMarginValueModel marL;
 
-  private final Coordinate32Model defTabSz;
+  private final Coordinate32ValueModel defTabSz;
 
-  private final TextAlignTypeModel algn;
+  private final TextAlignTypeValueModel algn;
 
   private final TextSpacingModel lnSpc;
 
@@ -47,11 +47,12 @@ public class TextParagraphPropertiesModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public TextParagraphPropertiesModel(TextIndentModel indent, BooleanModel latinLnBrk,
-      TextMarginModel marR, BooleanModel hangingPunct, TextFontAlignTypeModel fontAlgn,
-      BooleanModel eaLnBrk, BooleanModel rtl, TextIndentLevelTypeModel lvl, TextMarginModel marL,
-      Coordinate32Model defTabSz, TextAlignTypeModel algn, TextSpacingModel lnSpc,
-      TextSpacingModel spcBef, TextSpacingModel spcAft, TextBulletColorModel egTextBulletColor,
+  public TextParagraphPropertiesModel(TextIndentValueModel indent, BooleanValueModel latinLnBrk,
+      TextMarginValueModel marR, BooleanValueModel hangingPunct,
+      TextFontAlignTypeValueModel fontAlgn, BooleanValueModel eaLnBrk, BooleanValueModel rtl,
+      TextIndentLevelTypeValueModel lvl, TextMarginValueModel marL, Coordinate32ValueModel defTabSz,
+      TextAlignTypeValueModel algn, TextSpacingModel lnSpc, TextSpacingModel spcBef,
+      TextSpacingModel spcAft, TextBulletColorModel egTextBulletColor,
       TextBulletSizeModel egTextBulletSize, TextBulletTypefaceModel egTextBulletTypeface,
       TextBulletModel egTextBullet, TextTabStopListModel tabLst,
       TextCharacterPropertiesModel defRPr, OfficeArtExtensionListModel extLst) {
@@ -78,47 +79,47 @@ public class TextParagraphPropertiesModel {
     this.extLst = extLst;
   }
 
-  public TextIndentModel getIndent() {
+  public TextIndentValueModel getIndent() {
     return this.indent;
   }
 
-  public BooleanModel getLatinLnBrk() {
+  public BooleanValueModel getLatinLnBrk() {
     return this.latinLnBrk;
   }
 
-  public TextMarginModel getMarR() {
+  public TextMarginValueModel getMarR() {
     return this.marR;
   }
 
-  public BooleanModel getHangingPunct() {
+  public BooleanValueModel getHangingPunct() {
     return this.hangingPunct;
   }
 
-  public TextFontAlignTypeModel getFontAlgn() {
+  public TextFontAlignTypeValueModel getFontAlgn() {
     return this.fontAlgn;
   }
 
-  public BooleanModel getEaLnBrk() {
+  public BooleanValueModel getEaLnBrk() {
     return this.eaLnBrk;
   }
 
-  public BooleanModel getRtl() {
+  public BooleanValueModel getRtl() {
     return this.rtl;
   }
 
-  public TextIndentLevelTypeModel getLvl() {
+  public TextIndentLevelTypeValueModel getLvl() {
     return this.lvl;
   }
 
-  public TextMarginModel getMarL() {
+  public TextMarginValueModel getMarL() {
     return this.marL;
   }
 
-  public Coordinate32Model getDefTabSz() {
+  public Coordinate32ValueModel getDefTabSz() {
     return this.defTabSz;
   }
 
-  public TextAlignTypeModel getAlgn() {
+  public TextAlignTypeValueModel getAlgn() {
     return this.algn;
   }
 
@@ -278,7 +279,7 @@ public class TextParagraphPropertiesModel {
       return (TextBulletTypefaceFollowTextModel) this.value;
     }
 
-    public static TextBulletTypefaceModel newBuFont(TextFontModel value) {
+    public static TextBulletTypefaceModel newBuFont(TextFontValueModel value) {
       return new TextBulletTypefaceModel(1, value);
     }
 
@@ -286,8 +287,8 @@ public class TextParagraphPropertiesModel {
       return this.type == 1;
     }
 
-    public TextFontModel getBuFont() {
-      return (TextFontModel) this.value;
+    public TextFontValueModel getBuFont() {
+      return (TextFontValueModel) this.value;
     }
   }
 

@@ -1,37 +1,37 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class PictureLockingModel {
-  private final BooleanModel noResize;
+  private final BooleanValueModel noResize;
 
-  private final BooleanModel noChangeAspect;
+  private final BooleanValueModel noChangeAspect;
 
-  private final BooleanModel noEditPoints;
+  private final BooleanValueModel noEditPoints;
 
-  private final BooleanModel noChangeArrowheads;
+  private final BooleanValueModel noChangeArrowheads;
 
-  private final BooleanModel noCrop;
+  private final BooleanValueModel noCrop;
 
-  private final BooleanModel noSelect;
+  private final BooleanValueModel noSelect;
 
-  private final BooleanModel noGrp;
+  private final BooleanValueModel noGrp;
 
-  private final BooleanModel noMove;
+  private final BooleanValueModel noMove;
 
-  private final BooleanModel noRot;
+  private final BooleanValueModel noRot;
 
-  private final BooleanModel noChangeShapeType;
+  private final BooleanValueModel noChangeShapeType;
 
-  private final BooleanModel noAdjustHandles;
+  private final BooleanValueModel noAdjustHandles;
 
   private final OfficeArtExtensionListModel extLst;
 
-  public PictureLockingModel(BooleanModel noResize, BooleanModel noChangeAspect,
-      BooleanModel noEditPoints, BooleanModel noChangeArrowheads, BooleanModel noCrop,
-      BooleanModel noSelect, BooleanModel noGrp, BooleanModel noMove, BooleanModel noRot,
-      BooleanModel noChangeShapeType, BooleanModel noAdjustHandles,
-      OfficeArtExtensionListModel extLst) {
+  public PictureLockingModel(BooleanValueModel noResize, BooleanValueModel noChangeAspect,
+      BooleanValueModel noEditPoints, BooleanValueModel noChangeArrowheads,
+      BooleanValueModel noCrop, BooleanValueModel noSelect, BooleanValueModel noGrp,
+      BooleanValueModel noMove, BooleanValueModel noRot, BooleanValueModel noChangeShapeType,
+      BooleanValueModel noAdjustHandles, OfficeArtExtensionListModel extLst) {
     this.noResize = noResize;
     this.noChangeAspect = noChangeAspect;
     this.noEditPoints = noEditPoints;
@@ -46,47 +46,47 @@ public class PictureLockingModel {
     this.extLst = extLst;
   }
 
-  public BooleanModel getNoResize() {
+  public BooleanValueModel getNoResize() {
     return this.noResize;
   }
 
-  public BooleanModel getNoChangeAspect() {
+  public BooleanValueModel getNoChangeAspect() {
     return this.noChangeAspect;
   }
 
-  public BooleanModel getNoEditPoints() {
+  public BooleanValueModel getNoEditPoints() {
     return this.noEditPoints;
   }
 
-  public BooleanModel getNoChangeArrowheads() {
+  public BooleanValueModel getNoChangeArrowheads() {
     return this.noChangeArrowheads;
   }
 
-  public BooleanModel getNoCrop() {
+  public BooleanValueModel getNoCrop() {
     return this.noCrop;
   }
 
-  public BooleanModel getNoSelect() {
+  public BooleanValueModel getNoSelect() {
     return this.noSelect;
   }
 
-  public BooleanModel getNoGrp() {
+  public BooleanValueModel getNoGrp() {
     return this.noGrp;
   }
 
-  public BooleanModel getNoMove() {
+  public BooleanValueModel getNoMove() {
     return this.noMove;
   }
 
-  public BooleanModel getNoRot() {
+  public BooleanValueModel getNoRot() {
     return this.noRot;
   }
 
-  public BooleanModel getNoChangeShapeType() {
+  public BooleanValueModel getNoChangeShapeType() {
     return this.noChangeShapeType;
   }
 
-  public BooleanModel getNoAdjustHandles() {
+  public BooleanValueModel getNoAdjustHandles() {
     return this.noAdjustHandles;
   }
 

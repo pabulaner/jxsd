@@ -9,6 +9,6 @@ public class LuminanceEffectConverter {
 
   public static LuminanceEffectModel fromDocx4J(CTLuminanceEffect value) {
     if (value == null) return null;
-    return new LuminanceEffectModel(FixedPercentageConverter.fromDocx4J(value.getContrast()), FixedPercentageConverter.fromDocx4J(value.getBright()));
+    return new LuminanceEffectModel(FixedPercentageValueConverter.fromDocx4J(value.getContrast()), FixedPercentageValueConverter.fromDocx4J(value.getBright()));
   }
 }

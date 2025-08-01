@@ -1,15 +1,15 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 
 public class TextCharBulletModel {
-  private final StringModel _char;
+  private final StringValueModel _char;
 
-  public TextCharBulletModel(StringModel _char) {
+  public TextCharBulletModel(StringValueModel _char) {
     this._char = _char;
   }
 
-  public StringModel getChar() {
+  public StringValueModel getChar() {
     return this._char;
   }
 }

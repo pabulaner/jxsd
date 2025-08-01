@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class PeriodModel {
-  private final PeriodModel val;
+  private final PeriodValueModel val;
 
-  public PeriodModel(PeriodModel val) {
+  public PeriodModel(PeriodValueModel val) {
     this.val = val;
   }
 
-  public PeriodModel getVal() {
+  public PeriodValueModel getVal() {
     return this.val;
   }
 }

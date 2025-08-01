@@ -9,6 +9,6 @@ public class BubbleScaleConverter {
 
   public static BubbleScaleModel fromDocx4J(CTBubbleScale value) {
     if (value == null) return null;
-    return new BubbleScaleModel(BubbleScaleConverter.fromDocx4J(value.getVal()));
+    return new BubbleScaleModel(BubbleScaleValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.BlackWhiteModeModel;
+import com.scell.model.drawingml.main.BlackWhiteModeValueModel;
 import com.scell.model.drawingml.main.BlipFillPropertiesModel;
 import com.scell.model.drawingml.main.EffectContainerModel;
 import com.scell.model.drawingml.main.EffectListModel;
@@ -16,7 +16,7 @@ import com.scell.model.drawingml.main.SolidColorFillPropertiesModel;
 import java.lang.Object;
 
 public class GroupShapePropertiesBuilder {
-  private BlackWhiteModeModel bwMode;
+  private BlackWhiteModeValueModel bwMode;
 
   private GroupTransform2DModel xfrm;
 
@@ -31,7 +31,7 @@ public class GroupShapePropertiesBuilder {
   public GroupShapePropertiesBuilder() {
   }
 
-  public GroupShapePropertiesBuilder setBwMode(BlackWhiteModeModel bwMode) {
+  public GroupShapePropertiesBuilder setBwMode(BlackWhiteModeValueModel bwMode) {
     this.bwMode = bwMode;
     return this;
   }

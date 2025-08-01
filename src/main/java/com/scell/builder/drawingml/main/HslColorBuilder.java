@@ -9,35 +9,37 @@ import com.scell.model.drawingml.main.HslColorModel;
 import com.scell.model.drawingml.main.InverseGammaTransformModel;
 import com.scell.model.drawingml.main.InverseTransformModel;
 import com.scell.model.drawingml.main.PercentageModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
 import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
 import com.scell.model.drawingml.main.PositivePercentageModel;
 import java.lang.Object;
 import java.util.List;
 
 public class HslColorBuilder {
-  private PositiveFixedAngleModel hue;
+  private PositiveFixedAngleValueModel hue;
 
-  private PercentageModel lum;
+  private PercentageValueModel lum;
 
-  private PercentageModel sat;
+  private PercentageValueModel sat;
 
   private List<HslColorModel.ColorTransformModel> egColorTransform;
 
   public HslColorBuilder() {
   }
 
-  public HslColorBuilder setHue(PositiveFixedAngleModel hue) {
+  public HslColorBuilder setHue(PositiveFixedAngleValueModel hue) {
     this.hue = hue;
     return this;
   }
 
-  public HslColorBuilder setLum(PercentageModel lum) {
+  public HslColorBuilder setLum(PercentageValueModel lum) {
     this.lum = lum;
     return this;
   }
 
-  public HslColorBuilder setSat(PercentageModel sat) {
+  public HslColorBuilder setSat(PercentageValueModel sat) {
     this.sat = sat;
     return this;
   }

@@ -1,11 +1,11 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.HslColorModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 import com.scell.model.drawingml.main.PresetColorModel;
 import com.scell.model.drawingml.main.PresetShadowEffectModel;
-import com.scell.model.drawingml.main.PresetShadowValModel;
+import com.scell.model.drawingml.main.PresetShadowValValueModel;
 import com.scell.model.drawingml.main.SRgbColorModel;
 import com.scell.model.drawingml.main.ScRgbColorModel;
 import com.scell.model.drawingml.main.SchemeColorModel;
@@ -13,28 +13,28 @@ import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class PresetShadowEffectBuilder {
-  private PositiveCoordinateModel dist;
+  private PositiveCoordinateValueModel dist;
 
-  private PresetShadowValModel prst;
+  private PresetShadowValValueModel prst;
 
-  private PositiveFixedAngleModel dir;
+  private PositiveFixedAngleValueModel dir;
 
   private PresetShadowEffectModel.ColorChoiceModel egColorChoice;
 
   public PresetShadowEffectBuilder() {
   }
 
-  public PresetShadowEffectBuilder setDist(PositiveCoordinateModel dist) {
+  public PresetShadowEffectBuilder setDist(PositiveCoordinateValueModel dist) {
     this.dist = dist;
     return this;
   }
 
-  public PresetShadowEffectBuilder setPrst(PresetShadowValModel prst) {
+  public PresetShadowEffectBuilder setPrst(PresetShadowValValueModel prst) {
     this.prst = prst;
     return this;
   }
 
-  public PresetShadowEffectBuilder setDir(PositiveFixedAngleModel dir) {
+  public PresetShadowEffectBuilder setDir(PositiveFixedAngleValueModel dir) {
     this.dir = dir;
     return this;
   }

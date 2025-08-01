@@ -1,14 +1,14 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.drawingml.main.FixedAngleModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.drawingml.main.FixedAngleValueModel;
 import com.scell.model.drawingml.main.HslColorModel;
 import com.scell.model.drawingml.main.OuterShadowEffectModel;
-import com.scell.model.drawingml.main.PercentageModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 import com.scell.model.drawingml.main.PresetColorModel;
-import com.scell.model.drawingml.main.RectAlignmentModel;
+import com.scell.model.drawingml.main.RectAlignmentValueModel;
 import com.scell.model.drawingml.main.SRgbColorModel;
 import com.scell.model.drawingml.main.ScRgbColorModel;
 import com.scell.model.drawingml.main.SchemeColorModel;
@@ -16,70 +16,70 @@ import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class OuterShadowEffectBuilder {
-  private PositiveCoordinateModel blurRad;
+  private PositiveCoordinateValueModel blurRad;
 
-  private PositiveCoordinateModel dist;
+  private PositiveCoordinateValueModel dist;
 
-  private BooleanModel rotWithShape;
+  private BooleanValueModel rotWithShape;
 
-  private PercentageModel sy;
+  private PercentageValueModel sy;
 
-  private FixedAngleModel ky;
+  private FixedAngleValueModel ky;
 
-  private PercentageModel sx;
+  private PercentageValueModel sx;
 
-  private FixedAngleModel kx;
+  private FixedAngleValueModel kx;
 
-  private PositiveFixedAngleModel dir;
+  private PositiveFixedAngleValueModel dir;
 
-  private RectAlignmentModel algn;
+  private RectAlignmentValueModel algn;
 
   private OuterShadowEffectModel.ColorChoiceModel egColorChoice;
 
   public OuterShadowEffectBuilder() {
   }
 
-  public OuterShadowEffectBuilder setBlurRad(PositiveCoordinateModel blurRad) {
+  public OuterShadowEffectBuilder setBlurRad(PositiveCoordinateValueModel blurRad) {
     this.blurRad = blurRad;
     return this;
   }
 
-  public OuterShadowEffectBuilder setDist(PositiveCoordinateModel dist) {
+  public OuterShadowEffectBuilder setDist(PositiveCoordinateValueModel dist) {
     this.dist = dist;
     return this;
   }
 
-  public OuterShadowEffectBuilder setRotWithShape(BooleanModel rotWithShape) {
+  public OuterShadowEffectBuilder setRotWithShape(BooleanValueModel rotWithShape) {
     this.rotWithShape = rotWithShape;
     return this;
   }
 
-  public OuterShadowEffectBuilder setSy(PercentageModel sy) {
+  public OuterShadowEffectBuilder setSy(PercentageValueModel sy) {
     this.sy = sy;
     return this;
   }
 
-  public OuterShadowEffectBuilder setKy(FixedAngleModel ky) {
+  public OuterShadowEffectBuilder setKy(FixedAngleValueModel ky) {
     this.ky = ky;
     return this;
   }
 
-  public OuterShadowEffectBuilder setSx(PercentageModel sx) {
+  public OuterShadowEffectBuilder setSx(PercentageValueModel sx) {
     this.sx = sx;
     return this;
   }
 
-  public OuterShadowEffectBuilder setKx(FixedAngleModel kx) {
+  public OuterShadowEffectBuilder setKx(FixedAngleValueModel kx) {
     this.kx = kx;
     return this;
   }
 
-  public OuterShadowEffectBuilder setDir(PositiveFixedAngleModel dir) {
+  public OuterShadowEffectBuilder setDir(PositiveFixedAngleValueModel dir) {
     this.dir = dir;
     return this;
   }
 
-  public OuterShadowEffectBuilder setAlgn(RectAlignmentModel algn) {
+  public OuterShadowEffectBuilder setAlgn(RectAlignmentValueModel algn) {
     this.algn = algn;
     return this;
   }

@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class ErrDirModel {
-  private final ErrDirModel val;
+  private final ErrDirValueModel val;
 
-  public ErrDirModel(ErrDirModel val) {
+  public ErrDirModel(ErrDirValueModel val) {
     this.val = val;
   }
 
-  public ErrDirModel getVal() {
+  public ErrDirValueModel getVal() {
     return this.val;
   }
 }

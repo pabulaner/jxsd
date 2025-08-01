@@ -9,6 +9,6 @@ public class Point2DConverter {
 
   public static Point2DModel fromDocx4J(CTPoint2D value) {
     if (value == null) return null;
-    return new Point2DModel(CoordinateConverter.fromDocx4J(value.getY()), CoordinateConverter.fromDocx4J(value.getX()));
+    return new Point2DModel(CoordinateValueConverter.fromDocx4J(value.getY()), CoordinateValueConverter.fromDocx4J(value.getX()));
   }
 }

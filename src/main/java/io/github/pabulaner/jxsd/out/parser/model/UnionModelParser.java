@@ -4,12 +4,11 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.util.ParserUtil;
-import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class UnionModelParser extends BaseParser<JavaUnion> {
+public class UnionModelParser extends ModelParser<JavaUnion> {
 
     public UnionModelParser(ParserGroup group) {
         super(group);
@@ -17,6 +16,8 @@ public class UnionModelParser extends BaseParser<JavaUnion> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaUnion clazz) {
+        super.parse(builder, clazz);
+
         // Unions are a special case in docx4j
         return builder.addField(String.class, VALUE, Modifier.PRIVATE, Modifier.FINAL)
                 .addMethod(MethodSpec.constructorBuilder()

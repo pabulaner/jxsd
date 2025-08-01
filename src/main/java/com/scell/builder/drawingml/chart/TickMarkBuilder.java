@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.TickMarkModel;
+import com.scell.model.drawingml.chart.TickMarkValueModel;
 
 public class TickMarkBuilder {
-  private TickMarkModel val;
+  private TickMarkValueModel val;
 
   public TickMarkBuilder() {
   }
 
-  public TickMarkBuilder setVal(TickMarkModel val) {
+  public TickMarkBuilder setVal(TickMarkValueModel val) {
     this.val = val;
     return this;
   }

@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class TimeUnitModel {
-  private final TimeUnitModel val;
+  private final TimeUnitValueModel val;
 
-  public TimeUnitModel(TimeUnitModel val) {
+  public TimeUnitModel(TimeUnitValueModel val) {
     this.val = val;
   }
 
-  public TimeUnitModel getVal() {
+  public TimeUnitValueModel getVal() {
     return this.val;
   }
 }

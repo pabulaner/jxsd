@@ -1,22 +1,22 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.FixedPercentageModel;
+import com.scell.model.drawingml.main.FixedPercentageValueModel;
 import com.scell.model.drawingml.main.LuminanceEffectModel;
 
 public class LuminanceEffectBuilder {
-  private FixedPercentageModel contrast;
+  private FixedPercentageValueModel contrast;
 
-  private FixedPercentageModel bright;
+  private FixedPercentageValueModel bright;
 
   public LuminanceEffectBuilder() {
   }
 
-  public LuminanceEffectBuilder setContrast(FixedPercentageModel contrast) {
+  public LuminanceEffectBuilder setContrast(FixedPercentageValueModel contrast) {
     this.contrast = contrast;
     return this;
   }
 
-  public LuminanceEffectBuilder setBright(FixedPercentageModel bright) {
+  public LuminanceEffectBuilder setBright(FixedPercentageValueModel bright) {
     this.bright = bright;
     return this;
   }

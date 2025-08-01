@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.TextAutonumberBulletModel;
-import com.scell.model.drawingml.main.TextAutonumberSchemeModel;
-import com.scell.model.drawingml.main.TextBulletStartAtNumModel;
+import com.scell.model.drawingml.main.TextAutonumberSchemeValueModel;
+import com.scell.model.drawingml.main.TextBulletStartAtNumValueModel;
 
 public class TextAutonumberBulletBuilder {
-  private TextAutonumberSchemeModel type;
+  private TextAutonumberSchemeValueModel type;
 
-  private TextBulletStartAtNumModel startAt;
+  private TextBulletStartAtNumValueModel startAt;
 
   public TextAutonumberBulletBuilder() {
   }
 
-  public TextAutonumberBulletBuilder setType(TextAutonumberSchemeModel type) {
+  public TextAutonumberBulletBuilder setType(TextAutonumberSchemeValueModel type) {
     this.type = type;
     return this;
   }
 
-  public TextAutonumberBulletBuilder setStartAt(TextBulletStartAtNumModel startAt) {
+  public TextAutonumberBulletBuilder setStartAt(TextBulletStartAtNumValueModel startAt) {
     this.startAt = startAt;
     return this;
   }

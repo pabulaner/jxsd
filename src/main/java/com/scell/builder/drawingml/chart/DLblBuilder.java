@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.chart.BooleanModel;
 import com.scell.model.drawingml.chart.DLblModel;
 import com.scell.model.drawingml.chart.DLblPosModel;
@@ -16,7 +16,7 @@ import java.lang.Object;
 public class DLblBuilder {
   private UnsignedIntModel idx;
 
-  private DLblModel.DeleteOrGroup_DLblModel deleteorgroupDLbl;
+  private DLblModel.DeleteOrDLblValueModel deleteOrDLbl;
 
   private ExtensionListModel extLst;
 
@@ -28,8 +28,8 @@ public class DLblBuilder {
     return this;
   }
 
-  public DLblBuilder setDeleteOrGroupDLbl(DLblModel.DeleteOrGroup_DLblModel deleteorgroupDLbl) {
-    this.deleteorgroupDLbl = deleteorgroupDLbl;
+  public DLblBuilder setDeleteOrDLbl(DLblModel.DeleteOrDLblValueModel deleteOrDLbl) {
+    this.deleteOrDLbl = deleteOrDLbl;
     return this;
   }
 
@@ -39,130 +39,130 @@ public class DLblBuilder {
   }
 
   public DLblModel build() {
-    return new DLblModel(this.idx, this.deleteorgroupDLbl, this.extLst);
+    return new DLblModel(this.idx, this.deleteOrDLbl, this.extLst);
   }
 
   public DLblBuilder from(DLblModel value) {
     this.idx = value.getIdx();
-    this.deleteorgroupDLbl = value.getDeleteOrGroupDLbl();
+    this.deleteOrDLbl = value.getDeleteOrDLbl();
     this.extLst = value.getExtLst();
     return this;
   }
 
-  public static class DeleteOrGroup_DLblBuilder {
+  public static class DeleteOrDLblValueBuilder {
     private int type;
 
     private Object value;
 
-    public DeleteOrGroup_DLblBuilder() {
+    public DeleteOrDLblValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public DeleteOrGroup_DLblBuilder setDelete(BooleanModel value) {
+    public DeleteOrDLblValueBuilder setDelete(BooleanModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setLayout(LayoutModel value) {
+    public DeleteOrDLblValueBuilder setLayout(LayoutModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setTx(TxModel value) {
+    public DeleteOrDLblValueBuilder setTx(TxModel value) {
       this.type = 2;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setNumFmt(NumFmtModel value) {
+    public DeleteOrDLblValueBuilder setNumFmt(NumFmtModel value) {
       this.type = 3;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setSpPr(ShapePropertiesModel value) {
+    public DeleteOrDLblValueBuilder setSpPr(ShapePropertiesModel value) {
       this.type = 4;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setTxPr(TextBodyModel value) {
+    public DeleteOrDLblValueBuilder setTxPr(TextBodyModel value) {
       this.type = 5;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setDLblPos(DLblPosModel value) {
+    public DeleteOrDLblValueBuilder setDLblPos(DLblPosModel value) {
       this.type = 6;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setShowLegendKey(BooleanModel value) {
+    public DeleteOrDLblValueBuilder setShowLegendKey(BooleanModel value) {
       this.type = 7;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setShowVal(BooleanModel value) {
+    public DeleteOrDLblValueBuilder setShowVal(BooleanModel value) {
       this.type = 8;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setShowCatName(BooleanModel value) {
+    public DeleteOrDLblValueBuilder setShowCatName(BooleanModel value) {
       this.type = 9;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setShowSerName(BooleanModel value) {
+    public DeleteOrDLblValueBuilder setShowSerName(BooleanModel value) {
       this.type = 10;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setShowPercent(BooleanModel value) {
+    public DeleteOrDLblValueBuilder setShowPercent(BooleanModel value) {
       this.type = 11;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setShowBubbleSize(BooleanModel value) {
+    public DeleteOrDLblValueBuilder setShowBubbleSize(BooleanModel value) {
       this.type = 12;
       this.value = value;
       return this;
     }
 
-    public DeleteOrGroup_DLblBuilder setSeparator(StringModel value) {
+    public DeleteOrDLblValueBuilder setSeparator(StringValueModel value) {
       this.type = 13;
       this.value = value;
       return this;
     }
 
-    public DLblModel.DeleteOrGroup_DLblModel build() {
-      if (this.type == -1) return new DLblModel.DeleteOrGroup_DLblModel();
-      if (this.type == 0) return DLblModel.DeleteOrGroup_DLblModel.newDelete((BooleanModel) this.value);
-      if (this.type == 1) return DLblModel.DeleteOrGroup_DLblModel.newLayout((LayoutModel) this.value);
-      if (this.type == 2) return DLblModel.DeleteOrGroup_DLblModel.newTx((TxModel) this.value);
-      if (this.type == 3) return DLblModel.DeleteOrGroup_DLblModel.newNumFmt((NumFmtModel) this.value);
-      if (this.type == 4) return DLblModel.DeleteOrGroup_DLblModel.newSpPr((ShapePropertiesModel) this.value);
-      if (this.type == 5) return DLblModel.DeleteOrGroup_DLblModel.newTxPr((TextBodyModel) this.value);
-      if (this.type == 6) return DLblModel.DeleteOrGroup_DLblModel.newDLblPos((DLblPosModel) this.value);
-      if (this.type == 7) return DLblModel.DeleteOrGroup_DLblModel.newShowLegendKey((BooleanModel) this.value);
-      if (this.type == 8) return DLblModel.DeleteOrGroup_DLblModel.newShowVal((BooleanModel) this.value);
-      if (this.type == 9) return DLblModel.DeleteOrGroup_DLblModel.newShowCatName((BooleanModel) this.value);
-      if (this.type == 10) return DLblModel.DeleteOrGroup_DLblModel.newShowSerName((BooleanModel) this.value);
-      if (this.type == 11) return DLblModel.DeleteOrGroup_DLblModel.newShowPercent((BooleanModel) this.value);
-      if (this.type == 12) return DLblModel.DeleteOrGroup_DLblModel.newShowBubbleSize((BooleanModel) this.value);
-      if (this.type == 13) return DLblModel.DeleteOrGroup_DLblModel.newSeparator((StringModel) this.value);
+    public DLblModel.DeleteOrDLblValueModel build() {
+      if (this.type == -1) return new DLblModel.DeleteOrDLblValueModel();
+      if (this.type == 0) return DLblModel.DeleteOrDLblValueModel.newDelete((BooleanModel) this.value);
+      if (this.type == 1) return DLblModel.DeleteOrDLblValueModel.newLayout((LayoutModel) this.value);
+      if (this.type == 2) return DLblModel.DeleteOrDLblValueModel.newTx((TxModel) this.value);
+      if (this.type == 3) return DLblModel.DeleteOrDLblValueModel.newNumFmt((NumFmtModel) this.value);
+      if (this.type == 4) return DLblModel.DeleteOrDLblValueModel.newSpPr((ShapePropertiesModel) this.value);
+      if (this.type == 5) return DLblModel.DeleteOrDLblValueModel.newTxPr((TextBodyModel) this.value);
+      if (this.type == 6) return DLblModel.DeleteOrDLblValueModel.newDLblPos((DLblPosModel) this.value);
+      if (this.type == 7) return DLblModel.DeleteOrDLblValueModel.newShowLegendKey((BooleanModel) this.value);
+      if (this.type == 8) return DLblModel.DeleteOrDLblValueModel.newShowVal((BooleanModel) this.value);
+      if (this.type == 9) return DLblModel.DeleteOrDLblValueModel.newShowCatName((BooleanModel) this.value);
+      if (this.type == 10) return DLblModel.DeleteOrDLblValueModel.newShowSerName((BooleanModel) this.value);
+      if (this.type == 11) return DLblModel.DeleteOrDLblValueModel.newShowPercent((BooleanModel) this.value);
+      if (this.type == 12) return DLblModel.DeleteOrDLblValueModel.newShowBubbleSize((BooleanModel) this.value);
+      if (this.type == 13) return DLblModel.DeleteOrDLblValueModel.newSeparator((StringValueModel) this.value);
       return null;
     }
 
-    public DeleteOrGroup_DLblBuilder from(DLblModel.DeleteOrGroup_DLblModel value) {
+    public DeleteOrDLblValueBuilder from(DLblModel.DeleteOrDLblValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isDelete()) {

@@ -1,64 +1,64 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.drawingml.main.AngleModel;
-import com.scell.model.drawingml.main.Coordinate32Model;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.drawingml.main.AngleValueModel;
+import com.scell.model.drawingml.main.Coordinate32ValueModel;
 import com.scell.model.drawingml.main.FlatTextModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
-import com.scell.model.drawingml.main.PositiveCoordinate32Model;
+import com.scell.model.drawingml.main.PositiveCoordinate32ValueModel;
 import com.scell.model.drawingml.main.PresetTextShapeModel;
 import com.scell.model.drawingml.main.Scene3DModel;
 import com.scell.model.drawingml.main.Shape3DModel;
-import com.scell.model.drawingml.main.TextAnchoringTypeModel;
+import com.scell.model.drawingml.main.TextAnchoringTypeValueModel;
 import com.scell.model.drawingml.main.TextBodyPropertiesModel;
-import com.scell.model.drawingml.main.TextColumnCountModel;
-import com.scell.model.drawingml.main.TextHorzOverflowTypeModel;
+import com.scell.model.drawingml.main.TextColumnCountValueModel;
+import com.scell.model.drawingml.main.TextHorzOverflowTypeValueModel;
 import com.scell.model.drawingml.main.TextNoAutofitModel;
 import com.scell.model.drawingml.main.TextNormalAutofitModel;
 import com.scell.model.drawingml.main.TextShapeAutofitModel;
-import com.scell.model.drawingml.main.TextVertOverflowTypeModel;
-import com.scell.model.drawingml.main.TextVerticalTypeModel;
-import com.scell.model.drawingml.main.TextWrappingTypeModel;
+import com.scell.model.drawingml.main.TextVertOverflowTypeValueModel;
+import com.scell.model.drawingml.main.TextVerticalTypeValueModel;
+import com.scell.model.drawingml.main.TextWrappingTypeValueModel;
 import java.lang.Object;
 
 public class TextBodyPropertiesBuilder {
-  private BooleanModel compatLnSpc;
+  private BooleanValueModel compatLnSpc;
 
-  private TextVertOverflowTypeModel vertOverflow;
+  private TextVertOverflowTypeValueModel vertOverflow;
 
-  private Coordinate32Model bIns;
+  private Coordinate32ValueModel bIns;
 
-  private TextVerticalTypeModel vert;
+  private TextVerticalTypeValueModel vert;
 
-  private BooleanModel anchorCtr;
+  private BooleanValueModel anchorCtr;
 
-  private TextColumnCountModel numCol;
+  private TextColumnCountValueModel numCol;
 
-  private AngleModel rot;
+  private AngleValueModel rot;
 
-  private Coordinate32Model tIns;
+  private Coordinate32ValueModel tIns;
 
-  private Coordinate32Model lIns;
+  private Coordinate32ValueModel lIns;
 
-  private PositiveCoordinate32Model spcCol;
+  private PositiveCoordinate32ValueModel spcCol;
 
-  private TextWrappingTypeModel wrap;
+  private TextWrappingTypeValueModel wrap;
 
-  private BooleanModel fromWordArt;
+  private BooleanValueModel fromWordArt;
 
-  private BooleanModel spcFirstLastPara;
+  private BooleanValueModel spcFirstLastPara;
 
-  private BooleanModel upright;
+  private BooleanValueModel upright;
 
-  private TextHorzOverflowTypeModel horzOverflow;
+  private TextHorzOverflowTypeValueModel horzOverflow;
 
-  private Coordinate32Model rIns;
+  private Coordinate32ValueModel rIns;
 
-  private BooleanModel rtlCol;
+  private BooleanValueModel rtlCol;
 
-  private BooleanModel forceAA;
+  private BooleanValueModel forceAA;
 
-  private TextAnchoringTypeModel anchor;
+  private TextAnchoringTypeValueModel anchor;
 
   private PresetTextShapeModel prstTxWarp;
 
@@ -73,97 +73,97 @@ public class TextBodyPropertiesBuilder {
   public TextBodyPropertiesBuilder() {
   }
 
-  public TextBodyPropertiesBuilder setCompatLnSpc(BooleanModel compatLnSpc) {
+  public TextBodyPropertiesBuilder setCompatLnSpc(BooleanValueModel compatLnSpc) {
     this.compatLnSpc = compatLnSpc;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setVertOverflow(TextVertOverflowTypeModel vertOverflow) {
+  public TextBodyPropertiesBuilder setVertOverflow(TextVertOverflowTypeValueModel vertOverflow) {
     this.vertOverflow = vertOverflow;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setBIns(Coordinate32Model bIns) {
+  public TextBodyPropertiesBuilder setBIns(Coordinate32ValueModel bIns) {
     this.bIns = bIns;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setVert(TextVerticalTypeModel vert) {
+  public TextBodyPropertiesBuilder setVert(TextVerticalTypeValueModel vert) {
     this.vert = vert;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setAnchorCtr(BooleanModel anchorCtr) {
+  public TextBodyPropertiesBuilder setAnchorCtr(BooleanValueModel anchorCtr) {
     this.anchorCtr = anchorCtr;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setNumCol(TextColumnCountModel numCol) {
+  public TextBodyPropertiesBuilder setNumCol(TextColumnCountValueModel numCol) {
     this.numCol = numCol;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setRot(AngleModel rot) {
+  public TextBodyPropertiesBuilder setRot(AngleValueModel rot) {
     this.rot = rot;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setTIns(Coordinate32Model tIns) {
+  public TextBodyPropertiesBuilder setTIns(Coordinate32ValueModel tIns) {
     this.tIns = tIns;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setLIns(Coordinate32Model lIns) {
+  public TextBodyPropertiesBuilder setLIns(Coordinate32ValueModel lIns) {
     this.lIns = lIns;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setSpcCol(PositiveCoordinate32Model spcCol) {
+  public TextBodyPropertiesBuilder setSpcCol(PositiveCoordinate32ValueModel spcCol) {
     this.spcCol = spcCol;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setWrap(TextWrappingTypeModel wrap) {
+  public TextBodyPropertiesBuilder setWrap(TextWrappingTypeValueModel wrap) {
     this.wrap = wrap;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setFromWordArt(BooleanModel fromWordArt) {
+  public TextBodyPropertiesBuilder setFromWordArt(BooleanValueModel fromWordArt) {
     this.fromWordArt = fromWordArt;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setSpcFirstLastPara(BooleanModel spcFirstLastPara) {
+  public TextBodyPropertiesBuilder setSpcFirstLastPara(BooleanValueModel spcFirstLastPara) {
     this.spcFirstLastPara = spcFirstLastPara;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setUpright(BooleanModel upright) {
+  public TextBodyPropertiesBuilder setUpright(BooleanValueModel upright) {
     this.upright = upright;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setHorzOverflow(TextHorzOverflowTypeModel horzOverflow) {
+  public TextBodyPropertiesBuilder setHorzOverflow(TextHorzOverflowTypeValueModel horzOverflow) {
     this.horzOverflow = horzOverflow;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setRIns(Coordinate32Model rIns) {
+  public TextBodyPropertiesBuilder setRIns(Coordinate32ValueModel rIns) {
     this.rIns = rIns;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setRtlCol(BooleanModel rtlCol) {
+  public TextBodyPropertiesBuilder setRtlCol(BooleanValueModel rtlCol) {
     this.rtlCol = rtlCol;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setForceAA(BooleanModel forceAA) {
+  public TextBodyPropertiesBuilder setForceAA(BooleanValueModel forceAA) {
     this.forceAA = forceAA;
     return this;
   }
 
-  public TextBodyPropertiesBuilder setAnchor(TextAnchoringTypeModel anchor) {
+  public TextBodyPropertiesBuilder setAnchor(TextAnchoringTypeValueModel anchor) {
     this.anchor = anchor;
     return this;
   }

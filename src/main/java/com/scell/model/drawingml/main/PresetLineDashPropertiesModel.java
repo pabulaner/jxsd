@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class PresetLineDashPropertiesModel {
-  private final PresetLineDashValModel val;
+  private final PresetLineDashValValueModel val;
 
-  public PresetLineDashPropertiesModel(PresetLineDashValModel val) {
+  public PresetLineDashPropertiesModel(PresetLineDashValValueModel val) {
     this.val = val;
   }
 
-  public PresetLineDashValModel getVal() {
+  public PresetLineDashValValueModel getVal() {
     return this.val;
   }
 }

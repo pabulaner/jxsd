@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 
 public class CustomColorModel {
-  private final StringModel name;
+  private final StringValueModel name;
 
   private final ColorChoiceModel egColorChoice;
 
-  public CustomColorModel(StringModel name, ColorChoiceModel egColorChoice) {
+  public CustomColorModel(StringValueModel name, ColorChoiceModel egColorChoice) {
     this.name = name;
     this.egColorChoice = egColorChoice;
   }
 
-  public StringModel getName() {
+  public StringValueModel getName() {
     return this.name;
   }
 

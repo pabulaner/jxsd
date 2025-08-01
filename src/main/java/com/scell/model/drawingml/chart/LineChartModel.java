@@ -2,7 +2,7 @@ package com.scell.model.drawingml.chart;
 
 import java.util.List;
 
-public class LineChartModel {
+public class LineChartModel implements ILineChartValueModel {
   private final GroupingModel grouping;
 
   private final BooleanModel varyColors;

@@ -9,6 +9,6 @@ public class PolarAdjustHandleConverter {
 
   public static PolarAdjustHandleModel fromDocx4J(CTPolarAdjustHandle value) {
     if (value == null) return null;
-    return new PolarAdjustHandleModel(GeomGuideNameConverter.fromDocx4J(value.getGdRefAng()), GeomGuideNameConverter.fromDocx4J(value.getGdRefR()), AdjAngleConverter.fromDocx4J(value.getMaxAng()), AdjAngleConverter.fromDocx4J(value.getMinAng()), AdjCoordinateConverter.fromDocx4J(value.getMaxR()), AdjCoordinateConverter.fromDocx4J(value.getMinR()), AdjPoint2DConverter.fromDocx4J(value.getPos()));
+    return new PolarAdjustHandleModel(GeomGuideNameValueConverter.fromDocx4J(value.getGdRefAng()), GeomGuideNameValueConverter.fromDocx4J(value.getGdRefR()), AdjAngleValueConverter.fromDocx4J(value.getMaxAng()), AdjAngleValueConverter.fromDocx4J(value.getMinAng()), AdjCoordinateValueConverter.fromDocx4J(value.getMaxR()), AdjCoordinateValueConverter.fromDocx4J(value.getMinR()), AdjPoint2DConverter.fromDocx4J(value.getPos()));
   }
 }

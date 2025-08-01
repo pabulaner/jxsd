@@ -9,6 +9,6 @@ public class HPercentConverter {
 
   public static HPercentModel fromDocx4J(CTHPercent value) {
     if (value == null) return null;
-    return new HPercentModel(HPercentConverter.fromDocx4J(value.getVal()));
+    return new HPercentModel(HPercentValueConverter.fromDocx4J(value.getVal()));
   }
 }

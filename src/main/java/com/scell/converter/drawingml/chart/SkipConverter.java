@@ -9,6 +9,6 @@ public class SkipConverter {
 
   public static SkipModel fromDocx4J(CTSkip value) {
     if (value == null) return null;
-    return new SkipModel(SkipConverter.fromDocx4J(value.getVal()));
+    return new SkipModel(SkipValueConverter.fromDocx4J(value.getVal()));
   }
 }

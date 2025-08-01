@@ -23,7 +23,11 @@ public class ParserGroup implements Parser<JavaClass> {
 
     @Override
     public TypeSpec parse(boolean isStatic, JavaClass clazz) {
-        return parsers.get(clazz.getClass()).parse(isStatic, clazz);
+        Parser<JavaClass> parser = parsers.get(clazz.getClass());
+
+        return parser != null
+                ? parser.parse(isStatic, clazz)
+                : null;
     }
 
     @SuppressWarnings("unchecked")

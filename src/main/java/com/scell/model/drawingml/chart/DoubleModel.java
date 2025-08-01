@@ -1,13 +1,15 @@
 package com.scell.model.drawingml.chart;
 
-public class DoubleModel {
-  private final com.scell.model.XMLSchema.DoubleModel val;
+import com.scell.model.XMLSchema.DoubleValueModel;
 
-  public DoubleModel(com.scell.model.XMLSchema.DoubleModel val) {
+public class DoubleModel {
+  private final DoubleValueModel val;
+
+  public DoubleModel(DoubleValueModel val) {
     this.val = val;
   }
 
-  public com.scell.model.XMLSchema.DoubleModel getVal() {
+  public DoubleValueModel getVal() {
     return this.val;
   }
 }

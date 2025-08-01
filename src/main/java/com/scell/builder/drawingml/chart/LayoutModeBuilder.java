@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.LayoutModeModel;
+import com.scell.model.drawingml.chart.LayoutModeValueModel;
 
 public class LayoutModeBuilder {
-  private LayoutModeModel val;
+  private LayoutModeValueModel val;
 
   public LayoutModeBuilder() {
   }
 
-  public LayoutModeBuilder setVal(LayoutModeModel val) {
+  public LayoutModeBuilder setVal(LayoutModeValueModel val) {
     this.val = val;
     return this;
   }

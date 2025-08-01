@@ -9,6 +9,6 @@ public class BevelConverter {
 
   public static BevelModel fromDocx4J(CTBevel value) {
     if (value == null) return null;
-    return new BevelModel(PositiveCoordinateConverter.fromDocx4J(value.getH()), PositiveCoordinateConverter.fromDocx4J(value.getW()), BevelPresetTypeConverter.fromDocx4J(value.getPrst()));
+    return new BevelModel(PositiveCoordinateValueConverter.fromDocx4J(value.getH()), PositiveCoordinateValueConverter.fromDocx4J(value.getW()), BevelPresetTypeValueConverter.fromDocx4J(value.getPrst()));
   }
 }

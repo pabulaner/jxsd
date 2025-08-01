@@ -16,6 +16,6 @@ public class FillOverlayEffectConverter {
     if (value.getBlipFill() != null) egFillProperties = FillOverlayEffectModel.FillPropertiesModel.newBlipFill(BlipFillPropertiesConverter.fromDocx4J(value.getBlipFill()));
     if (value.getPattFill() != null) egFillProperties = FillOverlayEffectModel.FillPropertiesModel.newPattFill(PatternFillPropertiesConverter.fromDocx4J(value.getPattFill()));
     if (value.getGrpFill() != null) egFillProperties = FillOverlayEffectModel.FillPropertiesModel.newGrpFill(GroupFillPropertiesConverter.fromDocx4J(value.getGrpFill()));
-    return new FillOverlayEffectModel(BlendModeConverter.fromDocx4J(value.getBlend()), egFillProperties);
+    return new FillOverlayEffectModel(BlendModeValueConverter.fromDocx4J(value.getBlend()), egFillProperties);
   }
 }

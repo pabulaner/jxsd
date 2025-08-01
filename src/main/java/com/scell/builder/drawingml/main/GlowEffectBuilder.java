@@ -2,7 +2,7 @@ package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.GlowEffectModel;
 import com.scell.model.drawingml.main.HslColorModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
 import com.scell.model.drawingml.main.PresetColorModel;
 import com.scell.model.drawingml.main.SRgbColorModel;
 import com.scell.model.drawingml.main.ScRgbColorModel;
@@ -11,14 +11,14 @@ import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class GlowEffectBuilder {
-  private PositiveCoordinateModel rad;
+  private PositiveCoordinateValueModel rad;
 
   private GlowEffectModel.ColorChoiceModel egColorChoice;
 
   public GlowEffectBuilder() {
   }
 
-  public GlowEffectBuilder setRad(PositiveCoordinateModel rad) {
+  public GlowEffectBuilder setRad(PositiveCoordinateValueModel rad) {
     this.rad = rad;
     return this;
   }

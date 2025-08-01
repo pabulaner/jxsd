@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class RotYModel {
-  private final RotYModel val;
+  private final RotYValueModel val;
 
-  public RotYModel(RotYModel val) {
+  public RotYModel(RotYValueModel val) {
     this.val = val;
   }
 
-  public RotYModel getVal() {
+  public RotYValueModel getVal() {
     return this.val;
   }
 }

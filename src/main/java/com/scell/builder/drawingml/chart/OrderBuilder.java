@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.OrderModel;
+import com.scell.model.drawingml.chart.OrderValueModel;
 
 public class OrderBuilder {
-  private OrderModel val;
+  private OrderValueModel val;
 
   public OrderBuilder() {
   }
 
-  public OrderBuilder setVal(OrderModel val) {
+  public OrderBuilder setVal(OrderValueModel val) {
     this.val = val;
     return this;
   }

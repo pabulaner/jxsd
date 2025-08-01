@@ -9,6 +9,6 @@ public class CrossBetweenConverter {
 
   public static CrossBetweenModel fromDocx4J(CTCrossBetween value) {
     if (value == null) return null;
-    return new CrossBetweenModel(CrossBetweenConverter.fromDocx4J(value.getVal()));
+    return new CrossBetweenModel(CrossBetweenValueConverter.fromDocx4J(value.getVal()));
   }
 }

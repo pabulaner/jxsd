@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.ShapeModel;
+import com.scell.model.drawingml.chart.ShapeValueModel;
 
 public class ShapeBuilder {
-  private ShapeModel val;
+  private ShapeValueModel val;
 
   public ShapeBuilder() {
   }
 
-  public ShapeBuilder setVal(ShapeModel val) {
+  public ShapeBuilder setVal(ShapeValueModel val) {
     this.val = val;
     return this;
   }

@@ -3,7 +3,7 @@ package com.scell.model.drawingml.chart;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class BarSerModel {
+public class BarSerModel implements ISeriesValueModel, IInvertIfNegativeComponentValueModel, IPictureOptionsComponentValueModel {
   private final UnsignedIntModel idx;
 
   private final UnsignedIntModel order;

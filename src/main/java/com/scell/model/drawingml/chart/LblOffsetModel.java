@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class LblOffsetModel {
-  private final LblOffsetModel val;
+  private final LblOffsetValueModel val;
 
-  public LblOffsetModel(LblOffsetModel val) {
+  public LblOffsetModel(LblOffsetValueModel val) {
     this.val = val;
   }
 
-  public LblOffsetModel getVal() {
+  public LblOffsetValueModel getVal() {
     return this.val;
   }
 }

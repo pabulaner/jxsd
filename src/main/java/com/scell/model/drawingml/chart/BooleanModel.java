@@ -1,13 +1,15 @@
 package com.scell.model.drawingml.chart;
 
-public class BooleanModel {
-  private final com.scell.model.XMLSchema.BooleanModel val;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
-  public BooleanModel(com.scell.model.XMLSchema.BooleanModel val) {
+public class BooleanModel {
+  private final BooleanValueModel val;
+
+  public BooleanModel(BooleanValueModel val) {
     this.val = val;
   }
 
-  public com.scell.model.XMLSchema.BooleanModel getVal() {
+  public BooleanValueModel getVal() {
     return this.val;
   }
 }

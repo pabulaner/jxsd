@@ -7,14 +7,14 @@ import java.lang.Object;
 public class LegendEntryModel {
   private final UnsignedIntModel idx;
 
-  private final DeleteOrEG_LegendEntryDataModel deleteoregLegendEntryData;
+  private final DeleteOrLegendEntryDataValueModel deleteOrLegendEntryData;
 
   private final ExtensionListModel extLst;
 
   public LegendEntryModel(UnsignedIntModel idx,
-      DeleteOrEG_LegendEntryDataModel deleteoregLegendEntryData, ExtensionListModel extLst) {
+      DeleteOrLegendEntryDataValueModel deleteOrLegendEntryData, ExtensionListModel extLst) {
     this.idx = idx;
-    this.deleteoregLegendEntryData = deleteoregLegendEntryData;
+    this.deleteOrLegendEntryData = deleteOrLegendEntryData;
     this.extLst = extLst;
   }
 
@@ -22,30 +22,30 @@ public class LegendEntryModel {
     return this.idx;
   }
 
-  public DeleteOrEG_LegendEntryDataModel getDeleteOrEGLegendEntryData() {
-    return this.deleteoregLegendEntryData;
+  public DeleteOrLegendEntryDataValueModel getDeleteOrLegendEntryData() {
+    return this.deleteOrLegendEntryData;
   }
 
   public ExtensionListModel getExtLst() {
     return this.extLst;
   }
 
-  public static class DeleteOrEG_LegendEntryDataModel {
+  public static class DeleteOrLegendEntryDataValueModel {
     private final int type;
 
     private final Object value;
 
-    public DeleteOrEG_LegendEntryDataModel() {
+    public DeleteOrLegendEntryDataValueModel() {
       this(-1, null);
     }
 
-    private DeleteOrEG_LegendEntryDataModel(Integer type, Object value) {
+    private DeleteOrLegendEntryDataValueModel(Integer type, Object value) {
       this.type = type;
       this.value = value;
     }
 
-    public static DeleteOrEG_LegendEntryDataModel newDelete(BooleanModel value) {
-      return new DeleteOrEG_LegendEntryDataModel(0, value);
+    public static DeleteOrLegendEntryDataValueModel newDelete(BooleanModel value) {
+      return new DeleteOrLegendEntryDataValueModel(0, value);
     }
 
     public boolean isDelete() {
@@ -56,8 +56,8 @@ public class LegendEntryModel {
       return (BooleanModel) this.value;
     }
 
-    public static DeleteOrEG_LegendEntryDataModel newTxPr(TextBodyModel value) {
-      return new DeleteOrEG_LegendEntryDataModel(1, value);
+    public static DeleteOrLegendEntryDataValueModel newTxPr(TextBodyModel value) {
+      return new DeleteOrLegendEntryDataValueModel(1, value);
     }
 
     public boolean isTxPr() {

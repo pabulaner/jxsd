@@ -1,7 +1,7 @@
 package com.scell.builder.drawingml.chartDrawing;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.chartDrawing.ShapeModel;
 import com.scell.model.drawingml.chartDrawing.ShapeNonVisualModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
@@ -9,13 +9,13 @@ import com.scell.model.drawingml.main.ShapeStyleModel;
 import com.scell.model.drawingml.main.TextBodyModel;
 
 public class ShapeBuilder {
-  private BooleanModel fPublished;
+  private BooleanValueModel fPublished;
 
-  private StringModel macro;
+  private StringValueModel macro;
 
-  private BooleanModel fLocksText;
+  private BooleanValueModel fLocksText;
 
-  private StringModel textlink;
+  private StringValueModel textlink;
 
   private ShapeNonVisualModel nvSpPr;
 
@@ -28,22 +28,22 @@ public class ShapeBuilder {
   public ShapeBuilder() {
   }
 
-  public ShapeBuilder setFPublished(BooleanModel fPublished) {
+  public ShapeBuilder setFPublished(BooleanValueModel fPublished) {
     this.fPublished = fPublished;
     return this;
   }
 
-  public ShapeBuilder setMacro(StringModel macro) {
+  public ShapeBuilder setMacro(StringValueModel macro) {
     this.macro = macro;
     return this;
   }
 
-  public ShapeBuilder setFLocksText(BooleanModel fLocksText) {
+  public ShapeBuilder setFLocksText(BooleanValueModel fLocksText) {
     this.fLocksText = fLocksText;
     return this;
   }
 
-  public ShapeBuilder setTextlink(StringModel textlink) {
+  public ShapeBuilder setTextlink(StringValueModel textlink) {
     this.textlink = textlink;
     return this;
   }

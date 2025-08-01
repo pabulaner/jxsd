@@ -19,13 +19,14 @@ public class PrimitiveBuilderParser extends BuilderParser<JavaPrimitive> {
     }
 
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
-        JavaType primitive = RestrictionUtil.findPrimitive(getGroup().getMap().getScope(), clazz.type());
-        return parse(builder, clazz.type(), primitive);
+        JavaType primitive = RestrictionUtil.findPrimitive(getGroup().getMap().getScope(), clazz.getType());
+        return parse(builder, clazz.getType(), primitive);
     }
 
     @Override
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaPrimitive clazz) {
-        return parse(builder, clazz.type(), clazz.type());
+        super.parse(builder, clazz);
+        return parse(builder, clazz.getType(), clazz.getType());
     }
 
     private TypeSpec.Builder parse(TypeSpec.Builder builder, JavaType type, JavaType primitive) {

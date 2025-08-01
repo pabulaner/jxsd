@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.SkipModel;
+import com.scell.model.drawingml.chart.SkipValueModel;
 
 public class SkipBuilder {
-  private SkipModel val;
+  private SkipValueModel val;
 
   public SkipBuilder() {
   }
 
-  public SkipBuilder setVal(SkipModel val) {
+  public SkipBuilder setVal(SkipValueModel val) {
     this.val = val;
     return this;
   }

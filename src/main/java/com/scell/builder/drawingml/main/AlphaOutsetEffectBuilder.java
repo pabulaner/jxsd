@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.AlphaOutsetEffectModel;
-import com.scell.model.drawingml.main.CoordinateModel;
+import com.scell.model.drawingml.main.CoordinateValueModel;
 
 public class AlphaOutsetEffectBuilder {
-  private CoordinateModel rad;
+  private CoordinateValueModel rad;
 
   public AlphaOutsetEffectBuilder() {
   }
 
-  public AlphaOutsetEffectBuilder setRad(CoordinateModel rad) {
+  public AlphaOutsetEffectBuilder setRad(CoordinateValueModel rad) {
     this.rad = rad;
     return this;
   }

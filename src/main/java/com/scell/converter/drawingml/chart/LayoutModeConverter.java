@@ -9,6 +9,6 @@ public class LayoutModeConverter {
 
   public static LayoutModeModel fromDocx4J(CTLayoutMode value) {
     if (value == null) return null;
-    return new LayoutModeModel(LayoutModeConverter.fromDocx4J(value.getVal()));
+    return new LayoutModeModel(LayoutModeValueConverter.fromDocx4J(value.getVal()));
   }
 }

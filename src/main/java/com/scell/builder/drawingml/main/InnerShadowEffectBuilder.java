@@ -2,8 +2,8 @@ package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.HslColorModel;
 import com.scell.model.drawingml.main.InnerShadowEffectModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 import com.scell.model.drawingml.main.PresetColorModel;
 import com.scell.model.drawingml.main.SRgbColorModel;
 import com.scell.model.drawingml.main.ScRgbColorModel;
@@ -12,28 +12,28 @@ import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class InnerShadowEffectBuilder {
-  private PositiveCoordinateModel blurRad;
+  private PositiveCoordinateValueModel blurRad;
 
-  private PositiveCoordinateModel dist;
+  private PositiveCoordinateValueModel dist;
 
-  private PositiveFixedAngleModel dir;
+  private PositiveFixedAngleValueModel dir;
 
   private InnerShadowEffectModel.ColorChoiceModel egColorChoice;
 
   public InnerShadowEffectBuilder() {
   }
 
-  public InnerShadowEffectBuilder setBlurRad(PositiveCoordinateModel blurRad) {
+  public InnerShadowEffectBuilder setBlurRad(PositiveCoordinateValueModel blurRad) {
     this.blurRad = blurRad;
     return this;
   }
 
-  public InnerShadowEffectBuilder setDist(PositiveCoordinateModel dist) {
+  public InnerShadowEffectBuilder setDist(PositiveCoordinateValueModel dist) {
     this.dist = dist;
     return this;
   }
 
-  public InnerShadowEffectBuilder setDir(PositiveFixedAngleModel dir) {
+  public InnerShadowEffectBuilder setDir(PositiveFixedAngleValueModel dir) {
     this.dir = dir;
     return this;
   }

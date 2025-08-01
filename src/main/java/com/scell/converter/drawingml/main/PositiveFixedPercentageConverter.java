@@ -9,6 +9,6 @@ public class PositiveFixedPercentageConverter {
 
   public static PositiveFixedPercentageModel fromDocx4J(CTPositiveFixedPercentage value) {
     if (value == null) return null;
-    return new PositiveFixedPercentageModel(PositiveFixedPercentageConverter.fromDocx4J(value.getVal()));
+    return new PositiveFixedPercentageModel(PositiveFixedPercentageValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -16,6 +16,6 @@ public class FontReferenceConverter {
     if (value.getSysClr() != null) egColorChoice = FontReferenceModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = FontReferenceModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = FontReferenceModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new FontReferenceModel(FontCollectionIndexConverter.fromDocx4J(value.getIdx()), egColorChoice);
+    return new FontReferenceModel(FontCollectionIndexValueConverter.fromDocx4J(value.getIdx()), egColorChoice);
   }
 }

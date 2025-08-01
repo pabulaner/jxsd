@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class LayoutTargetModel {
-  private final LayoutTargetModel val;
+  private final LayoutTargetValueModel val;
 
-  public LayoutTargetModel(LayoutTargetModel val) {
+  public LayoutTargetModel(LayoutTargetValueModel val) {
     this.val = val;
   }
 
-  public LayoutTargetModel getVal() {
+  public LayoutTargetValueModel getVal() {
     return this.val;
   }
 }

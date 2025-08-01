@@ -9,6 +9,6 @@ public class MarkerStyleConverter {
 
   public static MarkerStyleModel fromDocx4J(CTMarkerStyle value) {
     if (value == null) return null;
-    return new MarkerStyleModel(MarkerStyleConverter.fromDocx4J(value.getVal()));
+    return new MarkerStyleModel(MarkerStyleValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.ErrValTypeModel;
+import com.scell.model.drawingml.chart.ErrValTypeValueModel;
 
 public class ErrValTypeBuilder {
-  private ErrValTypeModel val;
+  private ErrValTypeValueModel val;
 
   public ErrValTypeBuilder() {
   }
 
-  public ErrValTypeBuilder setVal(ErrValTypeModel val) {
+  public ErrValTypeBuilder setVal(ErrValTypeValueModel val) {
     this.val = val;
     return this;
   }

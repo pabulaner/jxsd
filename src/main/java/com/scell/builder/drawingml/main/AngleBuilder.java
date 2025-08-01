@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.AngleModel;
+import com.scell.model.drawingml.main.AngleValueModel;
 
 public class AngleBuilder {
-  private AngleModel val;
+  private AngleValueModel val;
 
   public AngleBuilder() {
   }
 
-  public AngleBuilder setVal(AngleModel val) {
+  public AngleBuilder setVal(AngleValueModel val) {
     this.val = val;
     return this;
   }

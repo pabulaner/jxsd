@@ -9,6 +9,6 @@ public class AngleConverter {
 
   public static AngleModel fromDocx4J(CTAngle value) {
     if (value == null) return null;
-    return new AngleModel(AngleConverter.fromDocx4J(value.getVal()));
+    return new AngleModel(AngleValueConverter.fromDocx4J(value.getVal()));
   }
 }

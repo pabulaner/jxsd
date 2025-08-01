@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class ScatterStyleModel {
-  private final ScatterStyleModel val;
+  private final ScatterStyleValueModel val;
 
-  public ScatterStyleModel(ScatterStyleModel val) {
+  public ScatterStyleModel(ScatterStyleValueModel val) {
     this.val = val;
   }
 
-  public ScatterStyleModel getVal() {
+  public ScatterStyleValueModel getVal() {
     return this.val;
   }
 }

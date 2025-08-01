@@ -13,10 +13,10 @@ public class AdjustHandleListConverter {
 
   public static AdjustHandleListModel fromDocx4J(CTAdjustHandleList value) {
     if (value == null) return null;
-    List<AdjustHandleListModel.AhXYOrAhPolarModel> ahXYOrAhPolar = value.getAhXYOrAhPolar().stream().map(val -> {
-      if (val instanceof CTXYAdjustHandle) return AdjustHandleListModel.AhXYOrAhPolarModel.newAhXY(XYAdjustHandleConverter.fromDocx4J((CTXYAdjustHandle) val));
-      if (val instanceof CTPolarAdjustHandle) return AdjustHandleListModel.AhXYOrAhPolarModel.newAhPolar(PolarAdjustHandleConverter.fromDocx4J((CTPolarAdjustHandle) val));
-      return new AdjustHandleListModel.AhXYOrAhPolarModel();
+    List<AdjustHandleListModel.AhXYOrAhPolarValueModel> ahXYOrAhPolar = value.getAhXYOrAhPolar().stream().map(val -> {
+      if (val instanceof CTXYAdjustHandle) return AdjustHandleListModel.AhXYOrAhPolarValueModel.newAhXY(XYAdjustHandleConverter.fromDocx4J((CTXYAdjustHandle) val));
+      if (val instanceof CTPolarAdjustHandle) return AdjustHandleListModel.AhXYOrAhPolarValueModel.newAhPolar(PolarAdjustHandleConverter.fromDocx4J((CTPolarAdjustHandle) val));
+      return new AdjustHandleListModel.AhXYOrAhPolarValueModel();
     } ).collect(Collectors.toList());
     return new AdjustHandleListModel(ahXYOrAhPolar);
   }

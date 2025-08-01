@@ -12,7 +12,7 @@ import com.scell.model.drawingml.chart.ShapeModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
 import java.util.List;
 
-public class Bar3DChartBuilder {
+public class Bar3DChartBuilder implements IBarChartValueBuilder, IGapDepthComponentValueBuilder {
   private BarDirModel barDir;
 
   private BarGroupingModel grouping;

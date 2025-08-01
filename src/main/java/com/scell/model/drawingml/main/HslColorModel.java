@@ -5,31 +5,31 @@ import java.lang.Object;
 import java.util.List;
 
 public class HslColorModel {
-  private final PositiveFixedAngleModel hue;
+  private final PositiveFixedAngleValueModel hue;
 
-  private final PercentageModel lum;
+  private final PercentageValueModel lum;
 
-  private final PercentageModel sat;
+  private final PercentageValueModel sat;
 
   private final List<ColorTransformModel> egColorTransform;
 
-  public HslColorModel(PositiveFixedAngleModel hue, PercentageModel lum, PercentageModel sat,
-      List<ColorTransformModel> egColorTransform) {
+  public HslColorModel(PositiveFixedAngleValueModel hue, PercentageValueModel lum,
+      PercentageValueModel sat, List<ColorTransformModel> egColorTransform) {
     this.hue = hue;
     this.lum = lum;
     this.sat = sat;
     this.egColorTransform = egColorTransform;
   }
 
-  public PositiveFixedAngleModel getHue() {
+  public PositiveFixedAngleValueModel getHue() {
     return this.hue;
   }
 
-  public PercentageModel getLum() {
+  public PercentageValueModel getLum() {
     return this.lum;
   }
 
-  public PercentageModel getSat() {
+  public PercentageValueModel getSat() {
     return this.sat;
   }
 

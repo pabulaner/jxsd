@@ -4,31 +4,31 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class PresetShadowEffectModel {
-  private final PositiveCoordinateModel dist;
+  private final PositiveCoordinateValueModel dist;
 
-  private final PresetShadowValModel prst;
+  private final PresetShadowValValueModel prst;
 
-  private final PositiveFixedAngleModel dir;
+  private final PositiveFixedAngleValueModel dir;
 
   private final ColorChoiceModel egColorChoice;
 
-  public PresetShadowEffectModel(PositiveCoordinateModel dist, PresetShadowValModel prst,
-      PositiveFixedAngleModel dir, ColorChoiceModel egColorChoice) {
+  public PresetShadowEffectModel(PositiveCoordinateValueModel dist, PresetShadowValValueModel prst,
+      PositiveFixedAngleValueModel dir, ColorChoiceModel egColorChoice) {
     this.dist = dist;
     this.prst = prst;
     this.dir = dir;
     this.egColorChoice = egColorChoice;
   }
 
-  public PositiveCoordinateModel getDist() {
+  public PositiveCoordinateValueModel getDist() {
     return this.dist;
   }
 
-  public PresetShadowValModel getPrst() {
+  public PresetShadowValValueModel getPrst() {
     return this.prst;
   }
 
-  public PositiveFixedAngleModel getDir() {
+  public PositiveFixedAngleValueModel getDir() {
     return this.dir;
   }
 

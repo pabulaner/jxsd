@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.DispBlanksAsModel;
+import com.scell.model.drawingml.chart.DispBlanksAsValueModel;
 
 public class DispBlanksAsBuilder {
-  private DispBlanksAsModel val;
+  private DispBlanksAsValueModel val;
 
   public DispBlanksAsBuilder() {
   }
 
-  public DispBlanksAsBuilder setVal(DispBlanksAsModel val) {
+  public DispBlanksAsBuilder setVal(DispBlanksAsValueModel val) {
     this.val = val;
     return this;
   }

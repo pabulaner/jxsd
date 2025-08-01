@@ -9,6 +9,6 @@ public class PercentageConverter {
 
   public static PercentageModel fromDocx4J(CTPercentage value) {
     if (value == null) return null;
-    return new PercentageModel(PercentageConverter.fromDocx4J(value.getVal()));
+    return new PercentageModel(PercentageValueConverter.fromDocx4J(value.getVal()));
   }
 }

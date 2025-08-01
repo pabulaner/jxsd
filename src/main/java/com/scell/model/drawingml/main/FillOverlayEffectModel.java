@@ -4,16 +4,16 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class FillOverlayEffectModel {
-  private final BlendModeModel blend;
+  private final BlendModeValueModel blend;
 
   private final FillPropertiesModel egFillProperties;
 
-  public FillOverlayEffectModel(BlendModeModel blend, FillPropertiesModel egFillProperties) {
+  public FillOverlayEffectModel(BlendModeValueModel blend, FillPropertiesModel egFillProperties) {
     this.blend = blend;
     this.egFillProperties = egFillProperties;
   }
 
-  public BlendModeModel getBlend() {
+  public BlendModeValueModel getBlend() {
     return this.blend;
   }
 

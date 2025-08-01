@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class AxisUnitModel {
-  private final AxisUnitModel val;
+  private final AxisUnitValueModel val;
 
-  public AxisUnitModel(AxisUnitModel val) {
+  public AxisUnitModel(AxisUnitValueModel val) {
     this.val = val;
   }
 
-  public AxisUnitModel getVal() {
+  public AxisUnitValueModel getVal() {
     return this.val;
   }
 }

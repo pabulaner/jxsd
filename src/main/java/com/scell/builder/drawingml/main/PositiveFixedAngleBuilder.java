@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 
 public class PositiveFixedAngleBuilder {
-  private PositiveFixedAngleModel val;
+  private PositiveFixedAngleValueModel val;
 
   public PositiveFixedAngleBuilder() {
   }
 
-  public PositiveFixedAngleBuilder setVal(PositiveFixedAngleModel val) {
+  public PositiveFixedAngleBuilder setVal(PositiveFixedAngleValueModel val) {
     this.val = val;
     return this;
   }

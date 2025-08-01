@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.chart.BooleanModel;
 import com.scell.model.drawingml.chart.DoubleModel;
 import com.scell.model.drawingml.chart.ExtensionListModel;
@@ -12,7 +12,7 @@ import com.scell.model.drawingml.chart.TrendlineTypeModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 
 public class TrendlineBuilder {
-  private StringModel name;
+  private StringValueModel name;
 
   private ShapePropertiesModel spPr;
 
@@ -39,7 +39,7 @@ public class TrendlineBuilder {
   public TrendlineBuilder() {
   }
 
-  public TrendlineBuilder setName(StringModel name) {
+  public TrendlineBuilder setName(StringValueModel name) {
     this.name = name;
     return this;
   }

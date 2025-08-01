@@ -22,6 +22,6 @@ public class ShapePropertiesConverter {
     ShapePropertiesModel.EffectPropertiesModel egEffectProperties = new ShapePropertiesModel.EffectPropertiesModel();
     if (value.getEffectLst() != null) egEffectProperties = ShapePropertiesModel.EffectPropertiesModel.newEffectLst(EffectListConverter.fromDocx4J(value.getEffectLst()));
     if (value.getEffectDag() != null) egEffectProperties = ShapePropertiesModel.EffectPropertiesModel.newEffectDag(EffectContainerConverter.fromDocx4J(value.getEffectDag()));
-    return new ShapePropertiesModel(BlackWhiteModeConverter.fromDocx4J(value.getBwMode()), Transform2DConverter.fromDocx4J(value.getXfrm()), egGeometry, egFillProperties, LinePropertiesConverter.fromDocx4J(value.getLn()), egEffectProperties, Scene3DConverter.fromDocx4J(value.getScene3D()), Shape3DConverter.fromDocx4J(value.getSp3D()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
+    return new ShapePropertiesModel(BlackWhiteModeValueConverter.fromDocx4J(value.getBwMode()), Transform2DConverter.fromDocx4J(value.getXfrm()), egGeometry, egFillProperties, LinePropertiesConverter.fromDocx4J(value.getLn()), egEffectProperties, Scene3DConverter.fromDocx4J(value.getScene3D()), Shape3DConverter.fromDocx4J(value.getSp3D()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
   }
 }

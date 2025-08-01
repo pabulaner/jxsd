@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.BiLevelEffectModel;
-import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
+import com.scell.model.drawingml.main.PositiveFixedPercentageValueModel;
 
 public class BiLevelEffectBuilder {
-  private PositiveFixedPercentageModel thresh;
+  private PositiveFixedPercentageValueModel thresh;
 
   public BiLevelEffectBuilder() {
   }
 
-  public BiLevelEffectBuilder setThresh(PositiveFixedPercentageModel thresh) {
+  public BiLevelEffectBuilder setThresh(PositiveFixedPercentageValueModel thresh) {
     this.thresh = thresh;
     return this;
   }

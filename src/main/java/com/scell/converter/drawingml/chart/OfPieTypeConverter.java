@@ -9,6 +9,6 @@ public class OfPieTypeConverter {
 
   public static OfPieTypeModel fromDocx4J(CTOfPieType value) {
     if (value == null) return null;
-    return new OfPieTypeModel(OfPieTypeConverter.fromDocx4J(value.getVal()));
+    return new OfPieTypeModel(OfPieTypeValueConverter.fromDocx4J(value.getVal()));
   }
 }

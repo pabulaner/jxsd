@@ -8,7 +8,7 @@ import com.scell.model.drawingml.main.AlphaModulateEffectModel;
 import com.scell.model.drawingml.main.AlphaModulateFixedEffectModel;
 import com.scell.model.drawingml.main.AlphaReplaceEffectModel;
 import com.scell.model.drawingml.main.BiLevelEffectModel;
-import com.scell.model.drawingml.main.BlipCompressionModel;
+import com.scell.model.drawingml.main.BlipCompressionValueModel;
 import com.scell.model.drawingml.main.BlipModel;
 import com.scell.model.drawingml.main.BlurEffectModel;
 import com.scell.model.drawingml.main.ColorChangeEffectModel;
@@ -20,41 +20,41 @@ import com.scell.model.drawingml.main.HSLEffectModel;
 import com.scell.model.drawingml.main.LuminanceEffectModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.TintEffectModel;
-import com.scell.model.officeDocument.relationships.RelationshipIdModel;
+import com.scell.model.officeDocument.relationships.RelationshipIdValueModel;
 import java.lang.Object;
 import java.util.List;
 
 public class BlipBuilder {
-  private BlipCompressionModel cstate;
+  private BlipCompressionValueModel cstate;
 
-  private RelationshipIdModel embed;
+  private RelationshipIdValueModel embed;
 
-  private RelationshipIdModel link;
+  private RelationshipIdValueModel link;
 
-  private List<BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor;
+  private List<BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor;
 
   private OfficeArtExtensionListModel extLst;
 
   public BlipBuilder() {
   }
 
-  public BlipBuilder setCstate(BlipCompressionModel cstate) {
+  public BlipBuilder setCstate(BlipCompressionValueModel cstate) {
     this.cstate = cstate;
     return this;
   }
 
-  public BlipBuilder setEmbed(RelationshipIdModel embed) {
+  public BlipBuilder setEmbed(RelationshipIdValueModel embed) {
     this.embed = embed;
     return this;
   }
 
-  public BlipBuilder setLink(RelationshipIdModel link) {
+  public BlipBuilder setLink(RelationshipIdValueModel link) {
     this.link = link;
     return this;
   }
 
   public BlipBuilder setAlphaBiLevelOrAlphaCeilingOrAlphaFloor(
-      List<BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor) {
+      List<BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel> alphaBiLevelOrAlphaCeilingOrAlphaFloor) {
     this.alphaBiLevelOrAlphaCeilingOrAlphaFloor = alphaBiLevelOrAlphaCeilingOrAlphaFloor;
     return this;
   }
@@ -77,151 +77,153 @@ public class BlipBuilder {
     return this;
   }
 
-  public static class AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder {
+  public static class AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder {
     private int type;
 
     private Object value;
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder() {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setAlphaBiLevel(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setAlphaBiLevel(
         AlphaBiLevelEffectModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setAlphaCeiling(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setAlphaCeiling(
         AlphaCeilingEffectModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setAlphaFloor(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setAlphaFloor(
         AlphaFloorEffectModel value) {
       this.type = 2;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setAlphaInv(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setAlphaInv(
         AlphaInverseEffectModel value) {
       this.type = 3;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setAlphaMod(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setAlphaMod(
         AlphaModulateEffectModel value) {
       this.type = 4;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setAlphaModFix(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setAlphaModFix(
         AlphaModulateFixedEffectModel value) {
       this.type = 5;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setAlphaRepl(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setAlphaRepl(
         AlphaReplaceEffectModel value) {
       this.type = 6;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setBiLevel(BiLevelEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setBiLevel(BiLevelEffectModel value) {
       this.type = 7;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setBlur(BlurEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setBlur(BlurEffectModel value) {
       this.type = 8;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setClrChange(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setClrChange(
         ColorChangeEffectModel value) {
       this.type = 9;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setClrRepl(ColorReplaceEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setClrRepl(
+        ColorReplaceEffectModel value) {
       this.type = 10;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setDuotone(DuotoneEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setDuotone(DuotoneEffectModel value) {
       this.type = 11;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setFillOverlay(
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setFillOverlay(
         FillOverlayEffectModel value) {
       this.type = 12;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setGrayscl(GrayscaleEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setGrayscl(
+        GrayscaleEffectModel value) {
       this.type = 13;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setHsl(HSLEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setHsl(HSLEffectModel value) {
       this.type = 14;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setLum(LuminanceEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setLum(LuminanceEffectModel value) {
       this.type = 15;
       this.value = value;
       return this;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder setTint(TintEffectModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder setTint(TintEffectModel value) {
       this.type = 16;
       this.value = value;
       return this;
     }
 
-    public BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel build() {
-      if (this.type == -1) return new BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel();
-      if (this.type == 0) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newAlphaBiLevel((AlphaBiLevelEffectModel) this.value);
-      if (this.type == 1) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newAlphaCeiling((AlphaCeilingEffectModel) this.value);
-      if (this.type == 2) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newAlphaFloor((AlphaFloorEffectModel) this.value);
-      if (this.type == 3) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newAlphaInv((AlphaInverseEffectModel) this.value);
-      if (this.type == 4) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newAlphaMod((AlphaModulateEffectModel) this.value);
-      if (this.type == 5) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newAlphaModFix((AlphaModulateFixedEffectModel) this.value);
-      if (this.type == 6) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newAlphaRepl((AlphaReplaceEffectModel) this.value);
-      if (this.type == 7) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newBiLevel((BiLevelEffectModel) this.value);
-      if (this.type == 8) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newBlur((BlurEffectModel) this.value);
-      if (this.type == 9) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newClrChange((ColorChangeEffectModel) this.value);
-      if (this.type == 10) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newClrRepl((ColorReplaceEffectModel) this.value);
-      if (this.type == 11) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newDuotone((DuotoneEffectModel) this.value);
-      if (this.type == 12) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newFillOverlay((FillOverlayEffectModel) this.value);
-      if (this.type == 13) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newGrayscl((GrayscaleEffectModel) this.value);
-      if (this.type == 14) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newHsl((HSLEffectModel) this.value);
-      if (this.type == 15) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newLum((LuminanceEffectModel) this.value);
-      if (this.type == 16) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel.newTint((TintEffectModel) this.value);
+    public BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel build() {
+      if (this.type == -1) return new BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel();
+      if (this.type == 0) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newAlphaBiLevel((AlphaBiLevelEffectModel) this.value);
+      if (this.type == 1) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newAlphaCeiling((AlphaCeilingEffectModel) this.value);
+      if (this.type == 2) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newAlphaFloor((AlphaFloorEffectModel) this.value);
+      if (this.type == 3) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newAlphaInv((AlphaInverseEffectModel) this.value);
+      if (this.type == 4) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newAlphaMod((AlphaModulateEffectModel) this.value);
+      if (this.type == 5) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newAlphaModFix((AlphaModulateFixedEffectModel) this.value);
+      if (this.type == 6) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newAlphaRepl((AlphaReplaceEffectModel) this.value);
+      if (this.type == 7) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newBiLevel((BiLevelEffectModel) this.value);
+      if (this.type == 8) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newBlur((BlurEffectModel) this.value);
+      if (this.type == 9) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newClrChange((ColorChangeEffectModel) this.value);
+      if (this.type == 10) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newClrRepl((ColorReplaceEffectModel) this.value);
+      if (this.type == 11) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newDuotone((DuotoneEffectModel) this.value);
+      if (this.type == 12) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newFillOverlay((FillOverlayEffectModel) this.value);
+      if (this.type == 13) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newGrayscl((GrayscaleEffectModel) this.value);
+      if (this.type == 14) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newHsl((HSLEffectModel) this.value);
+      if (this.type == 15) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newLum((LuminanceEffectModel) this.value);
+      if (this.type == 16) return BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel.newTint((TintEffectModel) this.value);
       return null;
     }
 
-    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorBuilder from(
-        BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorModel value) {
+    public AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueBuilder from(
+        BlipModel.AlphaBiLevelOrAlphaCeilingOrAlphaFloorValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isAlphaBiLevel()) {

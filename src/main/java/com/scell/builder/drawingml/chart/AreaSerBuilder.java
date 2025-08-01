@@ -14,7 +14,7 @@ import com.scell.model.drawingml.chart.UnsignedIntModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class AreaSerBuilder {
+public class AreaSerBuilder implements ISeriesValueBuilder, IPictureOptionsComponentValueBuilder {
   private UnsignedIntModel idx;
 
   private UnsignedIntModel order;

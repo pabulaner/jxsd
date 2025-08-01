@@ -2,7 +2,7 @@ package com.scell.model.drawingml.chart;
 
 import java.util.List;
 
-public class Bar3DChartModel {
+public class Bar3DChartModel implements IBarChartValueModel, IGapDepthComponentValueModel {
   private final BarDirModel barDir;
 
   private final BarGroupingModel grouping;

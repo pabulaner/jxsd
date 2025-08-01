@@ -1,88 +1,88 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.ShapeLockingModel;
 
 public class ShapeLockingBuilder {
-  private BooleanModel noResize;
+  private BooleanValueModel noResize;
 
-  private BooleanModel noChangeAspect;
+  private BooleanValueModel noChangeAspect;
 
-  private BooleanModel noEditPoints;
+  private BooleanValueModel noEditPoints;
 
-  private BooleanModel noChangeArrowheads;
+  private BooleanValueModel noChangeArrowheads;
 
-  private BooleanModel noTextEdit;
+  private BooleanValueModel noTextEdit;
 
-  private BooleanModel noSelect;
+  private BooleanValueModel noSelect;
 
-  private BooleanModel noGrp;
+  private BooleanValueModel noGrp;
 
-  private BooleanModel noMove;
+  private BooleanValueModel noMove;
 
-  private BooleanModel noRot;
+  private BooleanValueModel noRot;
 
-  private BooleanModel noChangeShapeType;
+  private BooleanValueModel noChangeShapeType;
 
-  private BooleanModel noAdjustHandles;
+  private BooleanValueModel noAdjustHandles;
 
   private OfficeArtExtensionListModel extLst;
 
   public ShapeLockingBuilder() {
   }
 
-  public ShapeLockingBuilder setNoResize(BooleanModel noResize) {
+  public ShapeLockingBuilder setNoResize(BooleanValueModel noResize) {
     this.noResize = noResize;
     return this;
   }
 
-  public ShapeLockingBuilder setNoChangeAspect(BooleanModel noChangeAspect) {
+  public ShapeLockingBuilder setNoChangeAspect(BooleanValueModel noChangeAspect) {
     this.noChangeAspect = noChangeAspect;
     return this;
   }
 
-  public ShapeLockingBuilder setNoEditPoints(BooleanModel noEditPoints) {
+  public ShapeLockingBuilder setNoEditPoints(BooleanValueModel noEditPoints) {
     this.noEditPoints = noEditPoints;
     return this;
   }
 
-  public ShapeLockingBuilder setNoChangeArrowheads(BooleanModel noChangeArrowheads) {
+  public ShapeLockingBuilder setNoChangeArrowheads(BooleanValueModel noChangeArrowheads) {
     this.noChangeArrowheads = noChangeArrowheads;
     return this;
   }
 
-  public ShapeLockingBuilder setNoTextEdit(BooleanModel noTextEdit) {
+  public ShapeLockingBuilder setNoTextEdit(BooleanValueModel noTextEdit) {
     this.noTextEdit = noTextEdit;
     return this;
   }
 
-  public ShapeLockingBuilder setNoSelect(BooleanModel noSelect) {
+  public ShapeLockingBuilder setNoSelect(BooleanValueModel noSelect) {
     this.noSelect = noSelect;
     return this;
   }
 
-  public ShapeLockingBuilder setNoGrp(BooleanModel noGrp) {
+  public ShapeLockingBuilder setNoGrp(BooleanValueModel noGrp) {
     this.noGrp = noGrp;
     return this;
   }
 
-  public ShapeLockingBuilder setNoMove(BooleanModel noMove) {
+  public ShapeLockingBuilder setNoMove(BooleanValueModel noMove) {
     this.noMove = noMove;
     return this;
   }
 
-  public ShapeLockingBuilder setNoRot(BooleanModel noRot) {
+  public ShapeLockingBuilder setNoRot(BooleanValueModel noRot) {
     this.noRot = noRot;
     return this;
   }
 
-  public ShapeLockingBuilder setNoChangeShapeType(BooleanModel noChangeShapeType) {
+  public ShapeLockingBuilder setNoChangeShapeType(BooleanValueModel noChangeShapeType) {
     this.noChangeShapeType = noChangeShapeType;
     return this;
   }
 
-  public ShapeLockingBuilder setNoAdjustHandles(BooleanModel noAdjustHandles) {
+  public ShapeLockingBuilder setNoAdjustHandles(BooleanValueModel noAdjustHandles) {
     this.noAdjustHandles = noAdjustHandles;
     return this;
   }

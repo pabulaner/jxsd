@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class TextSpacingPercentModel {
-  private final TextSpacingPercentModel val;
+  private final TextSpacingPercentValueModel val;
 
-  public TextSpacingPercentModel(TextSpacingPercentModel val) {
+  public TextSpacingPercentModel(TextSpacingPercentValueModel val) {
     this.val = val;
   }
 
-  public TextSpacingPercentModel getVal() {
+  public TextSpacingPercentValueModel getVal() {
     return this.val;
   }
 }

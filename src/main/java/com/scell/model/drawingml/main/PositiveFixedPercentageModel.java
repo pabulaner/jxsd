@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class PositiveFixedPercentageModel {
-  private final PositiveFixedPercentageModel val;
+  private final PositiveFixedPercentageValueModel val;
 
-  public PositiveFixedPercentageModel(PositiveFixedPercentageModel val) {
+  public PositiveFixedPercentageModel(PositiveFixedPercentageValueModel val) {
     this.val = val;
   }
 
-  public PositiveFixedPercentageModel getVal() {
+  public PositiveFixedPercentageValueModel getVal() {
     return this.val;
   }
 }

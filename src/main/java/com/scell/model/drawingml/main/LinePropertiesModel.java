@@ -4,13 +4,13 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class LinePropertiesModel {
-  private final LineWidthModel w;
+  private final LineWidthValueModel w;
 
-  private final LineCapModel cap;
+  private final LineCapValueModel cap;
 
-  private final CompoundLineModel cmpd;
+  private final CompoundLineValueModel cmpd;
 
-  private final PenAlignmentModel algn;
+  private final PenAlignmentValueModel algn;
 
   private final LineFillPropertiesModel egLineFillProperties;
 
@@ -24,11 +24,11 @@ public class LinePropertiesModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public LinePropertiesModel(LineWidthModel w, LineCapModel cap, CompoundLineModel cmpd,
-      PenAlignmentModel algn, LineFillPropertiesModel egLineFillProperties,
-      LineDashPropertiesModel egLineDashProperties, LineJoinPropertiesModel egLineJoinProperties,
-      LineEndPropertiesModel headEnd, LineEndPropertiesModel tailEnd,
-      OfficeArtExtensionListModel extLst) {
+  public LinePropertiesModel(LineWidthValueModel w, LineCapValueModel cap,
+      CompoundLineValueModel cmpd, PenAlignmentValueModel algn,
+      LineFillPropertiesModel egLineFillProperties, LineDashPropertiesModel egLineDashProperties,
+      LineJoinPropertiesModel egLineJoinProperties, LineEndPropertiesModel headEnd,
+      LineEndPropertiesModel tailEnd, OfficeArtExtensionListModel extLst) {
     this.w = w;
     this.cap = cap;
     this.cmpd = cmpd;
@@ -41,19 +41,19 @@ public class LinePropertiesModel {
     this.extLst = extLst;
   }
 
-  public LineWidthModel getW() {
+  public LineWidthValueModel getW() {
     return this.w;
   }
 
-  public LineCapModel getCap() {
+  public LineCapValueModel getCap() {
     return this.cap;
   }
 
-  public CompoundLineModel getCmpd() {
+  public CompoundLineValueModel getCmpd() {
     return this.cmpd;
   }
 
-  public PenAlignmentModel getAlgn() {
+  public PenAlignmentValueModel getAlgn() {
     return this.algn;
   }
 

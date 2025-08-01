@@ -15,7 +15,7 @@ import com.scell.model.drawingml.chart.UnsignedIntModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class ScatterSerBuilder {
+public class ScatterSerBuilder implements ISeriesValueBuilder, IMarkerComponentValueBuilder, ISmoothComponentValueBuilder {
   private UnsignedIntModel idx;
 
   private UnsignedIntModel order;

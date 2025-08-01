@@ -9,6 +9,6 @@ public class ErrBarTypeConverter {
 
   public static ErrBarTypeModel fromDocx4J(CTErrBarType value) {
     if (value == null) return null;
-    return new ErrBarTypeModel(ErrBarTypeConverter.fromDocx4J(value.getVal()));
+    return new ErrBarTypeModel(ErrBarTypeValueConverter.fromDocx4J(value.getVal()));
   }
 }

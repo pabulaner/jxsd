@@ -1,29 +1,29 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.CoordinateModel;
+import com.scell.model.drawingml.main.CoordinateValueModel;
 import com.scell.model.drawingml.main.Vector3DModel;
 
 public class Vector3DBuilder {
-  private CoordinateModel dz;
+  private CoordinateValueModel dz;
 
-  private CoordinateModel dy;
+  private CoordinateValueModel dy;
 
-  private CoordinateModel dx;
+  private CoordinateValueModel dx;
 
   public Vector3DBuilder() {
   }
 
-  public Vector3DBuilder setDz(CoordinateModel dz) {
+  public Vector3DBuilder setDz(CoordinateValueModel dz) {
     this.dz = dz;
     return this;
   }
 
-  public Vector3DBuilder setDy(CoordinateModel dy) {
+  public Vector3DBuilder setDy(CoordinateValueModel dy) {
     this.dy = dy;
     return this;
   }
 
-  public Vector3DBuilder setDx(CoordinateModel dx) {
+  public Vector3DBuilder setDx(CoordinateValueModel dx) {
     this.dx = dx;
     return this;
   }

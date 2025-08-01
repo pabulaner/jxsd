@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class TrendlineTypeModel {
-  private final TrendlineTypeModel val;
+  private final TrendlineTypeValueModel val;
 
-  public TrendlineTypeModel(TrendlineTypeModel val) {
+  public TrendlineTypeModel(TrendlineTypeValueModel val) {
     this.val = val;
   }
 
-  public TrendlineTypeModel getVal() {
+  public TrendlineTypeValueModel getVal() {
     return this.val;
   }
 }

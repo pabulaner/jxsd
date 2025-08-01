@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.FixedPercentageModel;
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.FixedPercentageValueModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 import com.scell.model.drawingml.main.TintEffectModel;
 
 public class TintEffectBuilder {
-  private PositiveFixedAngleModel hue;
+  private PositiveFixedAngleValueModel hue;
 
-  private FixedPercentageModel amt;
+  private FixedPercentageValueModel amt;
 
   public TintEffectBuilder() {
   }
 
-  public TintEffectBuilder setHue(PositiveFixedAngleModel hue) {
+  public TintEffectBuilder setHue(PositiveFixedAngleValueModel hue) {
     this.hue = hue;
     return this;
   }
 
-  public TintEffectBuilder setAmt(FixedPercentageModel amt) {
+  public TintEffectBuilder setAmt(FixedPercentageValueModel amt) {
     this.amt = amt;
     return this;
   }

@@ -5,19 +5,19 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.out.util.ParserUtil;
-import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class PrimitiveModelParser extends BaseParser<JavaPrimitive> {
+public class PrimitiveModelParser extends ModelParser<JavaPrimitive> {
 
     public PrimitiveModelParser(ParserGroup group) {
         super(group);
     }
 
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaPrimitive clazz) {
-        TypeName primitiveType = ParserUtil.convertPrimitive(clazz.type());
+        super.parse(builder, clazz);
+        TypeName primitiveType = ParserUtil.convertPrimitive(clazz.getType());
 
         return builder
                 .addField(primitiveType, VALUE, Modifier.PRIVATE, Modifier.FINAL)

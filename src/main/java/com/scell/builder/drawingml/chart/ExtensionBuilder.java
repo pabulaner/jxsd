@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.TokenModel;
+import com.scell.model.XMLSchema.TokenValueModel;
 import com.scell.model.drawingml.chart.ExtensionModel;
 
 public class ExtensionBuilder {
-  private TokenModel uri;
+  private TokenValueModel uri;
 
   public ExtensionBuilder() {
   }
 
-  public ExtensionBuilder setUri(TokenModel uri) {
+  public ExtensionBuilder setUri(TokenValueModel uri) {
     this.uri = uri;
     return this;
   }

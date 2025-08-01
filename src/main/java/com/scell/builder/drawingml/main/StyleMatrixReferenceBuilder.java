@@ -5,20 +5,20 @@ import com.scell.model.drawingml.main.PresetColorModel;
 import com.scell.model.drawingml.main.SRgbColorModel;
 import com.scell.model.drawingml.main.ScRgbColorModel;
 import com.scell.model.drawingml.main.SchemeColorModel;
-import com.scell.model.drawingml.main.StyleMatrixColumnIndexModel;
+import com.scell.model.drawingml.main.StyleMatrixColumnIndexValueModel;
 import com.scell.model.drawingml.main.StyleMatrixReferenceModel;
 import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class StyleMatrixReferenceBuilder {
-  private StyleMatrixColumnIndexModel idx;
+  private StyleMatrixColumnIndexValueModel idx;
 
   private StyleMatrixReferenceModel.ColorChoiceModel egColorChoice;
 
   public StyleMatrixReferenceBuilder() {
   }
 
-  public StyleMatrixReferenceBuilder setIdx(StyleMatrixColumnIndexModel idx) {
+  public StyleMatrixReferenceBuilder setIdx(StyleMatrixColumnIndexValueModel idx) {
     this.idx = idx;
     return this;
   }

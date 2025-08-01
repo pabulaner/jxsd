@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.BarGroupingModel;
+import com.scell.model.drawingml.chart.BarGroupingValueModel;
 
 public class BarGroupingBuilder {
-  private BarGroupingModel val;
+  private BarGroupingValueModel val;
 
   public BarGroupingBuilder() {
   }
 
-  public BarGroupingBuilder setVal(BarGroupingModel val) {
+  public BarGroupingBuilder setVal(BarGroupingValueModel val) {
     this.val = val;
     return this;
   }

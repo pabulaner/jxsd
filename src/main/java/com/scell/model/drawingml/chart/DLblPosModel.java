@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class DLblPosModel {
-  private final DLblPosModel val;
+  private final DLblPosValueModel val;
 
-  public DLblPosModel(DLblPosModel val) {
+  public DLblPosModel(DLblPosValueModel val) {
     this.val = val;
   }
 
-  public DLblPosModel getVal() {
+  public DLblPosValueModel getVal() {
     return this.val;
   }
 }

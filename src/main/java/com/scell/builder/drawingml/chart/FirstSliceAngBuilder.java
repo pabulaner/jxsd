@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.FirstSliceAngModel;
+import com.scell.model.drawingml.chart.FirstSliceAngValueModel;
 
 public class FirstSliceAngBuilder {
-  private FirstSliceAngModel val;
+  private FirstSliceAngValueModel val;
 
   public FirstSliceAngBuilder() {
   }
 
-  public FirstSliceAngBuilder setVal(FirstSliceAngModel val) {
+  public FirstSliceAngBuilder setVal(FirstSliceAngValueModel val) {
     this.val = val;
     return this;
   }

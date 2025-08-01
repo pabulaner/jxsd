@@ -9,6 +9,6 @@ public class SplitTypeConverter {
 
   public static SplitTypeModel fromDocx4J(CTSplitType value) {
     if (value == null) return null;
-    return new SplitTypeModel(SplitTypeConverter.fromDocx4J(value.getVal()));
+    return new SplitTypeModel(SplitTypeValueConverter.fromDocx4J(value.getVal()));
   }
 }

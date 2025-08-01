@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class LineJoinMiterPropertiesModel {
-  private final PositivePercentageModel lim;
+  private final PositivePercentageValueModel lim;
 
-  public LineJoinMiterPropertiesModel(PositivePercentageModel lim) {
+  public LineJoinMiterPropertiesModel(PositivePercentageValueModel lim) {
     this.lim = lim;
   }
 
-  public PositivePercentageModel getLim() {
+  public PositivePercentageValueModel getLim() {
     return this.lim;
   }
 }

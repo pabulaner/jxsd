@@ -1,15 +1,15 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 
 public class BaseStylesOverrideModel {
   private final ColorSchemeModel clrScheme;
 
-  private final FontSchemeModel fontScheme;
+  private final FontSchemeValueModel fontScheme;
 
   private final StyleMatrixModel fmtScheme;
 
-  public BaseStylesOverrideModel(ColorSchemeModel clrScheme, FontSchemeModel fontScheme,
+  public BaseStylesOverrideModel(ColorSchemeModel clrScheme, FontSchemeValueModel fontScheme,
       StyleMatrixModel fmtScheme) {
     this.clrScheme = clrScheme;
     this.fontScheme = fontScheme;
@@ -20,7 +20,7 @@ public class BaseStylesOverrideModel {
     return this.clrScheme;
   }
 
-  public FontSchemeModel getFontScheme() {
+  public FontSchemeValueModel getFontScheme() {
     return this.fontScheme;
   }
 
@@ -28,32 +28,32 @@ public class BaseStylesOverrideModel {
     return this.fmtScheme;
   }
 
-  public static class FontSchemeModel {
-    private final StringModel name;
+  public static class FontSchemeValueModel {
+    private final StringValueModel name;
 
-    private final FontCollectionModel majorFont;
+    private final FontCollectionValueModel majorFont;
 
-    private final FontCollectionModel minorFont;
+    private final FontCollectionValueModel minorFont;
 
     private final OfficeArtExtensionListModel extLst;
 
-    public FontSchemeModel(StringModel name, FontCollectionModel majorFont,
-        FontCollectionModel minorFont, OfficeArtExtensionListModel extLst) {
+    public FontSchemeValueModel(StringValueModel name, FontCollectionValueModel majorFont,
+        FontCollectionValueModel minorFont, OfficeArtExtensionListModel extLst) {
       this.name = name;
       this.majorFont = majorFont;
       this.minorFont = minorFont;
       this.extLst = extLst;
     }
 
-    public StringModel getName() {
+    public StringValueModel getName() {
       return this.name;
     }
 
-    public FontCollectionModel getMajorFont() {
+    public FontCollectionValueModel getMajorFont() {
       return this.majorFont;
     }
 
-    public FontCollectionModel getMinorFont() {
+    public FontCollectionValueModel getMinorFont() {
       return this.minorFont;
     }
 

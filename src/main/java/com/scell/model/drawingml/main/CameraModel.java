@@ -1,31 +1,31 @@
 package com.scell.model.drawingml.main;
 
 public class CameraModel {
-  private final PresetCameraTypeModel prst;
+  private final PresetCameraTypeValueModel prst;
 
-  private final FOVAngleModel fov;
+  private final FOVAngleValueModel fov;
 
-  private final PositivePercentageModel zoom;
+  private final PositivePercentageValueModel zoom;
 
   private final SphereCoordsModel rot;
 
-  public CameraModel(PresetCameraTypeModel prst, FOVAngleModel fov, PositivePercentageModel zoom,
-      SphereCoordsModel rot) {
+  public CameraModel(PresetCameraTypeValueModel prst, FOVAngleValueModel fov,
+      PositivePercentageValueModel zoom, SphereCoordsModel rot) {
     this.prst = prst;
     this.fov = fov;
     this.zoom = zoom;
     this.rot = rot;
   }
 
-  public PresetCameraTypeModel getPrst() {
+  public PresetCameraTypeValueModel getPrst() {
     return this.prst;
   }
 
-  public FOVAngleModel getFov() {
+  public FOVAngleValueModel getFov() {
     return this.fov;
   }
 
-  public PositivePercentageModel getZoom() {
+  public PositivePercentageValueModel getZoom() {
     return this.zoom;
   }
 

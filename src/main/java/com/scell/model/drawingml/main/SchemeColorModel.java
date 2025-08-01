@@ -5,16 +5,17 @@ import java.lang.Object;
 import java.util.List;
 
 public class SchemeColorModel {
-  private final SchemeColorValModel val;
+  private final SchemeColorValValueModel val;
 
   private final List<ColorTransformModel> egColorTransform;
 
-  public SchemeColorModel(SchemeColorValModel val, List<ColorTransformModel> egColorTransform) {
+  public SchemeColorModel(SchemeColorValValueModel val,
+      List<ColorTransformModel> egColorTransform) {
     this.val = val;
     this.egColorTransform = egColorTransform;
   }
 
-  public SchemeColorValModel getVal() {
+  public SchemeColorValValueModel getVal() {
     return this.val;
   }
 

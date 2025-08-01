@@ -9,6 +9,6 @@ public class PictureStackUnitConverter {
 
   public static PictureStackUnitModel fromDocx4J(CTPictureStackUnit value) {
     if (value == null) return null;
-    return new PictureStackUnitModel(PictureStackUnitConverter.fromDocx4J(value.getVal()));
+    return new PictureStackUnitModel(PictureStackUnitValueConverter.fromDocx4J(value.getVal()));
   }
 }

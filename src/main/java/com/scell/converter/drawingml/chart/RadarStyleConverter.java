@@ -9,6 +9,6 @@ public class RadarStyleConverter {
 
   public static RadarStyleModel fromDocx4J(CTRadarStyle value) {
     if (value == null) return null;
-    return new RadarStyleModel(RadarStyleConverter.fromDocx4J(value.getVal()));
+    return new RadarStyleModel(RadarStyleValueConverter.fromDocx4J(value.getVal()));
   }
 }

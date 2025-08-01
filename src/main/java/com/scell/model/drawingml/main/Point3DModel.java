@@ -1,27 +1,27 @@
 package com.scell.model.drawingml.main;
 
 public class Point3DModel {
-  private final CoordinateModel y;
+  private final CoordinateValueModel y;
 
-  private final CoordinateModel x;
+  private final CoordinateValueModel x;
 
-  private final CoordinateModel z;
+  private final CoordinateValueModel z;
 
-  public Point3DModel(CoordinateModel y, CoordinateModel x, CoordinateModel z) {
+  public Point3DModel(CoordinateValueModel y, CoordinateValueModel x, CoordinateValueModel z) {
     this.y = y;
     this.x = x;
     this.z = z;
   }
 
-  public CoordinateModel getY() {
+  public CoordinateValueModel getY() {
     return this.y;
   }
 
-  public CoordinateModel getX() {
+  public CoordinateValueModel getX() {
     return this.x;
   }
 
-  public CoordinateModel getZ() {
+  public CoordinateValueModel getZ() {
     return this.z;
   }
 }

@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class BuiltInUnitModel {
-  private final BuiltInUnitModel val;
+  private final BuiltInUnitValueModel val;
 
-  public BuiltInUnitModel(BuiltInUnitModel val) {
+  public BuiltInUnitModel(BuiltInUnitValueModel val) {
     this.val = val;
   }
 
-  public BuiltInUnitModel getVal() {
+  public BuiltInUnitValueModel getVal() {
     return this.val;
   }
 }

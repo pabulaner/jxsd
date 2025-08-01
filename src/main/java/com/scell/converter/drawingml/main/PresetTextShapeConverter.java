@@ -9,6 +9,6 @@ public class PresetTextShapeConverter {
 
   public static PresetTextShapeModel fromDocx4J(CTPresetTextShape value) {
     if (value == null) return null;
-    return new PresetTextShapeModel(TextShapeTypeConverter.fromDocx4J(value.getPrst()), GeomGuideListConverter.fromDocx4J(value.getAvLst()));
+    return new PresetTextShapeModel(TextShapeTypeValueConverter.fromDocx4J(value.getPrst()), GeomGuideListConverter.fromDocx4J(value.getAvLst()));
   }
 }

@@ -9,6 +9,6 @@ public class SoftEdgesEffectConverter {
 
   public static SoftEdgesEffectModel fromDocx4J(CTSoftEdgesEffect value) {
     if (value == null) return null;
-    return new SoftEdgesEffectModel(PositiveCoordinateConverter.fromDocx4J(value.getRad()));
+    return new SoftEdgesEffectModel(PositiveCoordinateValueConverter.fromDocx4J(value.getRad()));
   }
 }

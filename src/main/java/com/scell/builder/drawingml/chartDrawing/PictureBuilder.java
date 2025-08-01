@@ -1,7 +1,7 @@
 package com.scell.builder.drawingml.chartDrawing;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.chartDrawing.PictureModel;
 import com.scell.model.drawingml.chartDrawing.PictureNonVisualModel;
 import com.scell.model.drawingml.main.BlipFillPropertiesModel;
@@ -9,9 +9,9 @@ import com.scell.model.drawingml.main.ShapePropertiesModel;
 import com.scell.model.drawingml.main.ShapeStyleModel;
 
 public class PictureBuilder {
-  private BooleanModel fPublished;
+  private BooleanValueModel fPublished;
 
-  private StringModel macro;
+  private StringValueModel macro;
 
   private PictureNonVisualModel nvPicPr;
 
@@ -24,12 +24,12 @@ public class PictureBuilder {
   public PictureBuilder() {
   }
 
-  public PictureBuilder setFPublished(BooleanModel fPublished) {
+  public PictureBuilder setFPublished(BooleanValueModel fPublished) {
     this.fPublished = fPublished;
     return this;
   }
 
-  public PictureBuilder setMacro(StringModel macro) {
+  public PictureBuilder setMacro(StringValueModel macro) {
     this.macro = macro;
     return this;
   }

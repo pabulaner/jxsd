@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class AlphaModulateFixedEffectModel {
-  private final PositivePercentageModel amt;
+  private final PositivePercentageValueModel amt;
 
-  public AlphaModulateFixedEffectModel(PositivePercentageModel amt) {
+  public AlphaModulateFixedEffectModel(PositivePercentageValueModel amt) {
     this.amt = amt;
   }
 
-  public PositivePercentageModel getAmt() {
+  public PositivePercentageValueModel getAmt() {
     return this.amt;
   }
 }

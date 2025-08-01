@@ -1,81 +1,81 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.ConnectorLockingModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 
 public class ConnectorLockingBuilder {
-  private BooleanModel noResize;
+  private BooleanValueModel noResize;
 
-  private BooleanModel noChangeAspect;
+  private BooleanValueModel noChangeAspect;
 
-  private BooleanModel noEditPoints;
+  private BooleanValueModel noEditPoints;
 
-  private BooleanModel noChangeArrowheads;
+  private BooleanValueModel noChangeArrowheads;
 
-  private BooleanModel noSelect;
+  private BooleanValueModel noSelect;
 
-  private BooleanModel noGrp;
+  private BooleanValueModel noGrp;
 
-  private BooleanModel noMove;
+  private BooleanValueModel noMove;
 
-  private BooleanModel noRot;
+  private BooleanValueModel noRot;
 
-  private BooleanModel noChangeShapeType;
+  private BooleanValueModel noChangeShapeType;
 
-  private BooleanModel noAdjustHandles;
+  private BooleanValueModel noAdjustHandles;
 
   private OfficeArtExtensionListModel extLst;
 
   public ConnectorLockingBuilder() {
   }
 
-  public ConnectorLockingBuilder setNoResize(BooleanModel noResize) {
+  public ConnectorLockingBuilder setNoResize(BooleanValueModel noResize) {
     this.noResize = noResize;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoChangeAspect(BooleanModel noChangeAspect) {
+  public ConnectorLockingBuilder setNoChangeAspect(BooleanValueModel noChangeAspect) {
     this.noChangeAspect = noChangeAspect;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoEditPoints(BooleanModel noEditPoints) {
+  public ConnectorLockingBuilder setNoEditPoints(BooleanValueModel noEditPoints) {
     this.noEditPoints = noEditPoints;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoChangeArrowheads(BooleanModel noChangeArrowheads) {
+  public ConnectorLockingBuilder setNoChangeArrowheads(BooleanValueModel noChangeArrowheads) {
     this.noChangeArrowheads = noChangeArrowheads;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoSelect(BooleanModel noSelect) {
+  public ConnectorLockingBuilder setNoSelect(BooleanValueModel noSelect) {
     this.noSelect = noSelect;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoGrp(BooleanModel noGrp) {
+  public ConnectorLockingBuilder setNoGrp(BooleanValueModel noGrp) {
     this.noGrp = noGrp;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoMove(BooleanModel noMove) {
+  public ConnectorLockingBuilder setNoMove(BooleanValueModel noMove) {
     this.noMove = noMove;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoRot(BooleanModel noRot) {
+  public ConnectorLockingBuilder setNoRot(BooleanValueModel noRot) {
     this.noRot = noRot;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoChangeShapeType(BooleanModel noChangeShapeType) {
+  public ConnectorLockingBuilder setNoChangeShapeType(BooleanValueModel noChangeShapeType) {
     this.noChangeShapeType = noChangeShapeType;
     return this;
   }
 
-  public ConnectorLockingBuilder setNoAdjustHandles(BooleanModel noAdjustHandles) {
+  public ConnectorLockingBuilder setNoAdjustHandles(BooleanValueModel noAdjustHandles) {
     this.noAdjustHandles = noAdjustHandles;
     return this;
   }

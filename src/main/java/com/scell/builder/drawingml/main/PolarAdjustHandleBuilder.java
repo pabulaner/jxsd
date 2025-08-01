@@ -1,55 +1,55 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.AdjAngleModel;
-import com.scell.model.drawingml.main.AdjCoordinateModel;
+import com.scell.model.drawingml.main.AdjAngleValueModel;
+import com.scell.model.drawingml.main.AdjCoordinateValueModel;
 import com.scell.model.drawingml.main.AdjPoint2DModel;
-import com.scell.model.drawingml.main.GeomGuideNameModel;
+import com.scell.model.drawingml.main.GeomGuideNameValueModel;
 import com.scell.model.drawingml.main.PolarAdjustHandleModel;
 
 public class PolarAdjustHandleBuilder {
-  private GeomGuideNameModel gdRefAng;
+  private GeomGuideNameValueModel gdRefAng;
 
-  private GeomGuideNameModel gdRefR;
+  private GeomGuideNameValueModel gdRefR;
 
-  private AdjAngleModel maxAng;
+  private AdjAngleValueModel maxAng;
 
-  private AdjAngleModel minAng;
+  private AdjAngleValueModel minAng;
 
-  private AdjCoordinateModel maxR;
+  private AdjCoordinateValueModel maxR;
 
-  private AdjCoordinateModel minR;
+  private AdjCoordinateValueModel minR;
 
   private AdjPoint2DModel pos;
 
   public PolarAdjustHandleBuilder() {
   }
 
-  public PolarAdjustHandleBuilder setGdRefAng(GeomGuideNameModel gdRefAng) {
+  public PolarAdjustHandleBuilder setGdRefAng(GeomGuideNameValueModel gdRefAng) {
     this.gdRefAng = gdRefAng;
     return this;
   }
 
-  public PolarAdjustHandleBuilder setGdRefR(GeomGuideNameModel gdRefR) {
+  public PolarAdjustHandleBuilder setGdRefR(GeomGuideNameValueModel gdRefR) {
     this.gdRefR = gdRefR;
     return this;
   }
 
-  public PolarAdjustHandleBuilder setMaxAng(AdjAngleModel maxAng) {
+  public PolarAdjustHandleBuilder setMaxAng(AdjAngleValueModel maxAng) {
     this.maxAng = maxAng;
     return this;
   }
 
-  public PolarAdjustHandleBuilder setMinAng(AdjAngleModel minAng) {
+  public PolarAdjustHandleBuilder setMinAng(AdjAngleValueModel minAng) {
     this.minAng = minAng;
     return this;
   }
 
-  public PolarAdjustHandleBuilder setMaxR(AdjCoordinateModel maxR) {
+  public PolarAdjustHandleBuilder setMaxR(AdjCoordinateValueModel maxR) {
     this.maxR = maxR;
     return this;
   }
 
-  public PolarAdjustHandleBuilder setMinR(AdjCoordinateModel minR) {
+  public PolarAdjustHandleBuilder setMinR(AdjCoordinateValueModel minR) {
     this.minR = minR;
     return this;
   }

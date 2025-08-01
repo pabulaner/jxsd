@@ -9,6 +9,6 @@ public class PositiveSize2DConverter {
 
   public static PositiveSize2DModel fromDocx4J(CTPositiveSize2D value) {
     if (value == null) return null;
-    return new PositiveSize2DModel(PositiveCoordinateConverter.fromDocx4J(value.getCy()), PositiveCoordinateConverter.fromDocx4J(value.getCx()));
+    return new PositiveSize2DModel(PositiveCoordinateValueConverter.fromDocx4J(value.getCy()), PositiveCoordinateValueConverter.fromDocx4J(value.getCx()));
   }
 }

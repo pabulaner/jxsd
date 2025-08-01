@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class CrossesModel {
-  private final CrossesModel val;
+  private final CrossesValueModel val;
 
-  public CrossesModel(CrossesModel val) {
+  public CrossesModel(CrossesValueModel val) {
     this.val = val;
   }
 
-  public CrossesModel getVal() {
+  public CrossesValueModel getVal() {
     return this.val;
   }
 }

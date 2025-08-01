@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.LblOffsetModel;
+import com.scell.model.drawingml.chart.LblOffsetValueModel;
 
 public class LblOffsetBuilder {
-  private LblOffsetModel val;
+  private LblOffsetValueModel val;
 
   public LblOffsetBuilder() {
   }
 
-  public LblOffsetBuilder setVal(LblOffsetModel val) {
+  public LblOffsetBuilder setVal(LblOffsetValueModel val) {
     this.val = val;
     return this;
   }

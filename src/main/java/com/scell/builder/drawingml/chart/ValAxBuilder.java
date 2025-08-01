@@ -49,7 +49,7 @@ public class ValAxBuilder {
 
   private UnsignedIntModel crossAx;
 
-  private ValAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt;
+  private ValAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt;
 
   private CrossBetweenModel crossBetween;
 
@@ -134,7 +134,8 @@ public class ValAxBuilder {
     return this;
   }
 
-  public ValAxBuilder setCrossesOrCrossesAt(ValAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt) {
+  public ValAxBuilder setCrossesOrCrossesAt(
+      ValAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt) {
     this.crossesOrCrossesAt = crossesOrCrossesAt;
     return this;
   }
@@ -192,36 +193,36 @@ public class ValAxBuilder {
     return this;
   }
 
-  public static class CrossesOrCrossesAtBuilder {
+  public static class CrossesOrCrossesAtValueBuilder {
     private int type;
 
     private Object value;
 
-    public CrossesOrCrossesAtBuilder() {
+    public CrossesOrCrossesAtValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public CrossesOrCrossesAtBuilder setCrosses(CrossesModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrosses(CrossesModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public CrossesOrCrossesAtBuilder setCrossesAt(DoubleModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrossesAt(DoubleModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public ValAxModel.CrossesOrCrossesAtModel build() {
-      if (this.type == -1) return new ValAxModel.CrossesOrCrossesAtModel();
-      if (this.type == 0) return ValAxModel.CrossesOrCrossesAtModel.newCrosses((CrossesModel) this.value);
-      if (this.type == 1) return ValAxModel.CrossesOrCrossesAtModel.newCrossesAt((DoubleModel) this.value);
+    public ValAxModel.CrossesOrCrossesAtValueModel build() {
+      if (this.type == -1) return new ValAxModel.CrossesOrCrossesAtValueModel();
+      if (this.type == 0) return ValAxModel.CrossesOrCrossesAtValueModel.newCrosses((CrossesModel) this.value);
+      if (this.type == 1) return ValAxModel.CrossesOrCrossesAtValueModel.newCrossesAt((DoubleModel) this.value);
       return null;
     }
 
-    public CrossesOrCrossesAtBuilder from(ValAxModel.CrossesOrCrossesAtModel value) {
+    public CrossesOrCrossesAtValueBuilder from(ValAxModel.CrossesOrCrossesAtValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isCrosses()) {

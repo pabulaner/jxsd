@@ -1,11 +1,11 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.ColorChangeEffectModel;
 import com.scell.model.drawingml.main.ColorModel;
 
 public class ColorChangeEffectBuilder {
-  private BooleanModel useA;
+  private BooleanValueModel useA;
 
   private ColorModel clrFrom;
 
@@ -14,7 +14,7 @@ public class ColorChangeEffectBuilder {
   public ColorChangeEffectBuilder() {
   }
 
-  public ColorChangeEffectBuilder setUseA(BooleanModel useA) {
+  public ColorChangeEffectBuilder setUseA(BooleanValueModel useA) {
     this.useA = useA;
     return this;
   }

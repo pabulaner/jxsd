@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class AlphaOutsetEffectModel {
-  private final CoordinateModel rad;
+  private final CoordinateValueModel rad;
 
-  public AlphaOutsetEffectModel(CoordinateModel rad) {
+  public AlphaOutsetEffectModel(CoordinateValueModel rad) {
     this.rad = rad;
   }
 
-  public CoordinateModel getRad() {
+  public CoordinateValueModel getRad() {
     return this.rad;
   }
 }

@@ -12,19 +12,19 @@ import com.scell.model.drawingml.main.PositiveFixedAngleModel;
 import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
 import com.scell.model.drawingml.main.PositivePercentageModel;
 import com.scell.model.drawingml.main.SchemeColorModel;
-import com.scell.model.drawingml.main.SchemeColorValModel;
+import com.scell.model.drawingml.main.SchemeColorValValueModel;
 import java.lang.Object;
 import java.util.List;
 
 public class SchemeColorBuilder {
-  private SchemeColorValModel val;
+  private SchemeColorValValueModel val;
 
   private List<SchemeColorModel.ColorTransformModel> egColorTransform;
 
   public SchemeColorBuilder() {
   }
 
-  public SchemeColorBuilder setVal(SchemeColorValModel val) {
+  public SchemeColorBuilder setVal(SchemeColorValValueModel val) {
     this.val = val;
     return this;
   }

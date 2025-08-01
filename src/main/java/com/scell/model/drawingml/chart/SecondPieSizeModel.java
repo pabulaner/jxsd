@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class SecondPieSizeModel {
-  private final SecondPieSizeModel val;
+  private final SecondPieSizeValueModel val;
 
-  public SecondPieSizeModel(SecondPieSizeModel val) {
+  public SecondPieSizeModel(SecondPieSizeValueModel val) {
     this.val = val;
   }
 
-  public SecondPieSizeModel getVal() {
+  public SecondPieSizeValueModel getVal() {
     return this.val;
   }
 }

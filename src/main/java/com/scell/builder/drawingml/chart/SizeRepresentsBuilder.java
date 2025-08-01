@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.SizeRepresentsModel;
+import com.scell.model.drawingml.chart.SizeRepresentsValueModel;
 
 public class SizeRepresentsBuilder {
-  private SizeRepresentsModel val;
+  private SizeRepresentsValueModel val;
 
   public SizeRepresentsBuilder() {
   }
 
-  public SizeRepresentsBuilder setVal(SizeRepresentsModel val) {
+  public SizeRepresentsBuilder setVal(SizeRepresentsValueModel val) {
     this.val = val;
     return this;
   }

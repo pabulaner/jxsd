@@ -1,23 +1,23 @@
 package com.scell.model.drawingml.main;
 
 public class XYAdjustHandleModel {
-  private final AdjCoordinateModel maxX;
+  private final AdjCoordinateValueModel maxX;
 
-  private final GeomGuideNameModel gdRefY;
+  private final GeomGuideNameValueModel gdRefY;
 
-  private final GeomGuideNameModel gdRefX;
+  private final GeomGuideNameValueModel gdRefX;
 
-  private final AdjCoordinateModel maxY;
+  private final AdjCoordinateValueModel maxY;
 
-  private final AdjCoordinateModel minY;
+  private final AdjCoordinateValueModel minY;
 
-  private final AdjCoordinateModel minX;
+  private final AdjCoordinateValueModel minX;
 
   private final AdjPoint2DModel pos;
 
-  public XYAdjustHandleModel(AdjCoordinateModel maxX, GeomGuideNameModel gdRefY,
-      GeomGuideNameModel gdRefX, AdjCoordinateModel maxY, AdjCoordinateModel minY,
-      AdjCoordinateModel minX, AdjPoint2DModel pos) {
+  public XYAdjustHandleModel(AdjCoordinateValueModel maxX, GeomGuideNameValueModel gdRefY,
+      GeomGuideNameValueModel gdRefX, AdjCoordinateValueModel maxY, AdjCoordinateValueModel minY,
+      AdjCoordinateValueModel minX, AdjPoint2DModel pos) {
     this.maxX = maxX;
     this.gdRefY = gdRefY;
     this.gdRefX = gdRefX;
@@ -27,27 +27,27 @@ public class XYAdjustHandleModel {
     this.pos = pos;
   }
 
-  public AdjCoordinateModel getMaxX() {
+  public AdjCoordinateValueModel getMaxX() {
     return this.maxX;
   }
 
-  public GeomGuideNameModel getGdRefY() {
+  public GeomGuideNameValueModel getGdRefY() {
     return this.gdRefY;
   }
 
-  public GeomGuideNameModel getGdRefX() {
+  public GeomGuideNameValueModel getGdRefX() {
     return this.gdRefX;
   }
 
-  public AdjCoordinateModel getMaxY() {
+  public AdjCoordinateValueModel getMaxY() {
     return this.maxY;
   }
 
-  public AdjCoordinateModel getMinY() {
+  public AdjCoordinateValueModel getMinY() {
     return this.minY;
   }
 
-  public AdjCoordinateModel getMinX() {
+  public AdjCoordinateValueModel getMinX() {
     return this.minX;
   }
 

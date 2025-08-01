@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.TextBulletSizePointModel;
-import com.scell.model.drawingml.main.TextFontSizeModel;
+import com.scell.model.drawingml.main.TextFontSizeValueModel;
 
 public class TextBulletSizePointBuilder {
-  private TextFontSizeModel val;
+  private TextFontSizeValueModel val;
 
   public TextBulletSizePointBuilder() {
   }
 
-  public TextBulletSizePointBuilder setVal(TextFontSizeModel val) {
+  public TextBulletSizePointBuilder setVal(TextFontSizeValueModel val) {
     this.val = val;
     return this;
   }

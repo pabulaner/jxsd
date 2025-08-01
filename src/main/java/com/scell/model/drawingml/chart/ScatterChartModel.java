@@ -2,7 +2,7 @@ package com.scell.model.drawingml.chart;
 
 import java.util.List;
 
-public class ScatterChartModel {
+public class ScatterChartModel implements IScatterChartValueModel {
   private final ScatterStyleModel scatterStyle;
 
   private final BooleanModel varyColors;

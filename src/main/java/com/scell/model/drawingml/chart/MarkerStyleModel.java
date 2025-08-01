@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class MarkerStyleModel {
-  private final MarkerStyleModel val;
+  private final MarkerStyleValueModel val;
 
-  public MarkerStyleModel(MarkerStyleModel val) {
+  public MarkerStyleModel(MarkerStyleValueModel val) {
     this.val = val;
   }
 
-  public MarkerStyleModel getVal() {
+  public MarkerStyleValueModel getVal() {
     return this.val;
   }
 }

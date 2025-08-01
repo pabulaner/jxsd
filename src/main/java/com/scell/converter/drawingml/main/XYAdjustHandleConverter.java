@@ -9,6 +9,6 @@ public class XYAdjustHandleConverter {
 
   public static XYAdjustHandleModel fromDocx4J(CTXYAdjustHandle value) {
     if (value == null) return null;
-    return new XYAdjustHandleModel(AdjCoordinateConverter.fromDocx4J(value.getMaxX()), GeomGuideNameConverter.fromDocx4J(value.getGdRefY()), GeomGuideNameConverter.fromDocx4J(value.getGdRefX()), AdjCoordinateConverter.fromDocx4J(value.getMaxY()), AdjCoordinateConverter.fromDocx4J(value.getMinY()), AdjCoordinateConverter.fromDocx4J(value.getMinX()), AdjPoint2DConverter.fromDocx4J(value.getPos()));
+    return new XYAdjustHandleModel(AdjCoordinateValueConverter.fromDocx4J(value.getMaxX()), GeomGuideNameValueConverter.fromDocx4J(value.getGdRefY()), GeomGuideNameValueConverter.fromDocx4J(value.getGdRefX()), AdjCoordinateValueConverter.fromDocx4J(value.getMaxY()), AdjCoordinateValueConverter.fromDocx4J(value.getMinY()), AdjCoordinateValueConverter.fromDocx4J(value.getMinX()), AdjPoint2DConverter.fromDocx4J(value.getPos()));
   }
 }

@@ -7,13 +7,13 @@ import java.lang.Object;
 import java.util.List;
 
 public class AdjustHandleListBuilder {
-  private List<AdjustHandleListModel.AhXYOrAhPolarModel> ahXYOrAhPolar;
+  private List<AdjustHandleListModel.AhXYOrAhPolarValueModel> ahXYOrAhPolar;
 
   public AdjustHandleListBuilder() {
   }
 
   public AdjustHandleListBuilder setAhXYOrAhPolar(
-      List<AdjustHandleListModel.AhXYOrAhPolarModel> ahXYOrAhPolar) {
+      List<AdjustHandleListModel.AhXYOrAhPolarValueModel> ahXYOrAhPolar) {
     this.ahXYOrAhPolar = ahXYOrAhPolar;
     return this;
   }
@@ -27,36 +27,36 @@ public class AdjustHandleListBuilder {
     return this;
   }
 
-  public static class AhXYOrAhPolarBuilder {
+  public static class AhXYOrAhPolarValueBuilder {
     private int type;
 
     private Object value;
 
-    public AhXYOrAhPolarBuilder() {
+    public AhXYOrAhPolarValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public AhXYOrAhPolarBuilder setAhXY(XYAdjustHandleModel value) {
+    public AhXYOrAhPolarValueBuilder setAhXY(XYAdjustHandleModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public AhXYOrAhPolarBuilder setAhPolar(PolarAdjustHandleModel value) {
+    public AhXYOrAhPolarValueBuilder setAhPolar(PolarAdjustHandleModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public AdjustHandleListModel.AhXYOrAhPolarModel build() {
-      if (this.type == -1) return new AdjustHandleListModel.AhXYOrAhPolarModel();
-      if (this.type == 0) return AdjustHandleListModel.AhXYOrAhPolarModel.newAhXY((XYAdjustHandleModel) this.value);
-      if (this.type == 1) return AdjustHandleListModel.AhXYOrAhPolarModel.newAhPolar((PolarAdjustHandleModel) this.value);
+    public AdjustHandleListModel.AhXYOrAhPolarValueModel build() {
+      if (this.type == -1) return new AdjustHandleListModel.AhXYOrAhPolarValueModel();
+      if (this.type == 0) return AdjustHandleListModel.AhXYOrAhPolarValueModel.newAhXY((XYAdjustHandleModel) this.value);
+      if (this.type == 1) return AdjustHandleListModel.AhXYOrAhPolarValueModel.newAhPolar((PolarAdjustHandleModel) this.value);
       return null;
     }
 
-    public AhXYOrAhPolarBuilder from(AdjustHandleListModel.AhXYOrAhPolarModel value) {
+    public AhXYOrAhPolarValueBuilder from(AdjustHandleListModel.AhXYOrAhPolarValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isAhXY()) {

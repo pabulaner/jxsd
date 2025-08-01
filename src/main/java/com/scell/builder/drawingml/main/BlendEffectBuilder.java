@@ -1,18 +1,18 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.BlendEffectModel;
-import com.scell.model.drawingml.main.BlendModeModel;
+import com.scell.model.drawingml.main.BlendModeValueModel;
 import com.scell.model.drawingml.main.EffectContainerModel;
 
 public class BlendEffectBuilder {
-  private BlendModeModel blend;
+  private BlendModeValueModel blend;
 
   private EffectContainerModel cont;
 
   public BlendEffectBuilder() {
   }
 
-  public BlendEffectBuilder setBlend(BlendModeModel blend) {
+  public BlendEffectBuilder setBlend(BlendModeValueModel blend) {
     this.blend = blend;
     return this;
   }

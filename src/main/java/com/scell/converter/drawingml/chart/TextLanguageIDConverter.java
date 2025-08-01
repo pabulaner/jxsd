@@ -9,6 +9,6 @@ public class TextLanguageIDConverter {
 
   public static TextLanguageIDModel fromDocx4J(CTTextLanguageID value) {
     if (value == null) return null;
-    return new TextLanguageIDModel(TextLanguageIDConverter.fromDocx4J(value.getVal()));
+    return new TextLanguageIDModel(TextLanguageIDValueConverter.fromDocx4J(value.getVal()));
   }
 }

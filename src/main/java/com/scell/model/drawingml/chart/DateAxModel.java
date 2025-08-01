@@ -34,7 +34,7 @@ public class DateAxModel {
 
   private final UnsignedIntModel crossAx;
 
-  private final CrossesOrCrossesAtModel crossesOrCrossesAt;
+  private final CrossesOrCrossesAtValueModel crossesOrCrossesAt;
 
   private final BooleanModel auto;
 
@@ -56,7 +56,7 @@ public class DateAxModel {
       AxPosModel axPos, ChartLinesModel majorGridlines, ChartLinesModel minorGridlines,
       TitleModel title, NumFmtModel numFmt, TickMarkModel majorTickMark,
       TickMarkModel minorTickMark, TickLblPosModel tickLblPos, ShapePropertiesModel spPr,
-      TextBodyModel txPr, UnsignedIntModel crossAx, CrossesOrCrossesAtModel crossesOrCrossesAt,
+      TextBodyModel txPr, UnsignedIntModel crossAx, CrossesOrCrossesAtValueModel crossesOrCrossesAt,
       BooleanModel auto, LblOffsetModel lblOffset, TimeUnitModel baseTimeUnit,
       AxisUnitModel majorUnit, TimeUnitModel majorTimeUnit, AxisUnitModel minorUnit,
       TimeUnitModel minorTimeUnit, ExtensionListModel extLst) {
@@ -141,7 +141,7 @@ public class DateAxModel {
     return this.crossAx;
   }
 
-  public CrossesOrCrossesAtModel getCrossesOrCrossesAt() {
+  public CrossesOrCrossesAtValueModel getCrossesOrCrossesAt() {
     return this.crossesOrCrossesAt;
   }
 
@@ -177,22 +177,22 @@ public class DateAxModel {
     return this.extLst;
   }
 
-  public static class CrossesOrCrossesAtModel {
+  public static class CrossesOrCrossesAtValueModel {
     private final int type;
 
     private final Object value;
 
-    public CrossesOrCrossesAtModel() {
+    public CrossesOrCrossesAtValueModel() {
       this(-1, null);
     }
 
-    private CrossesOrCrossesAtModel(Integer type, Object value) {
+    private CrossesOrCrossesAtValueModel(Integer type, Object value) {
       this.type = type;
       this.value = value;
     }
 
-    public static CrossesOrCrossesAtModel newCrosses(CrossesModel value) {
-      return new CrossesOrCrossesAtModel(0, value);
+    public static CrossesOrCrossesAtValueModel newCrosses(CrossesModel value) {
+      return new CrossesOrCrossesAtValueModel(0, value);
     }
 
     public boolean isCrosses() {
@@ -203,8 +203,8 @@ public class DateAxModel {
       return (CrossesModel) this.value;
     }
 
-    public static CrossesOrCrossesAtModel newCrossesAt(DoubleModel value) {
-      return new CrossesOrCrossesAtModel(1, value);
+    public static CrossesOrCrossesAtValueModel newCrossesAt(DoubleModel value) {
+      return new CrossesOrCrossesAtValueModel(1, value);
     }
 
     public boolean isCrossesAt() {

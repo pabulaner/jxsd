@@ -9,6 +9,6 @@ public class OrientationConverter {
 
   public static OrientationModel fromDocx4J(CTOrientation value) {
     if (value == null) return null;
-    return new OrientationModel(OrientationConverter.fromDocx4J(value.getVal()));
+    return new OrientationModel(OrientationValueConverter.fromDocx4J(value.getVal()));
   }
 }

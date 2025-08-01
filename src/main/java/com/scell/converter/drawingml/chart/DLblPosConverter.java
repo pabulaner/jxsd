@@ -9,6 +9,6 @@ public class DLblPosConverter {
 
   public static DLblPosModel fromDocx4J(CTDLblPos value) {
     if (value == null) return null;
-    return new DLblPosModel(DLblPosConverter.fromDocx4J(value.getVal()));
+    return new DLblPosModel(DLblPosValueConverter.fromDocx4J(value.getVal()));
   }
 }

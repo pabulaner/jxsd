@@ -14,7 +14,7 @@ import com.scell.model.drawingml.chart.UnsignedIntModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class BubbleSerBuilder {
+public class BubbleSerBuilder implements ISeriesValueBuilder, IInvertIfNegativeComponentValueBuilder {
   private UnsignedIntModel idx;
 
   private UnsignedIntModel order;

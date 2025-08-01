@@ -1,37 +1,39 @@
 package com.scell.model.drawingml.main;
 
 public class ColorMappingModel {
-  private final ColorSchemeIndexModel tx1;
+  private final ColorSchemeIndexValueModel tx1;
 
-  private final ColorSchemeIndexModel accent3;
+  private final ColorSchemeIndexValueModel accent3;
 
-  private final ColorSchemeIndexModel accent2;
+  private final ColorSchemeIndexValueModel accent2;
 
-  private final ColorSchemeIndexModel hlink;
+  private final ColorSchemeIndexValueModel hlink;
 
-  private final ColorSchemeIndexModel accent1;
+  private final ColorSchemeIndexValueModel accent1;
 
-  private final ColorSchemeIndexModel folHlink;
+  private final ColorSchemeIndexValueModel folHlink;
 
-  private final ColorSchemeIndexModel accent6;
+  private final ColorSchemeIndexValueModel accent6;
 
-  private final ColorSchemeIndexModel bg2;
+  private final ColorSchemeIndexValueModel bg2;
 
-  private final ColorSchemeIndexModel accent5;
+  private final ColorSchemeIndexValueModel accent5;
 
-  private final ColorSchemeIndexModel bg1;
+  private final ColorSchemeIndexValueModel bg1;
 
-  private final ColorSchemeIndexModel tx2;
+  private final ColorSchemeIndexValueModel tx2;
 
-  private final ColorSchemeIndexModel accent4;
+  private final ColorSchemeIndexValueModel accent4;
 
   private final OfficeArtExtensionListModel extLst;
 
-  public ColorMappingModel(ColorSchemeIndexModel tx1, ColorSchemeIndexModel accent3,
-      ColorSchemeIndexModel accent2, ColorSchemeIndexModel hlink, ColorSchemeIndexModel accent1,
-      ColorSchemeIndexModel folHlink, ColorSchemeIndexModel accent6, ColorSchemeIndexModel bg2,
-      ColorSchemeIndexModel accent5, ColorSchemeIndexModel bg1, ColorSchemeIndexModel tx2,
-      ColorSchemeIndexModel accent4, OfficeArtExtensionListModel extLst) {
+  public ColorMappingModel(ColorSchemeIndexValueModel tx1, ColorSchemeIndexValueModel accent3,
+      ColorSchemeIndexValueModel accent2, ColorSchemeIndexValueModel hlink,
+      ColorSchemeIndexValueModel accent1, ColorSchemeIndexValueModel folHlink,
+      ColorSchemeIndexValueModel accent6, ColorSchemeIndexValueModel bg2,
+      ColorSchemeIndexValueModel accent5, ColorSchemeIndexValueModel bg1,
+      ColorSchemeIndexValueModel tx2, ColorSchemeIndexValueModel accent4,
+      OfficeArtExtensionListModel extLst) {
     this.tx1 = tx1;
     this.accent3 = accent3;
     this.accent2 = accent2;
@@ -47,51 +49,51 @@ public class ColorMappingModel {
     this.extLst = extLst;
   }
 
-  public ColorSchemeIndexModel getTx1() {
+  public ColorSchemeIndexValueModel getTx1() {
     return this.tx1;
   }
 
-  public ColorSchemeIndexModel getAccent3() {
+  public ColorSchemeIndexValueModel getAccent3() {
     return this.accent3;
   }
 
-  public ColorSchemeIndexModel getAccent2() {
+  public ColorSchemeIndexValueModel getAccent2() {
     return this.accent2;
   }
 
-  public ColorSchemeIndexModel getHlink() {
+  public ColorSchemeIndexValueModel getHlink() {
     return this.hlink;
   }
 
-  public ColorSchemeIndexModel getAccent1() {
+  public ColorSchemeIndexValueModel getAccent1() {
     return this.accent1;
   }
 
-  public ColorSchemeIndexModel getFolHlink() {
+  public ColorSchemeIndexValueModel getFolHlink() {
     return this.folHlink;
   }
 
-  public ColorSchemeIndexModel getAccent6() {
+  public ColorSchemeIndexValueModel getAccent6() {
     return this.accent6;
   }
 
-  public ColorSchemeIndexModel getBg2() {
+  public ColorSchemeIndexValueModel getBg2() {
     return this.bg2;
   }
 
-  public ColorSchemeIndexModel getAccent5() {
+  public ColorSchemeIndexValueModel getAccent5() {
     return this.accent5;
   }
 
-  public ColorSchemeIndexModel getBg1() {
+  public ColorSchemeIndexValueModel getBg1() {
     return this.bg1;
   }
 
-  public ColorSchemeIndexModel getTx2() {
+  public ColorSchemeIndexValueModel getTx2() {
     return this.tx2;
   }
 
-  public ColorSchemeIndexModel getAccent4() {
+  public ColorSchemeIndexValueModel getAccent4() {
     return this.accent4;
   }
 

@@ -9,6 +9,6 @@ public class HSLEffectConverter {
 
   public static HSLEffectModel fromDocx4J(CTHSLEffect value) {
     if (value == null) return null;
-    return new HSLEffectModel(PositiveFixedAngleConverter.fromDocx4J(value.getHue()), FixedPercentageConverter.fromDocx4J(value.getLum()), FixedPercentageConverter.fromDocx4J(value.getSat()));
+    return new HSLEffectModel(PositiveFixedAngleValueConverter.fromDocx4J(value.getHue()), FixedPercentageValueConverter.fromDocx4J(value.getLum()), FixedPercentageValueConverter.fromDocx4J(value.getSat()));
   }
 }

@@ -5,6 +5,7 @@ import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.out.resolver.Resolver;
+import io.github.pabulaner.jxsd.util.Name;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -61,7 +62,7 @@ public final class ParserUtil {
     }
 
     public static TypeName convertPrimitive(JavaType type, boolean wrapper) {
-        String primitive = type.name();
+        String primitive = type.getName();
 
         String pkg = switch (primitive) {
             case "duration", "dateTime", "time", "date" -> "java.time";
@@ -85,10 +86,10 @@ public final class ParserUtil {
 
     public static TypeName convertType(JavaType type, Resolver resolver, boolean isList) {
         type = resolver.resolve(type);
-        Queue<String> all = new LinkedList<>(type.outer());
+        Queue<String> all = new LinkedList<>(type.getOuter());
 
-        all.add(type.name());
-        ClassName result = ClassName.get(convertPkg(type.pkg()), all.remove());
+        all.add(type.getName());
+        ClassName result = ClassName.get(convertPkg(type.getPkg()), all.remove());
 
         while (!all.isEmpty()) {
             result = result.nestedClass(all.remove());
@@ -117,12 +118,12 @@ public final class ParserUtil {
     }
 
     public static String convertGetterName(JavaType type, String name) {
-        String typeName = type.name();
+        String typeName = type.getName();
         String prefix = typeName.equals("boolean")
                 ? "is"
                 : "get";
 
-        System.out.println(type.name());
+        System.out.println(type.getName());
 
         return prefix + new Name(name).toVarUpper();
     }

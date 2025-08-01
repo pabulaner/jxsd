@@ -1,21 +1,21 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 
 public class StrRefModel {
-  private final StringModel f;
+  private final StringValueModel f;
 
   private final StrDataModel strCache;
 
   private final ExtensionListModel extLst;
 
-  public StrRefModel(StringModel f, StrDataModel strCache, ExtensionListModel extLst) {
+  public StrRefModel(StringValueModel f, StrDataModel strCache, ExtensionListModel extLst) {
     this.f = f;
     this.strCache = strCache;
     this.extLst = extLst;
   }
 
-  public StringModel getF() {
+  public StringValueModel getF() {
     return this.f;
   }
 

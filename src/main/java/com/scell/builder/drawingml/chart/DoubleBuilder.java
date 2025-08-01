@@ -1,23 +1,24 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.DoubleModel;
+import com.scell.model.XMLSchema.DoubleValueModel;
+import com.scell.model.drawingml.chart.DoubleModel;
 
 public class DoubleBuilder {
-  private DoubleModel val;
+  private DoubleValueModel val;
 
   public DoubleBuilder() {
   }
 
-  public DoubleBuilder setVal(DoubleModel val) {
+  public DoubleBuilder setVal(DoubleValueModel val) {
     this.val = val;
     return this;
   }
 
-  public com.scell.model.drawingml.chart.DoubleModel build() {
-    return new com.scell.model.drawingml.chart.DoubleModel(this.val);
+  public DoubleModel build() {
+    return new DoubleModel(this.val);
   }
 
-  public DoubleBuilder from(com.scell.model.drawingml.chart.DoubleModel value) {
+  public DoubleBuilder from(DoubleModel value) {
     this.val = value.getVal();
     return this;
   }

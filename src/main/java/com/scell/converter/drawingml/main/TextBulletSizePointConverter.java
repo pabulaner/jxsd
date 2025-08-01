@@ -9,6 +9,6 @@ public class TextBulletSizePointConverter {
 
   public static TextBulletSizePointModel fromDocx4J(CTTextBulletSizePoint value) {
     if (value == null) return null;
-    return new TextBulletSizePointModel(TextFontSizeConverter.fromDocx4J(value.getVal()));
+    return new TextBulletSizePointModel(TextFontSizeValueConverter.fromDocx4J(value.getVal()));
   }
 }

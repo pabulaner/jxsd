@@ -13,7 +13,7 @@ import com.scell.model.drawingml.chart.OverlapModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
 import java.util.List;
 
-public class BarChartBuilder {
+public class BarChartBuilder implements IBarChartValueBuilder {
   private BarDirModel barDir;
 
   private BarGroupingModel grouping;

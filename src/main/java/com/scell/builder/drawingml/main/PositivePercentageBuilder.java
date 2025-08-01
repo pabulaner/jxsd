@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.PositivePercentageModel;
+import com.scell.model.drawingml.main.PositivePercentageValueModel;
 
 public class PositivePercentageBuilder {
-  private PositivePercentageModel val;
+  private PositivePercentageValueModel val;
 
   public PositivePercentageBuilder() {
   }
 
-  public PositivePercentageBuilder setVal(PositivePercentageModel val) {
+  public PositivePercentageBuilder setVal(PositivePercentageValueModel val) {
     this.val = val;
     return this;
   }

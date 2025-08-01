@@ -10,6 +10,6 @@ public class PivotSourceConverter {
 
   public static PivotSourceModel fromDocx4J(CTPivotSource value) {
     if (value == null) return null;
-    return new PivotSourceModel(XstringConverter.fromDocx4J(value.getName()), UnsignedIntConverter.fromDocx4J(value.getFmtId()), value.getExtLst().stream().map(ExtensionListConverter::fromDocx4J).collect(Collectors.toList()));
+    return new PivotSourceModel(XstringValueConverter.fromDocx4J(value.getName()), UnsignedIntConverter.fromDocx4J(value.getFmtId()), value.getExtLst().stream().map(ExtensionListConverter::fromDocx4J).collect(Collectors.toList()));
   }
 }

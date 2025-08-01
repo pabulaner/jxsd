@@ -25,7 +25,7 @@ public class MethodTransform {
     /**
      * If true, the type is actually '? extends type'.
      */
-    private final boolean wildcard;
+    private final boolean isGeneric;
 
     /**
      * If true, the type is wrapped in a list.
@@ -39,15 +39,15 @@ public class MethodTransform {
             String pkg,
             @JacksonXmlProperty(localName = "type")
             String type,
-            @JacksonXmlProperty(localName = "wildcard")
-            boolean wildcard,
+            @JacksonXmlProperty(localName = "isGeneric")
+            boolean isGeneric,
             @JacksonXmlProperty(localName = "list")
             boolean list
     ) {
         this.name = name;
         this.pkg = pkg;
         this.type = type;
-        this.wildcard = wildcard;
+        this.isGeneric = isGeneric;
         this.list = list;
     }
 
@@ -63,8 +63,8 @@ public class MethodTransform {
         return type;
     }
 
-    public boolean isWildcard() {
-        return wildcard;
+    public boolean isGeneric() {
+        return isGeneric;
     }
 
     public boolean isList() {

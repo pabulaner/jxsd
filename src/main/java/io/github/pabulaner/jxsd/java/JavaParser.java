@@ -1,5 +1,6 @@
 package io.github.pabulaner.jxsd.java;
 
+import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.xsd.XsdComplexStruct;
 import io.github.pabulaner.jxsd.xsd.XsdElementValue;
 import io.github.pabulaner.jxsd.xsd.XsdGroupValue;
@@ -42,7 +43,6 @@ public class JavaParser {
                 .stream()
                 .map(this::parse)
                 .filter(Objects::nonNull)
-                .filter(clazz -> clazz.type().pkg() != null)
                 .toList();
 
         return new JavaResult(javaScope, classes);
@@ -64,7 +64,9 @@ public class JavaParser {
 
     private JavaClass parsePrimitive(XsdSimpleStruct.XsdPrimitiveStruct struct) {
         JavaType type = parseType(struct.type());
-        return new JavaPrimitive(type);
+        return new JavaPrimitive.Builder()
+                .setType(type)
+                .build();
     }
 
     private JavaClass parseRestriction(XsdSimpleStruct.XsdRestrictionStruct struct) {
@@ -79,9 +81,16 @@ public class JavaParser {
                 .toList();
 
         if (enums.isEmpty()) {
-            return new JavaRestriction(type, parent, primitive, List.of());
+            return new JavaRestriction.Builder()
+                    .setType(type)
+                    .setParent(parent)
+                    .setPrimitive(primitive)
+                    .build();
         } else {
-            return new JavaEnum(type, enums);
+            return new JavaEnum.Builder()
+                    .setType(type)
+                    .setValues(enums)
+                    .build();
         }
     }
 
@@ -89,7 +98,8 @@ public class JavaParser {
         JavaType type = parseType(struct.type());
         JavaType itemType = parseType(struct.itemType());
 
-        return new JavaList(type, itemType);
+        // TODO: add builder for lists
+        return null;
     }
 
     private JavaClass parseUnion(XsdSimpleStruct.XsdUnionStruct struct) {
@@ -99,7 +109,10 @@ public class JavaParser {
                 .map(this::parseType)
                 .toList();
 
-        return new JavaUnion(type, types);
+        return new JavaUnion.Builder()
+                .setType(type)
+                .setTypes(types)
+                .build();
     }
 
     private JavaClass parseComplex(XsdComplexStruct struct) {
@@ -120,13 +133,21 @@ public class JavaParser {
         List<JavaClass> inners = new ArrayList<>();
         List<JavaField> fields = new ArrayList<>();
 
-        outer.push(type.name());
+        outer.push(type.getName());
         values.forEach(value -> parseValue(struct.type().scope(), value, inners, fields));
         outer.pop();
 
-        return isSequence
-                ? new JavaSequence(type, inners, fields)
-                : new JavaChoice(type, inners, fields);
+        JavaComplex.Builder<?, ?> builder = isSequence
+                ? new JavaSequence.Builder()
+                : new JavaChoice.Builder();
+
+
+
+        return builder
+                .setType(type)
+                .setInners(inners)
+                .setFields(fields)
+                .build();
     }
 
     private void parseValue(String scope, XsdValue value, List<JavaClass> inners, List<JavaField> fields) {
@@ -146,28 +167,47 @@ public class JavaParser {
             inners.add(parse(struct));
         }
 
-        fields.add(new JavaField(type, value.name()));
+        fields.add(new JavaField.Builder()
+                .setType(type)
+                .setName(value.name())
+                .build());
     }
 
     private void parseGroup(String scope, XsdGroupValue value, List<JavaClass> inners, List<JavaField> fields) {
         if (value.kind() == XsdGroupValue.Kind.UNION || value.maxOccurs() > 1) {
             String name = parseGroupName(value);
 
-            XsdType xsdType = new XsdType(scope, name, null, null);
+            XsdType xsdType = new XsdType(scope, new Name(name).toUpper(), null, null);
             XsdComplexStruct xsdStruct = new XsdComplexStruct(xsdType, value.values());
 
             JavaComplex inner = (JavaComplex) parse(xsdStruct);
-            JavaType type = inner.type();
+            JavaType type = inner.getType();
 
-            inner = value.kind() == XsdGroupValue.Kind.SEQUENCE
-                    ? new JavaSequence(inner.type(), inner.inners(), inner.fields())
-                    : new JavaChoice(inner.type(), inner.inners(), inner.fields());
-            type = new JavaType(type.pkg(), type.outer(), type.name(), value.minOccurs(), value.maxOccurs());
+            JavaComplex.Builder<?, ?> builder = value.kind() == XsdGroupValue.Kind.SEQUENCE
+                    ? new JavaSequence.Builder()
+                    : new JavaChoice.Builder();
+
+            inner = builder
+                    .setType(inner.getType())
+                    .setInners(inner.getInners())
+                    .setFields(inner.getFields())
+                    .build();
+
+            type = new JavaType.Builder()
+                    .setPkg(type.getPkg())
+                    .setOuter(type.getOuter())
+                    .setName(type.getName())
+                    .setMinOccurs(value.minOccurs())
+                    .setMaxOccurs(value.maxOccurs())
+                    .build();
 
             javaScope.declare(inner);
 
             inners.add(inner);
-            fields.add(new JavaField(type, name));
+            fields.add(new JavaField.Builder()
+                    .setType(type)
+                    .setName(name)
+                    .build());
         } else {
             value.values().forEach(val -> parseValue(scope, val, inners, fields));
         }
@@ -182,11 +222,19 @@ public class JavaParser {
     }
 
     private JavaType parseType(XsdType type, List<String> outer, int minOccurs, int maxOccurs) {
-        return new JavaType(toPackage(type.scope()), outer, type.name(), minOccurs, maxOccurs);
+        return new JavaType.Builder()
+                .setPkg(toPackage(type.scope()))
+                .setOuter(outer)
+                .setName(type.name())
+                .setMinOccurs(minOccurs)
+                .setMaxOccurs(maxOccurs).build();
     }
 
     private JavaType parseParent(XsdType type) {
-        return new JavaType(toPackage(type.parentScope()), List.of(), type.parentName());
+        return new JavaType.Builder()
+                .setPkg(toPackage(type.parentScope()))
+                .setName(type.parentName())
+                .build();
     }
 
     private String parseGroupName(XsdGroupValue value) {
@@ -211,6 +259,12 @@ public class JavaParser {
                 case XsdGroupValue casted -> parseGroupName(casted, 1);
                 default -> throw new IllegalStateException("Unexpected value: " + values.get(i));
             };
+
+            int index = name.indexOf("_");
+
+            if (index >= 0) {
+                name = name.substring(index + 1);
+            }
 
             if (!result.isEmpty()) {
                 result.append(separator)

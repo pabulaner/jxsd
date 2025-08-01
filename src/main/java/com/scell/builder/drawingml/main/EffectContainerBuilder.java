@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.TokenModel;
+import com.scell.model.XMLSchema.TokenValueModel;
 import com.scell.model.drawingml.main.AlphaBiLevelEffectModel;
 import com.scell.model.drawingml.main.AlphaCeilingEffectModel;
 import com.scell.model.drawingml.main.AlphaFloorEffectModel;
@@ -16,7 +16,7 @@ import com.scell.model.drawingml.main.ColorChangeEffectModel;
 import com.scell.model.drawingml.main.ColorReplaceEffectModel;
 import com.scell.model.drawingml.main.DuotoneEffectModel;
 import com.scell.model.drawingml.main.EffectContainerModel;
-import com.scell.model.drawingml.main.EffectContainerTypeModel;
+import com.scell.model.drawingml.main.EffectContainerTypeValueModel;
 import com.scell.model.drawingml.main.EffectReferenceModel;
 import com.scell.model.drawingml.main.FillEffectModel;
 import com.scell.model.drawingml.main.FillOverlayEffectModel;
@@ -36,21 +36,21 @@ import java.lang.Object;
 import java.util.List;
 
 public class EffectContainerBuilder {
-  private EffectContainerTypeModel type;
+  private EffectContainerTypeValueModel type;
 
-  private TokenModel name;
+  private TokenValueModel name;
 
   private List<EffectContainerModel.EffectModel> egEffect;
 
   public EffectContainerBuilder() {
   }
 
-  public EffectContainerBuilder setType(EffectContainerTypeModel type) {
+  public EffectContainerBuilder setType(EffectContainerTypeValueModel type) {
     this.type = type;
     return this;
   }
 
-  public EffectContainerBuilder setName(TokenModel name) {
+  public EffectContainerBuilder setName(TokenValueModel name) {
     this.name = name;
     return this;
   }

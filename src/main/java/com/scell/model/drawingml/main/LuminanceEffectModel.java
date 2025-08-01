@@ -1,20 +1,21 @@
 package com.scell.model.drawingml.main;
 
 public class LuminanceEffectModel {
-  private final FixedPercentageModel contrast;
+  private final FixedPercentageValueModel contrast;
 
-  private final FixedPercentageModel bright;
+  private final FixedPercentageValueModel bright;
 
-  public LuminanceEffectModel(FixedPercentageModel contrast, FixedPercentageModel bright) {
+  public LuminanceEffectModel(FixedPercentageValueModel contrast,
+      FixedPercentageValueModel bright) {
     this.contrast = contrast;
     this.bright = bright;
   }
 
-  public FixedPercentageModel getContrast() {
+  public FixedPercentageValueModel getContrast() {
     return this.contrast;
   }
 
-  public FixedPercentageModel getBright() {
+  public FixedPercentageValueModel getBright() {
     return this.bright;
   }
 }

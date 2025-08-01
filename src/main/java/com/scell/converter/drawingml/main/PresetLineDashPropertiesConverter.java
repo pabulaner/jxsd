@@ -9,6 +9,6 @@ public class PresetLineDashPropertiesConverter {
 
   public static PresetLineDashPropertiesModel fromDocx4J(CTPresetLineDashProperties value) {
     if (value == null) return null;
-    return new PresetLineDashPropertiesModel(PresetLineDashValConverter.fromDocx4J(value.getVal()));
+    return new PresetLineDashPropertiesModel(PresetLineDashValValueConverter.fromDocx4J(value.getVal()));
   }
 }

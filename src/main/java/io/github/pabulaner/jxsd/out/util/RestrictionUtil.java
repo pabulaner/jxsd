@@ -11,11 +11,11 @@ public final class RestrictionUtil {
     }
     
     public static JavaType findPrimitive(JavaScope scope, JavaType type) {
-        String primitive = type.name();
+        String primitive = type.getName();
 
         if (ParserUtil.PRIMITIVE_MAP.get(primitive) == null) {
             JavaRestriction restriction = (JavaRestriction) scope.get(type);
-            return findPrimitive(scope, restriction.parent());
+            return findPrimitive(scope, restriction.getParent());
         }
 
         return type;

@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.BarDirModel;
+import com.scell.model.drawingml.chart.BarDirValueModel;
 
 public class BarDirBuilder {
-  private BarDirModel val;
+  private BarDirValueModel val;
 
   public BarDirBuilder() {
   }
 
-  public BarDirBuilder setVal(BarDirModel val) {
+  public BarDirBuilder setVal(BarDirValueModel val) {
     this.val = val;
     return this;
   }

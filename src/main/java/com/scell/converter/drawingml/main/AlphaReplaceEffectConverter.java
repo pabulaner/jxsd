@@ -9,6 +9,6 @@ public class AlphaReplaceEffectConverter {
 
   public static AlphaReplaceEffectModel fromDocx4J(CTAlphaReplaceEffect value) {
     if (value == null) return null;
-    return new AlphaReplaceEffectModel(PositiveFixedPercentageConverter.fromDocx4J(value.getA()));
+    return new AlphaReplaceEffectModel(PositiveFixedPercentageValueConverter.fromDocx4J(value.getA()));
   }
 }

@@ -47,7 +47,7 @@ public class SerAxBuilder {
 
   private UnsignedIntModel crossAx;
 
-  private SerAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt;
+  private SerAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt;
 
   private SkipModel tickLblSkip;
 
@@ -128,7 +128,8 @@ public class SerAxBuilder {
     return this;
   }
 
-  public SerAxBuilder setCrossesOrCrossesAt(SerAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt) {
+  public SerAxBuilder setCrossesOrCrossesAt(
+      SerAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt) {
     this.crossesOrCrossesAt = crossesOrCrossesAt;
     return this;
   }
@@ -174,36 +175,36 @@ public class SerAxBuilder {
     return this;
   }
 
-  public static class CrossesOrCrossesAtBuilder {
+  public static class CrossesOrCrossesAtValueBuilder {
     private int type;
 
     private Object value;
 
-    public CrossesOrCrossesAtBuilder() {
+    public CrossesOrCrossesAtValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public CrossesOrCrossesAtBuilder setCrosses(CrossesModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrosses(CrossesModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public CrossesOrCrossesAtBuilder setCrossesAt(DoubleModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrossesAt(DoubleModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public SerAxModel.CrossesOrCrossesAtModel build() {
-      if (this.type == -1) return new SerAxModel.CrossesOrCrossesAtModel();
-      if (this.type == 0) return SerAxModel.CrossesOrCrossesAtModel.newCrosses((CrossesModel) this.value);
-      if (this.type == 1) return SerAxModel.CrossesOrCrossesAtModel.newCrossesAt((DoubleModel) this.value);
+    public SerAxModel.CrossesOrCrossesAtValueModel build() {
+      if (this.type == -1) return new SerAxModel.CrossesOrCrossesAtValueModel();
+      if (this.type == 0) return SerAxModel.CrossesOrCrossesAtValueModel.newCrosses((CrossesModel) this.value);
+      if (this.type == 1) return SerAxModel.CrossesOrCrossesAtValueModel.newCrossesAt((DoubleModel) this.value);
       return null;
     }
 
-    public CrossesOrCrossesAtBuilder from(SerAxModel.CrossesOrCrossesAtModel value) {
+    public CrossesOrCrossesAtValueBuilder from(SerAxModel.CrossesOrCrossesAtValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isCrosses()) {

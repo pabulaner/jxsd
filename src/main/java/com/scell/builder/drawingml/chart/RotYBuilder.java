@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.RotYModel;
+import com.scell.model.drawingml.chart.RotYValueModel;
 
 public class RotYBuilder {
-  private RotYModel val;
+  private RotYValueModel val;
 
   public RotYBuilder() {
   }
 
-  public RotYBuilder setVal(RotYModel val) {
+  public RotYBuilder setVal(RotYValueModel val) {
     this.val = val;
     return this;
   }

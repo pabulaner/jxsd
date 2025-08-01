@@ -1,32 +1,32 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.IntModel;
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.IntValueModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 
 public class PageSetupModel {
-  private final IntModel verticalDpi;
+  private final IntValueModel verticalDpi;
 
-  private final IntModel horizontalDpi;
+  private final IntValueModel horizontalDpi;
 
-  private final UnsignedIntModel firstPageNumber;
+  private final UnsignedIntValueModel firstPageNumber;
 
-  private final PageSetupOrientationModel orientation;
+  private final PageSetupOrientationValueModel orientation;
 
-  private final BooleanModel draft;
+  private final BooleanValueModel draft;
 
-  private final UnsignedIntModel copies;
+  private final UnsignedIntValueModel copies;
 
-  private final UnsignedIntModel paperSize;
+  private final UnsignedIntValueModel paperSize;
 
-  private final BooleanModel useFirstPageNumber;
+  private final BooleanValueModel useFirstPageNumber;
 
-  private final BooleanModel blackAndWhite;
+  private final BooleanValueModel blackAndWhite;
 
-  public PageSetupModel(IntModel verticalDpi, IntModel horizontalDpi,
-      UnsignedIntModel firstPageNumber, PageSetupOrientationModel orientation, BooleanModel draft,
-      UnsignedIntModel copies, UnsignedIntModel paperSize, BooleanModel useFirstPageNumber,
-      BooleanModel blackAndWhite) {
+  public PageSetupModel(IntValueModel verticalDpi, IntValueModel horizontalDpi,
+      UnsignedIntValueModel firstPageNumber, PageSetupOrientationValueModel orientation,
+      BooleanValueModel draft, UnsignedIntValueModel copies, UnsignedIntValueModel paperSize,
+      BooleanValueModel useFirstPageNumber, BooleanValueModel blackAndWhite) {
     this.verticalDpi = verticalDpi;
     this.horizontalDpi = horizontalDpi;
     this.firstPageNumber = firstPageNumber;
@@ -38,39 +38,39 @@ public class PageSetupModel {
     this.blackAndWhite = blackAndWhite;
   }
 
-  public IntModel getVerticalDpi() {
+  public IntValueModel getVerticalDpi() {
     return this.verticalDpi;
   }
 
-  public IntModel getHorizontalDpi() {
+  public IntValueModel getHorizontalDpi() {
     return this.horizontalDpi;
   }
 
-  public UnsignedIntModel getFirstPageNumber() {
+  public UnsignedIntValueModel getFirstPageNumber() {
     return this.firstPageNumber;
   }
 
-  public PageSetupOrientationModel getOrientation() {
+  public PageSetupOrientationValueModel getOrientation() {
     return this.orientation;
   }
 
-  public BooleanModel getDraft() {
+  public BooleanValueModel getDraft() {
     return this.draft;
   }
 
-  public UnsignedIntModel getCopies() {
+  public UnsignedIntValueModel getCopies() {
     return this.copies;
   }
 
-  public UnsignedIntModel getPaperSize() {
+  public UnsignedIntValueModel getPaperSize() {
     return this.paperSize;
   }
 
-  public BooleanModel getUseFirstPageNumber() {
+  public BooleanValueModel getUseFirstPageNumber() {
     return this.useFirstPageNumber;
   }
 
-  public BooleanModel getBlackAndWhite() {
+  public BooleanValueModel getBlackAndWhite() {
     return this.blackAndWhite;
   }
 }

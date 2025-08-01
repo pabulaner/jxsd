@@ -1,14 +1,14 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.UnsignedIntModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.UnsignedIntValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 
 public class BlipFillPropertiesModel {
-  private final BooleanModel rotWithShape;
+  private final BooleanValueModel rotWithShape;
 
-  private final UnsignedIntModel dpi;
+  private final UnsignedIntValueModel dpi;
 
   private final BlipModel blip;
 
@@ -16,8 +16,8 @@ public class BlipFillPropertiesModel {
 
   private final FillModePropertiesModel egFillModeProperties;
 
-  public BlipFillPropertiesModel(BooleanModel rotWithShape, UnsignedIntModel dpi, BlipModel blip,
-      RelativeRectModel srcRect, FillModePropertiesModel egFillModeProperties) {
+  public BlipFillPropertiesModel(BooleanValueModel rotWithShape, UnsignedIntValueModel dpi,
+      BlipModel blip, RelativeRectModel srcRect, FillModePropertiesModel egFillModeProperties) {
     this.rotWithShape = rotWithShape;
     this.dpi = dpi;
     this.blip = blip;
@@ -25,11 +25,11 @@ public class BlipFillPropertiesModel {
     this.egFillModeProperties = egFillModeProperties;
   }
 
-  public BooleanModel getRotWithShape() {
+  public BooleanValueModel getRotWithShape() {
     return this.rotWithShape;
   }
 
-  public UnsignedIntModel getDpi() {
+  public UnsignedIntValueModel getDpi() {
     return this.dpi;
   }
 

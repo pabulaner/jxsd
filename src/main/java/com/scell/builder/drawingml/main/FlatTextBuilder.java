@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.CoordinateModel;
+import com.scell.model.drawingml.main.CoordinateValueModel;
 import com.scell.model.drawingml.main.FlatTextModel;
 
 public class FlatTextBuilder {
-  private CoordinateModel z;
+  private CoordinateValueModel z;
 
   public FlatTextBuilder() {
   }
 
-  public FlatTextBuilder setZ(CoordinateModel z) {
+  public FlatTextBuilder setZ(CoordinateValueModel z) {
     this.z = z;
     return this;
   }

@@ -1,22 +1,22 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class NonVisualPicturePropertiesModel {
-  private final BooleanModel preferRelativeResize;
+  private final BooleanValueModel preferRelativeResize;
 
   private final PictureLockingModel picLocks;
 
   private final OfficeArtExtensionListModel extLst;
 
-  public NonVisualPicturePropertiesModel(BooleanModel preferRelativeResize,
+  public NonVisualPicturePropertiesModel(BooleanValueModel preferRelativeResize,
       PictureLockingModel picLocks, OfficeArtExtensionListModel extLst) {
     this.preferRelativeResize = preferRelativeResize;
     this.picLocks = picLocks;
     this.extLst = extLst;
   }
 
-  public BooleanModel getPreferRelativeResize() {
+  public BooleanValueModel getPreferRelativeResize() {
     return this.preferRelativeResize;
   }
 

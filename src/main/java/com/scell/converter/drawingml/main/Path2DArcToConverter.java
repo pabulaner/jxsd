@@ -9,6 +9,6 @@ public class Path2DArcToConverter {
 
   public static Path2DArcToModel fromDocx4J(CTPath2DArcTo value) {
     if (value == null) return null;
-    return new Path2DArcToModel(AdjAngleConverter.fromDocx4J(value.getStAng()), AdjAngleConverter.fromDocx4J(value.getSwAng()), AdjCoordinateConverter.fromDocx4J(value.getWR()), AdjCoordinateConverter.fromDocx4J(value.getHR()));
+    return new Path2DArcToModel(AdjAngleValueConverter.fromDocx4J(value.getStAng()), AdjAngleValueConverter.fromDocx4J(value.getSwAng()), AdjCoordinateValueConverter.fromDocx4J(value.getWR()), AdjCoordinateValueConverter.fromDocx4J(value.getHR()));
   }
 }

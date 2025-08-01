@@ -1,6 +1,6 @@
 package com.scell.converter.drawingml.chart;
 
-import com.scell.converter.officeDocument.relationships.RelationshipIdConverter;
+import com.scell.converter.officeDocument.relationships.RelationshipIdValueConverter;
 import com.scell.model.drawingml.chart.RelIdModel;
 import org.docx4j.dml.chart.CTRelId;
 
@@ -10,6 +10,6 @@ public class RelIdConverter {
 
   public static RelIdModel fromDocx4J(CTRelId value) {
     if (value == null) return null;
-    return new RelIdModel(RelationshipIdConverter.fromDocx4J(value.getId()));
+    return new RelIdModel(RelationshipIdValueConverter.fromDocx4J(value.getId()));
   }
 }

@@ -11,7 +11,7 @@ import com.scell.model.drawingml.chart.UnsignedIntModel;
 import com.scell.model.drawingml.chart.UpDownBarsModel;
 import java.util.List;
 
-public class LineChartBuilder {
+public class LineChartBuilder implements ILineChartValueBuilder {
   private GroupingModel grouping;
 
   private BooleanModel varyColors;

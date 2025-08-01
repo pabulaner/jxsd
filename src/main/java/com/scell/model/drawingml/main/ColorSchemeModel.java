@@ -1,9 +1,9 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 
 public class ColorSchemeModel {
-  private final StringModel name;
+  private final StringValueModel name;
 
   private final ColorModel dk1;
 
@@ -31,7 +31,7 @@ public class ColorSchemeModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public ColorSchemeModel(StringModel name, ColorModel dk1, ColorModel lt1, ColorModel dk2,
+  public ColorSchemeModel(StringValueModel name, ColorModel dk1, ColorModel lt1, ColorModel dk2,
       ColorModel lt2, ColorModel accent1, ColorModel accent2, ColorModel accent3,
       ColorModel accent4, ColorModel accent5, ColorModel accent6, ColorModel hlink,
       ColorModel folHlink, OfficeArtExtensionListModel extLst) {
@@ -51,7 +51,7 @@ public class ColorSchemeModel {
     this.extLst = extLst;
   }
 
-  public StringModel getName() {
+  public StringValueModel getName() {
     return this.name;
   }
 

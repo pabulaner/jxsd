@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.AlphaReplaceEffectModel;
-import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
+import com.scell.model.drawingml.main.PositiveFixedPercentageValueModel;
 
 public class AlphaReplaceEffectBuilder {
-  private PositiveFixedPercentageModel a;
+  private PositiveFixedPercentageValueModel a;
 
   public AlphaReplaceEffectBuilder() {
   }
 
-  public AlphaReplaceEffectBuilder setA(PositiveFixedPercentageModel a) {
+  public AlphaReplaceEffectBuilder setA(PositiveFixedPercentageValueModel a) {
     this.a = a;
     return this;
   }

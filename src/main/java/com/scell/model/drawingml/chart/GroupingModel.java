@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class GroupingModel {
-  private final GroupingModel val;
+  private final GroupingValueModel val;
 
-  public GroupingModel(GroupingModel val) {
+  public GroupingModel(GroupingValueModel val) {
     this.val = val;
   }
 
-  public GroupingModel getVal() {
+  public GroupingValueModel getVal() {
     return this.val;
   }
 }

@@ -1,16 +1,16 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.BaseStylesOverrideModel;
 import com.scell.model.drawingml.main.ColorSchemeModel;
-import com.scell.model.drawingml.main.FontCollectionModel;
+import com.scell.model.drawingml.main.FontCollectionValueModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.StyleMatrixModel;
 
 public class BaseStylesOverrideBuilder {
   private ColorSchemeModel clrScheme;
 
-  private BaseStylesOverrideModel.FontSchemeModel fontScheme;
+  private BaseStylesOverrideModel.FontSchemeValueModel fontScheme;
 
   private StyleMatrixModel fmtScheme;
 
@@ -23,7 +23,7 @@ public class BaseStylesOverrideBuilder {
   }
 
   public BaseStylesOverrideBuilder setFontScheme(
-      BaseStylesOverrideModel.FontSchemeModel fontScheme) {
+      BaseStylesOverrideModel.FontSchemeValueModel fontScheme) {
     this.fontScheme = fontScheme;
     return this;
   }
@@ -44,43 +44,43 @@ public class BaseStylesOverrideBuilder {
     return this;
   }
 
-  public static class FontSchemeBuilder {
-    private StringModel name;
+  public static class FontSchemeValueBuilder {
+    private StringValueModel name;
 
-    private FontCollectionModel majorFont;
+    private FontCollectionValueModel majorFont;
 
-    private FontCollectionModel minorFont;
+    private FontCollectionValueModel minorFont;
 
     private OfficeArtExtensionListModel extLst;
 
-    public FontSchemeBuilder() {
+    public FontSchemeValueBuilder() {
     }
 
-    public FontSchemeBuilder setName(StringModel name) {
+    public FontSchemeValueBuilder setName(StringValueModel name) {
       this.name = name;
       return this;
     }
 
-    public FontSchemeBuilder setMajorFont(FontCollectionModel majorFont) {
+    public FontSchemeValueBuilder setMajorFont(FontCollectionValueModel majorFont) {
       this.majorFont = majorFont;
       return this;
     }
 
-    public FontSchemeBuilder setMinorFont(FontCollectionModel minorFont) {
+    public FontSchemeValueBuilder setMinorFont(FontCollectionValueModel minorFont) {
       this.minorFont = minorFont;
       return this;
     }
 
-    public FontSchemeBuilder setExtLst(OfficeArtExtensionListModel extLst) {
+    public FontSchemeValueBuilder setExtLst(OfficeArtExtensionListModel extLst) {
       this.extLst = extLst;
       return this;
     }
 
-    public BaseStylesOverrideModel.FontSchemeModel build() {
-      return new BaseStylesOverrideModel.FontSchemeModel(this.name, this.majorFont, this.minorFont, this.extLst);
+    public BaseStylesOverrideModel.FontSchemeValueModel build() {
+      return new BaseStylesOverrideModel.FontSchemeValueModel(this.name, this.majorFont, this.minorFont, this.extLst);
     }
 
-    public FontSchemeBuilder from(BaseStylesOverrideModel.FontSchemeModel value) {
+    public FontSchemeValueBuilder from(BaseStylesOverrideModel.FontSchemeValueModel value) {
       this.name = value.getName();
       this.majorFont = value.getMajorFont();
       this.minorFont = value.getMinorFont();

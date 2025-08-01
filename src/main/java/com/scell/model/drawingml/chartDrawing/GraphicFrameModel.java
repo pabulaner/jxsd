@@ -1,23 +1,24 @@
 package com.scell.model.drawingml.chartDrawing;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
-import com.scell.model.drawingml.main.GraphicModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
+import com.scell.model.drawingml.main.GraphicValueModel;
 import com.scell.model.drawingml.main.Transform2DModel;
 
 public class GraphicFrameModel {
-  private final BooleanModel fPublished;
+  private final BooleanValueModel fPublished;
 
-  private final StringModel macro;
+  private final StringValueModel macro;
 
   private final GraphicFrameNonVisualModel nvGraphicFramePr;
 
   private final Transform2DModel xfrm;
 
-  private final GraphicModel graphic;
+  private final GraphicValueModel graphic;
 
-  public GraphicFrameModel(BooleanModel fPublished, StringModel macro,
-      GraphicFrameNonVisualModel nvGraphicFramePr, Transform2DModel xfrm, GraphicModel graphic) {
+  public GraphicFrameModel(BooleanValueModel fPublished, StringValueModel macro,
+      GraphicFrameNonVisualModel nvGraphicFramePr, Transform2DModel xfrm,
+      GraphicValueModel graphic) {
     this.fPublished = fPublished;
     this.macro = macro;
     this.nvGraphicFramePr = nvGraphicFramePr;
@@ -25,11 +26,11 @@ public class GraphicFrameModel {
     this.graphic = graphic;
   }
 
-  public BooleanModel getFPublished() {
+  public BooleanValueModel getFPublished() {
     return this.fPublished;
   }
 
-  public StringModel getMacro() {
+  public StringValueModel getMacro() {
     return this.macro;
   }
 
@@ -41,7 +42,7 @@ public class GraphicFrameModel {
     return this.xfrm;
   }
 
-  public GraphicModel getGraphic() {
+  public GraphicValueModel getGraphic() {
     return this.graphic;
   }
 }

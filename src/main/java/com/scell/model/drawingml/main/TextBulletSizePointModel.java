@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class TextBulletSizePointModel {
-  private final TextFontSizeModel val;
+  private final TextFontSizeValueModel val;
 
-  public TextBulletSizePointModel(TextFontSizeModel val) {
+  public TextBulletSizePointModel(TextFontSizeValueModel val) {
     this.val = val;
   }
 
-  public TextFontSizeModel getVal() {
+  public TextFontSizeValueModel getVal() {
     return this.val;
   }
 }

@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class BarGroupingModel {
-  private final BarGroupingModel val;
+  private final BarGroupingValueModel val;
 
-  public BarGroupingModel(BarGroupingModel val) {
+  public BarGroupingModel(BarGroupingValueModel val) {
     this.val = val;
   }
 
-  public BarGroupingModel getVal() {
+  public BarGroupingValueModel getVal() {
     return this.val;
   }
 }

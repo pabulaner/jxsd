@@ -10,6 +10,8 @@ import io.github.pabulaner.jxsd.out.parser.ParserMap;
 import io.github.pabulaner.jxsd.out.parser.builder.BuilderParserGroup;
 import io.github.pabulaner.jxsd.out.parser.converter.ConverterParserGroup;
 import io.github.pabulaner.jxsd.out.parser.model.ModelParserGroup;
+import io.github.pabulaner.jxsd.transform.TransformResult;
+import io.github.pabulaner.jxsd.transform.Transformer;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
 import org.xml.sax.SAXException;
@@ -18,7 +20,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,8 +73,9 @@ public class JXsdParser {
     public static void parse(Config config) throws SAXException, IOException, TemplateException {
         XsdResult xsd = new XsdParser().parse(config.xsdFile);
         JavaResult java = new JavaParser().parse(xsd);
-        Writer writer = new Writer(java.classes());
-        ParserMap map = new ParserMap(java.scope());
+        TransformResult transform = new Transformer(List.of(JXsdParser.class.getResource("/transforms/transform.xml"))).transform(java);
+        Writer writer = new Writer(transform.classes());
+        ParserMap map = new ParserMap(transform.scope(), transform.implementations());
 
         map.addGroup(ModelParserGroup.NAME, new ModelParserGroup(map, Resolvers.getDefault(config.basePkg, "model")));
         map.addGroup(BuilderParserGroup.NAME, new BuilderParserGroup(map, Resolvers.getDefault(config.basePkg, "builder")));
@@ -89,7 +91,7 @@ public class JXsdParser {
         }
 
         path = path.resolve("converter/drawingml/main/SystemColorConverter.java");
-        String content = Files.readString(path).replaceAll("ST_SystemColorValConverter.fromDocx4J\\(value.getVal\\(\\)\\), ST_HexBinary3Converter.fromDocx4J\\(value.getLastClr\\(\\)\\)", "null, null");
+        String content = Files.readString(path).replaceAll("SystemColorValConverter.fromDocx4J\\(value.getVal\\(\\)\\), HexBinary3Converter.fromDocx4J\\(value.getLastClr\\(\\)\\)", "null, null");
 
         Files.writeString(path, content);
     }

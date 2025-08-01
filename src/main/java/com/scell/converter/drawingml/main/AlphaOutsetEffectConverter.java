@@ -9,6 +9,6 @@ public class AlphaOutsetEffectConverter {
 
   public static AlphaOutsetEffectModel fromDocx4J(CTAlphaOutsetEffect value) {
     if (value == null) return null;
-    return new AlphaOutsetEffectModel(CoordinateConverter.fromDocx4J(value.getRad()));
+    return new AlphaOutsetEffectModel(CoordinateValueConverter.fromDocx4J(value.getRad()));
   }
 }

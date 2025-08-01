@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class SizeRepresentsModel {
-  private final SizeRepresentsModel val;
+  private final SizeRepresentsValueModel val;
 
-  public SizeRepresentsModel(SizeRepresentsModel val) {
+  public SizeRepresentsModel(SizeRepresentsValueModel val) {
     this.val = val;
   }
 
-  public SizeRepresentsModel getVal() {
+  public SizeRepresentsValueModel getVal() {
     return this.val;
   }
 }

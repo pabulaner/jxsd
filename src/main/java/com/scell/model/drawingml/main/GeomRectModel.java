@@ -1,35 +1,35 @@
 package com.scell.model.drawingml.main;
 
 public class GeomRectModel {
-  private final AdjCoordinateModel l;
+  private final AdjCoordinateValueModel l;
 
-  private final AdjCoordinateModel t;
+  private final AdjCoordinateValueModel t;
 
-  private final AdjCoordinateModel r;
+  private final AdjCoordinateValueModel r;
 
-  private final AdjCoordinateModel b;
+  private final AdjCoordinateValueModel b;
 
-  public GeomRectModel(AdjCoordinateModel l, AdjCoordinateModel t, AdjCoordinateModel r,
-      AdjCoordinateModel b) {
+  public GeomRectModel(AdjCoordinateValueModel l, AdjCoordinateValueModel t,
+      AdjCoordinateValueModel r, AdjCoordinateValueModel b) {
     this.l = l;
     this.t = t;
     this.r = r;
     this.b = b;
   }
 
-  public AdjCoordinateModel getL() {
+  public AdjCoordinateValueModel getL() {
     return this.l;
   }
 
-  public AdjCoordinateModel getT() {
+  public AdjCoordinateValueModel getT() {
     return this.t;
   }
 
-  public AdjCoordinateModel getR() {
+  public AdjCoordinateValueModel getR() {
     return this.r;
   }
 
-  public AdjCoordinateModel getB() {
+  public AdjCoordinateValueModel getB() {
     return this.b;
   }
 }

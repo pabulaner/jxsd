@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class PercentageModel {
-  private final PercentageModel val;
+  private final PercentageValueModel val;
 
-  public PercentageModel(PercentageModel val) {
+  public PercentageModel(PercentageValueModel val) {
     this.val = val;
   }
 
-  public PercentageModel getVal() {
+  public PercentageValueModel getVal() {
     return this.val;
   }
 }

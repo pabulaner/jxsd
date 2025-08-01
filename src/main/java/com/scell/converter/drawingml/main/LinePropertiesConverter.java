@@ -21,6 +21,6 @@ public class LinePropertiesConverter {
     if (value.getRound() != null) egLineJoinProperties = LinePropertiesModel.LineJoinPropertiesModel.newRound(LineJoinRoundConverter.fromDocx4J(value.getRound()));
     if (value.getBevel() != null) egLineJoinProperties = LinePropertiesModel.LineJoinPropertiesModel.newBevel(LineJoinBevelConverter.fromDocx4J(value.getBevel()));
     if (value.getMiter() != null) egLineJoinProperties = LinePropertiesModel.LineJoinPropertiesModel.newMiter(LineJoinMiterPropertiesConverter.fromDocx4J(value.getMiter()));
-    return new LinePropertiesModel(LineWidthConverter.fromDocx4J(value.getW()), LineCapConverter.fromDocx4J(value.getCap()), CompoundLineConverter.fromDocx4J(value.getCmpd()), PenAlignmentConverter.fromDocx4J(value.getAlgn()), egLineFillProperties, egLineDashProperties, egLineJoinProperties, LineEndPropertiesConverter.fromDocx4J(value.getHeadEnd()), LineEndPropertiesConverter.fromDocx4J(value.getTailEnd()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
+    return new LinePropertiesModel(LineWidthValueConverter.fromDocx4J(value.getW()), LineCapValueConverter.fromDocx4J(value.getCap()), CompoundLineValueConverter.fromDocx4J(value.getCmpd()), PenAlignmentValueConverter.fromDocx4J(value.getAlgn()), egLineFillProperties, egLineDashProperties, egLineJoinProperties, LineEndPropertiesConverter.fromDocx4J(value.getHeadEnd()), LineEndPropertiesConverter.fromDocx4J(value.getTailEnd()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
   }
 }

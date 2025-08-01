@@ -1,22 +1,22 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.DashStopModel;
-import com.scell.model.drawingml.main.PositivePercentageModel;
+import com.scell.model.drawingml.main.PositivePercentageValueModel;
 
 public class DashStopBuilder {
-  private PositivePercentageModel sp;
+  private PositivePercentageValueModel sp;
 
-  private PositivePercentageModel d;
+  private PositivePercentageValueModel d;
 
   public DashStopBuilder() {
   }
 
-  public DashStopBuilder setSp(PositivePercentageModel sp) {
+  public DashStopBuilder setSp(PositivePercentageValueModel sp) {
     this.sp = sp;
     return this;
   }
 
-  public DashStopBuilder setD(PositivePercentageModel d) {
+  public DashStopBuilder setD(PositivePercentageValueModel d) {
     this.d = d;
     return this;
   }

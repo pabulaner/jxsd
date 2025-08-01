@@ -1,31 +1,31 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.LineEndLengthModel;
+import com.scell.model.drawingml.main.LineEndLengthValueModel;
 import com.scell.model.drawingml.main.LineEndPropertiesModel;
-import com.scell.model.drawingml.main.LineEndTypeModel;
-import com.scell.model.drawingml.main.LineEndWidthModel;
+import com.scell.model.drawingml.main.LineEndTypeValueModel;
+import com.scell.model.drawingml.main.LineEndWidthValueModel;
 
 public class LineEndPropertiesBuilder {
-  private LineEndTypeModel type;
+  private LineEndTypeValueModel type;
 
-  private LineEndWidthModel w;
+  private LineEndWidthValueModel w;
 
-  private LineEndLengthModel len;
+  private LineEndLengthValueModel len;
 
   public LineEndPropertiesBuilder() {
   }
 
-  public LineEndPropertiesBuilder setType(LineEndTypeModel type) {
+  public LineEndPropertiesBuilder setType(LineEndTypeValueModel type) {
     this.type = type;
     return this;
   }
 
-  public LineEndPropertiesBuilder setW(LineEndWidthModel w) {
+  public LineEndPropertiesBuilder setW(LineEndWidthValueModel w) {
     this.w = w;
     return this;
   }
 
-  public LineEndPropertiesBuilder setLen(LineEndLengthModel len) {
+  public LineEndPropertiesBuilder setLen(LineEndLengthValueModel len) {
     this.len = len;
     return this;
   }

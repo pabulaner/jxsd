@@ -1,31 +1,31 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.CompoundLineModel;
+import com.scell.model.drawingml.main.CompoundLineValueModel;
 import com.scell.model.drawingml.main.DashStopListModel;
 import com.scell.model.drawingml.main.GradientFillPropertiesModel;
-import com.scell.model.drawingml.main.LineCapModel;
+import com.scell.model.drawingml.main.LineCapValueModel;
 import com.scell.model.drawingml.main.LineEndPropertiesModel;
 import com.scell.model.drawingml.main.LineJoinBevelModel;
 import com.scell.model.drawingml.main.LineJoinMiterPropertiesModel;
 import com.scell.model.drawingml.main.LineJoinRoundModel;
 import com.scell.model.drawingml.main.LinePropertiesModel;
-import com.scell.model.drawingml.main.LineWidthModel;
+import com.scell.model.drawingml.main.LineWidthValueModel;
 import com.scell.model.drawingml.main.NoFillPropertiesModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.PatternFillPropertiesModel;
-import com.scell.model.drawingml.main.PenAlignmentModel;
+import com.scell.model.drawingml.main.PenAlignmentValueModel;
 import com.scell.model.drawingml.main.PresetLineDashPropertiesModel;
 import com.scell.model.drawingml.main.SolidColorFillPropertiesModel;
 import java.lang.Object;
 
 public class LinePropertiesBuilder {
-  private LineWidthModel w;
+  private LineWidthValueModel w;
 
-  private LineCapModel cap;
+  private LineCapValueModel cap;
 
-  private CompoundLineModel cmpd;
+  private CompoundLineValueModel cmpd;
 
-  private PenAlignmentModel algn;
+  private PenAlignmentValueModel algn;
 
   private LinePropertiesModel.LineFillPropertiesModel egLineFillProperties;
 
@@ -42,22 +42,22 @@ public class LinePropertiesBuilder {
   public LinePropertiesBuilder() {
   }
 
-  public LinePropertiesBuilder setW(LineWidthModel w) {
+  public LinePropertiesBuilder setW(LineWidthValueModel w) {
     this.w = w;
     return this;
   }
 
-  public LinePropertiesBuilder setCap(LineCapModel cap) {
+  public LinePropertiesBuilder setCap(LineCapValueModel cap) {
     this.cap = cap;
     return this;
   }
 
-  public LinePropertiesBuilder setCmpd(CompoundLineModel cmpd) {
+  public LinePropertiesBuilder setCmpd(CompoundLineValueModel cmpd) {
     this.cmpd = cmpd;
     return this;
   }
 
-  public LinePropertiesBuilder setAlgn(PenAlignmentModel algn) {
+  public LinePropertiesBuilder setAlgn(PenAlignmentValueModel algn) {
     this.algn = algn;
     return this;
   }

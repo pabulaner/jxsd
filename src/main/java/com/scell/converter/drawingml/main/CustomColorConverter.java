@@ -1,6 +1,6 @@
 package com.scell.converter.drawingml.main;
 
-import com.scell.converter.XMLSchema.StringConverter;
+import com.scell.converter.XMLSchema.StringValueConverter;
 import com.scell.model.drawingml.main.CustomColorModel;
 import org.docx4j.dml.CTCustomColor;
 
@@ -17,6 +17,6 @@ public class CustomColorConverter {
     if (value.getSysClr() != null) egColorChoice = CustomColorModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = CustomColorModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = CustomColorModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new CustomColorModel(StringConverter.fromDocx4J(value.getName()), egColorChoice);
+    return new CustomColorModel(StringValueConverter.fromDocx4J(value.getName()), egColorChoice);
   }
 }

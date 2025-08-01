@@ -2,7 +2,7 @@ package com.scell.model.drawingml.chart;
 
 import java.util.List;
 
-public class PieChartModel {
+public class PieChartModel implements IPieChartValueModel {
   private final BooleanModel varyColors;
 
   private final List<PieSerModel> ser;

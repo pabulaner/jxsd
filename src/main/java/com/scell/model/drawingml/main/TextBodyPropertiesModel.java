@@ -1,47 +1,47 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 
 public class TextBodyPropertiesModel {
-  private final BooleanModel compatLnSpc;
+  private final BooleanValueModel compatLnSpc;
 
-  private final TextVertOverflowTypeModel vertOverflow;
+  private final TextVertOverflowTypeValueModel vertOverflow;
 
-  private final Coordinate32Model bIns;
+  private final Coordinate32ValueModel bIns;
 
-  private final TextVerticalTypeModel vert;
+  private final TextVerticalTypeValueModel vert;
 
-  private final BooleanModel anchorCtr;
+  private final BooleanValueModel anchorCtr;
 
-  private final TextColumnCountModel numCol;
+  private final TextColumnCountValueModel numCol;
 
-  private final AngleModel rot;
+  private final AngleValueModel rot;
 
-  private final Coordinate32Model tIns;
+  private final Coordinate32ValueModel tIns;
 
-  private final Coordinate32Model lIns;
+  private final Coordinate32ValueModel lIns;
 
-  private final PositiveCoordinate32Model spcCol;
+  private final PositiveCoordinate32ValueModel spcCol;
 
-  private final TextWrappingTypeModel wrap;
+  private final TextWrappingTypeValueModel wrap;
 
-  private final BooleanModel fromWordArt;
+  private final BooleanValueModel fromWordArt;
 
-  private final BooleanModel spcFirstLastPara;
+  private final BooleanValueModel spcFirstLastPara;
 
-  private final BooleanModel upright;
+  private final BooleanValueModel upright;
 
-  private final TextHorzOverflowTypeModel horzOverflow;
+  private final TextHorzOverflowTypeValueModel horzOverflow;
 
-  private final Coordinate32Model rIns;
+  private final Coordinate32ValueModel rIns;
 
-  private final BooleanModel rtlCol;
+  private final BooleanValueModel rtlCol;
 
-  private final BooleanModel forceAA;
+  private final BooleanValueModel forceAA;
 
-  private final TextAnchoringTypeModel anchor;
+  private final TextAnchoringTypeValueModel anchor;
 
   private final PresetTextShapeModel prstTxWarp;
 
@@ -53,15 +53,17 @@ public class TextBodyPropertiesModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public TextBodyPropertiesModel(BooleanModel compatLnSpc, TextVertOverflowTypeModel vertOverflow,
-      Coordinate32Model bIns, TextVerticalTypeModel vert, BooleanModel anchorCtr,
-      TextColumnCountModel numCol, AngleModel rot, Coordinate32Model tIns, Coordinate32Model lIns,
-      PositiveCoordinate32Model spcCol, TextWrappingTypeModel wrap, BooleanModel fromWordArt,
-      BooleanModel spcFirstLastPara, BooleanModel upright, TextHorzOverflowTypeModel horzOverflow,
-      Coordinate32Model rIns, BooleanModel rtlCol, BooleanModel forceAA,
-      TextAnchoringTypeModel anchor, PresetTextShapeModel prstTxWarp,
-      TextAutofitModel egTextAutofit, Scene3DModel scene3d, Text3DModel egText3D,
-      OfficeArtExtensionListModel extLst) {
+  public TextBodyPropertiesModel(BooleanValueModel compatLnSpc,
+      TextVertOverflowTypeValueModel vertOverflow, Coordinate32ValueModel bIns,
+      TextVerticalTypeValueModel vert, BooleanValueModel anchorCtr,
+      TextColumnCountValueModel numCol, AngleValueModel rot, Coordinate32ValueModel tIns,
+      Coordinate32ValueModel lIns, PositiveCoordinate32ValueModel spcCol,
+      TextWrappingTypeValueModel wrap, BooleanValueModel fromWordArt,
+      BooleanValueModel spcFirstLastPara, BooleanValueModel upright,
+      TextHorzOverflowTypeValueModel horzOverflow, Coordinate32ValueModel rIns,
+      BooleanValueModel rtlCol, BooleanValueModel forceAA, TextAnchoringTypeValueModel anchor,
+      PresetTextShapeModel prstTxWarp, TextAutofitModel egTextAutofit, Scene3DModel scene3d,
+      Text3DModel egText3D, OfficeArtExtensionListModel extLst) {
     this.compatLnSpc = compatLnSpc;
     this.vertOverflow = vertOverflow;
     this.bIns = bIns;
@@ -88,79 +90,79 @@ public class TextBodyPropertiesModel {
     this.extLst = extLst;
   }
 
-  public BooleanModel getCompatLnSpc() {
+  public BooleanValueModel getCompatLnSpc() {
     return this.compatLnSpc;
   }
 
-  public TextVertOverflowTypeModel getVertOverflow() {
+  public TextVertOverflowTypeValueModel getVertOverflow() {
     return this.vertOverflow;
   }
 
-  public Coordinate32Model getBIns() {
+  public Coordinate32ValueModel getBIns() {
     return this.bIns;
   }
 
-  public TextVerticalTypeModel getVert() {
+  public TextVerticalTypeValueModel getVert() {
     return this.vert;
   }
 
-  public BooleanModel getAnchorCtr() {
+  public BooleanValueModel getAnchorCtr() {
     return this.anchorCtr;
   }
 
-  public TextColumnCountModel getNumCol() {
+  public TextColumnCountValueModel getNumCol() {
     return this.numCol;
   }
 
-  public AngleModel getRot() {
+  public AngleValueModel getRot() {
     return this.rot;
   }
 
-  public Coordinate32Model getTIns() {
+  public Coordinate32ValueModel getTIns() {
     return this.tIns;
   }
 
-  public Coordinate32Model getLIns() {
+  public Coordinate32ValueModel getLIns() {
     return this.lIns;
   }
 
-  public PositiveCoordinate32Model getSpcCol() {
+  public PositiveCoordinate32ValueModel getSpcCol() {
     return this.spcCol;
   }
 
-  public TextWrappingTypeModel getWrap() {
+  public TextWrappingTypeValueModel getWrap() {
     return this.wrap;
   }
 
-  public BooleanModel getFromWordArt() {
+  public BooleanValueModel getFromWordArt() {
     return this.fromWordArt;
   }
 
-  public BooleanModel getSpcFirstLastPara() {
+  public BooleanValueModel getSpcFirstLastPara() {
     return this.spcFirstLastPara;
   }
 
-  public BooleanModel getUpright() {
+  public BooleanValueModel getUpright() {
     return this.upright;
   }
 
-  public TextHorzOverflowTypeModel getHorzOverflow() {
+  public TextHorzOverflowTypeValueModel getHorzOverflow() {
     return this.horzOverflow;
   }
 
-  public Coordinate32Model getRIns() {
+  public Coordinate32ValueModel getRIns() {
     return this.rIns;
   }
 
-  public BooleanModel getRtlCol() {
+  public BooleanValueModel getRtlCol() {
     return this.rtlCol;
   }
 
-  public BooleanModel getForceAA() {
+  public BooleanValueModel getForceAA() {
     return this.forceAA;
   }
 
-  public TextAnchoringTypeModel getAnchor() {
+  public TextAnchoringTypeValueModel getAnchor() {
     return this.anchor;
   }
 

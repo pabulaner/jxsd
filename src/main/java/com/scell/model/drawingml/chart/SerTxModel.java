@@ -29,7 +29,7 @@ public class SerTxModel {
     return (StrRefModel) this.value;
   }
 
-  public static SerTxModel newV(XstringModel value) {
+  public static SerTxModel newV(XstringValueModel value) {
     return new SerTxModel(1, value);
   }
 
@@ -37,7 +37,7 @@ public class SerTxModel {
     return this.type == 1;
   }
 
-  public XstringModel getV() {
-    return (XstringModel) this.value;
+  public XstringValueModel getV() {
+    return (XstringValueModel) this.value;
   }
 }

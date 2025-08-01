@@ -5,16 +5,17 @@ import java.lang.Object;
 import java.util.List;
 
 public class PresetColorModel {
-  private final PresetColorValModel val;
+  private final PresetColorValValueModel val;
 
   private final List<ColorTransformModel> egColorTransform;
 
-  public PresetColorModel(PresetColorValModel val, List<ColorTransformModel> egColorTransform) {
+  public PresetColorModel(PresetColorValValueModel val,
+      List<ColorTransformModel> egColorTransform) {
     this.val = val;
     this.egColorTransform = egColorTransform;
   }
 
-  public PresetColorValModel getVal() {
+  public PresetColorValValueModel getVal() {
     return this.val;
   }
 

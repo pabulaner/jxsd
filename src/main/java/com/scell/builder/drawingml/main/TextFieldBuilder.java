@@ -1,31 +1,31 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
-import com.scell.model.drawingml.main.GuidModel;
+import com.scell.model.XMLSchema.StringValueModel;
+import com.scell.model.drawingml.main.GuidValueModel;
 import com.scell.model.drawingml.main.TextCharacterPropertiesModel;
 import com.scell.model.drawingml.main.TextFieldModel;
 import com.scell.model.drawingml.main.TextParagraphPropertiesModel;
 
 public class TextFieldBuilder {
-  private StringModel type;
+  private StringValueModel type;
 
-  private GuidModel id;
+  private GuidValueModel id;
 
   private TextCharacterPropertiesModel rPr;
 
   private TextParagraphPropertiesModel pPr;
 
-  private StringModel t;
+  private StringValueModel t;
 
   public TextFieldBuilder() {
   }
 
-  public TextFieldBuilder setType(StringModel type) {
+  public TextFieldBuilder setType(StringValueModel type) {
     this.type = type;
     return this;
   }
 
-  public TextFieldBuilder setId(GuidModel id) {
+  public TextFieldBuilder setId(GuidValueModel id) {
     this.id = id;
     return this;
   }
@@ -40,7 +40,7 @@ public class TextFieldBuilder {
     return this;
   }
 
-  public TextFieldBuilder setT(StringModel t) {
+  public TextFieldBuilder setT(StringValueModel t) {
     this.t = t;
     return this;
   }

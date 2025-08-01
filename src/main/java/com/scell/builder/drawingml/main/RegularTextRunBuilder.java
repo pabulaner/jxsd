@@ -1,13 +1,13 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.RegularTextRunModel;
 import com.scell.model.drawingml.main.TextCharacterPropertiesModel;
 
 public class RegularTextRunBuilder {
   private TextCharacterPropertiesModel rPr;
 
-  private StringModel t;
+  private StringValueModel t;
 
   public RegularTextRunBuilder() {
   }
@@ -17,7 +17,7 @@ public class RegularTextRunBuilder {
     return this;
   }
 
-  public RegularTextRunBuilder setT(StringModel t) {
+  public RegularTextRunBuilder setT(StringValueModel t) {
     this.t = t;
     return this;
   }

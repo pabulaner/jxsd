@@ -18,7 +18,9 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaUnion clazz) {
-        JavaType type = clazz.type();
+        super.parse(builder, clazz);
+
+        JavaType type = clazz.getType();
         TypeName builderType = ParserUtil.convertType(type, getResolver());
         TypeName modelType = ParserUtil.convertType(type, getModelResolver());
 
@@ -48,8 +50,8 @@ public class UnionBuilderParser extends BuilderParser<JavaUnion> {
                         .addStatement("$N $N $T($N.$N)", RETURN, NEW, modelType, THIS, VALUE)
                         .build());
 
-//        TypeName builderType = ParserUtil.convertType(clazz.type(), getResolver());
-//        TypeName modelType = ParserUtil.convertType(clazz.type(), getModelResolver());
+//        TypeName builderType = ParserUtil.convertType(clazz.getType(), getResolver());
+//        TypeName modelType = ParserUtil.convertType(clazz.getType(), getModelResolver());
 //
 //        MethodSpec.Builder build = MethodSpec.methodBuilder(BUILD)
 //                .addModifiers(Modifier.PUBLIC)

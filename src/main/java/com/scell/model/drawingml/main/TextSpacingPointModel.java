@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class TextSpacingPointModel {
-  private final TextSpacingPointModel val;
+  private final TextSpacingPointValueModel val;
 
-  public TextSpacingPointModel(TextSpacingPointModel val) {
+  public TextSpacingPointModel(TextSpacingPointValueModel val) {
     this.val = val;
   }
 
-  public TextSpacingPointModel getVal() {
+  public TextSpacingPointValueModel getVal() {
     return this.val;
   }
 }

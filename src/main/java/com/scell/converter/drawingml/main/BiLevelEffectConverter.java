@@ -9,6 +9,6 @@ public class BiLevelEffectConverter {
 
   public static BiLevelEffectModel fromDocx4J(CTBiLevelEffect value) {
     if (value == null) return null;
-    return new BiLevelEffectModel(PositiveFixedPercentageConverter.fromDocx4J(value.getThresh()));
+    return new BiLevelEffectModel(PositiveFixedPercentageValueConverter.fromDocx4J(value.getThresh()));
   }
 }

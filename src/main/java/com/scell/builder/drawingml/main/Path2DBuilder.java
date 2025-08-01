@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.Path2DArcToModel;
 import com.scell.model.drawingml.main.Path2DCloseModel;
 import com.scell.model.drawingml.main.Path2DCubicBezierToModel;
@@ -8,54 +8,54 @@ import com.scell.model.drawingml.main.Path2DLineToModel;
 import com.scell.model.drawingml.main.Path2DModel;
 import com.scell.model.drawingml.main.Path2DMoveToModel;
 import com.scell.model.drawingml.main.Path2DQuadBezierToModel;
-import com.scell.model.drawingml.main.PathFillModeModel;
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
+import com.scell.model.drawingml.main.PathFillModeValueModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
 import java.lang.Object;
 import java.util.List;
 
 public class Path2DBuilder {
-  private PathFillModeModel fill;
+  private PathFillModeValueModel fill;
 
-  private BooleanModel extrusionOk;
+  private BooleanValueModel extrusionOk;
 
-  private PositiveCoordinateModel h;
+  private PositiveCoordinateValueModel h;
 
-  private PositiveCoordinateModel w;
+  private PositiveCoordinateValueModel w;
 
-  private BooleanModel stroke;
+  private BooleanValueModel stroke;
 
-  private List<Path2DModel.CloseOrMoveToOrLnToModel> closeOrMoveToOrLnTo;
+  private List<Path2DModel.CloseOrMoveToOrLnToValueModel> closeOrMoveToOrLnTo;
 
   public Path2DBuilder() {
   }
 
-  public Path2DBuilder setFill(PathFillModeModel fill) {
+  public Path2DBuilder setFill(PathFillModeValueModel fill) {
     this.fill = fill;
     return this;
   }
 
-  public Path2DBuilder setExtrusionOk(BooleanModel extrusionOk) {
+  public Path2DBuilder setExtrusionOk(BooleanValueModel extrusionOk) {
     this.extrusionOk = extrusionOk;
     return this;
   }
 
-  public Path2DBuilder setH(PositiveCoordinateModel h) {
+  public Path2DBuilder setH(PositiveCoordinateValueModel h) {
     this.h = h;
     return this;
   }
 
-  public Path2DBuilder setW(PositiveCoordinateModel w) {
+  public Path2DBuilder setW(PositiveCoordinateValueModel w) {
     this.w = w;
     return this;
   }
 
-  public Path2DBuilder setStroke(BooleanModel stroke) {
+  public Path2DBuilder setStroke(BooleanValueModel stroke) {
     this.stroke = stroke;
     return this;
   }
 
   public Path2DBuilder setCloseOrMoveToOrLnTo(
-      List<Path2DModel.CloseOrMoveToOrLnToModel> closeOrMoveToOrLnTo) {
+      List<Path2DModel.CloseOrMoveToOrLnToValueModel> closeOrMoveToOrLnTo) {
     this.closeOrMoveToOrLnTo = closeOrMoveToOrLnTo;
     return this;
   }
@@ -74,64 +74,64 @@ public class Path2DBuilder {
     return this;
   }
 
-  public static class CloseOrMoveToOrLnToBuilder {
+  public static class CloseOrMoveToOrLnToValueBuilder {
     private int type;
 
     private Object value;
 
-    public CloseOrMoveToOrLnToBuilder() {
+    public CloseOrMoveToOrLnToValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public CloseOrMoveToOrLnToBuilder setClose(Path2DCloseModel value) {
+    public CloseOrMoveToOrLnToValueBuilder setClose(Path2DCloseModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public CloseOrMoveToOrLnToBuilder setMoveTo(Path2DMoveToModel value) {
+    public CloseOrMoveToOrLnToValueBuilder setMoveTo(Path2DMoveToModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public CloseOrMoveToOrLnToBuilder setLnTo(Path2DLineToModel value) {
+    public CloseOrMoveToOrLnToValueBuilder setLnTo(Path2DLineToModel value) {
       this.type = 2;
       this.value = value;
       return this;
     }
 
-    public CloseOrMoveToOrLnToBuilder setArcTo(Path2DArcToModel value) {
+    public CloseOrMoveToOrLnToValueBuilder setArcTo(Path2DArcToModel value) {
       this.type = 3;
       this.value = value;
       return this;
     }
 
-    public CloseOrMoveToOrLnToBuilder setQuadBezTo(Path2DQuadBezierToModel value) {
+    public CloseOrMoveToOrLnToValueBuilder setQuadBezTo(Path2DQuadBezierToModel value) {
       this.type = 4;
       this.value = value;
       return this;
     }
 
-    public CloseOrMoveToOrLnToBuilder setCubicBezTo(Path2DCubicBezierToModel value) {
+    public CloseOrMoveToOrLnToValueBuilder setCubicBezTo(Path2DCubicBezierToModel value) {
       this.type = 5;
       this.value = value;
       return this;
     }
 
-    public Path2DModel.CloseOrMoveToOrLnToModel build() {
-      if (this.type == -1) return new Path2DModel.CloseOrMoveToOrLnToModel();
-      if (this.type == 0) return Path2DModel.CloseOrMoveToOrLnToModel.newClose((Path2DCloseModel) this.value);
-      if (this.type == 1) return Path2DModel.CloseOrMoveToOrLnToModel.newMoveTo((Path2DMoveToModel) this.value);
-      if (this.type == 2) return Path2DModel.CloseOrMoveToOrLnToModel.newLnTo((Path2DLineToModel) this.value);
-      if (this.type == 3) return Path2DModel.CloseOrMoveToOrLnToModel.newArcTo((Path2DArcToModel) this.value);
-      if (this.type == 4) return Path2DModel.CloseOrMoveToOrLnToModel.newQuadBezTo((Path2DQuadBezierToModel) this.value);
-      if (this.type == 5) return Path2DModel.CloseOrMoveToOrLnToModel.newCubicBezTo((Path2DCubicBezierToModel) this.value);
+    public Path2DModel.CloseOrMoveToOrLnToValueModel build() {
+      if (this.type == -1) return new Path2DModel.CloseOrMoveToOrLnToValueModel();
+      if (this.type == 0) return Path2DModel.CloseOrMoveToOrLnToValueModel.newClose((Path2DCloseModel) this.value);
+      if (this.type == 1) return Path2DModel.CloseOrMoveToOrLnToValueModel.newMoveTo((Path2DMoveToModel) this.value);
+      if (this.type == 2) return Path2DModel.CloseOrMoveToOrLnToValueModel.newLnTo((Path2DLineToModel) this.value);
+      if (this.type == 3) return Path2DModel.CloseOrMoveToOrLnToValueModel.newArcTo((Path2DArcToModel) this.value);
+      if (this.type == 4) return Path2DModel.CloseOrMoveToOrLnToValueModel.newQuadBezTo((Path2DQuadBezierToModel) this.value);
+      if (this.type == 5) return Path2DModel.CloseOrMoveToOrLnToValueModel.newCubicBezTo((Path2DCubicBezierToModel) this.value);
       return null;
     }
 
-    public CloseOrMoveToOrLnToBuilder from(Path2DModel.CloseOrMoveToOrLnToModel value) {
+    public CloseOrMoveToOrLnToValueBuilder from(Path2DModel.CloseOrMoveToOrLnToValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isClose()) {

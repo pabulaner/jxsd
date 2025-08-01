@@ -9,6 +9,6 @@ public class RelativeRectConverter {
 
   public static RelativeRectModel fromDocx4J(CTRelativeRect value) {
     if (value == null) return null;
-    return new RelativeRectModel(PercentageConverter.fromDocx4J(value.getL()), PercentageConverter.fromDocx4J(value.getT()), PercentageConverter.fromDocx4J(value.getR()), PercentageConverter.fromDocx4J(value.getB()));
+    return new RelativeRectModel(PercentageValueConverter.fromDocx4J(value.getL()), PercentageValueConverter.fromDocx4J(value.getT()), PercentageValueConverter.fromDocx4J(value.getR()), PercentageValueConverter.fromDocx4J(value.getB()));
   }
 }

@@ -9,6 +9,6 @@ public class ConnectionSiteConverter {
 
   public static ConnectionSiteModel fromDocx4J(CTConnectionSite value) {
     if (value == null) return null;
-    return new ConnectionSiteModel(AdjAngleConverter.fromDocx4J(value.getAng()), AdjPoint2DConverter.fromDocx4J(value.getPos()));
+    return new ConnectionSiteModel(AdjAngleValueConverter.fromDocx4J(value.getAng()), AdjPoint2DConverter.fromDocx4J(value.getPos()));
   }
 }

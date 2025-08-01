@@ -1,41 +1,43 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class ReflectionEffectModel {
-  private final PositiveCoordinateModel blurRad;
+  private final PositiveCoordinateValueModel blurRad;
 
-  private final PositiveFixedPercentageModel endPos;
+  private final PositiveFixedPercentageValueModel endPos;
 
-  private final PercentageModel sy;
+  private final PercentageValueModel sy;
 
-  private final FixedAngleModel kx;
+  private final FixedAngleValueModel kx;
 
-  private final PositiveFixedPercentageModel stA;
+  private final PositiveFixedPercentageValueModel stA;
 
-  private final PositiveFixedPercentageModel stPos;
+  private final PositiveFixedPercentageValueModel stPos;
 
-  private final RectAlignmentModel algn;
+  private final RectAlignmentValueModel algn;
 
-  private final PositiveCoordinateModel dist;
+  private final PositiveCoordinateValueModel dist;
 
-  private final BooleanModel rotWithShape;
+  private final BooleanValueModel rotWithShape;
 
-  private final FixedAngleModel ky;
+  private final FixedAngleValueModel ky;
 
-  private final PositiveFixedAngleModel fadeDir;
+  private final PositiveFixedAngleValueModel fadeDir;
 
-  private final PercentageModel sx;
+  private final PercentageValueModel sx;
 
-  private final PositiveFixedAngleModel dir;
+  private final PositiveFixedAngleValueModel dir;
 
-  private final PositiveFixedPercentageModel endA;
+  private final PositiveFixedPercentageValueModel endA;
 
-  public ReflectionEffectModel(PositiveCoordinateModel blurRad, PositiveFixedPercentageModel endPos,
-      PercentageModel sy, FixedAngleModel kx, PositiveFixedPercentageModel stA,
-      PositiveFixedPercentageModel stPos, RectAlignmentModel algn, PositiveCoordinateModel dist,
-      BooleanModel rotWithShape, FixedAngleModel ky, PositiveFixedAngleModel fadeDir,
-      PercentageModel sx, PositiveFixedAngleModel dir, PositiveFixedPercentageModel endA) {
+  public ReflectionEffectModel(PositiveCoordinateValueModel blurRad,
+      PositiveFixedPercentageValueModel endPos, PercentageValueModel sy, FixedAngleValueModel kx,
+      PositiveFixedPercentageValueModel stA, PositiveFixedPercentageValueModel stPos,
+      RectAlignmentValueModel algn, PositiveCoordinateValueModel dist,
+      BooleanValueModel rotWithShape, FixedAngleValueModel ky, PositiveFixedAngleValueModel fadeDir,
+      PercentageValueModel sx, PositiveFixedAngleValueModel dir,
+      PositiveFixedPercentageValueModel endA) {
     this.blurRad = blurRad;
     this.endPos = endPos;
     this.sy = sy;
@@ -52,59 +54,59 @@ public class ReflectionEffectModel {
     this.endA = endA;
   }
 
-  public PositiveCoordinateModel getBlurRad() {
+  public PositiveCoordinateValueModel getBlurRad() {
     return this.blurRad;
   }
 
-  public PositiveFixedPercentageModel getEndPos() {
+  public PositiveFixedPercentageValueModel getEndPos() {
     return this.endPos;
   }
 
-  public PercentageModel getSy() {
+  public PercentageValueModel getSy() {
     return this.sy;
   }
 
-  public FixedAngleModel getKx() {
+  public FixedAngleValueModel getKx() {
     return this.kx;
   }
 
-  public PositiveFixedPercentageModel getStA() {
+  public PositiveFixedPercentageValueModel getStA() {
     return this.stA;
   }
 
-  public PositiveFixedPercentageModel getStPos() {
+  public PositiveFixedPercentageValueModel getStPos() {
     return this.stPos;
   }
 
-  public RectAlignmentModel getAlgn() {
+  public RectAlignmentValueModel getAlgn() {
     return this.algn;
   }
 
-  public PositiveCoordinateModel getDist() {
+  public PositiveCoordinateValueModel getDist() {
     return this.dist;
   }
 
-  public BooleanModel getRotWithShape() {
+  public BooleanValueModel getRotWithShape() {
     return this.rotWithShape;
   }
 
-  public FixedAngleModel getKy() {
+  public FixedAngleValueModel getKy() {
     return this.ky;
   }
 
-  public PositiveFixedAngleModel getFadeDir() {
+  public PositiveFixedAngleValueModel getFadeDir() {
     return this.fadeDir;
   }
 
-  public PercentageModel getSx() {
+  public PercentageValueModel getSx() {
     return this.sx;
   }
 
-  public PositiveFixedAngleModel getDir() {
+  public PositiveFixedAngleValueModel getDir() {
     return this.dir;
   }
 
-  public PositiveFixedPercentageModel getEndA() {
+  public PositiveFixedPercentageValueModel getEndA() {
     return this.endA;
   }
 }

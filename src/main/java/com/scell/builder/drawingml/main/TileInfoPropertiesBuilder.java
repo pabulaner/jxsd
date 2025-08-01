@@ -1,53 +1,53 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.CoordinateModel;
-import com.scell.model.drawingml.main.PercentageModel;
-import com.scell.model.drawingml.main.RectAlignmentModel;
-import com.scell.model.drawingml.main.TileFlipModeModel;
+import com.scell.model.drawingml.main.CoordinateValueModel;
+import com.scell.model.drawingml.main.PercentageValueModel;
+import com.scell.model.drawingml.main.RectAlignmentValueModel;
+import com.scell.model.drawingml.main.TileFlipModeValueModel;
 import com.scell.model.drawingml.main.TileInfoPropertiesModel;
 
 public class TileInfoPropertiesBuilder {
-  private PercentageModel sy;
+  private PercentageValueModel sy;
 
-  private CoordinateModel ty;
+  private CoordinateValueModel ty;
 
-  private PercentageModel sx;
+  private PercentageValueModel sx;
 
-  private TileFlipModeModel flip;
+  private TileFlipModeValueModel flip;
 
-  private CoordinateModel tx;
+  private CoordinateValueModel tx;
 
-  private RectAlignmentModel algn;
+  private RectAlignmentValueModel algn;
 
   public TileInfoPropertiesBuilder() {
   }
 
-  public TileInfoPropertiesBuilder setSy(PercentageModel sy) {
+  public TileInfoPropertiesBuilder setSy(PercentageValueModel sy) {
     this.sy = sy;
     return this;
   }
 
-  public TileInfoPropertiesBuilder setTy(CoordinateModel ty) {
+  public TileInfoPropertiesBuilder setTy(CoordinateValueModel ty) {
     this.ty = ty;
     return this;
   }
 
-  public TileInfoPropertiesBuilder setSx(PercentageModel sx) {
+  public TileInfoPropertiesBuilder setSx(PercentageValueModel sx) {
     this.sx = sx;
     return this;
   }
 
-  public TileInfoPropertiesBuilder setFlip(TileFlipModeModel flip) {
+  public TileInfoPropertiesBuilder setFlip(TileFlipModeValueModel flip) {
     this.flip = flip;
     return this;
   }
 
-  public TileInfoPropertiesBuilder setTx(CoordinateModel tx) {
+  public TileInfoPropertiesBuilder setTx(CoordinateValueModel tx) {
     this.tx = tx;
     return this;
   }
 
-  public TileInfoPropertiesBuilder setAlgn(RectAlignmentModel algn) {
+  public TileInfoPropertiesBuilder setAlgn(RectAlignmentValueModel algn) {
     this.algn = algn;
     return this;
   }

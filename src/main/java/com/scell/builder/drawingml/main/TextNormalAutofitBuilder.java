@@ -1,23 +1,23 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.TextFontScalePercentModel;
+import com.scell.model.drawingml.main.TextFontScalePercentValueModel;
 import com.scell.model.drawingml.main.TextNormalAutofitModel;
-import com.scell.model.drawingml.main.TextSpacingPercentModel;
+import com.scell.model.drawingml.main.TextSpacingPercentValueModel;
 
 public class TextNormalAutofitBuilder {
-  private TextFontScalePercentModel fontScale;
+  private TextFontScalePercentValueModel fontScale;
 
-  private TextSpacingPercentModel lnSpcReduction;
+  private TextSpacingPercentValueModel lnSpcReduction;
 
   public TextNormalAutofitBuilder() {
   }
 
-  public TextNormalAutofitBuilder setFontScale(TextFontScalePercentModel fontScale) {
+  public TextNormalAutofitBuilder setFontScale(TextFontScalePercentValueModel fontScale) {
     this.fontScale = fontScale;
     return this;
   }
 
-  public TextNormalAutofitBuilder setLnSpcReduction(TextSpacingPercentModel lnSpcReduction) {
+  public TextNormalAutofitBuilder setLnSpcReduction(TextSpacingPercentValueModel lnSpcReduction) {
     this.lnSpcReduction = lnSpcReduction;
     return this;
   }

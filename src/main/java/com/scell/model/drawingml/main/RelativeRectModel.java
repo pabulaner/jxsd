@@ -1,35 +1,35 @@
 package com.scell.model.drawingml.main;
 
 public class RelativeRectModel {
-  private final PercentageModel l;
+  private final PercentageValueModel l;
 
-  private final PercentageModel t;
+  private final PercentageValueModel t;
 
-  private final PercentageModel r;
+  private final PercentageValueModel r;
 
-  private final PercentageModel b;
+  private final PercentageValueModel b;
 
-  public RelativeRectModel(PercentageModel l, PercentageModel t, PercentageModel r,
-      PercentageModel b) {
+  public RelativeRectModel(PercentageValueModel l, PercentageValueModel t, PercentageValueModel r,
+      PercentageValueModel b) {
     this.l = l;
     this.t = t;
     this.r = r;
     this.b = b;
   }
 
-  public PercentageModel getL() {
+  public PercentageValueModel getL() {
     return this.l;
   }
 
-  public PercentageModel getT() {
+  public PercentageValueModel getT() {
     return this.t;
   }
 
-  public PercentageModel getR() {
+  public PercentageValueModel getR() {
     return this.r;
   }
 
-  public PercentageModel getB() {
+  public PercentageValueModel getB() {
     return this.b;
   }
 }

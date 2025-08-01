@@ -9,6 +9,6 @@ public class PictureFormatConverter {
 
   public static PictureFormatModel fromDocx4J(CTPictureFormat value) {
     if (value == null) return null;
-    return new PictureFormatModel(PictureFormatConverter.fromDocx4J(value.getVal()));
+    return new PictureFormatModel(PictureFormatValueConverter.fromDocx4J(value.getVal()));
   }
 }

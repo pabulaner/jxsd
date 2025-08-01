@@ -1,33 +1,34 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import java.lang.Integer;
 import java.lang.Object;
 
 public class OuterShadowEffectModel {
-  private final PositiveCoordinateModel blurRad;
+  private final PositiveCoordinateValueModel blurRad;
 
-  private final PositiveCoordinateModel dist;
+  private final PositiveCoordinateValueModel dist;
 
-  private final BooleanModel rotWithShape;
+  private final BooleanValueModel rotWithShape;
 
-  private final PercentageModel sy;
+  private final PercentageValueModel sy;
 
-  private final FixedAngleModel ky;
+  private final FixedAngleValueModel ky;
 
-  private final PercentageModel sx;
+  private final PercentageValueModel sx;
 
-  private final FixedAngleModel kx;
+  private final FixedAngleValueModel kx;
 
-  private final PositiveFixedAngleModel dir;
+  private final PositiveFixedAngleValueModel dir;
 
-  private final RectAlignmentModel algn;
+  private final RectAlignmentValueModel algn;
 
   private final ColorChoiceModel egColorChoice;
 
-  public OuterShadowEffectModel(PositiveCoordinateModel blurRad, PositiveCoordinateModel dist,
-      BooleanModel rotWithShape, PercentageModel sy, FixedAngleModel ky, PercentageModel sx,
-      FixedAngleModel kx, PositiveFixedAngleModel dir, RectAlignmentModel algn,
+  public OuterShadowEffectModel(PositiveCoordinateValueModel blurRad,
+      PositiveCoordinateValueModel dist, BooleanValueModel rotWithShape, PercentageValueModel sy,
+      FixedAngleValueModel ky, PercentageValueModel sx, FixedAngleValueModel kx,
+      PositiveFixedAngleValueModel dir, RectAlignmentValueModel algn,
       ColorChoiceModel egColorChoice) {
     this.blurRad = blurRad;
     this.dist = dist;
@@ -41,39 +42,39 @@ public class OuterShadowEffectModel {
     this.egColorChoice = egColorChoice;
   }
 
-  public PositiveCoordinateModel getBlurRad() {
+  public PositiveCoordinateValueModel getBlurRad() {
     return this.blurRad;
   }
 
-  public PositiveCoordinateModel getDist() {
+  public PositiveCoordinateValueModel getDist() {
     return this.dist;
   }
 
-  public BooleanModel getRotWithShape() {
+  public BooleanValueModel getRotWithShape() {
     return this.rotWithShape;
   }
 
-  public PercentageModel getSy() {
+  public PercentageValueModel getSy() {
     return this.sy;
   }
 
-  public FixedAngleModel getKy() {
+  public FixedAngleValueModel getKy() {
     return this.ky;
   }
 
-  public PercentageModel getSx() {
+  public PercentageValueModel getSx() {
     return this.sx;
   }
 
-  public FixedAngleModel getKx() {
+  public FixedAngleValueModel getKx() {
     return this.kx;
   }
 
-  public PositiveFixedAngleModel getDir() {
+  public PositiveFixedAngleValueModel getDir() {
     return this.dir;
   }
 
-  public RectAlignmentModel getAlgn() {
+  public RectAlignmentValueModel getAlgn() {
     return this.algn;
   }
 

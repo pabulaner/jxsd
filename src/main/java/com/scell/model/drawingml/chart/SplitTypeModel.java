@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class SplitTypeModel {
-  private final SplitTypeModel val;
+  private final SplitTypeValueModel val;
 
-  public SplitTypeModel(SplitTypeModel val) {
+  public SplitTypeModel(SplitTypeValueModel val) {
     this.val = val;
   }
 
-  public SplitTypeModel getVal() {
+  public SplitTypeValueModel getVal() {
     return this.val;
   }
 }

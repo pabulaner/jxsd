@@ -9,6 +9,6 @@ public class RotXConverter {
 
   public static RotXModel fromDocx4J(CTRotX value) {
     if (value == null) return null;
-    return new RotXModel(RotXConverter.fromDocx4J(value.getVal()));
+    return new RotXModel(RotXValueConverter.fromDocx4J(value.getVal()));
   }
 }

@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.StyleModel;
+import com.scell.model.drawingml.chart.StyleValueModel;
 
 public class StyleBuilder {
-  private StyleModel val;
+  private StyleValueModel val;
 
   public StyleBuilder() {
   }
 
-  public StyleBuilder setVal(StyleModel val) {
+  public StyleBuilder setVal(StyleValueModel val) {
     this.val = val;
     return this;
   }

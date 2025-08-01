@@ -9,6 +9,6 @@ public class AdjPoint2DConverter {
 
   public static AdjPoint2DModel fromDocx4J(CTAdjPoint2D value) {
     if (value == null) return null;
-    return new AdjPoint2DModel(AdjCoordinateConverter.fromDocx4J(value.getY()), AdjCoordinateConverter.fromDocx4J(value.getX()));
+    return new AdjPoint2DModel(AdjCoordinateValueConverter.fromDocx4J(value.getY()), AdjCoordinateValueConverter.fromDocx4J(value.getX()));
   }
 }

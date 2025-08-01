@@ -3,7 +3,7 @@ package com.scell.model.drawingml.chart;
 import java.util.List;
 
 public class NumDataModel {
-  private final XstringModel formatCode;
+  private final XstringValueModel formatCode;
 
   private final UnsignedIntModel ptCount;
 
@@ -11,7 +11,7 @@ public class NumDataModel {
 
   private final ExtensionListModel extLst;
 
-  public NumDataModel(XstringModel formatCode, UnsignedIntModel ptCount, List<NumValModel> pt,
+  public NumDataModel(XstringValueModel formatCode, UnsignedIntModel ptCount, List<NumValModel> pt,
       ExtensionListModel extLst) {
     this.formatCode = formatCode;
     this.ptCount = ptCount;
@@ -19,7 +19,7 @@ public class NumDataModel {
     this.extLst = extLst;
   }
 
-  public XstringModel getFormatCode() {
+  public XstringValueModel getFormatCode() {
     return this.formatCode;
   }
 

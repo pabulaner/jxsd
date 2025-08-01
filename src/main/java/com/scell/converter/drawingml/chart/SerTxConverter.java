@@ -10,7 +10,7 @@ public class SerTxConverter {
   public static SerTxModel fromDocx4J(CTSerTx value) {
     if (value == null) return null;
     if (value.getStrRef() != null) return SerTxModel.newStrRef(StrRefConverter.fromDocx4J(value.getStrRef()));
-    if (value.getV() != null) return SerTxModel.newV(XstringConverter.fromDocx4J(value.getV()));
+    if (value.getV() != null) return SerTxModel.newV(XstringValueConverter.fromDocx4J(value.getV()));
     return new SerTxModel();
   }
 }

@@ -14,6 +14,6 @@ public class PresetColorConverter {
     List<PresetColorModel.ColorTransformModel> egColorTransform = value.getEGColorTransform().stream().map(val -> {
       return new PresetColorModel.ColorTransformModel();
     } ).collect(Collectors.toList());
-    return new PresetColorModel(PresetColorValConverter.fromDocx4J(value.getVal()), egColorTransform);
+    return new PresetColorModel(PresetColorValValueConverter.fromDocx4J(value.getVal()), egColorTransform);
   }
 }

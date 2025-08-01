@@ -9,6 +9,6 @@ public class ShapeConverter {
 
   public static ShapeModel fromDocx4J(CTShape value) {
     if (value == null) return null;
-    return new ShapeModel(ShapeConverter.fromDocx4J(value.getVal()));
+    return new ShapeModel(ShapeValueConverter.fromDocx4J(value.getVal()));
   }
 }

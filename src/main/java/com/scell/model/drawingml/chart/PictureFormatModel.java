@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class PictureFormatModel {
-  private final PictureFormatModel val;
+  private final PictureFormatValueModel val;
 
-  public PictureFormatModel(PictureFormatModel val) {
+  public PictureFormatModel(PictureFormatValueModel val) {
     this.val = val;
   }
 
-  public PictureFormatModel getVal() {
+  public PictureFormatValueModel getVal() {
     return this.val;
   }
 }

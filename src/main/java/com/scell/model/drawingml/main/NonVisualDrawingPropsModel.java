@@ -1,16 +1,16 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 
 public class NonVisualDrawingPropsModel {
-  private final BooleanModel hidden;
+  private final BooleanValueModel hidden;
 
-  private final StringModel descr;
+  private final StringValueModel descr;
 
-  private final DrawingElementIdModel id;
+  private final DrawingElementIdValueModel id;
 
-  private final StringModel name;
+  private final StringValueModel name;
 
   private final HyperlinkModel hlinkClick;
 
@@ -18,8 +18,8 @@ public class NonVisualDrawingPropsModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public NonVisualDrawingPropsModel(BooleanModel hidden, StringModel descr,
-      DrawingElementIdModel id, StringModel name, HyperlinkModel hlinkClick,
+  public NonVisualDrawingPropsModel(BooleanValueModel hidden, StringValueModel descr,
+      DrawingElementIdValueModel id, StringValueModel name, HyperlinkModel hlinkClick,
       HyperlinkModel hlinkHover, OfficeArtExtensionListModel extLst) {
     this.hidden = hidden;
     this.descr = descr;
@@ -30,19 +30,19 @@ public class NonVisualDrawingPropsModel {
     this.extLst = extLst;
   }
 
-  public BooleanModel getHidden() {
+  public BooleanValueModel getHidden() {
     return this.hidden;
   }
 
-  public StringModel getDescr() {
+  public StringValueModel getDescr() {
     return this.descr;
   }
 
-  public DrawingElementIdModel getId() {
+  public DrawingElementIdValueModel getId() {
     return this.id;
   }
 
-  public StringModel getName() {
+  public StringValueModel getName() {
     return this.name;
   }
 

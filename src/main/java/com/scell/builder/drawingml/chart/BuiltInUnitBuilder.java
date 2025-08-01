@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.BuiltInUnitModel;
+import com.scell.model.drawingml.chart.BuiltInUnitValueModel;
 
 public class BuiltInUnitBuilder {
-  private BuiltInUnitModel val;
+  private BuiltInUnitValueModel val;
 
   public BuiltInUnitBuilder() {
   }
 
-  public BuiltInUnitBuilder setVal(BuiltInUnitModel val) {
+  public BuiltInUnitBuilder setVal(BuiltInUnitValueModel val) {
     this.val = val;
     return this;
   }

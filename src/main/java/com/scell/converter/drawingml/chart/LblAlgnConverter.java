@@ -9,6 +9,6 @@ public class LblAlgnConverter {
 
   public static LblAlgnModel fromDocx4J(CTLblAlgn value) {
     if (value == null) return null;
-    return new LblAlgnModel(LblAlgnConverter.fromDocx4J(value.getVal()));
+    return new LblAlgnModel(LblAlgnValueConverter.fromDocx4J(value.getVal()));
   }
 }

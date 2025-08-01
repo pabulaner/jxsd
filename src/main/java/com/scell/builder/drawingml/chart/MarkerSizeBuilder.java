@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.MarkerSizeModel;
+import com.scell.model.drawingml.chart.MarkerSizeValueModel;
 
 public class MarkerSizeBuilder {
-  private MarkerSizeModel val;
+  private MarkerSizeValueModel val;
 
   public MarkerSizeBuilder() {
   }
 
-  public MarkerSizeBuilder setVal(MarkerSizeModel val) {
+  public MarkerSizeBuilder setVal(MarkerSizeValueModel val) {
     this.val = val;
     return this;
   }

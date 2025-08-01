@@ -1,10 +1,10 @@
 package com.scell.model.drawingml.chart;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 
 public class TrendlineModel {
-  private final StringModel name;
+  private final StringValueModel name;
 
   private final ShapePropertiesModel spPr;
 
@@ -28,7 +28,7 @@ public class TrendlineModel {
 
   private final ExtensionListModel extLst;
 
-  public TrendlineModel(StringModel name, ShapePropertiesModel spPr,
+  public TrendlineModel(StringValueModel name, ShapePropertiesModel spPr,
       TrendlineTypeModel trendlineType, OrderModel order, PeriodModel period, DoubleModel forward,
       DoubleModel backward, DoubleModel intercept, BooleanModel dispRSqr, BooleanModel dispEq,
       TrendlineLblModel trendlineLbl, ExtensionListModel extLst) {
@@ -46,7 +46,7 @@ public class TrendlineModel {
     this.extLst = extLst;
   }
 
-  public StringModel getName() {
+  public StringValueModel getName() {
     return this.name;
   }
 

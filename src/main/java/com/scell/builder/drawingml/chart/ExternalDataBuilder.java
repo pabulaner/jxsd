@@ -2,17 +2,17 @@ package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.BooleanModel;
 import com.scell.model.drawingml.chart.ExternalDataModel;
-import com.scell.model.officeDocument.relationships.RelationshipIdModel;
+import com.scell.model.officeDocument.relationships.RelationshipIdValueModel;
 
 public class ExternalDataBuilder {
-  private RelationshipIdModel id;
+  private RelationshipIdValueModel id;
 
   private BooleanModel autoUpdate;
 
   public ExternalDataBuilder() {
   }
 
-  public ExternalDataBuilder setId(RelationshipIdModel id) {
+  public ExternalDataBuilder setId(RelationshipIdValueModel id) {
     this.id = id;
     return this;
   }

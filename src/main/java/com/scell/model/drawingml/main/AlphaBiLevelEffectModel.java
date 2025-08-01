@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class AlphaBiLevelEffectModel {
-  private final PositiveFixedPercentageModel thresh;
+  private final PositiveFixedPercentageValueModel thresh;
 
-  public AlphaBiLevelEffectModel(PositiveFixedPercentageModel thresh) {
+  public AlphaBiLevelEffectModel(PositiveFixedPercentageValueModel thresh) {
     this.thresh = thresh;
   }
 
-  public PositiveFixedPercentageModel getThresh() {
+  public PositiveFixedPercentageValueModel getThresh() {
     return this.thresh;
   }
 }

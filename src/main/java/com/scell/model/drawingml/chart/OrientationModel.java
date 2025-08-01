@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class OrientationModel {
-  private final OrientationModel val;
+  private final OrientationValueModel val;
 
-  public OrientationModel(OrientationModel val) {
+  public OrientationModel(OrientationValueModel val) {
     this.val = val;
   }
 
-  public OrientationModel getVal() {
+  public OrientationValueModel getVal() {
     return this.val;
   }
 }

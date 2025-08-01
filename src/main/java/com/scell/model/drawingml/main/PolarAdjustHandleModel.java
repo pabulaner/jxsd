@@ -1,23 +1,23 @@
 package com.scell.model.drawingml.main;
 
 public class PolarAdjustHandleModel {
-  private final GeomGuideNameModel gdRefAng;
+  private final GeomGuideNameValueModel gdRefAng;
 
-  private final GeomGuideNameModel gdRefR;
+  private final GeomGuideNameValueModel gdRefR;
 
-  private final AdjAngleModel maxAng;
+  private final AdjAngleValueModel maxAng;
 
-  private final AdjAngleModel minAng;
+  private final AdjAngleValueModel minAng;
 
-  private final AdjCoordinateModel maxR;
+  private final AdjCoordinateValueModel maxR;
 
-  private final AdjCoordinateModel minR;
+  private final AdjCoordinateValueModel minR;
 
   private final AdjPoint2DModel pos;
 
-  public PolarAdjustHandleModel(GeomGuideNameModel gdRefAng, GeomGuideNameModel gdRefR,
-      AdjAngleModel maxAng, AdjAngleModel minAng, AdjCoordinateModel maxR, AdjCoordinateModel minR,
-      AdjPoint2DModel pos) {
+  public PolarAdjustHandleModel(GeomGuideNameValueModel gdRefAng, GeomGuideNameValueModel gdRefR,
+      AdjAngleValueModel maxAng, AdjAngleValueModel minAng, AdjCoordinateValueModel maxR,
+      AdjCoordinateValueModel minR, AdjPoint2DModel pos) {
     this.gdRefAng = gdRefAng;
     this.gdRefR = gdRefR;
     this.maxAng = maxAng;
@@ -27,27 +27,27 @@ public class PolarAdjustHandleModel {
     this.pos = pos;
   }
 
-  public GeomGuideNameModel getGdRefAng() {
+  public GeomGuideNameValueModel getGdRefAng() {
     return this.gdRefAng;
   }
 
-  public GeomGuideNameModel getGdRefR() {
+  public GeomGuideNameValueModel getGdRefR() {
     return this.gdRefR;
   }
 
-  public AdjAngleModel getMaxAng() {
+  public AdjAngleValueModel getMaxAng() {
     return this.maxAng;
   }
 
-  public AdjAngleModel getMinAng() {
+  public AdjAngleValueModel getMinAng() {
     return this.minAng;
   }
 
-  public AdjCoordinateModel getMaxR() {
+  public AdjCoordinateValueModel getMaxR() {
     return this.maxR;
   }
 
-  public AdjCoordinateModel getMinR() {
+  public AdjCoordinateValueModel getMinR() {
     return this.minR;
   }
 

@@ -9,6 +9,6 @@ public class PositiveFixedAngleConverter {
 
   public static PositiveFixedAngleModel fromDocx4J(CTPositiveFixedAngle value) {
     if (value == null) return null;
-    return new PositiveFixedAngleModel(PositiveFixedAngleConverter.fromDocx4J(value.getVal()));
+    return new PositiveFixedAngleModel(PositiveFixedAngleValueConverter.fromDocx4J(value.getVal()));
   }
 }

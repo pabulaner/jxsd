@@ -9,6 +9,6 @@ public class BarDirConverter {
 
   public static BarDirModel fromDocx4J(CTBarDir value) {
     if (value == null) return null;
-    return new BarDirModel(BarDirConverter.fromDocx4J(value.getVal()));
+    return new BarDirModel(BarDirValueConverter.fromDocx4J(value.getVal()));
   }
 }

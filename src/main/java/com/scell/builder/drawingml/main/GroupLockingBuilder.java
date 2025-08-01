@@ -1,60 +1,60 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.GroupLockingModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 
 public class GroupLockingBuilder {
-  private BooleanModel noResize;
+  private BooleanValueModel noResize;
 
-  private BooleanModel noChangeAspect;
+  private BooleanValueModel noChangeAspect;
 
-  private BooleanModel noSelect;
+  private BooleanValueModel noSelect;
 
-  private BooleanModel noUngrp;
+  private BooleanValueModel noUngrp;
 
-  private BooleanModel noGrp;
+  private BooleanValueModel noGrp;
 
-  private BooleanModel noMove;
+  private BooleanValueModel noMove;
 
-  private BooleanModel noRot;
+  private BooleanValueModel noRot;
 
   private OfficeArtExtensionListModel extLst;
 
   public GroupLockingBuilder() {
   }
 
-  public GroupLockingBuilder setNoResize(BooleanModel noResize) {
+  public GroupLockingBuilder setNoResize(BooleanValueModel noResize) {
     this.noResize = noResize;
     return this;
   }
 
-  public GroupLockingBuilder setNoChangeAspect(BooleanModel noChangeAspect) {
+  public GroupLockingBuilder setNoChangeAspect(BooleanValueModel noChangeAspect) {
     this.noChangeAspect = noChangeAspect;
     return this;
   }
 
-  public GroupLockingBuilder setNoSelect(BooleanModel noSelect) {
+  public GroupLockingBuilder setNoSelect(BooleanValueModel noSelect) {
     this.noSelect = noSelect;
     return this;
   }
 
-  public GroupLockingBuilder setNoUngrp(BooleanModel noUngrp) {
+  public GroupLockingBuilder setNoUngrp(BooleanValueModel noUngrp) {
     this.noUngrp = noUngrp;
     return this;
   }
 
-  public GroupLockingBuilder setNoGrp(BooleanModel noGrp) {
+  public GroupLockingBuilder setNoGrp(BooleanValueModel noGrp) {
     this.noGrp = noGrp;
     return this;
   }
 
-  public GroupLockingBuilder setNoMove(BooleanModel noMove) {
+  public GroupLockingBuilder setNoMove(BooleanValueModel noMove) {
     this.noMove = noMove;
     return this;
   }
 
-  public GroupLockingBuilder setNoRot(BooleanModel noRot) {
+  public GroupLockingBuilder setNoRot(BooleanValueModel noRot) {
     this.noRot = noRot;
     return this;
   }

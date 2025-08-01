@@ -1,29 +1,29 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.PositiveFixedAngleModel;
+import com.scell.model.drawingml.main.PositiveFixedAngleValueModel;
 import com.scell.model.drawingml.main.SphereCoordsModel;
 
 public class SphereCoordsBuilder {
-  private PositiveFixedAngleModel lat;
+  private PositiveFixedAngleValueModel lat;
 
-  private PositiveFixedAngleModel rev;
+  private PositiveFixedAngleValueModel rev;
 
-  private PositiveFixedAngleModel lon;
+  private PositiveFixedAngleValueModel lon;
 
   public SphereCoordsBuilder() {
   }
 
-  public SphereCoordsBuilder setLat(PositiveFixedAngleModel lat) {
+  public SphereCoordsBuilder setLat(PositiveFixedAngleValueModel lat) {
     this.lat = lat;
     return this;
   }
 
-  public SphereCoordsBuilder setRev(PositiveFixedAngleModel rev) {
+  public SphereCoordsBuilder setRev(PositiveFixedAngleValueModel rev) {
     this.rev = rev;
     return this;
   }
 
-  public SphereCoordsBuilder setLon(PositiveFixedAngleModel lon) {
+  public SphereCoordsBuilder setLon(PositiveFixedAngleValueModel lon) {
     this.lon = lon;
     return this;
   }

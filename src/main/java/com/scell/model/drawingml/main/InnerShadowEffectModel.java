@@ -4,31 +4,32 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class InnerShadowEffectModel {
-  private final PositiveCoordinateModel blurRad;
+  private final PositiveCoordinateValueModel blurRad;
 
-  private final PositiveCoordinateModel dist;
+  private final PositiveCoordinateValueModel dist;
 
-  private final PositiveFixedAngleModel dir;
+  private final PositiveFixedAngleValueModel dir;
 
   private final ColorChoiceModel egColorChoice;
 
-  public InnerShadowEffectModel(PositiveCoordinateModel blurRad, PositiveCoordinateModel dist,
-      PositiveFixedAngleModel dir, ColorChoiceModel egColorChoice) {
+  public InnerShadowEffectModel(PositiveCoordinateValueModel blurRad,
+      PositiveCoordinateValueModel dist, PositiveFixedAngleValueModel dir,
+      ColorChoiceModel egColorChoice) {
     this.blurRad = blurRad;
     this.dist = dist;
     this.dir = dir;
     this.egColorChoice = egColorChoice;
   }
 
-  public PositiveCoordinateModel getBlurRad() {
+  public PositiveCoordinateValueModel getBlurRad() {
     return this.blurRad;
   }
 
-  public PositiveCoordinateModel getDist() {
+  public PositiveCoordinateValueModel getDist() {
     return this.dist;
   }
 
-  public PositiveFixedAngleModel getDir() {
+  public PositiveFixedAngleValueModel getDir() {
     return this.dir;
   }
 

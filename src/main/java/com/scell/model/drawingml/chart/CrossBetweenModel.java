@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class CrossBetweenModel {
-  private final CrossBetweenModel val;
+  private final CrossBetweenValueModel val;
 
-  public CrossBetweenModel(CrossBetweenModel val) {
+  public CrossBetweenModel(CrossBetweenValueModel val) {
     this.val = val;
   }
 
-  public CrossBetweenModel getVal() {
+  public CrossBetweenValueModel getVal() {
     return this.val;
   }
 }

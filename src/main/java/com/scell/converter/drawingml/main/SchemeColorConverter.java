@@ -14,6 +14,6 @@ public class SchemeColorConverter {
     List<SchemeColorModel.ColorTransformModel> egColorTransform = value.getEGColorTransform().stream().map(val -> {
       return new SchemeColorModel.ColorTransformModel();
     } ).collect(Collectors.toList());
-    return new SchemeColorModel(SchemeColorValConverter.fromDocx4J(value.getVal()), egColorTransform);
+    return new SchemeColorModel(SchemeColorValValueConverter.fromDocx4J(value.getVal()), egColorTransform);
   }
 }

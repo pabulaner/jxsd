@@ -9,6 +9,6 @@ public class RelativeOffsetEffectConverter {
 
   public static RelativeOffsetEffectModel fromDocx4J(CTRelativeOffsetEffect value) {
     if (value == null) return null;
-    return new RelativeOffsetEffectModel(PercentageConverter.fromDocx4J(value.getTy()), PercentageConverter.fromDocx4J(value.getTx()));
+    return new RelativeOffsetEffectModel(PercentageValueConverter.fromDocx4J(value.getTy()), PercentageValueConverter.fromDocx4J(value.getTx()));
   }
 }

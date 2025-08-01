@@ -1,18 +1,18 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.AdjAngleModel;
+import com.scell.model.drawingml.main.AdjAngleValueModel;
 import com.scell.model.drawingml.main.AdjPoint2DModel;
 import com.scell.model.drawingml.main.ConnectionSiteModel;
 
 public class ConnectionSiteBuilder {
-  private AdjAngleModel ang;
+  private AdjAngleValueModel ang;
 
   private AdjPoint2DModel pos;
 
   public ConnectionSiteBuilder() {
   }
 
-  public ConnectionSiteBuilder setAng(AdjAngleModel ang) {
+  public ConnectionSiteBuilder setAng(AdjAngleValueModel ang) {
     this.ang = ang;
     return this;
   }

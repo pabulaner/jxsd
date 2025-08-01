@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 
 public class TextFieldModel {
-  private final StringModel type;
+  private final StringValueModel type;
 
-  private final GuidModel id;
+  private final GuidValueModel id;
 
   private final TextCharacterPropertiesModel rPr;
 
   private final TextParagraphPropertiesModel pPr;
 
-  private final StringModel t;
+  private final StringValueModel t;
 
-  public TextFieldModel(StringModel type, GuidModel id, TextCharacterPropertiesModel rPr,
-      TextParagraphPropertiesModel pPr, StringModel t) {
+  public TextFieldModel(StringValueModel type, GuidValueModel id, TextCharacterPropertiesModel rPr,
+      TextParagraphPropertiesModel pPr, StringValueModel t) {
     this.type = type;
     this.id = id;
     this.rPr = rPr;
@@ -22,11 +22,11 @@ public class TextFieldModel {
     this.t = t;
   }
 
-  public StringModel getType() {
+  public StringValueModel getType() {
     return this.type;
   }
 
-  public GuidModel getId() {
+  public GuidValueModel getId() {
     return this.id;
   }
 
@@ -38,7 +38,7 @@ public class TextFieldModel {
     return this.pPr;
   }
 
-  public StringModel getT() {
+  public StringValueModel getT() {
     return this.t;
   }
 }

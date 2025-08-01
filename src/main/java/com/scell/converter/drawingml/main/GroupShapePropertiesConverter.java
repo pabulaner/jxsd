@@ -19,6 +19,6 @@ public class GroupShapePropertiesConverter {
     GroupShapePropertiesModel.EffectPropertiesModel egEffectProperties = new GroupShapePropertiesModel.EffectPropertiesModel();
     if (value.getEffectLst() != null) egEffectProperties = GroupShapePropertiesModel.EffectPropertiesModel.newEffectLst(EffectListConverter.fromDocx4J(value.getEffectLst()));
     if (value.getEffectDag() != null) egEffectProperties = GroupShapePropertiesModel.EffectPropertiesModel.newEffectDag(EffectContainerConverter.fromDocx4J(value.getEffectDag()));
-    return new GroupShapePropertiesModel(BlackWhiteModeConverter.fromDocx4J(value.getBwMode()), GroupTransform2DConverter.fromDocx4J(value.getXfrm()), egFillProperties, egEffectProperties, Scene3DConverter.fromDocx4J(value.getScene3D()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
+    return new GroupShapePropertiesModel(BlackWhiteModeValueConverter.fromDocx4J(value.getBwMode()), GroupTransform2DConverter.fromDocx4J(value.getXfrm()), egFillProperties, egEffectProperties, Scene3DConverter.fromDocx4J(value.getScene3D()), OfficeArtExtensionListConverter.fromDocx4J(value.getExtLst()));
   }
 }

@@ -9,6 +9,6 @@ public class PathShadePropertiesConverter {
 
   public static PathShadePropertiesModel fromDocx4J(CTPathShadeProperties value) {
     if (value == null) return null;
-    return new PathShadePropertiesModel(PathShadeTypeConverter.fromDocx4J(value.getPath()), RelativeRectConverter.fromDocx4J(value.getFillToRect()));
+    return new PathShadePropertiesModel(PathShadeTypeValueConverter.fromDocx4J(value.getPath()), RelativeRectConverter.fromDocx4J(value.getFillToRect()));
   }
 }

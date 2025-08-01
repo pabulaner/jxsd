@@ -49,7 +49,7 @@ public class DateAxBuilder {
 
   private UnsignedIntModel crossAx;
 
-  private DateAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt;
+  private DateAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt;
 
   private BooleanModel auto;
 
@@ -141,7 +141,7 @@ public class DateAxBuilder {
   }
 
   public DateAxBuilder setCrossesOrCrossesAt(
-      DateAxModel.CrossesOrCrossesAtModel crossesOrCrossesAt) {
+      DateAxModel.CrossesOrCrossesAtValueModel crossesOrCrossesAt) {
     this.crossesOrCrossesAt = crossesOrCrossesAt;
     return this;
   }
@@ -217,36 +217,36 @@ public class DateAxBuilder {
     return this;
   }
 
-  public static class CrossesOrCrossesAtBuilder {
+  public static class CrossesOrCrossesAtValueBuilder {
     private int type;
 
     private Object value;
 
-    public CrossesOrCrossesAtBuilder() {
+    public CrossesOrCrossesAtValueBuilder() {
       this.type = -1;
       this.value = null;
     }
 
-    public CrossesOrCrossesAtBuilder setCrosses(CrossesModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrosses(CrossesModel value) {
       this.type = 0;
       this.value = value;
       return this;
     }
 
-    public CrossesOrCrossesAtBuilder setCrossesAt(DoubleModel value) {
+    public CrossesOrCrossesAtValueBuilder setCrossesAt(DoubleModel value) {
       this.type = 1;
       this.value = value;
       return this;
     }
 
-    public DateAxModel.CrossesOrCrossesAtModel build() {
-      if (this.type == -1) return new DateAxModel.CrossesOrCrossesAtModel();
-      if (this.type == 0) return DateAxModel.CrossesOrCrossesAtModel.newCrosses((CrossesModel) this.value);
-      if (this.type == 1) return DateAxModel.CrossesOrCrossesAtModel.newCrossesAt((DoubleModel) this.value);
+    public DateAxModel.CrossesOrCrossesAtValueModel build() {
+      if (this.type == -1) return new DateAxModel.CrossesOrCrossesAtValueModel();
+      if (this.type == 0) return DateAxModel.CrossesOrCrossesAtValueModel.newCrosses((CrossesModel) this.value);
+      if (this.type == 1) return DateAxModel.CrossesOrCrossesAtValueModel.newCrossesAt((DoubleModel) this.value);
       return null;
     }
 
-    public CrossesOrCrossesAtBuilder from(DateAxModel.CrossesOrCrossesAtModel value) {
+    public CrossesOrCrossesAtValueBuilder from(DateAxModel.CrossesOrCrossesAtValueModel value) {
       this.type = -1;
       this.value = null;
       if (value.isCrosses()) {

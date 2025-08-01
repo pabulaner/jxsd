@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
 public class RelativeOffsetEffectModel {
-  private final PercentageModel ty;
+  private final PercentageValueModel ty;
 
-  private final PercentageModel tx;
+  private final PercentageValueModel tx;
 
-  public RelativeOffsetEffectModel(PercentageModel ty, PercentageModel tx) {
+  public RelativeOffsetEffectModel(PercentageValueModel ty, PercentageValueModel tx) {
     this.ty = ty;
     this.tx = tx;
   }
 
-  public PercentageModel getTy() {
+  public PercentageValueModel getTy() {
     return this.ty;
   }
 
-  public PercentageModel getTx() {
+  public PercentageValueModel getTx() {
     return this.tx;
   }
 }

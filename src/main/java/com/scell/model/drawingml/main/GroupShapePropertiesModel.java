@@ -4,7 +4,7 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class GroupShapePropertiesModel {
-  private final BlackWhiteModeModel bwMode;
+  private final BlackWhiteModeValueModel bwMode;
 
   private final GroupTransform2DModel xfrm;
 
@@ -16,7 +16,7 @@ public class GroupShapePropertiesModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public GroupShapePropertiesModel(BlackWhiteModeModel bwMode, GroupTransform2DModel xfrm,
+  public GroupShapePropertiesModel(BlackWhiteModeValueModel bwMode, GroupTransform2DModel xfrm,
       FillPropertiesModel egFillProperties, EffectPropertiesModel egEffectProperties,
       Scene3DModel scene3d, OfficeArtExtensionListModel extLst) {
     this.bwMode = bwMode;
@@ -27,7 +27,7 @@ public class GroupShapePropertiesModel {
     this.extLst = extLst;
   }
 
-  public BlackWhiteModeModel getBwMode() {
+  public BlackWhiteModeValueModel getBwMode() {
     return this.bwMode;
   }
 

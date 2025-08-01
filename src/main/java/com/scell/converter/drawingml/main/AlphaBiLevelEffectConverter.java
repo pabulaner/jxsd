@@ -9,6 +9,6 @@ public class AlphaBiLevelEffectConverter {
 
   public static AlphaBiLevelEffectModel fromDocx4J(CTAlphaBiLevelEffect value) {
     if (value == null) return null;
-    return new AlphaBiLevelEffectModel(PositiveFixedPercentageConverter.fromDocx4J(value.getThresh()));
+    return new AlphaBiLevelEffectModel(PositiveFixedPercentageValueConverter.fromDocx4J(value.getThresh()));
   }
 }

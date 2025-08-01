@@ -26,7 +26,7 @@ public class RestrictionConverterParser extends ConverterParser<JavaRestriction>
 
     @Override
     public TypeName parseDocx4jType(JavaRestriction clazz) {
-        JavaType primitive = RestrictionUtil.findPrimitive(getGroup().getMap().getScope(), clazz.type());
+        JavaType primitive = RestrictionUtil.findPrimitive(getGroup().getMap().getScope(), clazz.getType());
         return ParserUtil.convertPrimitive(primitive, true);
     }
 }

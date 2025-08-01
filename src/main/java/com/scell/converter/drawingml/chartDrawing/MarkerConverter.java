@@ -9,6 +9,6 @@ public class MarkerConverter {
 
   public static MarkerModel fromDocx4J(CTMarker value) {
     if (value == null) return null;
-    return new MarkerModel(MarkerCoordinateConverter.fromDocx4J(value.getX()), MarkerCoordinateConverter.fromDocx4J(value.getY()));
+    return new MarkerModel(MarkerCoordinateValueConverter.fromDocx4J(value.getX()), MarkerCoordinateValueConverter.fromDocx4J(value.getY()));
   }
 }

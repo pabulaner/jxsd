@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
 public class TextTabStopModel {
-  private final Coordinate32Model pos;
+  private final Coordinate32ValueModel pos;
 
-  private final TextTabAlignTypeModel algn;
+  private final TextTabAlignTypeValueModel algn;
 
-  public TextTabStopModel(Coordinate32Model pos, TextTabAlignTypeModel algn) {
+  public TextTabStopModel(Coordinate32ValueModel pos, TextTabAlignTypeValueModel algn) {
     this.pos = pos;
     this.algn = algn;
   }
 
-  public Coordinate32Model getPos() {
+  public Coordinate32ValueModel getPos() {
     return this.pos;
   }
 
-  public TextTabAlignTypeModel getAlgn() {
+  public TextTabAlignTypeValueModel getAlgn() {
     return this.algn;
   }
 }

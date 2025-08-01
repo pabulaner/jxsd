@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.BlendModeModel;
+import com.scell.model.drawingml.main.BlendModeValueModel;
 import com.scell.model.drawingml.main.BlipFillPropertiesModel;
 import com.scell.model.drawingml.main.FillOverlayEffectModel;
 import com.scell.model.drawingml.main.GradientFillPropertiesModel;
@@ -11,14 +11,14 @@ import com.scell.model.drawingml.main.SolidColorFillPropertiesModel;
 import java.lang.Object;
 
 public class FillOverlayEffectBuilder {
-  private BlendModeModel blend;
+  private BlendModeValueModel blend;
 
   private FillOverlayEffectModel.FillPropertiesModel egFillProperties;
 
   public FillOverlayEffectBuilder() {
   }
 
-  public FillOverlayEffectBuilder setBlend(BlendModeModel blend) {
+  public FillOverlayEffectBuilder setBlend(BlendModeValueModel blend) {
     this.blend = blend;
     return this;
   }

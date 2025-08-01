@@ -9,6 +9,6 @@ public class LegendPosConverter {
 
   public static LegendPosModel fromDocx4J(CTLegendPos value) {
     if (value == null) return null;
-    return new LegendPosModel(LegendPosConverter.fromDocx4J(value.getVal()));
+    return new LegendPosModel(LegendPosValueConverter.fromDocx4J(value.getVal()));
   }
 }

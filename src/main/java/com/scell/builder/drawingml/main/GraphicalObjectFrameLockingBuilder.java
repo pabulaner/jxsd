@@ -1,53 +1,53 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.GraphicalObjectFrameLockingModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 
 public class GraphicalObjectFrameLockingBuilder {
-  private BooleanModel noDrilldown;
+  private BooleanValueModel noDrilldown;
 
-  private BooleanModel noResize;
+  private BooleanValueModel noResize;
 
-  private BooleanModel noChangeAspect;
+  private BooleanValueModel noChangeAspect;
 
-  private BooleanModel noSelect;
+  private BooleanValueModel noSelect;
 
-  private BooleanModel noGrp;
+  private BooleanValueModel noGrp;
 
-  private BooleanModel noMove;
+  private BooleanValueModel noMove;
 
   private OfficeArtExtensionListModel extLst;
 
   public GraphicalObjectFrameLockingBuilder() {
   }
 
-  public GraphicalObjectFrameLockingBuilder setNoDrilldown(BooleanModel noDrilldown) {
+  public GraphicalObjectFrameLockingBuilder setNoDrilldown(BooleanValueModel noDrilldown) {
     this.noDrilldown = noDrilldown;
     return this;
   }
 
-  public GraphicalObjectFrameLockingBuilder setNoResize(BooleanModel noResize) {
+  public GraphicalObjectFrameLockingBuilder setNoResize(BooleanValueModel noResize) {
     this.noResize = noResize;
     return this;
   }
 
-  public GraphicalObjectFrameLockingBuilder setNoChangeAspect(BooleanModel noChangeAspect) {
+  public GraphicalObjectFrameLockingBuilder setNoChangeAspect(BooleanValueModel noChangeAspect) {
     this.noChangeAspect = noChangeAspect;
     return this;
   }
 
-  public GraphicalObjectFrameLockingBuilder setNoSelect(BooleanModel noSelect) {
+  public GraphicalObjectFrameLockingBuilder setNoSelect(BooleanValueModel noSelect) {
     this.noSelect = noSelect;
     return this;
   }
 
-  public GraphicalObjectFrameLockingBuilder setNoGrp(BooleanModel noGrp) {
+  public GraphicalObjectFrameLockingBuilder setNoGrp(BooleanValueModel noGrp) {
     this.noGrp = noGrp;
     return this;
   }
 
-  public GraphicalObjectFrameLockingBuilder setNoMove(BooleanModel noMove) {
+  public GraphicalObjectFrameLockingBuilder setNoMove(BooleanValueModel noMove) {
     this.noMove = noMove;
     return this;
   }

@@ -1,12 +1,12 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.NonVisualPicturePropertiesModel;
 import com.scell.model.drawingml.main.OfficeArtExtensionListModel;
 import com.scell.model.drawingml.main.PictureLockingModel;
 
 public class NonVisualPicturePropertiesBuilder {
-  private BooleanModel preferRelativeResize;
+  private BooleanValueModel preferRelativeResize;
 
   private PictureLockingModel picLocks;
 
@@ -16,7 +16,7 @@ public class NonVisualPicturePropertiesBuilder {
   }
 
   public NonVisualPicturePropertiesBuilder setPreferRelativeResize(
-      BooleanModel preferRelativeResize) {
+      BooleanValueModel preferRelativeResize) {
     this.preferRelativeResize = preferRelativeResize;
     return this;
   }

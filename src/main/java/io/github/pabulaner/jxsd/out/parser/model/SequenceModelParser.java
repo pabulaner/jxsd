@@ -4,14 +4,13 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaSequence;
-import io.github.pabulaner.jxsd.out.util.Name;
+import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.out.util.ParserUtil;
-import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class SequenceModelParser extends BaseParser<JavaSequence> {
+public class SequenceModelParser extends ModelParser<JavaSequence> {
 
     public SequenceModelParser(ParserGroup group) {
         super(group);
@@ -19,14 +18,15 @@ public class SequenceModelParser extends BaseParser<JavaSequence> {
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, JavaSequence clazz) {
-        clazz.inners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
+        super.parse(builder, clazz);
+        clazz.getInners().forEach(inner -> builder.addType(getGroup().parse(true, inner)));
 
         MethodSpec.Builder constructor = MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PUBLIC);
 
-        clazz.fields().forEach(field -> {
-            TypeName fieldType = ParserUtil.convertType(field.type(), getResolver());
-            Name fieldName = new Name(getResolver().resolve(field.type(), field.name()));
+        clazz.getFields().forEach(field -> {
+            TypeName fieldType = ParserUtil.convertType(field.getType(), getResolver());
+            Name fieldName = new Name(getResolver().resolve(field.getType(), field.getName()));
 
             constructor.addParameter(fieldType, fieldName.toVarLower())
                     .addStatement("$N.$N = $N", THIS, fieldName.toVarLower(), fieldName.toVarLower());

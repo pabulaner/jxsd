@@ -1,6 +1,6 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.CustomColorModel;
 import com.scell.model.drawingml.main.HslColorModel;
 import com.scell.model.drawingml.main.PresetColorModel;
@@ -11,14 +11,14 @@ import com.scell.model.drawingml.main.SystemColorModel;
 import java.lang.Object;
 
 public class CustomColorBuilder {
-  private StringModel name;
+  private StringValueModel name;
 
   private CustomColorModel.ColorChoiceModel egColorChoice;
 
   public CustomColorBuilder() {
   }
 
-  public CustomColorBuilder setName(StringModel name) {
+  public CustomColorBuilder setName(StringValueModel name) {
     this.name = name;
     return this;
   }

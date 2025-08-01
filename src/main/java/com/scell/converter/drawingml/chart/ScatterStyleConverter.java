@@ -9,6 +9,6 @@ public class ScatterStyleConverter {
 
   public static ScatterStyleModel fromDocx4J(CTScatterStyle value) {
     if (value == null) return null;
-    return new ScatterStyleModel(ScatterStyleConverter.fromDocx4J(value.getVal()));
+    return new ScatterStyleModel(ScatterStyleValueConverter.fromDocx4J(value.getVal()));
   }
 }

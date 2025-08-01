@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class AngleModel {
-  private final AngleModel val;
+  private final AngleValueModel val;
 
-  public AngleModel(AngleModel val) {
+  public AngleModel(AngleValueModel val) {
     this.val = val;
   }
 
-  public AngleModel getVal() {
+  public AngleValueModel getVal() {
     return this.val;
   }
 }

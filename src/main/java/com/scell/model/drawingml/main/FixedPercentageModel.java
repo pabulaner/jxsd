@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.main;
 
 public class FixedPercentageModel {
-  private final FixedPercentageModel val;
+  private final FixedPercentageValueModel val;
 
-  public FixedPercentageModel(FixedPercentageModel val) {
+  public FixedPercentageModel(FixedPercentageValueModel val) {
     this.val = val;
   }
 
-  public FixedPercentageModel getVal() {
+  public FixedPercentageValueModel getVal() {
     return this.val;
   }
 }

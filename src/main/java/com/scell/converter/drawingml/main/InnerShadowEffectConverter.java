@@ -16,6 +16,6 @@ public class InnerShadowEffectConverter {
     if (value.getSysClr() != null) egColorChoice = InnerShadowEffectModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = InnerShadowEffectModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = InnerShadowEffectModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new InnerShadowEffectModel(PositiveCoordinateConverter.fromDocx4J(value.getBlurRad()), PositiveCoordinateConverter.fromDocx4J(value.getDist()), PositiveFixedAngleConverter.fromDocx4J(value.getDir()), egColorChoice);
+    return new InnerShadowEffectModel(PositiveCoordinateValueConverter.fromDocx4J(value.getBlurRad()), PositiveCoordinateValueConverter.fromDocx4J(value.getDist()), PositiveFixedAngleValueConverter.fromDocx4J(value.getDir()), egColorChoice);
   }
 }

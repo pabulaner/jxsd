@@ -2,7 +2,7 @@ package com.scell.model.drawingml.chart;
 
 import java.util.List;
 
-public class BubbleChartModel {
+public class BubbleChartModel implements IBubbleChartValueModel {
   private final BooleanModel varyColors;
 
   private final List<BubbleSerModel> ser;

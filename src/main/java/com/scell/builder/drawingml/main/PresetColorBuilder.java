@@ -12,19 +12,19 @@ import com.scell.model.drawingml.main.PositiveFixedAngleModel;
 import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
 import com.scell.model.drawingml.main.PositivePercentageModel;
 import com.scell.model.drawingml.main.PresetColorModel;
-import com.scell.model.drawingml.main.PresetColorValModel;
+import com.scell.model.drawingml.main.PresetColorValValueModel;
 import java.lang.Object;
 import java.util.List;
 
 public class PresetColorBuilder {
-  private PresetColorValModel val;
+  private PresetColorValValueModel val;
 
   private List<PresetColorModel.ColorTransformModel> egColorTransform;
 
   public PresetColorBuilder() {
   }
 
-  public PresetColorBuilder setVal(PresetColorValModel val) {
+  public PresetColorBuilder setVal(PresetColorValValueModel val) {
     this.val = val;
     return this;
   }

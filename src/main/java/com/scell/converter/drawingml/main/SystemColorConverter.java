@@ -14,6 +14,6 @@ public class SystemColorConverter {
     List<SystemColorModel.ColorTransformModel> egColorTransform = value.getEGColorTransform().stream().map(val -> {
       return new SystemColorModel.ColorTransformModel();
     } ).collect(Collectors.toList());
-    return new SystemColorModel(SystemColorValConverter.fromDocx4J(value.getVal()), HexBinary3Converter.fromDocx4J(value.getLastClr()), egColorTransform);
+    return new SystemColorModel(SystemColorValValueConverter.fromDocx4J(value.getVal()), HexBinary3ValueConverter.fromDocx4J(value.getLastClr()), egColorTransform);
   }
 }

@@ -1,18 +1,18 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 import com.scell.model.drawingml.main.GradientFillPropertiesModel;
 import com.scell.model.drawingml.main.GradientStopListModel;
 import com.scell.model.drawingml.main.LinearShadePropertiesModel;
 import com.scell.model.drawingml.main.PathShadePropertiesModel;
 import com.scell.model.drawingml.main.RelativeRectModel;
-import com.scell.model.drawingml.main.TileFlipModeModel;
+import com.scell.model.drawingml.main.TileFlipModeValueModel;
 import java.lang.Object;
 
 public class GradientFillPropertiesBuilder {
-  private BooleanModel rotWithShape;
+  private BooleanValueModel rotWithShape;
 
-  private TileFlipModeModel flip;
+  private TileFlipModeValueModel flip;
 
   private GradientStopListModel gsLst;
 
@@ -23,12 +23,12 @@ public class GradientFillPropertiesBuilder {
   public GradientFillPropertiesBuilder() {
   }
 
-  public GradientFillPropertiesBuilder setRotWithShape(BooleanModel rotWithShape) {
+  public GradientFillPropertiesBuilder setRotWithShape(BooleanValueModel rotWithShape) {
     this.rotWithShape = rotWithShape;
     return this;
   }
 
-  public GradientFillPropertiesBuilder setFlip(TileFlipModeModel flip) {
+  public GradientFillPropertiesBuilder setFlip(TileFlipModeValueModel flip) {
     this.flip = flip;
     return this;
   }

@@ -1,19 +1,19 @@
 package com.scell.model.drawingml.chartDrawing;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import com.scell.model.drawingml.main.ShapeStyleModel;
 import com.scell.model.drawingml.main.TextBodyModel;
 
 public class ShapeModel {
-  private final BooleanModel fPublished;
+  private final BooleanValueModel fPublished;
 
-  private final StringModel macro;
+  private final StringValueModel macro;
 
-  private final BooleanModel fLocksText;
+  private final BooleanValueModel fLocksText;
 
-  private final StringModel textlink;
+  private final StringValueModel textlink;
 
   private final ShapeNonVisualModel nvSpPr;
 
@@ -23,9 +23,9 @@ public class ShapeModel {
 
   private final TextBodyModel txBody;
 
-  public ShapeModel(BooleanModel fPublished, StringModel macro, BooleanModel fLocksText,
-      StringModel textlink, ShapeNonVisualModel nvSpPr, ShapePropertiesModel spPr,
-      ShapeStyleModel style, TextBodyModel txBody) {
+  public ShapeModel(BooleanValueModel fPublished, StringValueModel macro,
+      BooleanValueModel fLocksText, StringValueModel textlink, ShapeNonVisualModel nvSpPr,
+      ShapePropertiesModel spPr, ShapeStyleModel style, TextBodyModel txBody) {
     this.fPublished = fPublished;
     this.macro = macro;
     this.fLocksText = fLocksText;
@@ -36,19 +36,19 @@ public class ShapeModel {
     this.txBody = txBody;
   }
 
-  public BooleanModel getFPublished() {
+  public BooleanValueModel getFPublished() {
     return this.fPublished;
   }
 
-  public StringModel getMacro() {
+  public StringValueModel getMacro() {
     return this.macro;
   }
 
-  public BooleanModel getFLocksText() {
+  public BooleanValueModel getFLocksText() {
     return this.fLocksText;
   }
 
-  public StringModel getTextlink() {
+  public StringValueModel getTextlink() {
     return this.textlink;
   }
 

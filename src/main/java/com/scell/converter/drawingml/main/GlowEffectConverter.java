@@ -16,6 +16,6 @@ public class GlowEffectConverter {
     if (value.getSysClr() != null) egColorChoice = GlowEffectModel.ColorChoiceModel.newSysClr(SystemColorConverter.fromDocx4J(value.getSysClr()));
     if (value.getSchemeClr() != null) egColorChoice = GlowEffectModel.ColorChoiceModel.newSchemeClr(SchemeColorConverter.fromDocx4J(value.getSchemeClr()));
     if (value.getPrstClr() != null) egColorChoice = GlowEffectModel.ColorChoiceModel.newPrstClr(PresetColorConverter.fromDocx4J(value.getPrstClr()));
-    return new GlowEffectModel(PositiveCoordinateConverter.fromDocx4J(value.getRad()), egColorChoice);
+    return new GlowEffectModel(PositiveCoordinateValueConverter.fromDocx4J(value.getRad()), egColorChoice);
   }
 }

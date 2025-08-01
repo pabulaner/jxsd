@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class TickLblPosModel {
-  private final TickLblPosModel val;
+  private final TickLblPosValueModel val;
 
-  public TickLblPosModel(TickLblPosModel val) {
+  public TickLblPosModel(TickLblPosValueModel val) {
     this.val = val;
   }
 
-  public TickLblPosModel getVal() {
+  public TickLblPosValueModel getVal() {
     return this.val;
   }
 }

@@ -2,7 +2,7 @@ package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.SerTxModel;
 import com.scell.model.drawingml.chart.StrRefModel;
-import com.scell.model.drawingml.chart.XstringModel;
+import com.scell.model.drawingml.chart.XstringValueModel;
 import java.lang.Object;
 
 public class SerTxBuilder {
@@ -21,7 +21,7 @@ public class SerTxBuilder {
     return this;
   }
 
-  public SerTxBuilder setV(XstringModel value) {
+  public SerTxBuilder setV(XstringValueModel value) {
     this.type = 1;
     this.value = value;
     return this;
@@ -30,7 +30,7 @@ public class SerTxBuilder {
   public SerTxModel build() {
     if (this.type == -1) return new SerTxModel();
     if (this.type == 0) return SerTxModel.newStrRef((StrRefModel) this.value);
-    if (this.type == 1) return SerTxModel.newV((XstringModel) this.value);
+    if (this.type == 1) return SerTxModel.newV((XstringValueModel) this.value);
     return null;
   }
 

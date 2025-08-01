@@ -15,7 +15,7 @@ public class UnionConverterParser extends ConverterParser<JavaUnion> {
 
     @Override
     protected MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaUnion clazz) {
-        TypeName type = ParserUtil.convertType(clazz.type(), getModelResolver());
+        TypeName type = ParserUtil.convertType(clazz.getType(), getModelResolver());
         return builder.addStatement("$N $N $T($N)", RETURN, NEW, type, VALUE);
     }
 

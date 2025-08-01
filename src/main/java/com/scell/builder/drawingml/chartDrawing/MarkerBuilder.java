@@ -1,22 +1,22 @@
 package com.scell.builder.drawingml.chartDrawing;
 
-import com.scell.model.drawingml.chartDrawing.MarkerCoordinateModel;
+import com.scell.model.drawingml.chartDrawing.MarkerCoordinateValueModel;
 import com.scell.model.drawingml.chartDrawing.MarkerModel;
 
 public class MarkerBuilder {
-  private MarkerCoordinateModel x;
+  private MarkerCoordinateValueModel x;
 
-  private MarkerCoordinateModel y;
+  private MarkerCoordinateValueModel y;
 
   public MarkerBuilder() {
   }
 
-  public MarkerBuilder setX(MarkerCoordinateModel x) {
+  public MarkerBuilder setX(MarkerCoordinateValueModel x) {
     this.x = x;
     return this;
   }
 
-  public MarkerBuilder setY(MarkerCoordinateModel y) {
+  public MarkerBuilder setY(MarkerCoordinateValueModel y) {
     this.y = y;
     return this;
   }

@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.AlphaBiLevelEffectModel;
-import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
+import com.scell.model.drawingml.main.PositiveFixedPercentageValueModel;
 
 public class AlphaBiLevelEffectBuilder {
-  private PositiveFixedPercentageModel thresh;
+  private PositiveFixedPercentageValueModel thresh;
 
   public AlphaBiLevelEffectBuilder() {
   }
 
-  public AlphaBiLevelEffectBuilder setThresh(PositiveFixedPercentageModel thresh) {
+  public AlphaBiLevelEffectBuilder setThresh(PositiveFixedPercentageValueModel thresh) {
     this.thresh = thresh;
     return this;
   }

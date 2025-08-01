@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.HoleSizeModel;
+import com.scell.model.drawingml.chart.HoleSizeValueModel;
 
 public class HoleSizeBuilder {
-  private HoleSizeModel val;
+  private HoleSizeValueModel val;
 
   public HoleSizeBuilder() {
   }
 
-  public HoleSizeBuilder setVal(HoleSizeModel val) {
+  public HoleSizeBuilder setVal(HoleSizeValueModel val) {
     this.val = val;
     return this;
   }

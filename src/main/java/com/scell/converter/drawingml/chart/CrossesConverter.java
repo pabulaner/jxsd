@@ -9,6 +9,6 @@ public class CrossesConverter {
 
   public static CrossesModel fromDocx4J(CTCrosses value) {
     if (value == null) return null;
-    return new CrossesModel(CrossesConverter.fromDocx4J(value.getVal()));
+    return new CrossesModel(CrossesValueConverter.fromDocx4J(value.getVal()));
   }
 }

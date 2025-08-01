@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class PerspectiveModel {
-  private final PerspectiveModel val;
+  private final PerspectiveValueModel val;
 
-  public PerspectiveModel(PerspectiveModel val) {
+  public PerspectiveModel(PerspectiveValueModel val) {
     this.val = val;
   }
 
-  public PerspectiveModel getVal() {
+  public PerspectiveValueModel getVal() {
     return this.val;
   }
 }

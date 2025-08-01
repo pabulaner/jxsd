@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class DepthPercentModel {
-  private final DepthPercentModel val;
+  private final DepthPercentValueModel val;
 
-  public DepthPercentModel(DepthPercentModel val) {
+  public DepthPercentModel(DepthPercentValueModel val) {
     this.val = val;
   }
 
-  public DepthPercentModel getVal() {
+  public DepthPercentValueModel getVal() {
     return this.val;
   }
 }

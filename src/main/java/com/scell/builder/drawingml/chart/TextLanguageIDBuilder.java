@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.TextLanguageIDModel;
+import com.scell.model.drawingml.chart.TextLanguageIDValueModel;
 
 public class TextLanguageIDBuilder {
-  private TextLanguageIDModel val;
+  private TextLanguageIDValueModel val;
 
   public TextLanguageIDBuilder() {
   }
 
-  public TextLanguageIDBuilder setVal(TextLanguageIDModel val) {
+  public TextLanguageIDBuilder setVal(TextLanguageIDValueModel val) {
     this.val = val;
     return this;
   }

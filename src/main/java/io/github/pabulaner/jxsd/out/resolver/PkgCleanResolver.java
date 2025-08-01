@@ -8,11 +8,13 @@ public class PkgCleanResolver implements Resolver {
 
     @Override
     public JavaType resolve(JavaType type) {
-        List<String> pkg = type.pkg()
+        List<String> pkg = type.getPkg()
                 .stream()
                 .filter(value -> !value.isEmpty() && !value.matches("\\d+"))
                 .toList();
 
-        return new JavaType(pkg, type.outer(), type.name(), type.minOccurs(), type.maxOccurs());
+        return new JavaType.Builder(type)
+                .setPkg(pkg)
+                .build();
     }
 }

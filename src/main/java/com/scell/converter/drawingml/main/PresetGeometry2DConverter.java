@@ -9,6 +9,6 @@ public class PresetGeometry2DConverter {
 
   public static PresetGeometry2DModel fromDocx4J(CTPresetGeometry2D value) {
     if (value == null) return null;
-    return new PresetGeometry2DModel(ShapeTypeConverter.fromDocx4J(value.getPrst()), GeomGuideListConverter.fromDocx4J(value.getAvLst()));
+    return new PresetGeometry2DModel(ShapeTypeValueConverter.fromDocx4J(value.getPrst()), GeomGuideListConverter.fromDocx4J(value.getAvLst()));
   }
 }

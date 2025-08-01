@@ -9,6 +9,6 @@ public class TextAutonumberBulletConverter {
 
   public static TextAutonumberBulletModel fromDocx4J(CTTextAutonumberBullet value) {
     if (value == null) return null;
-    return new TextAutonumberBulletModel(TextAutonumberSchemeConverter.fromDocx4J(value.getType()), TextBulletStartAtNumConverter.fromDocx4J(value.getStartAt()));
+    return new TextAutonumberBulletModel(TextAutonumberSchemeValueConverter.fromDocx4J(value.getType()), TextBulletStartAtNumValueConverter.fromDocx4J(value.getStartAt()));
   }
 }

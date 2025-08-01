@@ -4,7 +4,7 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class ShapePropertiesModel {
-  private final BlackWhiteModeModel bwMode;
+  private final BlackWhiteModeValueModel bwMode;
 
   private final Transform2DModel xfrm;
 
@@ -22,7 +22,7 @@ public class ShapePropertiesModel {
 
   private final OfficeArtExtensionListModel extLst;
 
-  public ShapePropertiesModel(BlackWhiteModeModel bwMode, Transform2DModel xfrm,
+  public ShapePropertiesModel(BlackWhiteModeValueModel bwMode, Transform2DModel xfrm,
       GeometryModel egGeometry, FillPropertiesModel egFillProperties, LinePropertiesModel ln,
       EffectPropertiesModel egEffectProperties, Scene3DModel scene3d, Shape3DModel sp3d,
       OfficeArtExtensionListModel extLst) {
@@ -37,7 +37,7 @@ public class ShapePropertiesModel {
     this.extLst = extLst;
   }
 
-  public BlackWhiteModeModel getBwMode() {
+  public BlackWhiteModeValueModel getBwMode() {
     return this.bwMode;
   }
 

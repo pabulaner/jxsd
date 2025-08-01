@@ -1,16 +1,16 @@
 package com.scell.model.drawingml.main;
 
 public class PresetGeometry2DModel {
-  private final ShapeTypeModel prst;
+  private final ShapeTypeValueModel prst;
 
   private final GeomGuideListModel avLst;
 
-  public PresetGeometry2DModel(ShapeTypeModel prst, GeomGuideListModel avLst) {
+  public PresetGeometry2DModel(ShapeTypeValueModel prst, GeomGuideListModel avLst) {
     this.prst = prst;
     this.avLst = avLst;
   }
 
-  public ShapeTypeModel getPrst() {
+  public ShapeTypeValueModel getPrst() {
     return this.prst;
   }
 

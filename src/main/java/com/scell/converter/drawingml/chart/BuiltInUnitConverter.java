@@ -9,6 +9,6 @@ public class BuiltInUnitConverter {
 
   public static BuiltInUnitModel fromDocx4J(CTBuiltInUnit value) {
     if (value == null) return null;
-    return new BuiltInUnitModel(BuiltInUnitConverter.fromDocx4J(value.getVal()));
+    return new BuiltInUnitModel(BuiltInUnitValueConverter.fromDocx4J(value.getVal()));
   }
 }

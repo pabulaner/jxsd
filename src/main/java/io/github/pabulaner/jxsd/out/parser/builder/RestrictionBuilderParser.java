@@ -12,6 +12,7 @@ public class RestrictionBuilderParser extends BuilderParser<JavaRestriction> {
 
     @Override
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
+        super.parse(builder, clazz);
         return new PrimitiveBuilderParser(getGroup()).parse(builder, clazz);
     }
 }

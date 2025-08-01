@@ -8,12 +8,11 @@ import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.out.util.RestrictionUtil;
-import io.github.pabulaner.jxsd.out.parser.BaseParser;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 
 import javax.lang.model.element.Modifier;
 
-public class RestrictionModelParser extends BaseParser<JavaRestriction> {
+public class RestrictionModelParser extends ModelParser<JavaRestriction> {
 
     public RestrictionModelParser(ParserGroup group) {
         super(group);
@@ -21,20 +20,24 @@ public class RestrictionModelParser extends BaseParser<JavaRestriction> {
 
     @Override
     public TypeSpec.Builder parse(TypeSpec.Builder builder, JavaRestriction clazz) {
+        super.parse(builder, clazz);
+
         JavaScope scope = getGroup().getMap().getScope();
-        JavaType primitive = RestrictionUtil.findPrimitive(scope, clazz.primitive());
-        JavaType type = RestrictionUtil.findPrimitive(scope, clazz.type());
+        JavaType primitive = RestrictionUtil.findPrimitive(scope, clazz.getPrimitive());
+        JavaType type = RestrictionUtil.findPrimitive(scope, clazz.getType());
 
         if (primitive.equals(type)) {
             return builder
-                    .superclass(ParserUtil.convertType(clazz.parent(), getResolver()))
+                    .superclass(ParserUtil.convertType(clazz.getParent(), getResolver()))
                     .addMethod(MethodSpec.constructorBuilder()
                             .addModifiers(Modifier.PUBLIC)
                             .addParameter(ParserUtil.convertPrimitive(primitive), VALUE)
                             .addStatement("$N($N)", SUPER, VALUE)
                             .build());
         } else {
-            return new PrimitiveModelParser(getGroup()).parse(builder, new JavaPrimitive(type));
+            return new PrimitiveModelParser(getGroup()).parse(builder, new JavaPrimitive.Builder()
+                    .setType(type)
+                    .build());
         }
     }
 }

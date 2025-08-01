@@ -9,6 +9,6 @@ public class DispBlanksAsConverter {
 
   public static DispBlanksAsModel fromDocx4J(CTDispBlanksAs value) {
     if (value == null) return null;
-    return new DispBlanksAsModel(DispBlanksAsConverter.fromDocx4J(value.getVal()));
+    return new DispBlanksAsModel(DispBlanksAsValueConverter.fromDocx4J(value.getVal()));
   }
 }

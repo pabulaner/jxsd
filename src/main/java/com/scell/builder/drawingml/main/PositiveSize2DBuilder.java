@@ -1,22 +1,22 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.PositiveCoordinateModel;
+import com.scell.model.drawingml.main.PositiveCoordinateValueModel;
 import com.scell.model.drawingml.main.PositiveSize2DModel;
 
 public class PositiveSize2DBuilder {
-  private PositiveCoordinateModel cy;
+  private PositiveCoordinateValueModel cy;
 
-  private PositiveCoordinateModel cx;
+  private PositiveCoordinateValueModel cx;
 
   public PositiveSize2DBuilder() {
   }
 
-  public PositiveSize2DBuilder setCy(PositiveCoordinateModel cy) {
+  public PositiveSize2DBuilder setCy(PositiveCoordinateValueModel cy) {
     this.cy = cy;
     return this;
   }
 
-  public PositiveSize2DBuilder setCx(PositiveCoordinateModel cx) {
+  public PositiveSize2DBuilder setCx(PositiveCoordinateValueModel cx) {
     this.cx = cx;
     return this;
   }

@@ -4,11 +4,11 @@ import com.scell.model.drawingml.chart.ExtensionListModel;
 import com.scell.model.drawingml.chart.NumDataModel;
 import com.scell.model.drawingml.chart.NumValModel;
 import com.scell.model.drawingml.chart.UnsignedIntModel;
-import com.scell.model.drawingml.chart.XstringModel;
+import com.scell.model.drawingml.chart.XstringValueModel;
 import java.util.List;
 
 public class NumDataBuilder {
-  private XstringModel formatCode;
+  private XstringValueModel formatCode;
 
   private UnsignedIntModel ptCount;
 
@@ -19,7 +19,7 @@ public class NumDataBuilder {
   public NumDataBuilder() {
   }
 
-  public NumDataBuilder setFormatCode(XstringModel formatCode) {
+  public NumDataBuilder setFormatCode(XstringValueModel formatCode) {
     this.formatCode = formatCode;
     return this;
   }

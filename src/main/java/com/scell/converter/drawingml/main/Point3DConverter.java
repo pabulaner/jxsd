@@ -9,6 +9,6 @@ public class Point3DConverter {
 
   public static Point3DModel fromDocx4J(CTPoint3D value) {
     if (value == null) return null;
-    return new Point3DModel(CoordinateConverter.fromDocx4J(value.getY()), CoordinateConverter.fromDocx4J(value.getX()), CoordinateConverter.fromDocx4J(value.getZ()));
+    return new Point3DModel(CoordinateValueConverter.fromDocx4J(value.getY()), CoordinateValueConverter.fromDocx4J(value.getX()), CoordinateValueConverter.fromDocx4J(value.getZ()));
   }
 }

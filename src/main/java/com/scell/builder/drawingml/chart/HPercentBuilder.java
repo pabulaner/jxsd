@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.HPercentModel;
+import com.scell.model.drawingml.chart.HPercentValueModel;
 
 public class HPercentBuilder {
-  private HPercentModel val;
+  private HPercentValueModel val;
 
   public HPercentBuilder() {
   }
 
-  public HPercentBuilder setVal(HPercentModel val) {
+  public HPercentBuilder setVal(HPercentValueModel val) {
     this.val = val;
     return this;
   }

@@ -9,6 +9,7 @@ import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.out.parser.ParserGroup;
 import io.github.pabulaner.jxsd.out.parser.ParserMap;
 import io.github.pabulaner.jxsd.out.resolver.Resolver;
+import io.github.pabulaner.jxsd.java.JavaInterface;
 
 public class ModelParserGroup extends ParserGroup {
 
@@ -23,5 +24,6 @@ public class ModelParserGroup extends ParserGroup {
         addParser(JavaEnum.class, new EnumModelParser(this));
         addParser(JavaSequence.class, new SequenceModelParser(this));
         addParser(JavaChoice.class, new ChoiceModelParser(this));
+        addParser(JavaInterface.class, new InterfaceModelParser(this));
     }
 }

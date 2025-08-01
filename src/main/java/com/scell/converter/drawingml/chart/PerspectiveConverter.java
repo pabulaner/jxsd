@@ -9,6 +9,6 @@ public class PerspectiveConverter {
 
   public static PerspectiveModel fromDocx4J(CTPerspective value) {
     if (value == null) return null;
-    return new PerspectiveModel(PerspectiveConverter.fromDocx4J(value.getVal()));
+    return new PerspectiveModel(PerspectiveValueConverter.fromDocx4J(value.getVal()));
   }
 }

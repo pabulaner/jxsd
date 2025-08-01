@@ -4,20 +4,20 @@ import java.lang.Integer;
 import java.lang.Object;
 
 public class DispUnitsModel {
-  private final CustUnitOrBuiltInUnitModel custUnitOrBuiltInUnit;
+  private final CustUnitOrBuiltInUnitValueModel custUnitOrBuiltInUnit;
 
   private final DispUnitsLblModel dispUnitsLbl;
 
   private final ExtensionListModel extLst;
 
-  public DispUnitsModel(CustUnitOrBuiltInUnitModel custUnitOrBuiltInUnit,
+  public DispUnitsModel(CustUnitOrBuiltInUnitValueModel custUnitOrBuiltInUnit,
       DispUnitsLblModel dispUnitsLbl, ExtensionListModel extLst) {
     this.custUnitOrBuiltInUnit = custUnitOrBuiltInUnit;
     this.dispUnitsLbl = dispUnitsLbl;
     this.extLst = extLst;
   }
 
-  public CustUnitOrBuiltInUnitModel getCustUnitOrBuiltInUnit() {
+  public CustUnitOrBuiltInUnitValueModel getCustUnitOrBuiltInUnit() {
     return this.custUnitOrBuiltInUnit;
   }
 
@@ -29,22 +29,22 @@ public class DispUnitsModel {
     return this.extLst;
   }
 
-  public static class CustUnitOrBuiltInUnitModel {
+  public static class CustUnitOrBuiltInUnitValueModel {
     private final int type;
 
     private final Object value;
 
-    public CustUnitOrBuiltInUnitModel() {
+    public CustUnitOrBuiltInUnitValueModel() {
       this(-1, null);
     }
 
-    private CustUnitOrBuiltInUnitModel(Integer type, Object value) {
+    private CustUnitOrBuiltInUnitValueModel(Integer type, Object value) {
       this.type = type;
       this.value = value;
     }
 
-    public static CustUnitOrBuiltInUnitModel newCustUnit(DoubleModel value) {
-      return new CustUnitOrBuiltInUnitModel(0, value);
+    public static CustUnitOrBuiltInUnitValueModel newCustUnit(DoubleModel value) {
+      return new CustUnitOrBuiltInUnitValueModel(0, value);
     }
 
     public boolean isCustUnit() {
@@ -55,8 +55,8 @@ public class DispUnitsModel {
       return (DoubleModel) this.value;
     }
 
-    public static CustUnitOrBuiltInUnitModel newBuiltInUnit(BuiltInUnitModel value) {
-      return new CustUnitOrBuiltInUnitModel(1, value);
+    public static CustUnitOrBuiltInUnitValueModel newBuiltInUnit(BuiltInUnitModel value) {
+      return new CustUnitOrBuiltInUnitValueModel(1, value);
     }
 
     public boolean isBuiltInUnit() {

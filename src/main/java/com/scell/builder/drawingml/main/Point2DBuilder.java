@@ -1,22 +1,22 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.CoordinateModel;
+import com.scell.model.drawingml.main.CoordinateValueModel;
 import com.scell.model.drawingml.main.Point2DModel;
 
 public class Point2DBuilder {
-  private CoordinateModel y;
+  private CoordinateValueModel y;
 
-  private CoordinateModel x;
+  private CoordinateValueModel x;
 
   public Point2DBuilder() {
   }
 
-  public Point2DBuilder setY(CoordinateModel y) {
+  public Point2DBuilder setY(CoordinateValueModel y) {
     this.y = y;
     return this;
   }
 
-  public Point2DBuilder setX(CoordinateModel x) {
+  public Point2DBuilder setX(CoordinateValueModel x) {
     this.x = x;
     return this;
   }

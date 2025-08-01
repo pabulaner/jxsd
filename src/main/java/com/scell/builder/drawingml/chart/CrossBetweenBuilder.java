@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.CrossBetweenModel;
+import com.scell.model.drawingml.chart.CrossBetweenValueModel;
 
 public class CrossBetweenBuilder {
-  private CrossBetweenModel val;
+  private CrossBetweenValueModel val;
 
   public CrossBetweenBuilder() {
   }
 
-  public CrossBetweenBuilder setVal(CrossBetweenModel val) {
+  public CrossBetweenBuilder setVal(CrossBetweenValueModel val) {
     this.val = val;
     return this;
   }

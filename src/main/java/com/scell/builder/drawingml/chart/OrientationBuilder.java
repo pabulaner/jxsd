@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.OrientationModel;
+import com.scell.model.drawingml.chart.OrientationValueModel;
 
 public class OrientationBuilder {
-  private OrientationModel val;
+  private OrientationValueModel val;
 
   public OrientationBuilder() {
   }
 
-  public OrientationBuilder setVal(OrientationModel val) {
+  public OrientationBuilder setVal(OrientationValueModel val) {
     this.val = val;
     return this;
   }

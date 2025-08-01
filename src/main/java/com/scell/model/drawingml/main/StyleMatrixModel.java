@@ -1,9 +1,9 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 
 public class StyleMatrixModel {
-  private final StringModel name;
+  private final StringValueModel name;
 
   private final FillStyleListModel fillStyleLst;
 
@@ -13,7 +13,7 @@ public class StyleMatrixModel {
 
   private final BackgroundFillStyleListModel bgFillStyleLst;
 
-  public StyleMatrixModel(StringModel name, FillStyleListModel fillStyleLst,
+  public StyleMatrixModel(StringValueModel name, FillStyleListModel fillStyleLst,
       LineStyleListModel lnStyleLst, EffectStyleListModel effectStyleLst,
       BackgroundFillStyleListModel bgFillStyleLst) {
     this.name = name;
@@ -23,7 +23,7 @@ public class StyleMatrixModel {
     this.bgFillStyleLst = bgFillStyleLst;
   }
 
-  public StringModel getName() {
+  public StringValueModel getName() {
     return this.name;
   }
 

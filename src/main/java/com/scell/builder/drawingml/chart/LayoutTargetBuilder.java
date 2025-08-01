@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.LayoutTargetModel;
+import com.scell.model.drawingml.chart.LayoutTargetValueModel;
 
 public class LayoutTargetBuilder {
-  private LayoutTargetModel val;
+  private LayoutTargetValueModel val;
 
   public LayoutTargetBuilder() {
   }
 
-  public LayoutTargetBuilder setVal(LayoutTargetModel val) {
+  public LayoutTargetBuilder setVal(LayoutTargetValueModel val) {
     this.val = val;
     return this;
   }

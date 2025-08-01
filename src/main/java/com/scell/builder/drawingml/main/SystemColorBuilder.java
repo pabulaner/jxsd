@@ -5,7 +5,7 @@ import com.scell.model.drawingml.main.ComplementTransformModel;
 import com.scell.model.drawingml.main.FixedPercentageModel;
 import com.scell.model.drawingml.main.GammaTransformModel;
 import com.scell.model.drawingml.main.GrayscaleTransformModel;
-import com.scell.model.drawingml.main.HexBinary3Model;
+import com.scell.model.drawingml.main.HexBinary3ValueModel;
 import com.scell.model.drawingml.main.InverseGammaTransformModel;
 import com.scell.model.drawingml.main.InverseTransformModel;
 import com.scell.model.drawingml.main.PercentageModel;
@@ -13,26 +13,26 @@ import com.scell.model.drawingml.main.PositiveFixedAngleModel;
 import com.scell.model.drawingml.main.PositiveFixedPercentageModel;
 import com.scell.model.drawingml.main.PositivePercentageModel;
 import com.scell.model.drawingml.main.SystemColorModel;
-import com.scell.model.drawingml.main.SystemColorValModel;
+import com.scell.model.drawingml.main.SystemColorValValueModel;
 import java.lang.Object;
 import java.util.List;
 
 public class SystemColorBuilder {
-  private SystemColorValModel val;
+  private SystemColorValValueModel val;
 
-  private HexBinary3Model lastClr;
+  private HexBinary3ValueModel lastClr;
 
   private List<SystemColorModel.ColorTransformModel> egColorTransform;
 
   public SystemColorBuilder() {
   }
 
-  public SystemColorBuilder setVal(SystemColorValModel val) {
+  public SystemColorBuilder setVal(SystemColorValValueModel val) {
     this.val = val;
     return this;
   }
 
-  public SystemColorBuilder setLastClr(HexBinary3Model lastClr) {
+  public SystemColorBuilder setLastClr(HexBinary3ValueModel lastClr) {
     this.lastClr = lastClr;
     return this;
   }

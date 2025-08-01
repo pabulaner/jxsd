@@ -1,12 +1,12 @@
 package com.scell.builder.drawingml.chart;
 
-import com.scell.model.XMLSchema.StringModel;
+import com.scell.model.XMLSchema.StringValueModel;
 import com.scell.model.drawingml.chart.ExtensionListModel;
 import com.scell.model.drawingml.chart.MultiLvlStrDataModel;
 import com.scell.model.drawingml.chart.MultiLvlStrRefModel;
 
 public class MultiLvlStrRefBuilder {
-  private StringModel f;
+  private StringValueModel f;
 
   private MultiLvlStrDataModel multiLvlStrCache;
 
@@ -15,7 +15,7 @@ public class MultiLvlStrRefBuilder {
   public MultiLvlStrRefBuilder() {
   }
 
-  public MultiLvlStrRefBuilder setF(StringModel f) {
+  public MultiLvlStrRefBuilder setF(StringValueModel f) {
     this.f = f;
     return this;
   }

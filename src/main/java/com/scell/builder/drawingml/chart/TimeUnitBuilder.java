@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.TimeUnitModel;
+import com.scell.model.drawingml.chart.TimeUnitValueModel;
 
 public class TimeUnitBuilder {
-  private TimeUnitModel val;
+  private TimeUnitValueModel val;
 
   public TimeUnitBuilder() {
   }
 
-  public TimeUnitBuilder setVal(TimeUnitModel val) {
+  public TimeUnitBuilder setVal(TimeUnitValueModel val) {
     this.val = val;
     return this;
   }

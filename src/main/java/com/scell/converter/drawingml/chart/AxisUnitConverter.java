@@ -9,6 +9,6 @@ public class AxisUnitConverter {
 
   public static AxisUnitModel fromDocx4J(CTAxisUnit value) {
     if (value == null) return null;
-    return new AxisUnitModel(AxisUnitConverter.fromDocx4J(value.getVal()));
+    return new AxisUnitModel(AxisUnitValueConverter.fromDocx4J(value.getVal()));
   }
 }

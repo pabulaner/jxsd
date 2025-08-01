@@ -9,6 +9,6 @@ public class TintEffectConverter {
 
   public static TintEffectModel fromDocx4J(CTTintEffect value) {
     if (value == null) return null;
-    return new TintEffectModel(PositiveFixedAngleConverter.fromDocx4J(value.getHue()), FixedPercentageConverter.fromDocx4J(value.getAmt()));
+    return new TintEffectModel(PositiveFixedAngleValueConverter.fromDocx4J(value.getHue()), FixedPercentageValueConverter.fromDocx4J(value.getAmt()));
   }
 }

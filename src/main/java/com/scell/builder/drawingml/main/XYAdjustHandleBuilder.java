@@ -1,54 +1,54 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.AdjCoordinateModel;
+import com.scell.model.drawingml.main.AdjCoordinateValueModel;
 import com.scell.model.drawingml.main.AdjPoint2DModel;
-import com.scell.model.drawingml.main.GeomGuideNameModel;
+import com.scell.model.drawingml.main.GeomGuideNameValueModel;
 import com.scell.model.drawingml.main.XYAdjustHandleModel;
 
 public class XYAdjustHandleBuilder {
-  private AdjCoordinateModel maxX;
+  private AdjCoordinateValueModel maxX;
 
-  private GeomGuideNameModel gdRefY;
+  private GeomGuideNameValueModel gdRefY;
 
-  private GeomGuideNameModel gdRefX;
+  private GeomGuideNameValueModel gdRefX;
 
-  private AdjCoordinateModel maxY;
+  private AdjCoordinateValueModel maxY;
 
-  private AdjCoordinateModel minY;
+  private AdjCoordinateValueModel minY;
 
-  private AdjCoordinateModel minX;
+  private AdjCoordinateValueModel minX;
 
   private AdjPoint2DModel pos;
 
   public XYAdjustHandleBuilder() {
   }
 
-  public XYAdjustHandleBuilder setMaxX(AdjCoordinateModel maxX) {
+  public XYAdjustHandleBuilder setMaxX(AdjCoordinateValueModel maxX) {
     this.maxX = maxX;
     return this;
   }
 
-  public XYAdjustHandleBuilder setGdRefY(GeomGuideNameModel gdRefY) {
+  public XYAdjustHandleBuilder setGdRefY(GeomGuideNameValueModel gdRefY) {
     this.gdRefY = gdRefY;
     return this;
   }
 
-  public XYAdjustHandleBuilder setGdRefX(GeomGuideNameModel gdRefX) {
+  public XYAdjustHandleBuilder setGdRefX(GeomGuideNameValueModel gdRefX) {
     this.gdRefX = gdRefX;
     return this;
   }
 
-  public XYAdjustHandleBuilder setMaxY(AdjCoordinateModel maxY) {
+  public XYAdjustHandleBuilder setMaxY(AdjCoordinateValueModel maxY) {
     this.maxY = maxY;
     return this;
   }
 
-  public XYAdjustHandleBuilder setMinY(AdjCoordinateModel minY) {
+  public XYAdjustHandleBuilder setMinY(AdjCoordinateValueModel minY) {
     this.minY = minY;
     return this;
   }
 
-  public XYAdjustHandleBuilder setMinX(AdjCoordinateModel minX) {
+  public XYAdjustHandleBuilder setMinX(AdjCoordinateValueModel minX) {
     this.minX = minX;
     return this;
   }

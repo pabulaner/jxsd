@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
 import com.scell.model.drawingml.main.LineJoinMiterPropertiesModel;
-import com.scell.model.drawingml.main.PositivePercentageModel;
+import com.scell.model.drawingml.main.PositivePercentageValueModel;
 
 public class LineJoinMiterPropertiesBuilder {
-  private PositivePercentageModel lim;
+  private PositivePercentageValueModel lim;
 
   public LineJoinMiterPropertiesBuilder() {
   }
 
-  public LineJoinMiterPropertiesBuilder setLim(PositivePercentageModel lim) {
+  public LineJoinMiterPropertiesBuilder setLim(PositivePercentageValueModel lim) {
     this.lim = lim;
     return this;
   }

@@ -14,6 +14,6 @@ public class ScRgbColorConverter {
     List<ScRgbColorModel.ColorTransformModel> egColorTransform = value.getEGColorTransform().stream().map(val -> {
       return new ScRgbColorModel.ColorTransformModel();
     } ).collect(Collectors.toList());
-    return new ScRgbColorModel(PercentageConverter.fromDocx4J(value.getG()), PercentageConverter.fromDocx4J(value.getR()), PercentageConverter.fromDocx4J(value.getB()), egColorTransform);
+    return new ScRgbColorModel(PercentageValueConverter.fromDocx4J(value.getG()), PercentageValueConverter.fromDocx4J(value.getR()), PercentageValueConverter.fromDocx4J(value.getB()), egColorTransform);
   }
 }

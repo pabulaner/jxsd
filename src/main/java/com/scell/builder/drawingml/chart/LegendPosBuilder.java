@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.LegendPosModel;
+import com.scell.model.drawingml.chart.LegendPosValueModel;
 
 public class LegendPosBuilder {
-  private LegendPosModel val;
+  private LegendPosValueModel val;
 
   public LegendPosBuilder() {
   }
 
-  public LegendPosBuilder setVal(LegendPosModel val) {
+  public LegendPosBuilder setVal(LegendPosValueModel val) {
     this.val = val;
     return this;
   }

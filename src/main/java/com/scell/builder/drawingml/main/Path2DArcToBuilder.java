@@ -1,37 +1,37 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.AdjAngleModel;
-import com.scell.model.drawingml.main.AdjCoordinateModel;
+import com.scell.model.drawingml.main.AdjAngleValueModel;
+import com.scell.model.drawingml.main.AdjCoordinateValueModel;
 import com.scell.model.drawingml.main.Path2DArcToModel;
 
 public class Path2DArcToBuilder {
-  private AdjAngleModel stAng;
+  private AdjAngleValueModel stAng;
 
-  private AdjAngleModel swAng;
+  private AdjAngleValueModel swAng;
 
-  private AdjCoordinateModel wR;
+  private AdjCoordinateValueModel wR;
 
-  private AdjCoordinateModel hR;
+  private AdjCoordinateValueModel hR;
 
   public Path2DArcToBuilder() {
   }
 
-  public Path2DArcToBuilder setStAng(AdjAngleModel stAng) {
+  public Path2DArcToBuilder setStAng(AdjAngleValueModel stAng) {
     this.stAng = stAng;
     return this;
   }
 
-  public Path2DArcToBuilder setSwAng(AdjAngleModel swAng) {
+  public Path2DArcToBuilder setSwAng(AdjAngleValueModel swAng) {
     this.swAng = swAng;
     return this;
   }
 
-  public Path2DArcToBuilder setWR(AdjCoordinateModel wR) {
+  public Path2DArcToBuilder setWR(AdjCoordinateValueModel wR) {
     this.wR = wR;
     return this;
   }
 
-  public Path2DArcToBuilder setHR(AdjCoordinateModel hR) {
+  public Path2DArcToBuilder setHR(AdjCoordinateValueModel hR) {
     this.hR = hR;
     return this;
   }

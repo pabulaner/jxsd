@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.PerspectiveModel;
+import com.scell.model.drawingml.chart.PerspectiveValueModel;
 
 public class PerspectiveBuilder {
-  private PerspectiveModel val;
+  private PerspectiveValueModel val;
 
   public PerspectiveBuilder() {
   }
 
-  public PerspectiveBuilder setVal(PerspectiveModel val) {
+  public PerspectiveBuilder setVal(PerspectiveValueModel val) {
     this.val = val;
     return this;
   }

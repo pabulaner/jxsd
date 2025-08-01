@@ -1,20 +1,20 @@
 package com.scell.model.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
 
 public class Transform2DModel {
-  private final BooleanModel flipV;
+  private final BooleanValueModel flipV;
 
-  private final AngleModel rot;
+  private final AngleValueModel rot;
 
-  private final BooleanModel flipH;
+  private final BooleanValueModel flipH;
 
   private final Point2DModel off;
 
   private final PositiveSize2DModel ext;
 
-  public Transform2DModel(BooleanModel flipV, AngleModel rot, BooleanModel flipH, Point2DModel off,
-      PositiveSize2DModel ext) {
+  public Transform2DModel(BooleanValueModel flipV, AngleValueModel rot, BooleanValueModel flipH,
+      Point2DModel off, PositiveSize2DModel ext) {
     this.flipV = flipV;
     this.rot = rot;
     this.flipH = flipH;
@@ -22,15 +22,15 @@ public class Transform2DModel {
     this.ext = ext;
   }
 
-  public BooleanModel getFlipV() {
+  public BooleanValueModel getFlipV() {
     return this.flipV;
   }
 
-  public AngleModel getRot() {
+  public AngleValueModel getRot() {
     return this.rot;
   }
 
-  public BooleanModel getFlipH() {
+  public BooleanValueModel getFlipH() {
     return this.flipH;
   }
 

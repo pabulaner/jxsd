@@ -4,15 +4,17 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaComplex;
 import io.github.pabulaner.jxsd.java.JavaField;
+import io.github.pabulaner.jxsd.java.JavaInterface;
+import io.github.pabulaner.jxsd.java.JavaMethod;
 import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.util.Name;
+import io.github.pabulaner.jxsd.util.Name;
+import org.docx4j.dml.chart.CTBoolean;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -37,96 +39,36 @@ public class Transformer {
 
     public TransformResult transform(JavaResult input) {
         implementations = new HashMap<>();
-        List<JavaClass> classes = new ArrayList<>(input.classes());
+        List<JavaClass> classes = new ArrayList<>(removeReplaced(input.classes()));
 
-        removeReplaced(classes);
         classes.addAll(createInterfaces());
-
-        classes.forEach(value -> {
-            applyInterfaces(value);
-            classes.add(transform(value, this::applyRefactors));
-        });
+        classes = classes.stream()
+                .peek(this::applyInterfaces)
+                .toList();
 
         return new TransformResult(input.scope(), implementations, classes);
     }
 
-    private JavaClass transform(JavaClass input, Function<JavaClass, JavaClass> function) {
-        if (input instanceof JavaComplex casted) {
-            List<JavaClass> inners = casted.inners()
-                    .stream()
-                    .map(inner -> transform(inner, function))
-                    .toList();
-
-            input = TransformUtil.withInnersAndFields(casted, inners, casted.fields());
-        }
-
-        return function.apply(input);
-    }
-
     private void applyInterfaces(JavaClass input) {
         if (input instanceof JavaComplex casted) {
-            casted.inners().forEach(this::applyInterfaces);
+            casted.getInners().forEach(this::applyInterfaces);
         }
 
-        ClassTransform transform = findTransform(input.type());
+        ClassTransform transform = findTransform(input.getType());
         List<JavaType> result = new ArrayList<>();
 
         if (transform != null) {
-            transform.getInterfaces().forEach(iface -> {
-                JavaType type = new JavaType(input.type().pkg(), iface.getName());
-                result.add(type);
-            });
+            transform.getInterfaces().forEach(iface -> result.add(new JavaType.Builder()
+                    .setPkg(input.getType().getPkg())
+                    .setName(iface.getName())
+                    .build()));
         }
 
-        implementations.put(input.type(), result);
-    }
-
-    private JavaClass applyRefactors(JavaClass input) {
-        JavaType type = input.type();
-
-        if (input instanceof JavaComplex casted) {
-            List<JavaField> fields = casted.fields()
-                    .stream()
-                    .map(field -> {
-                        JavaType fieldType = field.type();
-                        List<String> outer = new ArrayList<>(type.outer());
-                        outer.add(type.name());
-
-                        RefactorTransform fieldTypeReplace = findRefactor(fieldType, ClassTransform::getReplace);
-                        RefactorTransform fieldTypeRename = findRefactor(fieldType, ClassTransform::getRename);
-                        RefactorTransform fieldNameRename = findRefactor(type.pkg(), outer, new Name(field.name()).toLower(), ClassTransform::getRename);
-
-                        if (fieldTypeReplace != null) {
-                            fieldType.outer().clear();
-                            fieldType = TransformUtil.withName(fieldType, fieldTypeReplace.getWith());
-                        }
-
-                        if (fieldTypeRename != null) {
-                            fieldType = TransformUtil.withName(fieldType, fieldTypeRename.getWith());
-                        }
-
-                        if (fieldNameRename != null) {
-                            field = TransformUtil.withName(field, fieldNameRename.getWith());
-                        }
-
-                        return TransformUtil.withType(field, fieldType);
-                    })
-                    .toList();
-
-            input = TransformUtil.withInnersAndFields(casted, casted.inners(), fields);
-        }
-
-        RefactorTransform rename = findRefactor(type, ClassTransform::getRename);
-
-        if (rename != null) {
-            return TransformUtil.withType(input, TransformUtil.withName(type, rename.getWith()));
-        }
-
-        return input;
+        implementations.put(input.getType(), List.copyOf(result));
     }
 
     private RefactorTransform findRefactor(JavaType type, BiFunction<ClassTransform, String, RefactorTransform> refactor) {
-        return findRefactor(type.pkg(), type.outer(), new Name(type.name()).toUpper(), refactor);
+        return findRefactor(type.getPkg(), type.getOuter(), new Name(type.getName()).toUpper(), refactor);
     }
 
     private RefactorTransform findRefactor(List<String> pkg, List<String> outer, String name, BiFunction<ClassTransform, String, RefactorTransform> refactor) {
@@ -138,7 +80,7 @@ public class Transformer {
     }
 
     private ClassTransform findTransform(JavaType type) {
-        return findTransform(type.pkg(), type.outer(), type.name());
+        return findTransform(type.getPkg(), type.getOuter(), type.getName());
     }
 
     private ClassTransform findTransform(List<String> pkg, List<String> outer, String name) {
@@ -163,17 +105,22 @@ public class Transformer {
         return transform;
     }
 
-    private void removeReplaced(List<JavaClass> input) {
-        for (Iterator<JavaClass> it = input.iterator(); it.hasNext(); ) {
-            JavaClass clazz = it.next();
-            RefactorTransform refactor = findRefactor(clazz.type(), ClassTransform::getReplace);
+    private List<JavaClass> removeReplaced(List<JavaClass> input) {
+        return input.stream()
+                .filter(clazz -> {
+                    RefactorTransform refactor = findRefactor(clazz.getType(), ClassTransform::getReplace);
+                    return refactor == null;
+                })
+                .map(clazz -> {
+                    if (clazz instanceof JavaComplex casted) {
+                        return casted.builder()
+                                .setInners(removeReplaced(casted.getInners()))
+                                .build();
+                    }
 
-            if (refactor != null) {
-                it.remove();
-            } else if (clazz instanceof JavaComplex casted) {
-                removeReplaced(casted.inners());
-            }
-        }
+                    return clazz;
+                })
+                .toList();
     }
 
     private List<JavaInterface> createInterfaces() {
@@ -182,9 +129,12 @@ public class Transformer {
         transforms.values().forEach(transform -> transform.getInterfaces()
                 .stream()
                 .map(iface -> {
-                    JavaType type = new JavaType(transform.getPkg(), iface.getName());
+                    JavaType type = new JavaType.Builder()
+                            .setPkg(transform.getPkg())
+                            .setName(iface.getName())
+                            .build();
 
-                    List<JavaInterface.Method> methods = iface.getMethods()
+                    List<JavaMethod> methods = iface.getMethods()
                             .stream()
                             .map(method -> {
                                 List<String> pkg = transform.getPkg();
@@ -194,18 +144,34 @@ public class Transformer {
                                 }
 
                                 String methodName = method.getName();
-                                JavaType methodType = new JavaType(pkg, method.getType(), 0, method.isList() ? Integer.MAX_VALUE : 1);
+                                JavaType methodType = new JavaType.Builder()
+                                        .setPkg(pkg)
+                                        .setName(method.getType())
+                                        .setMinOccurs(0)
+                                        .setMaxOccurs(method.isList() ? Integer.MAX_VALUE : 1)
+                                        .build();
 
-                                return new JavaInterface.Method(methodName, methodType, method.isWildcard());
+                                return new JavaMethod.Builder()
+                                        .setName(methodName)
+                                        .setType(methodType)
+                                        .setIsGeneric(method.isGeneric())
+                                        .build();
                             })
                             .toList();
 
-                    List<JavaType> ext = iface.getExt()
+                    List<JavaType> interfaces = iface.getExt()
                             .stream()
-                            .map(val -> new JavaType(transform.getPkg(), val.getName()))
+                            .map(val -> new JavaType.Builder()
+                                    .setPkg(transform.getPkg())
+                                    .setName(val.getName())
+                                    .build())
                             .toList();
 
-                    return new JavaInterface(type, ext, methods);
+                    return new JavaInterface.Builder()
+                            .setType(type)
+                            .setInterfaces(interfaces)
+                            .setMethods(methods)
+                            .build();
                 })
                 .forEach(result::add));
 

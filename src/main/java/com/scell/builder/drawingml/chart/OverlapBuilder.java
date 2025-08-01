@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.OverlapModel;
+import com.scell.model.drawingml.chart.OverlapValueModel;
 
 public class OverlapBuilder {
-  private OverlapModel val;
+  private OverlapValueModel val;
 
   public OverlapBuilder() {
   }
 
-  public OverlapBuilder setVal(OverlapModel val) {
+  public OverlapBuilder setVal(OverlapValueModel val) {
     this.val = val;
     return this;
   }

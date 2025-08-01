@@ -16,7 +16,7 @@ import com.scell.model.drawingml.chart.UnsignedIntModel;
 import com.scell.model.drawingml.main.ShapePropertiesModel;
 import java.util.List;
 
-public class BarSerBuilder {
+public class BarSerBuilder implements ISeriesValueBuilder, IInvertIfNegativeComponentValueBuilder, IPictureOptionsComponentValueBuilder {
   private UnsignedIntModel idx;
 
   private UnsignedIntModel order;

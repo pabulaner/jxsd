@@ -9,6 +9,6 @@ public class OverlapConverter {
 
   public static OverlapModel fromDocx4J(CTOverlap value) {
     if (value == null) return null;
-    return new OverlapModel(OverlapConverter.fromDocx4J(value.getVal()));
+    return new OverlapModel(OverlapValueConverter.fromDocx4J(value.getVal()));
   }
 }

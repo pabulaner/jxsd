@@ -1,18 +1,18 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.drawingml.main.BaseStylesModel;
+import com.scell.model.drawingml.main.BaseStylesValueModel;
 import com.scell.model.drawingml.main.ClipboardStyleSheetModel;
 import com.scell.model.drawingml.main.ColorMappingModel;
 
 public class ClipboardStyleSheetBuilder {
-  private BaseStylesModel themeElements;
+  private BaseStylesValueModel themeElements;
 
   private ColorMappingModel clrMap;
 
   public ClipboardStyleSheetBuilder() {
   }
 
-  public ClipboardStyleSheetBuilder setThemeElements(BaseStylesModel themeElements) {
+  public ClipboardStyleSheetBuilder setThemeElements(BaseStylesValueModel themeElements) {
     this.themeElements = themeElements;
     return this;
   }

@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class AxPosModel {
-  private final AxPosModel val;
+  private final AxPosValueModel val;
 
-  public AxPosModel(AxPosModel val) {
+  public AxPosModel(AxPosValueModel val) {
     this.val = val;
   }
 
-  public AxPosModel getVal() {
+  public AxPosValueModel getVal() {
     return this.val;
   }
 }

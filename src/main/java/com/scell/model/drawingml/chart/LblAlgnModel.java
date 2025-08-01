@@ -1,13 +1,13 @@
 package com.scell.model.drawingml.chart;
 
 public class LblAlgnModel {
-  private final LblAlgnModel val;
+  private final LblAlgnValueModel val;
 
-  public LblAlgnModel(LblAlgnModel val) {
+  public LblAlgnModel(LblAlgnValueModel val) {
     this.val = val;
   }
 
-  public LblAlgnModel getVal() {
+  public LblAlgnValueModel getVal() {
     return this.val;
   }
 }

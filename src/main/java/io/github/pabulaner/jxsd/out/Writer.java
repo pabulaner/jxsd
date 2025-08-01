@@ -24,7 +24,7 @@ public class Writer {
 
         map.parse(result, (type, result) -> {
             // TODO: figure out nice way to do this
-            if (type.name().endsWith("SystemColorValConverter")) {
+            if (type.getName().endsWith("SystemColorValConverter")) {
                 return;
             }
 
@@ -41,7 +41,7 @@ public class Writer {
     }
 
     private void write(Path path, JavaType type, TypeSpec result) throws IOException {
-        JavaFile.builder(ParserUtil.convertPkg(type.pkg()), result)
+        JavaFile.builder(ParserUtil.convertPkg(type.getPkg()), result)
                 .build()
                 .writeTo(path);
     }

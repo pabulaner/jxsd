@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.ScatterStyleModel;
+import com.scell.model.drawingml.chart.ScatterStyleValueModel;
 
 public class ScatterStyleBuilder {
-  private ScatterStyleModel val;
+  private ScatterStyleValueModel val;
 
   public ScatterStyleBuilder() {
   }
 
-  public ScatterStyleBuilder setVal(ScatterStyleModel val) {
+  public ScatterStyleBuilder setVal(ScatterStyleValueModel val) {
     this.val = val;
     return this;
   }

@@ -1,20 +1,21 @@
 package com.scell.model.drawingml.main;
 
 public class TileInfoPropertiesModel {
-  private final PercentageModel sy;
+  private final PercentageValueModel sy;
 
-  private final CoordinateModel ty;
+  private final CoordinateValueModel ty;
 
-  private final PercentageModel sx;
+  private final PercentageValueModel sx;
 
-  private final TileFlipModeModel flip;
+  private final TileFlipModeValueModel flip;
 
-  private final CoordinateModel tx;
+  private final CoordinateValueModel tx;
 
-  private final RectAlignmentModel algn;
+  private final RectAlignmentValueModel algn;
 
-  public TileInfoPropertiesModel(PercentageModel sy, CoordinateModel ty, PercentageModel sx,
-      TileFlipModeModel flip, CoordinateModel tx, RectAlignmentModel algn) {
+  public TileInfoPropertiesModel(PercentageValueModel sy, CoordinateValueModel ty,
+      PercentageValueModel sx, TileFlipModeValueModel flip, CoordinateValueModel tx,
+      RectAlignmentValueModel algn) {
     this.sy = sy;
     this.ty = ty;
     this.sx = sx;
@@ -23,27 +24,27 @@ public class TileInfoPropertiesModel {
     this.algn = algn;
   }
 
-  public PercentageModel getSy() {
+  public PercentageValueModel getSy() {
     return this.sy;
   }
 
-  public CoordinateModel getTy() {
+  public CoordinateValueModel getTy() {
     return this.ty;
   }
 
-  public PercentageModel getSx() {
+  public PercentageValueModel getSx() {
     return this.sx;
   }
 
-  public TileFlipModeModel getFlip() {
+  public TileFlipModeValueModel getFlip() {
     return this.flip;
   }
 
-  public CoordinateModel getTx() {
+  public CoordinateValueModel getTx() {
     return this.tx;
   }
 
-  public RectAlignmentModel getAlgn() {
+  public RectAlignmentValueModel getAlgn() {
     return this.algn;
   }
 }

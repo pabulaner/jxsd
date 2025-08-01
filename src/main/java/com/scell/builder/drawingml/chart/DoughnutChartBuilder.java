@@ -9,7 +9,7 @@ import com.scell.model.drawingml.chart.HoleSizeModel;
 import com.scell.model.drawingml.chart.PieSerModel;
 import java.util.List;
 
-public class DoughnutChartBuilder {
+public class DoughnutChartBuilder implements IPieChartValueBuilder {
   private BooleanModel varyColors;
 
   private List<PieSerModel> ser;

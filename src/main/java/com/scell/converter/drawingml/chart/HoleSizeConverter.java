@@ -9,6 +9,6 @@ public class HoleSizeConverter {
 
   public static HoleSizeModel fromDocx4J(CTHoleSize value) {
     if (value == null) return null;
-    return new HoleSizeModel(HoleSizeConverter.fromDocx4J(value.getVal()));
+    return new HoleSizeModel(HoleSizeValueConverter.fromDocx4J(value.getVal()));
   }
 }

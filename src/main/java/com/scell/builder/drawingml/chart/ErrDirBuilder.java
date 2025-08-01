@@ -1,14 +1,15 @@
 package com.scell.builder.drawingml.chart;
 
 import com.scell.model.drawingml.chart.ErrDirModel;
+import com.scell.model.drawingml.chart.ErrDirValueModel;
 
 public class ErrDirBuilder {
-  private ErrDirModel val;
+  private ErrDirValueModel val;
 
   public ErrDirBuilder() {
   }
 
-  public ErrDirBuilder setVal(ErrDirModel val) {
+  public ErrDirBuilder setVal(ErrDirValueModel val) {
     this.val = val;
     return this;
   }

@@ -1,28 +1,28 @@
 package com.scell.model.drawingml.main;
 
 public class BevelModel {
-  private final PositiveCoordinateModel h;
+  private final PositiveCoordinateValueModel h;
 
-  private final PositiveCoordinateModel w;
+  private final PositiveCoordinateValueModel w;
 
-  private final BevelPresetTypeModel prst;
+  private final BevelPresetTypeValueModel prst;
 
-  public BevelModel(PositiveCoordinateModel h, PositiveCoordinateModel w,
-      BevelPresetTypeModel prst) {
+  public BevelModel(PositiveCoordinateValueModel h, PositiveCoordinateValueModel w,
+      BevelPresetTypeValueModel prst) {
     this.h = h;
     this.w = w;
     this.prst = prst;
   }
 
-  public PositiveCoordinateModel getH() {
+  public PositiveCoordinateValueModel getH() {
     return this.h;
   }
 
-  public PositiveCoordinateModel getW() {
+  public PositiveCoordinateValueModel getW() {
     return this.w;
   }
 
-  public BevelPresetTypeModel getPrst() {
+  public BevelPresetTypeValueModel getPrst() {
     return this.prst;
   }
 }

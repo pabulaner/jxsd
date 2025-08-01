@@ -1,17 +1,17 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.BooleanModel;
-import com.scell.model.drawingml.main.AngleModel;
+import com.scell.model.XMLSchema.BooleanValueModel;
+import com.scell.model.drawingml.main.AngleValueModel;
 import com.scell.model.drawingml.main.GroupTransform2DModel;
 import com.scell.model.drawingml.main.Point2DModel;
 import com.scell.model.drawingml.main.PositiveSize2DModel;
 
 public class GroupTransform2DBuilder {
-  private BooleanModel flipV;
+  private BooleanValueModel flipV;
 
-  private AngleModel rot;
+  private AngleValueModel rot;
 
-  private BooleanModel flipH;
+  private BooleanValueModel flipH;
 
   private Point2DModel off;
 
@@ -24,17 +24,17 @@ public class GroupTransform2DBuilder {
   public GroupTransform2DBuilder() {
   }
 
-  public GroupTransform2DBuilder setFlipV(BooleanModel flipV) {
+  public GroupTransform2DBuilder setFlipV(BooleanValueModel flipV) {
     this.flipV = flipV;
     return this;
   }
 
-  public GroupTransform2DBuilder setRot(AngleModel rot) {
+  public GroupTransform2DBuilder setRot(AngleValueModel rot) {
     this.rot = rot;
     return this;
   }
 
-  public GroupTransform2DBuilder setFlipH(BooleanModel flipH) {
+  public GroupTransform2DBuilder setFlipH(BooleanValueModel flipH) {
     this.flipH = flipH;
     return this;
   }

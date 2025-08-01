@@ -1,15 +1,15 @@
 package com.scell.builder.drawingml.main;
 
-import com.scell.model.XMLSchema.TokenModel;
+import com.scell.model.XMLSchema.TokenValueModel;
 import com.scell.model.drawingml.main.EffectReferenceModel;
 
 public class EffectReferenceBuilder {
-  private TokenModel ref;
+  private TokenValueModel ref;
 
   public EffectReferenceBuilder() {
   }
 
-  public EffectReferenceBuilder setRef(TokenModel ref) {
+  public EffectReferenceBuilder setRef(TokenValueModel ref) {
     this.ref = ref;
     return this;
   }

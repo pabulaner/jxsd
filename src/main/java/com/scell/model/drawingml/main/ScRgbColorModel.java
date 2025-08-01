@@ -5,15 +5,15 @@ import java.lang.Object;
 import java.util.List;
 
 public class ScRgbColorModel {
-  private final PercentageModel g;
+  private final PercentageValueModel g;
 
-  private final PercentageModel r;
+  private final PercentageValueModel r;
 
-  private final PercentageModel b;
+  private final PercentageValueModel b;
 
   private final List<ColorTransformModel> egColorTransform;
 
-  public ScRgbColorModel(PercentageModel g, PercentageModel r, PercentageModel b,
+  public ScRgbColorModel(PercentageValueModel g, PercentageValueModel r, PercentageValueModel b,
       List<ColorTransformModel> egColorTransform) {
     this.g = g;
     this.r = r;
@@ -21,15 +21,15 @@ public class ScRgbColorModel {
     this.egColorTransform = egColorTransform;
   }
 
-  public PercentageModel getG() {
+  public PercentageValueModel getG() {
     return this.g;
   }
 
-  public PercentageModel getR() {
+  public PercentageValueModel getR() {
     return this.r;
   }
 
-  public PercentageModel getB() {
+  public PercentageValueModel getB() {
     return this.b;
   }
 

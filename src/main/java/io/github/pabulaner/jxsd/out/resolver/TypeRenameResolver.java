@@ -7,19 +7,33 @@ import java.util.function.Function;
 
 public class TypeRenameResolver implements Resolver {
 
+    private final List<String> pkg;
+
     private final Function<String, String> rename;
 
     public TypeRenameResolver(Function<String, String> rename) {
+        this(null, rename);
+    }
+
+    public TypeRenameResolver(List<String> pkg, Function<String, String> rename) {
+        this.pkg = pkg;
         this.rename = rename;
     }
 
     @Override
     public JavaType resolve(JavaType type) {
-        List<String> outer = type.outer()
+        if (pkg != null && !pkg.equals(type.getPkg())) {
+            return type;
+        }
+
+        List<String> outer = type.getOuter()
                 .stream()
                 .map(rename)
                 .toList();
 
-        return new JavaType(type.pkg(), outer, rename.apply(type.name()), type.minOccurs(), type.maxOccurs());
+        return new JavaType.Builder(type)
+                .setOuter(outer)
+                .setName(rename.apply(type.getName()))
+                .build();
     }
 }
