@@ -21,7 +21,7 @@ public class InterfaceBuilderParser extends BuilderParser<JavaInterface> {
         clazz.getMethods().forEach(method -> builder.addMethod(MethodSpec.methodBuilder(ParserUtil.convertMethodName(SET, method.getName()))
                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                 .returns(ParserUtil.convertType(clazz.getType(), getResolver()))
-                .addParameter(ParserUtil.convertType(clazz.getType(), getModelResolver()), VALUE)
+                .addParameter(ParserUtil.convertType(method.getType(), getModelResolver()), VALUE)
                 .build()));
 
         return builder;

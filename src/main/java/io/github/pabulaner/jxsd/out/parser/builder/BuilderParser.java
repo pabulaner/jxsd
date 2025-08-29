@@ -26,8 +26,8 @@ public abstract class BuilderParser<TClass extends JavaClass> extends BaseParser
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, TClass clazz) {
         getGroup()
                 .getMap()
-                .getImplementations()
-                .get(clazz.getType())
+                .getTransformMap()
+                .findImplementations(clazz.getType())
                 .forEach(impl -> builder.addSuperinterface(ParserUtil.convertType(impl, getResolver())));
 
         return builder;

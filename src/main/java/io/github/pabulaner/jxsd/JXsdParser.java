@@ -75,11 +75,11 @@ public class JXsdParser {
         JavaResult java = new JavaParser().parse(xsd);
         TransformResult transform = new Transformer(List.of(JXsdParser.class.getResource("/transforms/transform.xml"))).transform(java);
         Writer writer = new Writer(transform.classes());
-        ParserMap map = new ParserMap(transform.scope(), transform.implementations());
+        ParserMap map = new ParserMap(transform.scope(), transform.map());
 
-        map.addGroup(ModelParserGroup.NAME, new ModelParserGroup(map, Resolvers.getDefault(config.basePkg, "model")));
-        map.addGroup(BuilderParserGroup.NAME, new BuilderParserGroup(map, Resolvers.getDefault(config.basePkg, "builder")));
-        map.addGroup(ConverterParserGroup.NAME, new ConverterParserGroup(map, Resolvers.getDefault(config.basePkg, "converter")));
+        map.addGroup(ModelParserGroup.NAME, new ModelParserGroup(map, Resolvers.getDefault(config.basePkg, "model", transform.map())));
+        map.addGroup(BuilderParserGroup.NAME, new BuilderParserGroup(map, Resolvers.getDefault(config.basePkg, "builder", transform.map())));
+        map.addGroup(ConverterParserGroup.NAME, new ConverterParserGroup(map, Resolvers.getDefault(config.basePkg, "converter", transform.map())));
 
         writer.write(config.outputPath, map);
 
@@ -91,16 +91,18 @@ public class JXsdParser {
         }
 
         path = path.resolve("converter/drawingml/main/SystemColorConverter.java");
-        String content = Files.readString(path).replaceAll("SystemColorValConverter.fromDocx4J\\(value.getVal\\(\\)\\), HexBinary3Converter.fromDocx4J\\(value.getLastClr\\(\\)\\)", "null, null");
+        String content = Files.readString(path).replaceAll("SystemColorValValueConverter.fromDocx4J\\(value.getVal\\(\\)\\), HexBinary3ValueConverter.fromDocx4J\\(value.getLastClr\\(\\)\\)", "null, null");
 
         Files.writeString(path, content);
+
+        path = path.getParent().resolve("SystemColorValValueConverter.java");
+        Files.delete(path);
     }
 
     private static JavaResult filter(JavaResult result) {
         JavaScope scope = result.scope();
         List<JavaClass> classes = result.classes()
                 .stream()
-
                 .toList();
 
         return new JavaResult(scope, classes);

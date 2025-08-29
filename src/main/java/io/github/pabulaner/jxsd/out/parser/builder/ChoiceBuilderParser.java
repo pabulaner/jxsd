@@ -48,7 +48,7 @@ public class ChoiceBuilderParser extends BuilderParser<JavaChoice> {
 
         clazz.getFields().forEach(field -> {
             TypeName fieldType = ParserUtil.convertType(field.getType(), getModelResolver());
-            String fieldName = new Name(getResolver().resolve(field.getType(), field.getName())).toVarUpper();
+            String fieldName = new Name(getResolver().resolve(clazz.getType(), field.getName())).toVarUpper();
 
             build.addStatement("$N ($N.$N == $L) $N $T.$N(($T) $N.$N)", IF, THIS, TYPE, index[0], RETURN, modelType, ParserUtil.convertMethodName(NEW, fieldName), fieldType, THIS, VALUE);
             from.beginControlFlow("$N ($N.$N())", IF, VALUE, ParserUtil.convertMethodName(IS, fieldName))

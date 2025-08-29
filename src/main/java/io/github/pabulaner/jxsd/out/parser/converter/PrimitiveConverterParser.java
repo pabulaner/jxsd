@@ -14,23 +14,31 @@ public class PrimitiveConverterParser extends ConverterParser<JavaPrimitive> {
         super(group);
     }
 
-    public MethodSpec.Builder parse(MethodSpec.Builder builder, JavaRestriction clazz) {
-        return parse(builder, clazz.getType(), clazz.getPrimitive());
-    }
-
     @Override
     public MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaPrimitive clazz) {
-        return parse(builder, clazz.getType(), clazz.getType());
+        return parseFromDocx4j(builder, clazz.getType());
+    }
+
+    public MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaRestriction clazz) {
+        return parseFromDocx4j(builder, clazz.getType());
+    }
+
+    private MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaType type) {
+        TypeName modelType = ParserUtil.convertType(type, getModelResolver());
+        return builder.addStatement("$N $N $T($N)", RETURN, NEW, modelType, VALUE);
     }
 
     @Override
     protected MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, JavaPrimitive clazz) {
-        return builder;
+        return parseToDocx4j(builder, clazz.getType());
     }
 
-    private MethodSpec.Builder parse(MethodSpec.Builder builder, JavaType type, JavaType primitive) {
-        TypeName modelType = ParserUtil.convertType(type, getModelResolver());
-        return builder.addStatement("$N $N $T($N)", RETURN, NEW, modelType, VALUE);
+    public MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, JavaRestriction clazz) {
+        return parseToDocx4j(builder, clazz.getType());
+    }
+
+    private MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, JavaType type) {
+        return builder.addStatement("$N $N.$N()", RETURN, VALUE, ParserUtil.convertGetterName(type, VALUE));
     }
 
     @Override

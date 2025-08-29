@@ -6,16 +6,21 @@ import java.util.List;
 import java.util.function.Function;
 
 public class TypeRenameResolver implements Resolver {
+    
+    public interface Rename {
+        
+        String apply(boolean inner, String name);
+    }
 
     private final List<String> pkg;
 
-    private final Function<String, String> rename;
+    private final Rename rename;
 
-    public TypeRenameResolver(Function<String, String> rename) {
+    public TypeRenameResolver(Rename rename) {
         this(null, rename);
     }
 
-    public TypeRenameResolver(List<String> pkg, Function<String, String> rename) {
+    public TypeRenameResolver(List<String> pkg, Rename rename) {
         this.pkg = pkg;
         this.rename = rename;
     }
@@ -26,14 +31,21 @@ public class TypeRenameResolver implements Resolver {
             return type;
         }
 
+        boolean[] inner = { false };
+
         List<String> outer = type.getOuter()
                 .stream()
-                .map(rename)
+                .map(name -> {
+                    String result = rename.apply(inner[0], name);
+                    inner[0] = true;
+
+                    return result;
+                })
                 .toList();
 
         return new JavaType.Builder(type)
                 .setOuter(outer)
-                .setName(rename.apply(type.getName()))
+                .setName(rename.apply(inner[0], type.getName()))
                 .build();
     }
 }

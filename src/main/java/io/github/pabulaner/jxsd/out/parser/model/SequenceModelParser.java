@@ -26,7 +26,7 @@ public class SequenceModelParser extends ModelParser<JavaSequence> {
 
         clazz.getFields().forEach(field -> {
             TypeName fieldType = ParserUtil.convertType(field.getType(), getResolver());
-            Name fieldName = new Name(getResolver().resolve(field.getType(), field.getName()));
+            Name fieldName = new Name(getResolver().resolve(clazz.getType(), field.getName()));
 
             constructor.addParameter(fieldType, fieldName.toVarLower())
                     .addStatement("$N.$N = $N", THIS, fieldName.toVarLower(), fieldName.toVarLower());

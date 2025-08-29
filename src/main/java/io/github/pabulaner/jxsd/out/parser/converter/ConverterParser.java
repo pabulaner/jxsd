@@ -24,6 +24,12 @@ public abstract class ConverterParser<TClass extends JavaClass> extends BasePars
 
     protected static final String VAL = "val";
 
+    protected static final String RESULT = "result";
+
+    protected static final String CLEAR = "clear";
+
+    protected static final String ADD_ALL = "addAll";
+
     protected static final String STREAM = "stream";
 
     protected static final String MAP = "map";
@@ -48,16 +54,16 @@ public abstract class ConverterParser<TClass extends JavaClass> extends BasePars
         MethodSpec.Builder convertToDocx4j = MethodSpec.methodBuilder(ParserUtil.convertMethodName(TO, DOCX4J))
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(parseDocx4jType(clazz))
-                .addParameter(ParserUtil.convertType(clazz.getType(), getModelResolver()), VALUE)
-                .addStatement("$N $N", RETURN, NULL);
+                .addParameter(ParserUtil.convertType(clazz.getType(), getModelResolver()), VALUE);
 
         convertFromDocx4j.addStatement("$N ($N == $N) $N $N", IF, VALUE, NULL, RETURN, NULL);
+        convertToDocx4j.addStatement("$N ($N == $N) $N $N", IF, VALUE, NULL, RETURN, NULL);
 
         return builder.addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PRIVATE)
                         .build())
-                .addMethod(parseFromDocx4j(convertFromDocx4j, clazz).build());
-                // .addMethod(parseToDocx4j(convertToDocx4j, clazz).build());
+                .addMethod(parseFromDocx4j(convertFromDocx4j, clazz).build())
+                .addMethod(parseToDocx4j(convertToDocx4j, clazz).build());
     }
 
     protected abstract MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, TClass clazz);

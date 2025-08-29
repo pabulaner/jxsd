@@ -28,6 +28,14 @@ public class EnumConverterParser extends ConverterParser<JavaEnum> {
 
     @Override
     protected MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, JavaEnum clazz) {
-        return builder;
+        TypeName modelType = ParserUtil.convertType(clazz.getType(), getModelResolver());
+        TypeName docx4jType = parseDocx4jType(clazz);
+
+        clazz.getValues().forEach(value -> {
+            value = new Name(value).toEnum();
+            builder.addStatement("$N ($N == $T.$N) $N $T.$N", IF, VALUE, modelType, value, RETURN, docx4jType, value);
+        });
+
+        return builder.addStatement("$N $N", RETURN, NULL);
     }
 }

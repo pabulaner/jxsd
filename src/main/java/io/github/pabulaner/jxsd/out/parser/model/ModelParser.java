@@ -17,11 +17,10 @@ public abstract class ModelParser<TClass extends JavaClass> extends BaseParser<T
 
     @Override
     protected TypeSpec.Builder parse(TypeSpec.Builder builder, TClass clazz) {
-        System.out.println(clazz.getType().getName());
         getGroup()
                 .getMap()
-                .getImplementations()
-                .get(clazz.getType())
+                .getTransformMap()
+                .findImplementations(clazz.getType())
                 .forEach(impl -> builder.addSuperinterface(ParserUtil.convertType(impl, getResolver())));
 
         return builder;

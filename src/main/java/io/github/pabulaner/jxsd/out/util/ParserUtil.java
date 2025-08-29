@@ -123,8 +123,6 @@ public final class ParserUtil {
                 ? "is"
                 : "get";
 
-        System.out.println(type.getName());
-
         return prefix + new Name(name).toVarUpper();
     }
 }

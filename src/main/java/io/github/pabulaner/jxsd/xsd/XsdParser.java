@@ -128,15 +128,6 @@ public class XsdParser {
         throw new IllegalStateException("Unreachable");
     }
 
-    private void print(Node node, String tabs) {
-        System.out.println(tabs + node.getLocalName() + ": " + ((node.getAttributes() != null) ? node.getAttributes().getNamedItem("name") : null));
-        for (int i = 0; i < node.getChildNodes().getLength(); i++) {
-            Node child = node.getChildNodes().item(i);
-            print(child, tabs + "\t");
-
-        }
-    }
-
     private XsdComplexStruct parseComplexType(XSComplexType xs) {
         XsdType type = parseType(xs);
 

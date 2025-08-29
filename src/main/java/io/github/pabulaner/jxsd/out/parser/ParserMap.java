@@ -4,6 +4,7 @@ import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.java.JavaType;
+import io.github.pabulaner.jxsd.transform.TransformMap;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,13 +15,13 @@ public class ParserMap {
 
     private final JavaScope scope;
 
-    private final Map<JavaType, List<JavaType>> implementations;
+    private final TransformMap map;
 
     private final Map<String, ParserGroup> groups;
 
-    public ParserMap(JavaScope scope, Map<JavaType, List<JavaType>> implementations) {
+    public ParserMap(JavaScope scope, TransformMap map) {
         this.scope = scope;
-        this.implementations = implementations;
+        this.map = map;
         this.groups = new HashMap<>();
     }
 
@@ -43,8 +44,8 @@ public class ParserMap {
         return scope;
     }
 
-    public Map<JavaType, List<JavaType>> getImplementations() {
-        return implementations;
+    public TransformMap getTransformMap() {
+        return map;
     }
 
     public ParserGroup getGroup(String key) {

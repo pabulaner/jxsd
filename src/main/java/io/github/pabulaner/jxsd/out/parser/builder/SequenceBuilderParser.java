@@ -42,7 +42,7 @@ public class SequenceBuilderParser extends BuilderParser<JavaSequence> {
 
         clazz.getFields().forEach(field -> {
             TypeName fieldType = ParserUtil.convertType(field.getType(), getModelResolver());
-            Name fieldName = new Name(getResolver().resolve(field.getType(), field.getName()));
+            Name fieldName = new Name(getResolver().resolve(clazz.getType(), field.getName()));
 
             if (first[0]) {
                 first[0] = false;

@@ -3,88 +3,88 @@
 
     <!-- COMPONENT -->
 
-    <interface name="IAxIdComponent">
+    <interface name="IT_AxIdComponent">
         <method name="axId" type="CT_UnsignedInt" list="true" />
     </interface>
-    <interface name="IBarGroupingComponent">
+    <interface name="IT_BarGroupingComponent">
         <method name="grouping" type="CT_BarGrouping" />
     </interface>
-    <interface name="IDropLinesComponent">
+    <interface name="IT_DropLinesComponent">
         <method name="dropLines" type="CT_ChartLines" />
     </interface>
-    <interface name="IErrBarsComponent">
+    <interface name="IT_ErrBarsComponent">
         <method name="errBars" type="CT_ErrBars" />
     </interface>
-    <interface name="IGapDepthComponent">
+    <interface name="IT_GapDepthComponent">
         <method name="gapDepth" type="CT_GapAmount" />
     </interface>
-    <interface name="IGroupingComponent">
+    <interface name="IT_GroupingComponent">
         <method name="grouping" type="CT_Grouping" />
     </interface>
-    <interface name="IInvertIfNegativeComponent">
+    <interface name="IT_InvertIfNegativeComponent">
         <method name="invertIfNegative" type="CT_Boolean" />
     </interface>
-    <interface name="IMarkerComponent">
+    <interface name="IT_MarkerComponent">
         <method name="marker" type="CT_Marker" />
     </interface>
-    <interface name="IPictureOptionsComponent">
+    <interface name="IT_PictureOptionsComponent">
         <method name="pictureOptions" type="CT_PictureOptions" />
     </interface>
-    <interface name="ISmoothComponent">
+    <interface name="IT_SmoothComponent">
         <method name="smooth" type="CT_Boolean" />
     </interface>
-    <interface name="ITrendlineComponent">
+    <interface name="IT_TrendlineComponent">
         <method name="trendline" type="CT_Trendline" />
     </interface>
 
     <!-- CHART -->
 
-    <interface name="IChart">
+    <interface name="IT_Chart">
         <method name="dLbls" type="CT_DLbls" />
         <method name="extLst" type="CT_ExtensionList" />
-        <method name="ser" type="ISeries" isGeneric="true" list="true" />
+        <method name="ser" type="IT_Series" isGeneric="true" list="true" />
         <method name="varyColors" type="CT_Boolean" />
     </interface>
-    <interface name="IAreaChart">
-        <extends name="IChart" />
-        <extends name="IAxIdComponent" />
-        <extends name="IDropLinesComponent" />
-        <extends name="IGroupingComponent" />
+    <interface name="IT_AreaChart">
+        <extends name="IT_Chart" />
+        <extends name="IT_AxIdComponent" />
+        <extends name="IT_DropLinesComponent" />
+        <extends name="IT_GroupingComponent" />
         <method name="dropLines" type="CT_ChartLines" />
     </interface>
-    <interface name="IBarChart">
-        <extends name="IChart" />
-        <extends name="IAxIdComponent" />
+    <interface name="IT_BarChart">
+        <extends name="IT_Chart" />
+        <extends name="IT_AxIdComponent" />
         <method name="barDir" type="CT_BarDir" />
         <method name="gapWidth" type="CT_GapAmount" />
     </interface>
-    <interface name="IBubbleChart">
-        <extends name="IChart" />
+    <interface name="IT_BubbleChart">
+        <extends name="IT_Chart" />
         <method name="bubble3D" type="CT_Boolean" />
         <method name="bubbleScale" type="CT_BubbleScale" />
         <method name="showNegBubbles" type="CT_Boolean" />
         <method name="sizeRepresents" type="CT_SizeRepresents" />
     </interface>
-    <interface name="ILineChart">
-        <extends name="IChart" />
+    <interface name="IT_LineChart">
+        <extends name="IT_Chart" />
     </interface>
-    <interface name="IPieChart">
-        <extends name="IChart" />
+    <interface name="IT_PieChart">
+        <extends name="IT_Chart" />
         <method name="firstSliceAng" type="CT_FirstSliceAng" />
     </interface>
-    <interface name="IScatterChart">
-        <extends name="IChart" />
-        <extends name="IAxIdComponent" />
+    <interface name="IT_ScatterChart">
+        <extends name="IT_Chart" />
+        <extends name="IT_AxIdComponent" />
         <method name="scatterStyle" type="CT_ScatterStyle" />
     </interface>
 
     <!-- SERIES -->
 
-    <interface name="ISeries">
+    <interface name="IT_Series">
         <method name="idx" type="CT_UnsignedInt" />
         <method name="order" type="CT_UnsignedInt" />
         <method name="tx" type="CT_SerTx" />
-        <method name="spPr" pkg="models.drawingml.main" type="CT_ShapeProperties" />
+        <method name="spPr" pkg="drawingml.main" type="CT_ShapeProperties" />
         <method name="dPt" type="CT_DPt" list="true" />
         <method name="dLbls" type="CT_DLbls" />
         <method name="cat" type="CT_AxDataSource" />
@@ -95,72 +95,72 @@
     <!-- CLASSES -->
 
     <class name="CT_AreaChart">
-        <implements name="IAreaChart" />
+        <implements name="IT_AreaChart" />
     </class>
     <class name="CT_Area3DChart">
-        <implements name="IAreaChart" />
-        <implements name="IGapDepthComponent" />
+        <implements name="IT_AreaChart" />
+        <implements name="IT_GapDepthComponent" />
     </class>
     <class name="CT_BarChart">
-        <implements name="IBarChart" />
+        <implements name="IT_BarChart" />
     </class>
     <class name="CT_Bar3DChart">
-        <implements name="IBarChart" />
-        <implements name="IGapDepthComponent" />
+        <implements name="IT_BarChart" />
+        <implements name="IT_GapDepthComponent" />
     </class>
     <class name="CT_BubbleChart">
-        <implements name="IBubbleChart" />
+        <implements name="IT_BubbleChart" />
     </class>
     <class name="CT_LineChart">
-        <implements name="ILineChart" />
+        <implements name="IT_LineChart" />
     </class>
     <class name="CT_Line3DChart">
-        <implements name="ILineChart" />
-        <implements name="IGapDepthComponent" />
+        <implements name="IT_LineChart" />
+        <implements name="IT_GapDepthComponent" />
     </class>
     <class name="CT_PieChart">
-        <implements name="IPieChart" />
+        <implements name="IT_PieChart" />
     </class>
     <class name="CT_DoughnutChart">
-        <implements name="IPieChart" />
+        <implements name="IT_PieChart" />
     </class>
     <class name="CT_ScatterChart">
-        <implements name="IScatterChart" />
+        <implements name="IT_ScatterChart" />
     </class>
 
     <class name="CT_AreaSer">
-        <implements name="ISeries" />
-        <implements name="IPictureOptionsComponent" />
+        <implements name="IT_Series" />
+        <implements name="IT_PictureOptionsComponent" />
     </class>
     <class name="CT_BarSer">
-        <implements name="ISeries" />
-        <implements name="IInvertIfNegativeComponent" />
-        <implements name="IPictureOptionsComponent" />
+        <implements name="IT_Series" />
+        <implements name="IT_InvertIfNegativeComponent" />
+        <implements name="IT_PictureOptionsComponent" />
     </class>
     <class name="CT_BubbleSer">
-        <implements name="ISeries" />
-        <implements name="IInvertIfNegativeComponent" />
+        <implements name="IT_Series" />
+        <implements name="IT_InvertIfNegativeComponent" />
         <rename value="xVal" with="cat" />
         <rename value="yVal" with="val" />
     </class>
     <class name="CT_LineSer">
-        <implements name="ISeries" />
-        <implements name="IMarkerComponent" />
-        <implements name="ISmoothComponent" />
+        <implements name="IT_Series" />
+        <implements name="IT_MarkerComponent" />
+        <implements name="IT_SmoothComponent" />
     </class>
     <class name="CT_PieSer">
-        <implements name="ISeries" />
+        <implements name="IT_Series" />
     </class>
     <class name="CT_ScatterSer">
-        <implements name="ISeries" />
-        <implements name="IMarkerComponent" />
-        <implements name="ISmoothComponent" />
+        <implements name="IT_Series" />
+        <implements name="IT_MarkerComponent" />
+        <implements name="IT_SmoothComponent" />
         <rename value="xVal" with="cat" />
         <rename value="yVal" with="val" />
     </class>
 
     <class name="CT_PlotArea">
-        <replace value="AreaChartOrArea3DChartOrLineChart" with="IChart" />
+        <!--<replace value="AreaChartOrArea3DChartOrLineChart" with="IT_Chart" />-->
         <rename value="areaChartOrArea3DChartOrLineChart" with="charts" />
     </class>
 </transform>

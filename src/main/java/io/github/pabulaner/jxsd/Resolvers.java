@@ -1,5 +1,7 @@
 package io.github.pabulaner.jxsd;
 
+import io.github.pabulaner.jxsd.out.resolver.TransformResolver;
+import io.github.pabulaner.jxsd.transform.TransformMap;
 import io.github.pabulaner.jxsd.util.Name;
 import io.github.pabulaner.jxsd.out.resolver.PkgCleanResolver;
 import io.github.pabulaner.jxsd.out.resolver.PkgParentResolver;
@@ -18,25 +20,34 @@ public final class Resolvers {
         // empty
     }
 
-    public static Resolver getDefault(List<String> pkg, String type) {
+    public static Resolver getDefault(List<String> pkg, String type, TransformMap map) {
         pkg = new ArrayList<>(pkg);
         pkg.add(new Name(type).toLower());
 
         return Resolver.combine(
+                new TransformResolver(map),
                 new PkgParentResolver(pkg),
                 new PkgCleanResolver(),
-                new TypeRenameResolver(value -> {
+                new TypeRenameResolver((inner, value) -> {
                     String result = new Name(value).toUpper();
                     String suffix = new Name(type).toUpper();
 
+                    if (inner) {
+                        return result;
+                    }
+
                     int index = result.indexOf("_");
+
                     boolean isValue = false;
+                    boolean isInterface = false;
 
                     if (index >= 0) {
                         String prefix = result.substring(0, index);
 
                         if (prefix.equals("ST")) {
                             isValue = true;
+                        } else if (prefix.equals("IT")) {
+                            isInterface = true;
                         }
                     } else {
                         isValue = true;
@@ -46,7 +57,13 @@ public final class Resolvers {
                         suffix = "Value" + suffix;
                     }
 
-                    return result.substring(index + 1) + suffix;
+                    result = result.substring(index + 1) + suffix;
+
+                    if (isInterface) {
+                        result = "I" + result;
+                    }
+
+                    return result;
                 }));
     }
 
@@ -59,6 +76,6 @@ public final class Resolvers {
                 new PkgRenameResolver(rename),
                 new PkgParentResolver(List.of("org", "docx4j")),
                 new PkgCleanResolver(),
-                new TypeRenameResolver(value -> new Name(value).toUpper().replace("_", "")));
+                new TypeRenameResolver((inner, value) -> new Name(value).toUpper().replace("_", "")));
     }
 }

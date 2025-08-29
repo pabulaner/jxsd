@@ -26,7 +26,7 @@ public class ChoiceConverterParser extends ConverterParser<JavaChoice> {
 
         clazz.getFields().forEach(field -> {
             JavaType fieldType = getModelResolver().resolve(field.getType());
-            String fieldName = getModelResolver().resolve(field.getType(), field.getName());
+            String fieldName = getDocx4jResolver().resolve(clazz.getType(), field.getName());
             TypeName converterType = ParserUtil.convertType(field.getType(), getResolver(), false);
 
             String from = ParserUtil.convertMethodName(FROM, DOCX4J);
@@ -45,6 +45,27 @@ public class ChoiceConverterParser extends ConverterParser<JavaChoice> {
 
     @Override
     protected MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, JavaChoice clazz) {
+        TypeName docx4jType = ParserUtil.convertType(clazz.getType(), getDocx4jResolver());
+        builder.addStatement("$T $N = $N $T()", docx4jType, RESULT, NEW, docx4jType);
+
+        clazz.getFields().forEach(field -> {
+            JavaType fieldType = getModelResolver().resolve(field.getType());
+            String fieldName = getDocx4jResolver().resolve(clazz.getType(), field.getName());
+            TypeName converterType = ParserUtil.convertType(field.getType(), getResolver(), false);
+
+            String to = ParserUtil.convertMethodName(TO, DOCX4J);
+            String is = ParserUtil.convertMethodName(IS, fieldName);
+            String getter = ParserUtil.convertMethodName(GET, fieldName);
+            String setter = ParserUtil.convertMethodName(SET, fieldName);
+
+            if (fieldType.isList()) {
+                throw new UnsupportedOperationException("Not implemented");
+            } else {
+                builder.addStatement("$N ($N.$N()) $N.$N($T.$N($N.$N()))", IF, VALUE, is, RESULT, setter, converterType, to, VALUE, getter);
+            }
+        });
+
+        builder.addStatement("$N $N", RETURN, RESULT);
         return builder;
     }
 }

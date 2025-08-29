@@ -7,5 +7,5 @@ import io.github.pabulaner.jxsd.java.JavaType;
 import java.util.List;
 import java.util.Map;
 
-public record TransformResult(JavaScope scope, Map<JavaType, List<JavaType>> implementations, List<JavaClass> classes) {
+public record TransformResult(JavaScope scope, List<JavaClass> classes, TransformMap map) {
 }

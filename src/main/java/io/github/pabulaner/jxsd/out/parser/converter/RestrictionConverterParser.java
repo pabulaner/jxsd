@@ -16,12 +16,12 @@ public class RestrictionConverterParser extends ConverterParser<JavaRestriction>
 
     @Override
     public MethodSpec.Builder parseFromDocx4j(MethodSpec.Builder builder, JavaRestriction clazz) {
-        return new PrimitiveConverterParser(getGroup()).parse(builder, clazz);
+        return new PrimitiveConverterParser(getGroup()).parseFromDocx4j(builder, clazz);
     }
 
     @Override
     protected MethodSpec.Builder parseToDocx4j(MethodSpec.Builder builder, JavaRestriction clazz) {
-        return builder;
+        return new PrimitiveConverterParser(getGroup()).parseToDocx4j(builder, clazz);
     }
 
     @Override
