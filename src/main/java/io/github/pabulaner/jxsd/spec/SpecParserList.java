@@ -5,20 +5,20 @@ import io.github.pabulaner.jxsd.java.JavaClass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecParserList<TSpec extends JavaClass> implements SpecParser<TSpec> {
+public class SpecParserList implements SpecParser {
 
-    private final List<SpecParser<TSpec>> parsers;
+    private final List<SpecParser> parsers;
 
     public SpecParserList() {
         this.parsers = new ArrayList<>();
     }
 
     @Override
-    public void parse(SpecContext<TSpec> ctx) {
+    public void parse(SpecContext ctx) {
         parsers.forEach(parser -> parser.parse(ctx));
     }
 
-    public void add(SpecParser<TSpec> parser) {
+    public void add(SpecParser parser) {
         parsers.add(parser);
     }
 }

@@ -1,12 +1,10 @@
 package io.github.pabulaner.jxsd.spec;
 
-import io.github.pabulaner.jxsd.java.JavaClass;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class SpecParserSwitch<TSpec extends JavaClass> implements SpecParser<TSpec> {
+public class SpecParserSwitch implements SpecParser {
 
     private final boolean greedy;
 
@@ -18,7 +16,7 @@ public class SpecParserSwitch<TSpec extends JavaClass> implements SpecParser<TSp
     }
 
     @Override
-    public void parse(SpecContext<TSpec> ctx) {
+    public void parse(SpecContext ctx) {
         for (Entry entry : entries) {
             if (entry.condition.test(ctx)) {
                 entry.parser.parse(ctx);
@@ -30,19 +28,10 @@ public class SpecParserSwitch<TSpec extends JavaClass> implements SpecParser<TSp
         }
     }
 
-    public void add(Predicate<SpecContext<TSpec>> condition, SpecParser<TSpec> parser) {
+    public void add(Predicate<SpecContext> condition, SpecParser parser) {
         entries.add(new Entry(condition, parser));
     }
 
-    private final class Entry {
-
-        final Predicate<SpecContext<TSpec>> condition;
-
-        final SpecParser<TSpec> parser;
-
-        private Entry(Predicate<SpecContext<TSpec>> condition, SpecParser<TSpec> parser) {
-            this.condition = condition;
-            this.parser = parser;
-        }
+    private record Entry(Predicate<SpecContext> condition, SpecParser parser) {
     }
 }

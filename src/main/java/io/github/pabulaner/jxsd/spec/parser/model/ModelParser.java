@@ -4,35 +4,38 @@ import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaEnum;
 import io.github.pabulaner.jxsd.java.JavaInterface;
-import io.github.pabulaner.jxsd.java.JavaPrimitive;
-import io.github.pabulaner.jxsd.out.resolver.Resolver;
 import io.github.pabulaner.jxsd.spec.SpecContext;
+import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.SpecParser;
-import io.github.pabulaner.jxsd.spec.SpecParserMap;
+import io.github.pabulaner.jxsd.spec.resolver.Resolver;
 
-public class ModelParser implements SpecParser<JavaClass> {
+import javax.lang.model.element.Modifier;
+import java.util.List;
 
-    private final SpecParserMap map;
+public class ModelParser implements SpecParser {
 
     public ModelParser() {
-        map = new SpecParserMap();
-        map.add(JavaPrimitive.class, new PrimitiveModelParser());
+        // empty
     }
 
     @Override
-    public void parse(SpecContext<JavaClass> ctx) {
-        JavaClass spec = ctx.getSpec();
-        String name = ctx.getResolver()
-                .resolve(spec.getType())
-                .getName();
+    public void parse(SpecContext ctx) {
+        JavaClass spec = ctx.get(SpecKey.SPEC);
+        List<JavaClass> outer = ctx.getOrDefault(SpecKey.OUTER, List.of());
+        Resolver resolver = ctx.get(SpecKey.MODEL_RESOLVER);
 
+        String name = resolver.resolve(spec.getType()).getName();
         TypeSpec.Builder builder = switch (spec) {
             case JavaInterface ignored -> TypeSpec.interfaceBuilder(name);
             case JavaEnum ignored -> TypeSpec.enumBuilder(name);
             default -> TypeSpec.classBuilder(name);
         };
 
-        ctx.setBuilder(builder);
-        map.parse(ctx);
+        if (!outer.isEmpty()) {
+            builder.addModifiers(Modifier.STATIC);
+        }
+
+        ctx.set(SpecKey.BUILDER, builder);
+        ctx.next();
     }
 }

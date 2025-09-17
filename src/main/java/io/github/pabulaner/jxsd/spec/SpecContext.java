@@ -1,53 +1,65 @@
 package io.github.pabulaner.jxsd.spec;
 
-import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaScope;
-import io.github.pabulaner.jxsd.out.resolver.Resolver;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Queue;
 
-public final class SpecContext<TSpec extends JavaClass> {
+public final class SpecContext {
 
-    private TypeSpec.Builder builder;
+    private final Queue<SpecParser> parsers;
 
-    private JavaScope scope;
+    private boolean aborted;
 
-    private TSpec spec;
+    private final Map<String, Object> data;
 
-    private Resolver resolver;
-
-    public SpecContext() {
-        // empty
+    public SpecContext(Queue<SpecParser> parsers) {
+        this.parsers = parsers;
+        this.aborted = false;
+        this.data = new HashMap<>();
     }
 
-    public TypeSpec.Builder getBuilder() {
-        return builder;
+    public SpecContext copy() {
+        return new SpecContext(parsers);
     }
 
-    public void setBuilder(TypeSpec.Builder builder) {
-        this.builder = builder;
+    public void next() {
+        if (!parsers.isEmpty()) {
+            parsers.remove().parse(this);
+        }
     }
 
-    public JavaScope getScope() {
-        return scope;
+    public void abort() {
+        aborted = true;
     }
 
-    public void setScope(JavaScope scope) {
-        this.scope = scope;
+    @SuppressWarnings("unchecked")
+    public <TResult> TResult get(String key) {
+        if (has(key)) {
+            return (TResult) data.get(key);
+        }
+
+        throw new IllegalArgumentException("Key '" + key + "' is not present in context");
     }
 
-    public TSpec getSpec() {
-        return spec;
+    public <TResult> TResult getOrDefault(String key, TResult defaultValue) {
+        return has(key)
+                ? get(key)
+                : defaultValue;
     }
 
-    public void setSpec(TSpec spec) {
-        this.spec = spec;
+    public void set(String key, Object value) {
+        data.put(key, value);
     }
 
-    public Resolver getResolver() {
-        return resolver;
+    public boolean has(String key) {
+        return data.containsKey(key);
     }
 
-    public void setResolver(Resolver resolver) {
-        this.resolver = resolver;
+    public boolean isCompleted() {
+        return parsers.isEmpty();
+    }
+
+    public boolean isAborted() {
+        return aborted;
     }
 }
