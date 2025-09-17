@@ -27,6 +27,10 @@ public final class JavaType {
         return maxOccurs > 1;
     }
 
+    public boolean isRequired() {
+        return minOccurs >= 1;
+    }
+
     public List<String> getPkg() {
         return pkg;
     }

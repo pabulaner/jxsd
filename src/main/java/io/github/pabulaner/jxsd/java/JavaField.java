@@ -6,9 +6,12 @@ public final class JavaField {
 
     private final String name;
 
-    private JavaField(JavaType type, String name) {
+    private final String value;
+
+    private JavaField(JavaType type, String name, String value) {
         this.type = type;
         this.name = name;
+        this.value = value;
     }
 
     public JavaType getType() {
@@ -19,11 +22,17 @@ public final class JavaField {
         return name;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     public static final class Builder {
 
         private JavaType type = null;
 
         private String name = null;
+
+        private String value = null;
 
         public Builder() {
         }
@@ -43,8 +52,13 @@ public final class JavaField {
             return this;
         }
 
+        public Builder setValue(String value) {
+            this.value = value;
+            return this;
+        }
+
         public JavaField build() {
-            return new JavaField(type, name);
+            return new JavaField(type, name, value);
         }
     }
 }

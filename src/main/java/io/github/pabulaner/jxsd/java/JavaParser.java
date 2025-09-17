@@ -170,6 +170,7 @@ public class JavaParser {
         fields.add(new JavaField.Builder()
                 .setType(type)
                 .setName(value.name())
+                .setValue(value.value())
                 .build());
     }
 
