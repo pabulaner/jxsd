@@ -14,10 +14,6 @@ import java.util.List;
 
 public class ModelParser implements SpecParser {
 
-    public ModelParser() {
-        // empty
-    }
-
     @Override
     public void parse(SpecContext ctx) {
         JavaClass spec = ctx.get(SpecKey.SPEC);

@@ -14,5 +14,7 @@ public final class SpecKey {
 
     public static final String BUILDER_RESOLVER = "builder_resolver";
 
+    public static final String CONVERTER_RESOLVER = "converter_resolver";
+
     public static final String DOCX4J_RESOLVER = "docx4j_resolver";
 }

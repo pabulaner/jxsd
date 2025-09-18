@@ -1,0 +1,45 @@
+package io.github.pabulaner.jxsd.gen.parser;
+
+import com.squareup.javapoet.TypeSpec;
+import io.github.pabulaner.jxsd.java.JavaClass;
+import io.github.pabulaner.jxsd.gen.resolver.Resolver;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ParserGroup implements Parser<JavaClass> {
+
+    private final ParserMap map;
+
+    private final Resolver resolver;
+
+    private final Map<Class<? extends JavaClass>, Parser<JavaClass>> parsers;
+
+    public ParserGroup(ParserMap map, Resolver resolver) {
+        this.map = map;
+        this.resolver = resolver;
+        this.parsers = new HashMap<>();
+    }
+
+    @Override
+    public TypeSpec parse(boolean isStatic, JavaClass clazz) {
+        Parser<JavaClass> parser = parsers.get(clazz.getClass());
+
+        return parser != null
+                ? parser.parse(isStatic, clazz)
+                : null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <TClass extends JavaClass> void addParser(Class<TClass> parserClass, Parser<TClass> parser) {
+        parsers.put(parserClass, (isStatic, clazz) -> parser.parse(isStatic, (TClass) clazz));
+    }
+
+    public ParserMap getMap() {
+        return map;
+    }
+
+    public Resolver getResolver() {
+        return resolver;
+    }
+}

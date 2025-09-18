@@ -2,14 +2,11 @@ package io.github.pabulaner.jxsd.spec.parser.model;
 
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.util.ParserUtil;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.SpecParser;
 
 import javax.lang.model.element.Modifier;
-import java.util.List;
 
 public class UnionModelParser implements SpecParser {
 

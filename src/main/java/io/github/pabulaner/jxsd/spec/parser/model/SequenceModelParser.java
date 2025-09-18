@@ -5,8 +5,8 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.out.resolver.Resolver;
-import io.github.pabulaner.jxsd.out.util.ParserUtil;
+import io.github.pabulaner.jxsd.gen.resolver.Resolver;
+import io.github.pabulaner.jxsd.gen.util.ParserUtil;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.parser.ComplexSpecParser;
@@ -29,18 +29,18 @@ public class SequenceModelParser extends ComplexSpecParser {
                 .addModifiers(Modifier.PUBLIC);
 
         spec.getFields().forEach(field -> {
-            TypeName fieldType = ParserUtil.convertType(field.getType(), resolver);
+            TypeName fieldTypeName = ParserUtil.convertType(field.getType(), resolver);
             Name fieldName = new Name(resolver.resolve(specType, field.getName()));
             String fieldNameLower = fieldName.toVarLower();
             String fieldNameUpper = fieldName.toVarUpper();
 
-            constructor.addParameter(fieldType, fieldNameUpper)
+            constructor.addParameter(fieldTypeName, fieldNameUpper)
                     .addStatement("this.$N = $N", fieldNameLower, fieldNameLower);
 
-            builder.addField(fieldType, fieldNameLower, Modifier.PRIVATE, Modifier.FINAL)
+            builder.addField(fieldTypeName, fieldNameLower, Modifier.PRIVATE, Modifier.FINAL)
                     .addMethod(MethodSpec.methodBuilder("get" + fieldNameUpper)
                             .addModifiers(Modifier.PUBLIC)
-                            .returns(fieldType)
+                            .returns(fieldTypeName)
                             .addStatement("return this.$N", fieldNameLower)
                             .build());
         });

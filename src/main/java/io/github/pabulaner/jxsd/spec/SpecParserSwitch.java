@@ -6,12 +6,9 @@ import java.util.function.Predicate;
 
 public class SpecParserSwitch implements SpecParser {
 
-    private final boolean greedy;
-
     private final List<Entry> entries;
 
-    public SpecParserSwitch(boolean greedy) {
-        this.greedy = greedy;
+    public SpecParserSwitch() {
         this.entries = new ArrayList<>();
     }
 
@@ -20,16 +17,16 @@ public class SpecParserSwitch implements SpecParser {
         for (Entry entry : entries) {
             if (entry.condition.test(ctx)) {
                 entry.parser.parse(ctx);
-
-                if (greedy) {
-                    return;
-                }
+                return;
             }
         }
+
+        ctx.next();
     }
 
-    public void add(Predicate<SpecContext> condition, SpecParser parser) {
+    public SpecParserSwitch add(Predicate<SpecContext> condition, SpecParser parser) {
         entries.add(new Entry(condition, parser));
+        return this;
     }
 
     private record Entry(Predicate<SpecContext> condition, SpecParser parser) {

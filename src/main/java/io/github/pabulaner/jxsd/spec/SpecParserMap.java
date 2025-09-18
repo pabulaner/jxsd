@@ -19,14 +19,15 @@ public class SpecParserMap implements SpecParser {
         Class<?> clazz = ctx.get(SpecKey.SPEC).getClass();
         SpecParser parser = parsers.get(clazz);
 
-        if (parser == null) {
-            throw new IllegalArgumentException("No spec parser found for class '" + clazz + "'");
+        if (parser != null) {
+            parser.parse(ctx);
         }
 
-        parser.parse(ctx);
+        ctx.next();
     }
 
-    public <TSpec extends JavaClass> void add(Class<TSpec> clazz, SpecParser parser) {
+    public <TSpec extends JavaClass> SpecParserMap add(Class<TSpec> clazz, SpecParser parser) {
         parsers.put(clazz, parser);
+        return this;
     }
 }

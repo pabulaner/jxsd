@@ -1,0 +1,51 @@
+package io.github.pabulaner.jxsd.spec.parser.builder;
+
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeSpec;
+import io.github.pabulaner.jxsd.gen.util.ParserUtil;
+import io.github.pabulaner.jxsd.java.JavaEnum;
+import io.github.pabulaner.jxsd.java.JavaPrimitive;
+import io.github.pabulaner.jxsd.java.JavaType;
+import io.github.pabulaner.jxsd.spec.SpecContext;
+import io.github.pabulaner.jxsd.spec.SpecKey;
+import io.github.pabulaner.jxsd.spec.SpecParser;
+import io.github.pabulaner.jxsd.spec.resolver.Resolver;
+import io.github.pabulaner.jxsd.util.Name;
+
+import javax.lang.model.element.Modifier;
+
+public class EnumBuilderParser implements SpecParser {
+
+    @Override
+    public void parse(SpecContext ctx) {
+        JavaEnum spec = ctx.get(SpecKey.SPEC);
+        TypeSpec.Builder specBuilder = ctx.get(SpecKey.BUILDER);
+        MethodSpec.Builder fromBuilder = ctx.get(BuilderParser.FROM_BUILDER);
+        MethodSpec.Builder buildBuilder = ctx.get(BuilderParser.BUILD_BUILDER);
+        Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
+        Resolver builderResolver = ctx.get(SpecKey.BUILDER_RESOLVER);
+
+        JavaType specType = spec.getType();
+        TypeName modelType = ParserUtil.convertType(specType, modelResolver);
+        TypeName builderType = ParserUtil.convertType(specType, builderResolver);
+
+        specBuilder.addModifiers(Modifier.PUBLIC)
+                .addField(modelType, "value", Modifier.PRIVATE)
+                .addMethod(MethodSpec.constructorBuilder()
+                        .addModifiers(Modifier.PUBLIC)
+                        .build())
+                .addMethod(MethodSpec.methodBuilder("setValue")
+                        .addModifiers(Modifier.PUBLIC)
+                        .returns(builderType)
+                        .addParameter(modelType, "value")
+                        .addStatement("this.value = value")
+                        .addStatement("return this")
+                        .build());
+
+        fromBuilder.addStatement("this.value = value").addStatement("return this");
+        buildBuilder.addStatement("return this.value");
+
+        ctx.next();
+    }
+}

@@ -18,14 +18,23 @@ public final class SpecContext {
         this.data = new HashMap<>();
     }
 
+    public static void exec(SpecContext ctx) {
+        ctx.next();
+
+        if (ctx.isCompleted() == ctx.isAborted()) {
+            throw new IllegalStateException("Context did not exec correctly");
+        }
+    }
+
     public SpecContext copy() {
-        return new SpecContext(parsers);
+        SpecContext ctx = new SpecContext(parsers);
+        ctx.data.putAll(data);
+
+        return ctx;
     }
 
     public void next() {
-        if (!parsers.isEmpty()) {
-            parsers.remove().parse(this);
-        }
+        parsers.remove().parse(this);
     }
 
     public void abort() {
@@ -56,7 +65,7 @@ public final class SpecContext {
     }
 
     public boolean isCompleted() {
-        return parsers.isEmpty();
+        return parsers.isEmpty() && !aborted;
     }
 
     public boolean isAborted() {

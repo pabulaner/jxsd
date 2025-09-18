@@ -4,7 +4,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
-import io.github.pabulaner.jxsd.out.util.ParserUtil;
+import io.github.pabulaner.jxsd.gen.util.ParserUtil;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.SpecParser;
@@ -18,17 +18,17 @@ public class PrimitiveModelParser implements SpecParser {
         JavaPrimitive spec = ctx.get(SpecKey.SPEC);
         TypeSpec.Builder builder = ctx.get(SpecKey.BUILDER);
 
-        TypeName specType = ParserUtil.convertPrimitive(spec.getType());
+        TypeName primitiveTypeName = ParserUtil.convertPrimitive(spec.getType());
 
-        builder.addField(specType, "value", Modifier.PRIVATE, Modifier.FINAL)
+        builder.addField(primitiveTypeName, "value", Modifier.PRIVATE, Modifier.FINAL)
                 .addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)
-                        .addParameter(specType, "value")
+                        .addParameter(primitiveTypeName, "value")
                         .addStatement("this.value = value")
                         .build())
                 .addMethod(MethodSpec.methodBuilder("getValue")
                         .addModifiers(Modifier.PUBLIC)
-                        .returns(specType)
+                        .returns(primitiveTypeName)
                         .addStatement("return this.value")
                         .build());
 
