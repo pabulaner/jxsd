@@ -4,9 +4,10 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaChoice;
+import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.gen.resolver.Resolver;
-import io.github.pabulaner.jxsd.gen.util.ParserUtil;
+import io.github.pabulaner.jxsd.spec.resolver.Resolver;
+import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.parser.ComplexSpecParser;
@@ -20,7 +21,7 @@ public class SequenceModelParser extends ComplexSpecParser {
     public void parse(SpecContext ctx) {
         super.parse(ctx);
 
-        JavaChoice spec = ctx.get(SpecKey.SPEC);
+        JavaSequence spec = ctx.get(SpecKey.SPEC);
         TypeSpec.Builder builder = ctx.get(SpecKey.BUILDER);
         Resolver resolver = ctx.get(SpecKey.MODEL_RESOLVER);
 
@@ -34,7 +35,7 @@ public class SequenceModelParser extends ComplexSpecParser {
             String fieldNameLower = fieldName.toVarLower();
             String fieldNameUpper = fieldName.toVarUpper();
 
-            constructor.addParameter(fieldTypeName, fieldNameUpper)
+            constructor.addParameter(fieldTypeName, fieldNameLower)
                     .addStatement("this.$N = $N", fieldNameLower, fieldNameLower);
 
             builder.addField(fieldTypeName, fieldNameLower, Modifier.PRIVATE, Modifier.FINAL)

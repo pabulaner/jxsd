@@ -27,6 +27,8 @@ public class ModelParser implements SpecParser {
             default -> TypeSpec.classBuilder(name);
         };
 
+        builder.addModifiers(Modifier.PUBLIC);
+
         if (!outer.isEmpty()) {
             builder.addModifiers(Modifier.STATIC);
         }

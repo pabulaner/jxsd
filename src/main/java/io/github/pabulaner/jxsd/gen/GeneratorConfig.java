@@ -1,13 +1,12 @@
 package io.github.pabulaner.jxsd.gen;
 
+import io.github.pabulaner.jxsd.spec.SpecParser;
+import io.github.pabulaner.jxsd.spec.resolver.Resolver;
+
 import java.util.List;
+import java.util.Map;
 
 public class GeneratorConfig {
-
-    /**
-     * The xsd files to use.
-     */
-    private List<String> input;
 
     /**
      * The directory for the generated classes.
@@ -19,21 +18,23 @@ public class GeneratorConfig {
      */
     private List<String> pkg;
 
+    /**
+     * The parsers to generate the classes.
+     */
+    private List<SpecParser> parsers;
+
+    /**
+     * The resolvers that are used by the parsers.
+     */
+    private Map<String, Resolver> resolvers;
+
     public static GeneratorConfig createDefault() {
         GeneratorConfig result = new GeneratorConfig();
-        result.input = List.of();
         result.output = "./target";
         result.pkg = List.of("jxsd", "gen");
+        result.resolvers = Map.of();
 
         return result;
-    }
-
-    public List<String> getInput() {
-        return input;
-    }
-
-    public void setInput(List<String> input) {
-        this.input = input;
     }
 
     public String getOutput() {
@@ -50,5 +51,21 @@ public class GeneratorConfig {
 
     public void setPkg(List<String> pkg) {
         this.pkg = pkg;
+    }
+
+    public List<SpecParser> getParsers() {
+        return parsers;
+    }
+
+    public void setParsers(List<SpecParser> parsers) {
+        this.parsers = parsers;
+    }
+
+    public Map<String, Resolver> getResolvers() {
+        return resolvers;
+    }
+
+    public void setResolvers(Map<String, Resolver> resolvers) {
+        this.resolvers = resolvers;
     }
 }

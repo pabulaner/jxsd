@@ -3,9 +3,8 @@ package io.github.pabulaner.jxsd.spec.parser.builder;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.gen.util.ParserUtil;
+import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.java.JavaChoice;
-import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
@@ -51,7 +50,7 @@ public class ChoiceBuilderParser extends ComplexSpecParser {
 
             fromBuilder.beginControlFlow("if (value.is$N())", fieldName)
                     .addStatement("this.type = $L", index[0])
-                    .addStatement("this.value = value.get()", fieldName)
+                    .addStatement("this.value = value.get$N()", fieldName)
                     .endControlFlow();
 
             buildBuilder.addStatement("if (this.type == $L) return $T.new$N(($T) this.value)", index[0], modelType, fieldName, fieldTypeName);

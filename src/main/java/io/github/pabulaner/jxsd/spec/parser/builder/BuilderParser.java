@@ -3,10 +3,8 @@ package io.github.pabulaner.jxsd.spec.parser.builder;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.gen.util.ParserUtil;
+import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaEnum;
-import io.github.pabulaner.jxsd.java.JavaInterface;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
@@ -34,7 +32,7 @@ public class BuilderParser implements SpecParser {
         TypeName builderTypeName = ParserUtil.convertType(specType, builderResolver);
         String name = builderResolver.resolve(spec.getType()).getName();
 
-        TypeSpec.Builder specBuilder = TypeSpec.classBuilder(name);
+        TypeSpec.Builder specBuilder = TypeSpec.classBuilder(name).addModifiers(Modifier.PUBLIC);
         MethodSpec.Builder fromBuilder = MethodSpec.methodBuilder("from")
                 .addModifiers(Modifier.PUBLIC)
                 .returns(builderTypeName)

@@ -3,7 +3,8 @@ package io.github.pabulaner.jxsd.spec.parser.builder;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.gen.util.ParserUtil;
+import io.github.pabulaner.jxsd.java.JavaSequence;
+import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.spec.SpecContext;
@@ -20,11 +21,11 @@ public class SequenceBuilderParser extends ComplexSpecParser {
     public void parse(SpecContext ctx) {
         super.parse(ctx);
 
-        JavaChoice spec = ctx.get(SpecKey.SPEC);
+        JavaSequence spec = ctx.get(SpecKey.SPEC);
         TypeSpec.Builder specBuilder = ctx.get(SpecKey.BUILDER);
         MethodSpec.Builder fromBuilder = ctx.get(BuilderParser.FROM_BUILDER);
         MethodSpec.Builder buildBuilder = ctx.get(BuilderParser.BUILD_BUILDER);
-        io.github.pabulaner.jxsd.spec.resolver.Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
+        Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
         Resolver builderResolver = ctx.get(SpecKey.BUILDER_RESOLVER);
 
         JavaType specType = spec.getType();

@@ -1,13 +1,13 @@
 package io.github.pabulaner.jxsd;
 
-import io.github.pabulaner.jxsd.gen.resolver.TransformResolver;
+import io.github.pabulaner.jxsd.spec.resolver.TransformResolver;
 import io.github.pabulaner.jxsd.transform.TransformMap;
 import io.github.pabulaner.jxsd.util.Name;
-import io.github.pabulaner.jxsd.gen.resolver.PkgCleanResolver;
-import io.github.pabulaner.jxsd.gen.resolver.PkgParentResolver;
-import io.github.pabulaner.jxsd.gen.resolver.PkgRenameResolver;
-import io.github.pabulaner.jxsd.gen.resolver.Resolver;
-import io.github.pabulaner.jxsd.gen.resolver.TypeRenameResolver;
+import io.github.pabulaner.jxsd.spec.resolver.PkgCleanResolver;
+import io.github.pabulaner.jxsd.spec.resolver.PkgParentResolver;
+import io.github.pabulaner.jxsd.spec.resolver.PkgRenameResolver;
+import io.github.pabulaner.jxsd.spec.resolver.Resolver;
+import io.github.pabulaner.jxsd.spec.resolver.TypeRenameResolver;
 
 import java.util.ArrayList;
 import java.util.HashMap;

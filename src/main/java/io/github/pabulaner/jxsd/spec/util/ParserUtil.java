@@ -1,4 +1,4 @@
-package io.github.pabulaner.jxsd.gen.util;
+package io.github.pabulaner.jxsd.spec.util;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.ParameterizedTypeName;

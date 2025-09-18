@@ -4,8 +4,8 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.gen.util.ParserUtil;
-import io.github.pabulaner.jxsd.gen.util.RestrictionUtil;
+import io.github.pabulaner.jxsd.spec.util.ParserUtil;
+import io.github.pabulaner.jxsd.spec.util.RestrictionUtil;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
@@ -38,9 +38,11 @@ public class ConverterParser implements SpecParser {
         TypeName docx4jTypeName = parseDocx4jTypeName(ctx);
         String name = converterResolver.resolve(spec.getType()).getName();
 
-        TypeSpec.Builder specBuilder = TypeSpec.classBuilder(name).addMethod(MethodSpec.constructorBuilder()
-                .addModifiers(Modifier.PRIVATE)
-                .build());
+        TypeSpec.Builder specBuilder = TypeSpec.classBuilder(name)
+                .addModifiers(Modifier.PUBLIC)
+                .addMethod(MethodSpec.constructorBuilder()
+                        .addModifiers(Modifier.PRIVATE)
+                        .build());
         MethodSpec.Builder fromBuilder = MethodSpec.methodBuilder("fromDocx4j")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(modelTypeName)

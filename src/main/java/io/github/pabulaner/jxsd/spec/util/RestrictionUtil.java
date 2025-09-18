@@ -1,4 +1,4 @@
-package io.github.pabulaner.jxsd.gen.util;
+package io.github.pabulaner.jxsd.spec.util;
 
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaScope;

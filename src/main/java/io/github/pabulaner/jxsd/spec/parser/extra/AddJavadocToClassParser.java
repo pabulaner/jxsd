@@ -32,5 +32,6 @@ public class AddJavadocToClassParser implements SpecParser {
         };
 
         builder.addJavadoc("This is a generated $N class.", name);
+        ctx.next();
     }
 }

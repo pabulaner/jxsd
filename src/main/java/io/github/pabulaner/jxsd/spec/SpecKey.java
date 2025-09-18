@@ -6,6 +6,8 @@ public final class SpecKey {
 
     public static final String SPEC = "spec";
 
+    public static final String PKG = "pkg";
+
     public static final String OUTER = "outer";
 
     public static final String BUILDER = "builder";

@@ -1,19 +1,27 @@
 package io.github.pabulaner.jxsd.spec;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public final class SpecContext {
 
-    private final Queue<SpecParser> parsers;
+    private int index;
+
+    private final List<SpecParser> parsers;
+
+    private boolean completed;
 
     private boolean aborted;
 
     private final Map<String, Object> data;
 
-    public SpecContext(Queue<SpecParser> parsers) {
+    public SpecContext(List<SpecParser> parsers) {
+        this.index = 0;
         this.parsers = parsers;
+        this.completed = false;
         this.aborted = false;
         this.data = new HashMap<>();
     }
@@ -21,8 +29,8 @@ public final class SpecContext {
     public static void exec(SpecContext ctx) {
         ctx.next();
 
-        if (ctx.isCompleted() == ctx.isAborted()) {
-            throw new IllegalStateException("Context did not exec correctly");
+        if (!ctx.isFinished()) {
+            throw new IllegalStateException("Context did not finish correctly");
         }
     }
 
@@ -34,10 +42,22 @@ public final class SpecContext {
     }
 
     public void next() {
-        parsers.remove().parse(this);
+        if (isFinished()) {
+            throw new IllegalStateException("Context is already finished");
+        }
+
+        if (index < parsers.size()) {
+            parsers.get(index++).parse(this);
+        } else {
+            completed = true;
+        }
     }
 
     public void abort() {
+        if (isFinished()) {
+            throw new IllegalStateException("Context is already finished");
+        }
+
         aborted = true;
     }
 
@@ -47,7 +67,7 @@ public final class SpecContext {
             return (TResult) data.get(key);
         }
 
-        throw new IllegalArgumentException("Key '" + key + "' is not present in context");
+        throw new NoSuchElementException("Key '" + key + "' is not present in context");
     }
 
     public <TResult> TResult getOrDefault(String key, TResult defaultValue) {
@@ -60,15 +80,23 @@ public final class SpecContext {
         data.put(key, value);
     }
 
+    public void setAll(Map<String, ?> values) {
+        data.putAll(values);
+    }
+
     public boolean has(String key) {
         return data.containsKey(key);
     }
 
     public boolean isCompleted() {
-        return parsers.isEmpty() && !aborted;
+        return completed;
     }
 
     public boolean isAborted() {
         return aborted;
+    }
+
+    private boolean isFinished() {
+        return completed || aborted;
     }
 }

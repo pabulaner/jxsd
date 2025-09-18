@@ -21,9 +21,9 @@ public class SpecParserMap implements SpecParser {
 
         if (parser != null) {
             parser.parse(ctx);
+        } else {
+            ctx.next();
         }
-
-        ctx.next();
     }
 
     public <TSpec extends JavaClass> SpecParserMap add(Class<TSpec> clazz, SpecParser parser) {
