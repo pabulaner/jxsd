@@ -7,9 +7,9 @@ public interface Resolver {
     static Resolver combine(Resolver... resolvers) {
         return new Resolver() {
             @Override
-            public JavaType resolve(JavaType type) {
+            public JavaType resolve(JavaType original, JavaType type) {
                 for (Resolver resolver : resolvers) {
-                    type = resolver.resolve(type);
+                    type = resolver.resolve(original, type);
                 }
 
                 return type;
@@ -26,7 +26,11 @@ public interface Resolver {
         };
     }
 
-    JavaType resolve(JavaType type);
+    JavaType resolve(JavaType original, JavaType type);
+
+    default JavaType resolve(JavaType type) {
+        return resolve(type, type);
+    }
 
     default String resolve(JavaType type, String name) {
         return name;

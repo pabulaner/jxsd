@@ -14,7 +14,7 @@ public class PkgRenameResolver implements Resolver {
     }
 
     @Override
-    public JavaType resolve(JavaType type) {
+    public JavaType resolve(JavaType original, JavaType type) {
         List<String> pkg = type.getPkg()
                 .stream()
                 .map(value -> rename.getOrDefault(value, value))

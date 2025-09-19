@@ -1,6 +1,7 @@
 package io.github.pabulaner.jxsd.spec.parser.builder;
 
 import com.squareup.javapoet.TypeSpec;
+import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.java.JavaType;
@@ -27,7 +28,10 @@ public class RestrictionBuilderParser implements SpecParser {
             builder.superclass(ParserUtil.convertType(spec.getParent(), resolver));
         }
 
-        ctx.set(PrimitiveBuilderParser.PRIMITIVE, spec.getPrimitive());
+        ctx.set(SpecKey.SPEC, new JavaPrimitive.Builder()
+                .setType(specType)
+                .build());
+
         new PrimitiveBuilderParser().parse(ctx);
     }
 }

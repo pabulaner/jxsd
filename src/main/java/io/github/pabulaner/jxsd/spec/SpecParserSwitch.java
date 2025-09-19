@@ -1,12 +1,14 @@
 package io.github.pabulaner.jxsd.spec;
 
+import io.github.pabulaner.jxsd.util.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class SpecParserSwitch implements SpecParser {
 
-    private final List<Entry> entries;
+    private final List<Pair<Predicate<SpecContext>, SpecParser>> entries;
 
     public SpecParserSwitch() {
         this.entries = new ArrayList<>();
@@ -14,9 +16,9 @@ public class SpecParserSwitch implements SpecParser {
 
     @Override
     public void parse(SpecContext ctx) {
-        for (Entry entry : entries) {
-            if (entry.condition.test(ctx)) {
-                entry.parser.parse(ctx);
+        for (Pair<Predicate<SpecContext>, SpecParser> entry : entries) {
+            if (entry.first().test(ctx)) {
+                entry.second().parse(ctx);
                 return;
             }
         }
@@ -25,10 +27,7 @@ public class SpecParserSwitch implements SpecParser {
     }
 
     public SpecParserSwitch add(Predicate<SpecContext> condition, SpecParser parser) {
-        entries.add(new Entry(condition, parser));
+        entries.add(new Pair<>(condition, parser));
         return this;
-    }
-
-    private record Entry(Predicate<SpecContext> condition, SpecParser parser) {
     }
 }

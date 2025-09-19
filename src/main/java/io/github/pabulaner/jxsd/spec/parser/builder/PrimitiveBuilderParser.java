@@ -34,9 +34,13 @@ public class PrimitiveBuilderParser implements SpecParser {
         TypeName builderTypeName = ParserUtil.convertType(specType, builderResolver);
         TypeName primitiveTypeName = ParserUtil.convertPrimitive(primitiveType);
 
-        specBuilder.addModifiers(Modifier.PUBLIC)
-                .addField(primitiveTypeName, "value", Modifier.PRIVATE)
-                .addMethod(MethodSpec.constructorBuilder()
+        specBuilder.addModifiers(Modifier.PUBLIC);
+
+        if (!ctx.has(PRIMITIVE)) {
+            specBuilder.addField(primitiveTypeName, "value", Modifier.PROTECTED);
+        }
+
+        specBuilder.addMethod(MethodSpec.constructorBuilder()
                         .addModifiers(Modifier.PUBLIC)
                         .build())
                 .addMethod(MethodSpec.methodBuilder("setValue")

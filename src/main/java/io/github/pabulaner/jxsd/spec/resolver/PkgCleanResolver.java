@@ -7,7 +7,7 @@ import java.util.List;
 public class PkgCleanResolver implements Resolver {
 
     @Override
-    public JavaType resolve(JavaType type) {
+    public JavaType resolve(JavaType original, JavaType type) {
         List<String> pkg = type.getPkg()
                 .stream()
                 .filter(value -> !value.isEmpty() && !value.matches("\\d+"))

@@ -16,7 +16,7 @@ public class TransformResolver implements Resolver {
     }
 
     @Override
-    public JavaType resolve(JavaType type) {
+    public JavaType resolve(JavaType original, JavaType type) {
         ClassTransform transform = map.findTransform(type, false);
 
         if (transform == null) {

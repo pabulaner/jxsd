@@ -25,7 +25,7 @@ public class TypeRenameResolver implements Resolver {
     }
 
     @Override
-    public JavaType resolve(JavaType type) {
+    public JavaType resolve(JavaType original, JavaType type) {
         if (pkg != null && !pkg.equals(type.getPkg())) {
             return type;
         }

@@ -3,6 +3,7 @@ package io.github.pabulaner.jxsd.spec.parser.model;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
+import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.spec.SpecContext;
@@ -15,7 +16,7 @@ public class PrimitiveModelParser implements SpecParser {
 
     @Override
     public void parse(SpecContext ctx) {
-        JavaPrimitive spec = ctx.get(SpecKey.SPEC);
+        JavaClass spec = ctx.get(SpecKey.SPEC);
         TypeSpec.Builder builder = ctx.get(SpecKey.BUILDER);
 
         TypeName primitiveTypeName = ParserUtil.convertPrimitive(spec.getType());

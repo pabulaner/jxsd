@@ -13,7 +13,7 @@ public class PkgParentResolver implements Resolver {
         this.pkg = pkg;
     }
 
-    public JavaType resolve(JavaType type) {
+    public JavaType resolve(JavaType original, JavaType type) {
         List<String> fullPkg = new ArrayList<>(pkg);
         fullPkg.addAll(type.getPkg());
 

@@ -1,16 +1,23 @@
 package io.github.pabulaner.jxsd;
 
 import freemarker.template.TemplateException;
+import io.github.pabulaner.jxsd.gen.Generator;
 import io.github.pabulaner.jxsd.gen.GeneratorConfig;
+import io.github.pabulaner.jxsd.java.JavaParser;
+import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.SpecParser;
 import io.github.pabulaner.jxsd.spec.resolver.Resolver;
 import io.github.pabulaner.jxsd.transform.TransformMap;
+import io.github.pabulaner.jxsd.xsd.XsdParser;
+import io.github.pabulaner.jxsd.xsd.XsdResult;
 import org.plutext.jaxb.svg11.G;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
@@ -21,12 +28,18 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws IOException, SAXException, URISyntaxException {
-        String xsd = Main.class.getResource("/xsd/dml/dml-chart.xsd").toExternalForm();
+        URL xsd = Main.class.getResource("/xsd/dml/dml-chart.xsd")
+                .toURI()
+                .toURL();
+
+        XsdResult xsdResult = new XsdParser().parse(xsd);
+        JavaResult javaResult = new JavaParser().parse(xsdResult);
+
         List<String> pkg = List.of("jxsd", "gen");
         TransformMap map = new TransformMap(List.of());
 
-        Resolver modelResolver = Resolvers.getDefault(pkg, "model", map);
-        Resolver builderResolver = Resolvers.getDefault(pkg, "builder", map);
+        Resolver modelResolver = Resolvers.getDefault(javaResult.scope(), pkg, "model", map);
+        Resolver builderResolver = Resolvers.getDefault(javaResult.scope(), pkg, "builder", map);
 
         List<List<SpecParser>> parsers = List.of(
                 SpecParsers.getModelParsers(modelResolver),
@@ -44,8 +57,7 @@ public class Main {
             config.setParsers(value);
             config.setResolvers(resolvers);
 
-            Parser parser = new Parser(xsd, config);
-            parser.parse();
+            new Generator(config).generate(javaResult);
         }
     }
 }
