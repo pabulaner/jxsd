@@ -5,6 +5,7 @@ import io.github.pabulaner.jxsd.java.JavaPrimitive;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.java.JavaType;
+import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.resolver.PrimitiveResolver;
 import io.github.pabulaner.jxsd.spec.resolver.SwitchResolver;
 import io.github.pabulaner.jxsd.spec.resolver.TransformResolver;
@@ -16,7 +17,6 @@ import io.github.pabulaner.jxsd.spec.resolver.PkgRenameResolver;
 import io.github.pabulaner.jxsd.spec.resolver.Resolver;
 import io.github.pabulaner.jxsd.spec.resolver.TypeRenameResolver;
 import io.github.pabulaner.jxsd.util.Pair;
-import org.docx4j.wml.P;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,18 +30,8 @@ public final class Resolvers {
         // empty
     }
 
-    public static Resolver getDefault(JavaScope scope, List<String> pkg, String type, TransformMap map) {
-        pkg = new ArrayList<>(pkg);
-        pkg.add(new Name(type).toLower());
-
-        Predicate<JavaType> primitivePredicate = value -> {
-            JavaClass spec = scope.get(value);
-            System.out.println(spec.getClass());
-            return spec instanceof JavaPrimitive || spec instanceof JavaRestriction;
-        };
-
-        Resolver primitiveResolver = new PrimitiveResolver(scope);
-        Resolver typeRenameResolver = new TypeRenameResolver((inner, value) -> {
+    private static Resolver getTypeRenameResolver(String type) {
+        return new TypeRenameResolver((inner, value) -> {
             String result = new Name(value).toUpper();
             String suffix = new Name(type).toUpper();
 
@@ -78,6 +68,18 @@ public final class Resolvers {
 
             return result;
         });
+    }
+
+    public static Resolver getDefault(JavaScope scope, List<String> pkg, String type, TransformMap map) {
+        pkg = new ArrayList<>(pkg);
+        pkg.add(new Name(type).toLower());
+
+        Predicate<JavaType> primitivePredicate = value -> {
+            JavaClass spec = scope.get(value);
+            return spec instanceof JavaPrimitive || spec instanceof JavaRestriction;
+        };
+
+        Resolver primitiveResolver = new PrimitiveResolver(scope);
 
         return Resolver.combine(
                 new TransformResolver(map),
@@ -85,7 +87,18 @@ public final class Resolvers {
                 new PkgCleanResolver(),
                 new SwitchResolver(
                         List.of(new Pair<>(primitivePredicate, primitiveResolver)),
-                        typeRenameResolver));
+                        getTypeRenameResolver(type)));
+    }
+
+    public static Resolver getConverter(List<String> pkg, String type, TransformMap map) {
+        pkg = new ArrayList<>(pkg);
+        pkg.add(new Name(type).toLower());
+
+        return Resolver.combine(
+                new TransformResolver(map),
+                new PkgParentResolver(pkg),
+                new PkgCleanResolver(),
+                getTypeRenameResolver(type));
     }
 
     public static Resolver getDocx4j() {

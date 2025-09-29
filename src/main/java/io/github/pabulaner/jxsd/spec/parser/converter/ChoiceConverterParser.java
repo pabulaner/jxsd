@@ -22,7 +22,7 @@ public class ChoiceConverterParser extends ComplexSpecParser {
         MethodSpec.Builder toBuilder = ctx.get(ConverterParser.TO_BUILDER);
         Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
         Resolver converterResolver = ctx.get(SpecKey.CONVERTER_RESOLVER);
-        Resolver docx4jResolver = ctx.get(SpecKey.BUILDER_RESOLVER);
+        Resolver docx4jResolver = ctx.get(SpecKey.DOCX4J_RESOLVER);
 
         JavaType specType = spec.getType();
         TypeName modelTypeName = ParserUtil.convertType(specType, modelResolver);

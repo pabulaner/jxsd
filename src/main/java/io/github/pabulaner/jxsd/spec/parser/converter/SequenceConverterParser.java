@@ -29,7 +29,7 @@ public class SequenceConverterParser extends ComplexSpecParser {
         MethodSpec.Builder toBuilder = ctx.get(ConverterParser.TO_BUILDER);
         Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
         Resolver converterResolver = ctx.get(SpecKey.CONVERTER_RESOLVER);
-        Resolver docx4jResolver = ctx.get(SpecKey.BUILDER_RESOLVER);
+        Resolver docx4jResolver = ctx.get(SpecKey.DOCX4J_RESOLVER);
 
         // parse all inners except for choices
         spec.getInners().forEach(inner -> {
@@ -53,6 +53,7 @@ public class SequenceConverterParser extends ComplexSpecParser {
 
         spec.getFields().forEach(field -> {
             JavaType fieldType = field.getType();
+            TypeName fieldConverterTypeName = ParserUtil.convertType(fieldType, converterResolver, false);
             TypeName docx4jFieldTypeName = ParserUtil.convertType(fieldType, docx4jResolver, false);
             Name fieldName = new Name(modelResolver.resolve(specType, field.getName()));
             String fieldNameLower = fieldName.toVarLower();
@@ -106,18 +107,18 @@ public class SequenceConverterParser extends ComplexSpecParser {
                         TypeName choiceConverterTypeName = ParserUtil.convertType(choiceFieldType, converterResolver, false);
                         String choiceFieldName = new Name(choiceField.getName()).toUpper();
 
-                        fromInnerBuilder.addStatement("if (value.get$N() != null) $N = $T.new$N($T.fromDocx4j(value.get$N()))", choiceFieldName, fieldNameLower, converterTypeName, choiceFieldTypeName, converterTypeName, choiceFieldName);
+                        fromInnerBuilder.addStatement("if (value.get$N() != null) $N = $T.new$N($T.fromDocx4j(value.get$N()))", choiceFieldName, fieldNameLower, converterTypeName, fieldNameUpper, converterTypeName, choiceFieldName);
                         toInnerBuilder.addStatement("if (value.get$N().is$N()) result.set$N($T.toDocx4j(value.get$N().get$N()))", choiceName, choiceFieldName, choiceFieldName, choiceConverterTypeName, choiceName, choiceFieldName);
                     });
                 }
 
                 fromNewBuilder.add(fieldNameLower);
             } else if (isList) {
-                fromNewBuilder.add("value.get$N().stream().map($T::fromDocx4j).collect($T.toList())", fieldNameUpper, converterTypeName, Collectors.class);
-                toBuilder.addStatement("result.get$N().addAll(value.get$N().stream().map($T::toDocx4j).collect($T.toList()))", fieldNameUpper, fieldNameUpper, converterTypeName, Collectors.class);
+                fromNewBuilder.add("value.get$N().stream().map($T::fromDocx4j).collect($T.toList())", fieldNameUpper, fieldConverterTypeName, Collectors.class);
+                toBuilder.addStatement("result.get$N().addAll(value.get$N().stream().map($T::toDocx4j).collect($T.toList()))", fieldNameUpper, fieldNameUpper, fieldConverterTypeName, Collectors.class);
             } else {
-                fromNewBuilder.add("$T.fromDocx4j(value.get$N())", converterTypeName, fieldNameUpper);
-                toBuilder.addStatement("result.set$N($T.toDocx4j(value.get()))", fieldNameUpper, converterTypeName, fieldNameUpper);
+                fromNewBuilder.add("$T.fromDocx4j(value.get$N())", fieldConverterTypeName, fieldNameUpper);
+                toBuilder.addStatement("result.set$N($T.toDocx4j(value.get$N()))", fieldNameUpper, fieldConverterTypeName, fieldNameUpper);
             }
         });
 

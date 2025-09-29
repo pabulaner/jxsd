@@ -46,13 +46,18 @@ public class ConverterParser implements SpecParser {
         MethodSpec.Builder fromBuilder = MethodSpec.methodBuilder("fromDocx4j")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(modelTypeName)
-                .addParameter(docx4jTypeName, "value")
-                .addStatement("if (value == null) return null");
+                .addParameter(docx4jTypeName, "value");
         MethodSpec.Builder toBuilder = MethodSpec.methodBuilder("toDocx4j")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(docx4jTypeName)
-                .addParameter(ParserUtil.convertType(specType, modelResolver), "value")
-                .addStatement("if (value == null) return null");
+                .addParameter(modelTypeName, "value");
+
+        if (!(spec instanceof JavaPrimitive || spec instanceof JavaRestriction)) {
+            String stmt = "if (value == null) return null";
+
+            fromBuilder.addStatement(stmt);
+            toBuilder.addStatement(stmt);
+        }
 
         if (!outer.isEmpty()) {
             specBuilder.addModifiers(Modifier.STATIC);
@@ -74,10 +79,10 @@ public class ConverterParser implements SpecParser {
         JavaType specType = spec.getType();
 
         return switch (spec) {
-            case JavaPrimitive ignored -> ParserUtil.convertPrimitive(specType, true);
+            case JavaPrimitive ignored -> ParserUtil.convertPrimitive(specType);
             case JavaRestriction ignored -> {
                 JavaType primitive = RestrictionUtil.findPrimitive(scope, specType);
-                yield ParserUtil.convertPrimitive(primitive, true);
+                yield ParserUtil.convertPrimitive(primitive);
             }
             case JavaUnion ignored -> ClassName.get(String.class);
             default -> ParserUtil.convertType(specType, resolver);

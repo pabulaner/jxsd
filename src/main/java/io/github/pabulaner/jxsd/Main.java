@@ -40,19 +40,25 @@ public class Main {
 
         Resolver modelResolver = Resolvers.getDefault(javaResult.scope(), pkg, "model", map);
         Resolver builderResolver = Resolvers.getDefault(javaResult.scope(), pkg, "builder", map);
+        Resolver converterResolver = Resolvers.getConverter(pkg, "converter", map);
+        Resolver docx4jResolver = Resolvers.getDocx4j();
 
         List<List<SpecParser>> parsers = List.of(
                 SpecParsers.getModelParsers(modelResolver),
-                SpecParsers.getBuilderParsers(builderResolver));
+                SpecParsers.getBuilderParsers(builderResolver),
+                SpecParsers.getConverterParsers(converterResolver)
+        );
 
         Map<String, Resolver> resolvers = new HashMap<>();
         resolvers.put(SpecKey.MODEL_RESOLVER, modelResolver);
         resolvers.put(SpecKey.BUILDER_RESOLVER, builderResolver);
+        resolvers.put(SpecKey.CONVERTER_RESOLVER, converterResolver);
+        resolvers.put(SpecKey.DOCX4J_RESOLVER, docx4jResolver);
 
         for (List<SpecParser> value : parsers) {
             GeneratorConfig config = new GeneratorConfig();
 
-            config.setOutput("./target");
+            config.setOutput("./src/main/java");
             config.setPkg(pkg);
             config.setParsers(value);
             config.setResolvers(resolvers);

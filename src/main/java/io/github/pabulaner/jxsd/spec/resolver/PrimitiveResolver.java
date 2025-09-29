@@ -62,6 +62,7 @@ public class PrimitiveResolver implements Resolver {
 
         return new JavaType.Builder(type)
                 .setPkg(pkg)
+                .setOuter(List.of())
                 .setName(name)
                 .build();
     }

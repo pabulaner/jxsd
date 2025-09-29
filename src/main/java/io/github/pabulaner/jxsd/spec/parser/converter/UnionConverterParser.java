@@ -2,6 +2,7 @@ package io.github.pabulaner.jxsd.spec.parser.converter;
 
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
+import io.github.pabulaner.jxsd.java.JavaUnion;
 import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.java.JavaEnum;
 import io.github.pabulaner.jxsd.java.JavaType;
@@ -14,7 +15,7 @@ public class UnionConverterParser implements SpecParser {
 
     @Override
     public void parse(SpecContext ctx) {
-        JavaEnum spec = ctx.get(SpecKey.SPEC);
+        JavaUnion spec = ctx.get(SpecKey.SPEC);
         MethodSpec.Builder fromBuilder = ctx.get(ConverterParser.FROM_BUILDER);
         MethodSpec.Builder toBuilder = ctx.get(ConverterParser.TO_BUILDER);
         Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);

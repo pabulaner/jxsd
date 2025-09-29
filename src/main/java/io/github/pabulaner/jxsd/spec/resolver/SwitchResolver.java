@@ -21,10 +21,10 @@ public class SwitchResolver implements Resolver {
     public JavaType resolve(JavaType original, JavaType type) {
         for (Pair<Predicate<JavaType>, Resolver> resolver : resolvers) {
             if (resolver.first().test(original)) {
-                return resolver.second().resolve(type);
+                return resolver.second().resolve(original, type);
             }
         }
 
-        return defaultResolver.resolve(type);
+        return defaultResolver.resolve(original, type);
     }
 }
