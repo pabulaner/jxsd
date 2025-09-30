@@ -13,7 +13,7 @@ public class BooleanConverter {
 
   public static BooleanModel fromDocx4j(CTBoolean value) {
     if (value == null) return null;
-    return new BooleanModel(BooleanValueConverter.fromDocx4j(value.getVal()));
+    return new BooleanModel(BooleanValueConverter.fromDocx4j(value.isVal()));
   }
 
   public static CTBoolean toDocx4j(BooleanModel value) {

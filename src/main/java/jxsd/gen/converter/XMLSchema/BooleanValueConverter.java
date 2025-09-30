@@ -7,13 +7,11 @@ public class BooleanValueConverter {
   private BooleanValueConverter() {
   }
 
-  public static boolean fromDocx4j(Boolean value) {
-    if (value == null) return null;
+  public static Boolean fromDocx4j(Boolean value) {
     return value;
   }
 
-  public static Boolean toDocx4j(boolean value) {
-    if (value == null) return null;
+  public static Boolean toDocx4j(Boolean value) {
     return value;
   }
 }

@@ -13,7 +13,7 @@ public class PictureLockingConverter {
 
   public static PictureLockingModel fromDocx4j(CTPictureLocking value) {
     if (value == null) return null;
-    return new PictureLockingModel(BooleanValueConverter.fromDocx4j(value.getNoResize()), BooleanValueConverter.fromDocx4j(value.getNoChangeAspect()), BooleanValueConverter.fromDocx4j(value.getNoEditPoints()), BooleanValueConverter.fromDocx4j(value.getNoChangeArrowheads()), BooleanValueConverter.fromDocx4j(value.getNoCrop()), BooleanValueConverter.fromDocx4j(value.getNoSelect()), BooleanValueConverter.fromDocx4j(value.getNoGrp()), BooleanValueConverter.fromDocx4j(value.getNoMove()), BooleanValueConverter.fromDocx4j(value.getNoRot()), BooleanValueConverter.fromDocx4j(value.getNoChangeShapeType()), BooleanValueConverter.fromDocx4j(value.getNoAdjustHandles()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    return new PictureLockingModel(BooleanValueConverter.fromDocx4j(value.isNoResize()), BooleanValueConverter.fromDocx4j(value.isNoChangeAspect()), BooleanValueConverter.fromDocx4j(value.isNoEditPoints()), BooleanValueConverter.fromDocx4j(value.isNoChangeArrowheads()), BooleanValueConverter.fromDocx4j(value.isNoCrop()), BooleanValueConverter.fromDocx4j(value.isNoSelect()), BooleanValueConverter.fromDocx4j(value.isNoGrp()), BooleanValueConverter.fromDocx4j(value.isNoMove()), BooleanValueConverter.fromDocx4j(value.isNoRot()), BooleanValueConverter.fromDocx4j(value.isNoChangeShapeType()), BooleanValueConverter.fromDocx4j(value.isNoAdjustHandles()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTPictureLocking toDocx4j(PictureLockingModel value) {

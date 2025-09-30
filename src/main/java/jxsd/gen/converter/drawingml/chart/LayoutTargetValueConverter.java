@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.chart;
 
-import jxsd.gen.builder.drawingml.chart.LayoutTargetValueBuilder;
 import jxsd.gen.model.drawingml.chart.LayoutTargetValueModel;
 import org.docx4j.dml.chart.STLayoutTarget;
 
@@ -13,15 +12,15 @@ public class LayoutTargetValueConverter {
 
   public static LayoutTargetValueModel fromDocx4j(STLayoutTarget value) {
     if (value == null) return null;
-    if (value == LayoutTargetValueBuilder.INNER) return LayoutTargetValueModel.INNER;
-    if (value == LayoutTargetValueBuilder.OUTER) return LayoutTargetValueModel.OUTER;
+    if (value == STLayoutTarget.INNER) return LayoutTargetValueModel.INNER;
+    if (value == STLayoutTarget.OUTER) return LayoutTargetValueModel.OUTER;
     return null;
   }
 
   public static STLayoutTarget toDocx4j(LayoutTargetValueModel value) {
     if (value == null) return null;
-    if (value == LayoutTargetValueModel.INNER) return LayoutTargetValueBuilder.INNER;
-    if (value == LayoutTargetValueModel.OUTER) return LayoutTargetValueBuilder.OUTER;
+    if (value == LayoutTargetValueModel.INNER) return STLayoutTarget.INNER;
+    if (value == LayoutTargetValueModel.OUTER) return STLayoutTarget.OUTER;
     return null;
   }
 }

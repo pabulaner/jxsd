@@ -7,13 +7,11 @@ public class GMonthDayValueConverter {
   private GMonthDayValueConverter() {
   }
 
-  public static int fromDocx4j(Integer value) {
-    if (value == null) return null;
+  public static Integer fromDocx4j(Integer value) {
     return value;
   }
 
-  public static Integer toDocx4j(int value) {
-    if (value == null) return null;
+  public static Integer toDocx4j(Integer value) {
     return value;
   }
 }

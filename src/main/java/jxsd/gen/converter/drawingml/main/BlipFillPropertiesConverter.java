@@ -15,9 +15,9 @@ public class BlipFillPropertiesConverter {
   public static BlipFillPropertiesModel fromDocx4j(CTBlipFillProperties value) {
     if (value == null) return null;
     BlipFillPropertiesModel.EG_FillModeProperties egFillModeProperties = new BlipFillPropertiesModel.EG_FillModeProperties();
-    if (value.getTile() != null) egFillModeProperties = BlipFillPropertiesConverter.newEGFillModeProperties(BlipFillPropertiesConverter.fromDocx4j(value.getTile()));
-    if (value.getStretch() != null) egFillModeProperties = BlipFillPropertiesConverter.newEGFillModeProperties(BlipFillPropertiesConverter.fromDocx4j(value.getStretch()));
-    return new BlipFillPropertiesModel(BooleanValueConverter.fromDocx4j(value.getRotWithShape()), UnsignedIntValueConverter.fromDocx4j(value.getDpi()), BlipConverter.fromDocx4j(value.getBlip()), RelativeRectConverter.fromDocx4j(value.getSrcRect()), egFillModeProperties);
+    if (value.getTile() != null) egFillModeProperties = BlipFillPropertiesModel.EG_FillModeProperties.newTile(TileInfoPropertiesConverter.fromDocx4j(value.getTile()));
+    if (value.getStretch() != null) egFillModeProperties = BlipFillPropertiesModel.EG_FillModeProperties.newStretch(StretchInfoPropertiesConverter.fromDocx4j(value.getStretch()));
+    return new BlipFillPropertiesModel(BooleanValueConverter.fromDocx4j(value.isRotWithShape()), UnsignedIntValueConverter.fromDocx4j(value.getDpi()), BlipConverter.fromDocx4j(value.getBlip()), RelativeRectConverter.fromDocx4j(value.getSrcRect()), egFillModeProperties);
   }
 
   public static CTBlipFillProperties toDocx4j(BlipFillPropertiesModel value) {

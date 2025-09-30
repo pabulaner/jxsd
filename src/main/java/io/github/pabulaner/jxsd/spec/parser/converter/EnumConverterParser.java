@@ -19,7 +19,7 @@ public class EnumConverterParser implements SpecParser {
         MethodSpec.Builder fromBuilder = ctx.get(ConverterParser.FROM_BUILDER);
         MethodSpec.Builder toBuilder = ctx.get(ConverterParser.TO_BUILDER);
         Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
-        Resolver docx4jResolver = ctx.get(SpecKey.BUILDER_RESOLVER);
+        Resolver docx4jResolver = ctx.get(SpecKey.DOCX4J_RESOLVER);
 
         JavaType specType = spec.getType();
         TypeName modelType = ParserUtil.convertType(specType, modelResolver);

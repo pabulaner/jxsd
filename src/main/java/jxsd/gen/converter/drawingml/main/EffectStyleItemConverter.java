@@ -13,8 +13,8 @@ public class EffectStyleItemConverter {
   public static EffectStyleItemModel fromDocx4j(CTEffectStyleItem value) {
     if (value == null) return null;
     EffectStyleItemModel.EG_EffectProperties egEffectProperties = new EffectStyleItemModel.EG_EffectProperties();
-    if (value.getEffectLst() != null) egEffectProperties = EffectStyleItemConverter.newEGEffectProperties(EffectStyleItemConverter.fromDocx4j(value.getEffectLst()));
-    if (value.getEffectDag() != null) egEffectProperties = EffectStyleItemConverter.newEGEffectProperties(EffectStyleItemConverter.fromDocx4j(value.getEffectDag()));
+    if (value.getEffectLst() != null) egEffectProperties = EffectStyleItemModel.EG_EffectProperties.newEffectLst(EffectListConverter.fromDocx4j(value.getEffectLst()));
+    if (value.getEffectDag() != null) egEffectProperties = EffectStyleItemModel.EG_EffectProperties.newEffectDag(EffectContainerConverter.fromDocx4j(value.getEffectDag()));
     return new EffectStyleItemModel(egEffectProperties, Scene3DConverter.fromDocx4j(value.getScene3D()), Shape3DConverter.fromDocx4j(value.getSp3D()));
   }
 

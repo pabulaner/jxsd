@@ -123,6 +123,6 @@ public final class ParserUtil {
                 ? "is"
                 : "get";
 
-        return prefix + new Name(name).toVarUpper();
+        return prefix + name;
     }
 }

@@ -13,12 +13,12 @@ public class StyleMatrixReferenceConverter {
   public static StyleMatrixReferenceModel fromDocx4j(CTStyleMatrixReference value) {
     if (value == null) return null;
     StyleMatrixReferenceModel.EG_ColorChoice egColorChoice = new StyleMatrixReferenceModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = StyleMatrixReferenceConverter.newEGColorChoice(StyleMatrixReferenceConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = StyleMatrixReferenceConverter.newEGColorChoice(StyleMatrixReferenceConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = StyleMatrixReferenceConverter.newEGColorChoice(StyleMatrixReferenceConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = StyleMatrixReferenceConverter.newEGColorChoice(StyleMatrixReferenceConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = StyleMatrixReferenceConverter.newEGColorChoice(StyleMatrixReferenceConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = StyleMatrixReferenceConverter.newEGColorChoice(StyleMatrixReferenceConverter.fromDocx4j(value.getPrstClr()));
+    if (value.getScrgbClr() != null) egColorChoice = StyleMatrixReferenceModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = StyleMatrixReferenceModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = StyleMatrixReferenceModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = StyleMatrixReferenceModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = StyleMatrixReferenceModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = StyleMatrixReferenceModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
     return new StyleMatrixReferenceModel(StyleMatrixColumnIndexValueConverter.fromDocx4j(value.getIdx()), egColorChoice);
   }
 

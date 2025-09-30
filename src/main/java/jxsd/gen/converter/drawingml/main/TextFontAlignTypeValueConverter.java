@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.TextFontAlignTypeValueBuilder;
 import jxsd.gen.model.drawingml.main.TextFontAlignTypeValueModel;
 import org.docx4j.dml.STTextFontAlignType;
 
@@ -13,21 +12,21 @@ public class TextFontAlignTypeValueConverter {
 
   public static TextFontAlignTypeValueModel fromDocx4j(STTextFontAlignType value) {
     if (value == null) return null;
-    if (value == TextFontAlignTypeValueBuilder.AUTO) return TextFontAlignTypeValueModel.AUTO;
-    if (value == TextFontAlignTypeValueBuilder.T) return TextFontAlignTypeValueModel.T;
-    if (value == TextFontAlignTypeValueBuilder.CTR) return TextFontAlignTypeValueModel.CTR;
-    if (value == TextFontAlignTypeValueBuilder.BASE) return TextFontAlignTypeValueModel.BASE;
-    if (value == TextFontAlignTypeValueBuilder.B) return TextFontAlignTypeValueModel.B;
+    if (value == STTextFontAlignType.AUTO) return TextFontAlignTypeValueModel.AUTO;
+    if (value == STTextFontAlignType.T) return TextFontAlignTypeValueModel.T;
+    if (value == STTextFontAlignType.CTR) return TextFontAlignTypeValueModel.CTR;
+    if (value == STTextFontAlignType.BASE) return TextFontAlignTypeValueModel.BASE;
+    if (value == STTextFontAlignType.B) return TextFontAlignTypeValueModel.B;
     return null;
   }
 
   public static STTextFontAlignType toDocx4j(TextFontAlignTypeValueModel value) {
     if (value == null) return null;
-    if (value == TextFontAlignTypeValueModel.AUTO) return TextFontAlignTypeValueBuilder.AUTO;
-    if (value == TextFontAlignTypeValueModel.T) return TextFontAlignTypeValueBuilder.T;
-    if (value == TextFontAlignTypeValueModel.CTR) return TextFontAlignTypeValueBuilder.CTR;
-    if (value == TextFontAlignTypeValueModel.BASE) return TextFontAlignTypeValueBuilder.BASE;
-    if (value == TextFontAlignTypeValueModel.B) return TextFontAlignTypeValueBuilder.B;
+    if (value == TextFontAlignTypeValueModel.AUTO) return STTextFontAlignType.AUTO;
+    if (value == TextFontAlignTypeValueModel.T) return STTextFontAlignType.T;
+    if (value == TextFontAlignTypeValueModel.CTR) return STTextFontAlignType.CTR;
+    if (value == TextFontAlignTypeValueModel.BASE) return STTextFontAlignType.BASE;
+    if (value == TextFontAlignTypeValueModel.B) return STTextFontAlignType.B;
     return null;
   }
 }

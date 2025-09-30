@@ -14,7 +14,7 @@ public class NonVisualDrawingPropsConverter {
 
   public static NonVisualDrawingPropsModel fromDocx4j(CTNonVisualDrawingProps value) {
     if (value == null) return null;
-    return new NonVisualDrawingPropsModel(BooleanValueConverter.fromDocx4j(value.getHidden()), StringValueConverter.fromDocx4j(value.getDescr()), DrawingElementIdValueConverter.fromDocx4j(value.getId()), StringValueConverter.fromDocx4j(value.getName()), HyperlinkConverter.fromDocx4j(value.getHlinkClick()), HyperlinkConverter.fromDocx4j(value.getHlinkHover()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    return new NonVisualDrawingPropsModel(BooleanValueConverter.fromDocx4j(value.isHidden()), StringValueConverter.fromDocx4j(value.getDescr()), DrawingElementIdValueConverter.fromDocx4j(value.getId()), StringValueConverter.fromDocx4j(value.getName()), HyperlinkConverter.fromDocx4j(value.getHlinkClick()), HyperlinkConverter.fromDocx4j(value.getHlinkHover()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTNonVisualDrawingProps toDocx4j(NonVisualDrawingPropsModel value) {

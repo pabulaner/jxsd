@@ -13,7 +13,7 @@ public class BlurEffectConverter {
 
   public static BlurEffectModel fromDocx4j(CTBlurEffect value) {
     if (value == null) return null;
-    return new BlurEffectModel(PositiveCoordinateValueConverter.fromDocx4j(value.getRad()), BooleanValueConverter.fromDocx4j(value.getGrow()));
+    return new BlurEffectModel(PositiveCoordinateValueConverter.fromDocx4j(value.getRad()), BooleanValueConverter.fromDocx4j(value.isGrow()));
   }
 
   public static CTBlurEffect toDocx4j(BlurEffectModel value) {

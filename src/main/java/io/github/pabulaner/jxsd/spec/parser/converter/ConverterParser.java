@@ -28,6 +28,7 @@ public class ConverterParser implements SpecParser {
 
     @Override
     public void parse(SpecContext ctx) {
+        JavaScope scope = ctx.get(SpecKey.SCOPE);
         JavaClass spec = ctx.get(SpecKey.SPEC);
         List<JavaClass> outer = ctx.getOrDefault(SpecKey.OUTER, List.of());
         Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
@@ -37,6 +38,13 @@ public class ConverterParser implements SpecParser {
         TypeName modelTypeName = ParserUtil.convertType(specType, modelResolver);
         TypeName docx4jTypeName = parseDocx4jTypeName(ctx);
         String name = converterResolver.resolve(spec.getType()).getName();
+
+        boolean isPrimitive = spec instanceof JavaPrimitive || spec instanceof JavaRestriction;
+
+        if (isPrimitive) {
+            JavaType primitiveType = RestrictionUtil.findPrimitive(scope, specType);
+            modelTypeName = ParserUtil.convertPrimitive(primitiveType, true);
+        }
 
         TypeSpec.Builder specBuilder = TypeSpec.classBuilder(name)
                 .addModifiers(Modifier.PUBLIC)
@@ -52,7 +60,7 @@ public class ConverterParser implements SpecParser {
                 .returns(docx4jTypeName)
                 .addParameter(modelTypeName, "value");
 
-        if (!(spec instanceof JavaPrimitive || spec instanceof JavaRestriction)) {
+        if (!isPrimitive) {
             String stmt = "if (value == null) return null";
 
             fromBuilder.addStatement(stmt);
@@ -79,10 +87,10 @@ public class ConverterParser implements SpecParser {
         JavaType specType = spec.getType();
 
         return switch (spec) {
-            case JavaPrimitive ignored -> ParserUtil.convertPrimitive(specType);
+            case JavaPrimitive ignored -> ParserUtil.convertPrimitive(specType, true);
             case JavaRestriction ignored -> {
                 JavaType primitive = RestrictionUtil.findPrimitive(scope, specType);
-                yield ParserUtil.convertPrimitive(primitive);
+                yield ParserUtil.convertPrimitive(primitive, true);
             }
             case JavaUnion ignored -> ClassName.get(String.class);
             default -> ParserUtil.convertType(specType, resolver);

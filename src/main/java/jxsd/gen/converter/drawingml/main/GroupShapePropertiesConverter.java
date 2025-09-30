@@ -13,15 +13,15 @@ public class GroupShapePropertiesConverter {
   public static GroupShapePropertiesModel fromDocx4j(CTGroupShapeProperties value) {
     if (value == null) return null;
     GroupShapePropertiesModel.EG_FillProperties egFillProperties = new GroupShapePropertiesModel.EG_FillProperties();
-    if (value.getNoFill() != null) egFillProperties = GroupShapePropertiesConverter.newEGFillProperties(GroupShapePropertiesConverter.fromDocx4j(value.getNoFill()));
-    if (value.getSolidFill() != null) egFillProperties = GroupShapePropertiesConverter.newEGFillProperties(GroupShapePropertiesConverter.fromDocx4j(value.getSolidFill()));
-    if (value.getGradFill() != null) egFillProperties = GroupShapePropertiesConverter.newEGFillProperties(GroupShapePropertiesConverter.fromDocx4j(value.getGradFill()));
-    if (value.getBlipFill() != null) egFillProperties = GroupShapePropertiesConverter.newEGFillProperties(GroupShapePropertiesConverter.fromDocx4j(value.getBlipFill()));
-    if (value.getPattFill() != null) egFillProperties = GroupShapePropertiesConverter.newEGFillProperties(GroupShapePropertiesConverter.fromDocx4j(value.getPattFill()));
-    if (value.getGrpFill() != null) egFillProperties = GroupShapePropertiesConverter.newEGFillProperties(GroupShapePropertiesConverter.fromDocx4j(value.getGrpFill()));
+    if (value.getNoFill() != null) egFillProperties = GroupShapePropertiesModel.EG_FillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j(value.getNoFill()));
+    if (value.getSolidFill() != null) egFillProperties = GroupShapePropertiesModel.EG_FillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j(value.getSolidFill()));
+    if (value.getGradFill() != null) egFillProperties = GroupShapePropertiesModel.EG_FillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j(value.getGradFill()));
+    if (value.getBlipFill() != null) egFillProperties = GroupShapePropertiesModel.EG_FillProperties.newBlipFill(BlipFillPropertiesConverter.fromDocx4j(value.getBlipFill()));
+    if (value.getPattFill() != null) egFillProperties = GroupShapePropertiesModel.EG_FillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j(value.getPattFill()));
+    if (value.getGrpFill() != null) egFillProperties = GroupShapePropertiesModel.EG_FillProperties.newGrpFill(GroupFillPropertiesConverter.fromDocx4j(value.getGrpFill()));
     GroupShapePropertiesModel.EG_EffectProperties egEffectProperties = new GroupShapePropertiesModel.EG_EffectProperties();
-    if (value.getEffectLst() != null) egEffectProperties = GroupShapePropertiesConverter.newEGEffectProperties(GroupShapePropertiesConverter.fromDocx4j(value.getEffectLst()));
-    if (value.getEffectDag() != null) egEffectProperties = GroupShapePropertiesConverter.newEGEffectProperties(GroupShapePropertiesConverter.fromDocx4j(value.getEffectDag()));
+    if (value.getEffectLst() != null) egEffectProperties = GroupShapePropertiesModel.EG_EffectProperties.newEffectLst(EffectListConverter.fromDocx4j(value.getEffectLst()));
+    if (value.getEffectDag() != null) egEffectProperties = GroupShapePropertiesModel.EG_EffectProperties.newEffectDag(EffectContainerConverter.fromDocx4j(value.getEffectDag()));
     return new GroupShapePropertiesModel(BlackWhiteModeValueConverter.fromDocx4j(value.getBwMode()), GroupTransform2DConverter.fromDocx4j(value.getXfrm()), egFillProperties, egEffectProperties, Scene3DConverter.fromDocx4j(value.getScene3D()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

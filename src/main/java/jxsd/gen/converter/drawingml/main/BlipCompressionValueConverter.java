@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.BlipCompressionValueBuilder;
 import jxsd.gen.model.drawingml.main.BlipCompressionValueModel;
 import org.docx4j.dml.STBlipCompression;
 
@@ -13,21 +12,21 @@ public class BlipCompressionValueConverter {
 
   public static BlipCompressionValueModel fromDocx4j(STBlipCompression value) {
     if (value == null) return null;
-    if (value == BlipCompressionValueBuilder.EMAIL) return BlipCompressionValueModel.EMAIL;
-    if (value == BlipCompressionValueBuilder.SCREEN) return BlipCompressionValueModel.SCREEN;
-    if (value == BlipCompressionValueBuilder.PRINT) return BlipCompressionValueModel.PRINT;
-    if (value == BlipCompressionValueBuilder.HQPRINT) return BlipCompressionValueModel.HQPRINT;
-    if (value == BlipCompressionValueBuilder.NONE) return BlipCompressionValueModel.NONE;
+    if (value == STBlipCompression.EMAIL) return BlipCompressionValueModel.EMAIL;
+    if (value == STBlipCompression.SCREEN) return BlipCompressionValueModel.SCREEN;
+    if (value == STBlipCompression.PRINT) return BlipCompressionValueModel.PRINT;
+    if (value == STBlipCompression.HQPRINT) return BlipCompressionValueModel.HQPRINT;
+    if (value == STBlipCompression.NONE) return BlipCompressionValueModel.NONE;
     return null;
   }
 
   public static STBlipCompression toDocx4j(BlipCompressionValueModel value) {
     if (value == null) return null;
-    if (value == BlipCompressionValueModel.EMAIL) return BlipCompressionValueBuilder.EMAIL;
-    if (value == BlipCompressionValueModel.SCREEN) return BlipCompressionValueBuilder.SCREEN;
-    if (value == BlipCompressionValueModel.PRINT) return BlipCompressionValueBuilder.PRINT;
-    if (value == BlipCompressionValueModel.HQPRINT) return BlipCompressionValueBuilder.HQPRINT;
-    if (value == BlipCompressionValueModel.NONE) return BlipCompressionValueBuilder.NONE;
+    if (value == BlipCompressionValueModel.EMAIL) return STBlipCompression.EMAIL;
+    if (value == BlipCompressionValueModel.SCREEN) return STBlipCompression.SCREEN;
+    if (value == BlipCompressionValueModel.PRINT) return STBlipCompression.PRINT;
+    if (value == BlipCompressionValueModel.HQPRINT) return STBlipCompression.HQPRINT;
+    if (value == BlipCompressionValueModel.NONE) return STBlipCompression.NONE;
     return null;
   }
 }

@@ -15,7 +15,7 @@ public class PageSetupConverter {
 
   public static PageSetupModel fromDocx4j(CTPageSetup value) {
     if (value == null) return null;
-    return new PageSetupModel(IntValueConverter.fromDocx4j(value.getVerticalDpi()), IntValueConverter.fromDocx4j(value.getHorizontalDpi()), UnsignedIntValueConverter.fromDocx4j(value.getFirstPageNumber()), PageSetupOrientationValueConverter.fromDocx4j(value.getOrientation()), BooleanValueConverter.fromDocx4j(value.getDraft()), UnsignedIntValueConverter.fromDocx4j(value.getCopies()), UnsignedIntValueConverter.fromDocx4j(value.getPaperSize()), BooleanValueConverter.fromDocx4j(value.getUseFirstPageNumber()), BooleanValueConverter.fromDocx4j(value.getBlackAndWhite()));
+    return new PageSetupModel(IntValueConverter.fromDocx4j(value.getVerticalDpi()), IntValueConverter.fromDocx4j(value.getHorizontalDpi()), UnsignedIntValueConverter.fromDocx4j(value.getFirstPageNumber()), PageSetupOrientationValueConverter.fromDocx4j(value.getOrientation()), BooleanValueConverter.fromDocx4j(value.isDraft()), UnsignedIntValueConverter.fromDocx4j(value.getCopies()), UnsignedIntValueConverter.fromDocx4j(value.getPaperSize()), BooleanValueConverter.fromDocx4j(value.isUseFirstPageNumber()), BooleanValueConverter.fromDocx4j(value.isBlackAndWhite()));
   }
 
   public static CTPageSetup toDocx4j(PageSetupModel value) {

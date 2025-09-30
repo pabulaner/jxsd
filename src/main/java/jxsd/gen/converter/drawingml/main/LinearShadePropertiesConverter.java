@@ -13,7 +13,7 @@ public class LinearShadePropertiesConverter {
 
   public static LinearShadePropertiesModel fromDocx4j(CTLinearShadeProperties value) {
     if (value == null) return null;
-    return new LinearShadePropertiesModel(BooleanValueConverter.fromDocx4j(value.getScaled()), PositiveFixedAngleValueConverter.fromDocx4j(value.getAng()));
+    return new LinearShadePropertiesModel(BooleanValueConverter.fromDocx4j(value.isScaled()), PositiveFixedAngleValueConverter.fromDocx4j(value.getAng()));
   }
 
   public static CTLinearShadeProperties toDocx4j(LinearShadePropertiesModel value) {

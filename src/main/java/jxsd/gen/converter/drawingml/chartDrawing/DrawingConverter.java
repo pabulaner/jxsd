@@ -17,19 +17,21 @@ public class DrawingConverter {
   public static DrawingModel fromDocx4j(CTDrawing value) {
     if (value == null) return null;
     List<DrawingModel.EG_Anchor> egAnchor = value.getEGAnchor().stream().map(val -> {
-      if (val instanceof CTRelSizeAnchor) return CTDrawing.EGAnchor.newRelSizeAnchor(RelSizeAnchorConverter.fromDocx4j((CTRelSizeAnchor) val));
-      if (val instanceof CTAbsSizeAnchor) return CTDrawing.EGAnchor.newAbsSizeAnchor(AbsSizeAnchorConverter.fromDocx4j((CTAbsSizeAnchor) val));
-      return new DrawingModel(egAnchor);
-    }
-
-    public static CTDrawing toDocx4j(DrawingModel value) {
-      if (value == null) return null;
-      CTDrawing result = new CTDrawing();
-      result.getEGAnchor().addAll(value.getEGAnchor().stream().map(val -> {
-        if (val.isRelSizeAnchor()) return DrawingConverter.toDocx4j(val.getRelSizeAnchor());
-        if (val.isAbsSizeAnchor()) return DrawingConverter.toDocx4j(val.getAbsSizeAnchor());
-        return null;
-      } ).collect(Collectors.toList());
-      return result;
-    }
+      if (val instanceof CTRelSizeAnchor) return DrawingModel.EG_Anchor.newRelSizeAnchor(RelSizeAnchorConverter.fromDocx4j((CTRelSizeAnchor) val));
+      if (val instanceof CTAbsSizeAnchor) return DrawingModel.EG_Anchor.newAbsSizeAnchor(AbsSizeAnchorConverter.fromDocx4j((CTAbsSizeAnchor) val));
+      return null;
+    } ).collect(Collectors.toList());
+    return new DrawingModel(egAnchor);
   }
+
+  public static CTDrawing toDocx4j(DrawingModel value) {
+    if (value == null) return null;
+    CTDrawing result = new CTDrawing();
+    result.getEGAnchor().addAll(value.getEGAnchor().stream().map(val -> {
+      if (val.isRelSizeAnchor()) return RelSizeAnchorConverter.toDocx4j(val.getRelSizeAnchor());
+      if (val.isAbsSizeAnchor()) return AbsSizeAnchorConverter.toDocx4j(val.getAbsSizeAnchor());
+      return null;
+    } ).collect(Collectors.toList()));
+    return result;
+  }
+}

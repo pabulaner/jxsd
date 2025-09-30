@@ -21,27 +21,29 @@ public class FillStyleListConverter {
   public static FillStyleListModel fromDocx4j(CTFillStyleList value) {
     if (value == null) return null;
     List<FillStyleListModel.EG_FillProperties> egFillProperties = value.getEGFillProperties().stream().map(val -> {
-      if (val instanceof CTNoFillProperties) return CTFillStyleList.EGFillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j((CTNoFillProperties) val));
-      if (val instanceof CTSolidColorFillProperties) return CTFillStyleList.EGFillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j((CTSolidColorFillProperties) val));
-      if (val instanceof CTGradientFillProperties) return CTFillStyleList.EGFillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j((CTGradientFillProperties) val));
-      if (val instanceof CTBlipFillProperties) return CTFillStyleList.EGFillProperties.newBlipFill(BlipFillPropertiesConverter.fromDocx4j((CTBlipFillProperties) val));
-      if (val instanceof CTPatternFillProperties) return CTFillStyleList.EGFillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j((CTPatternFillProperties) val));
-      if (val instanceof CTGroupFillProperties) return CTFillStyleList.EGFillProperties.newGrpFill(GroupFillPropertiesConverter.fromDocx4j((CTGroupFillProperties) val));
-      return new FillStyleListModel(egFillProperties);
-    }
-
-    public static CTFillStyleList toDocx4j(FillStyleListModel value) {
-      if (value == null) return null;
-      CTFillStyleList result = new CTFillStyleList();
-      result.getEGFillProperties().addAll(value.getEGFillProperties().stream().map(val -> {
-        if (val.isNoFill()) return FillStyleListConverter.toDocx4j(val.getNoFill());
-        if (val.isSolidFill()) return FillStyleListConverter.toDocx4j(val.getSolidFill());
-        if (val.isGradFill()) return FillStyleListConverter.toDocx4j(val.getGradFill());
-        if (val.isBlipFill()) return FillStyleListConverter.toDocx4j(val.getBlipFill());
-        if (val.isPattFill()) return FillStyleListConverter.toDocx4j(val.getPattFill());
-        if (val.isGrpFill()) return FillStyleListConverter.toDocx4j(val.getGrpFill());
-        return null;
-      } ).collect(Collectors.toList());
-      return result;
-    }
+      if (val instanceof CTNoFillProperties) return FillStyleListModel.EG_FillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j((CTNoFillProperties) val));
+      if (val instanceof CTSolidColorFillProperties) return FillStyleListModel.EG_FillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j((CTSolidColorFillProperties) val));
+      if (val instanceof CTGradientFillProperties) return FillStyleListModel.EG_FillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j((CTGradientFillProperties) val));
+      if (val instanceof CTBlipFillProperties) return FillStyleListModel.EG_FillProperties.newBlipFill(BlipFillPropertiesConverter.fromDocx4j((CTBlipFillProperties) val));
+      if (val instanceof CTPatternFillProperties) return FillStyleListModel.EG_FillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j((CTPatternFillProperties) val));
+      if (val instanceof CTGroupFillProperties) return FillStyleListModel.EG_FillProperties.newGrpFill(GroupFillPropertiesConverter.fromDocx4j((CTGroupFillProperties) val));
+      return null;
+    } ).collect(Collectors.toList());
+    return new FillStyleListModel(egFillProperties);
   }
+
+  public static CTFillStyleList toDocx4j(FillStyleListModel value) {
+    if (value == null) return null;
+    CTFillStyleList result = new CTFillStyleList();
+    result.getEGFillProperties().addAll(value.getEGFillProperties().stream().map(val -> {
+      if (val.isNoFill()) return NoFillPropertiesConverter.toDocx4j(val.getNoFill());
+      if (val.isSolidFill()) return SolidColorFillPropertiesConverter.toDocx4j(val.getSolidFill());
+      if (val.isGradFill()) return GradientFillPropertiesConverter.toDocx4j(val.getGradFill());
+      if (val.isBlipFill()) return BlipFillPropertiesConverter.toDocx4j(val.getBlipFill());
+      if (val.isPattFill()) return PatternFillPropertiesConverter.toDocx4j(val.getPattFill());
+      if (val.isGrpFill()) return GroupFillPropertiesConverter.toDocx4j(val.getGrpFill());
+      return null;
+    } ).collect(Collectors.toList()));
+    return result;
+  }
+}

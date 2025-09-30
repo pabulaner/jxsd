@@ -17,19 +17,21 @@ public class AdjustHandleListConverter {
   public static AdjustHandleListModel fromDocx4j(CTAdjustHandleList value) {
     if (value == null) return null;
     List<AdjustHandleListModel.AhXYOrAhPolar> ahXYOrAhPolar = value.getAhXYOrAhPolar().stream().map(val -> {
-      if (val instanceof CTXYAdjustHandle) return CTAdjustHandleList.AhXYOrAhPolar.newAhXY(XYAdjustHandleConverter.fromDocx4j((CTXYAdjustHandle) val));
-      if (val instanceof CTPolarAdjustHandle) return CTAdjustHandleList.AhXYOrAhPolar.newAhPolar(PolarAdjustHandleConverter.fromDocx4j((CTPolarAdjustHandle) val));
-      return new AdjustHandleListModel(ahXYOrAhPolar);
-    }
-
-    public static CTAdjustHandleList toDocx4j(AdjustHandleListModel value) {
-      if (value == null) return null;
-      CTAdjustHandleList result = new CTAdjustHandleList();
-      result.getAhXYOrAhPolar().addAll(value.getAhXYOrAhPolar().stream().map(val -> {
-        if (val.isAhXY()) return AdjustHandleListConverter.toDocx4j(val.getAhXY());
-        if (val.isAhPolar()) return AdjustHandleListConverter.toDocx4j(val.getAhPolar());
-        return null;
-      } ).collect(Collectors.toList());
-      return result;
-    }
+      if (val instanceof CTXYAdjustHandle) return AdjustHandleListModel.AhXYOrAhPolar.newAhXY(XYAdjustHandleConverter.fromDocx4j((CTXYAdjustHandle) val));
+      if (val instanceof CTPolarAdjustHandle) return AdjustHandleListModel.AhXYOrAhPolar.newAhPolar(PolarAdjustHandleConverter.fromDocx4j((CTPolarAdjustHandle) val));
+      return null;
+    } ).collect(Collectors.toList());
+    return new AdjustHandleListModel(ahXYOrAhPolar);
   }
+
+  public static CTAdjustHandleList toDocx4j(AdjustHandleListModel value) {
+    if (value == null) return null;
+    CTAdjustHandleList result = new CTAdjustHandleList();
+    result.getAhXYOrAhPolar().addAll(value.getAhXYOrAhPolar().stream().map(val -> {
+      if (val.isAhXY()) return XYAdjustHandleConverter.toDocx4j(val.getAhXY());
+      if (val.isAhPolar()) return PolarAdjustHandleConverter.toDocx4j(val.getAhPolar());
+      return null;
+    } ).collect(Collectors.toList()));
+    return result;
+  }
+}

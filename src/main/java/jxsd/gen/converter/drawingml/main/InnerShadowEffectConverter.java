@@ -13,12 +13,12 @@ public class InnerShadowEffectConverter {
   public static InnerShadowEffectModel fromDocx4j(CTInnerShadowEffect value) {
     if (value == null) return null;
     InnerShadowEffectModel.EG_ColorChoice egColorChoice = new InnerShadowEffectModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = InnerShadowEffectConverter.newEGColorChoice(InnerShadowEffectConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = InnerShadowEffectConverter.newEGColorChoice(InnerShadowEffectConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = InnerShadowEffectConverter.newEGColorChoice(InnerShadowEffectConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = InnerShadowEffectConverter.newEGColorChoice(InnerShadowEffectConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = InnerShadowEffectConverter.newEGColorChoice(InnerShadowEffectConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = InnerShadowEffectConverter.newEGColorChoice(InnerShadowEffectConverter.fromDocx4j(value.getPrstClr()));
+    if (value.getScrgbClr() != null) egColorChoice = InnerShadowEffectModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = InnerShadowEffectModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = InnerShadowEffectModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = InnerShadowEffectModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = InnerShadowEffectModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = InnerShadowEffectModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
     return new InnerShadowEffectModel(PositiveCoordinateValueConverter.fromDocx4j(value.getBlurRad()), PositiveCoordinateValueConverter.fromDocx4j(value.getDist()), PositiveFixedAngleValueConverter.fromDocx4j(value.getDir()), egColorChoice);
   }
 

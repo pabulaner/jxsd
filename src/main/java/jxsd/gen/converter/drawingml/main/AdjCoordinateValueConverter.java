@@ -17,5 +17,6 @@ public class AdjCoordinateValueConverter {
 
   public static String toDocx4j(AdjCoordinateValueModel value) {
     if (value == null) return null;
+    return value.getValue();
   }
 }

@@ -13,18 +13,18 @@ public class ShapePropertiesConverter {
   public static ShapePropertiesModel fromDocx4j(CTShapeProperties value) {
     if (value == null) return null;
     ShapePropertiesModel.EG_Geometry egGeometry = new ShapePropertiesModel.EG_Geometry();
-    if (value.getCustGeom() != null) egGeometry = ShapePropertiesConverter.newEGGeometry(ShapePropertiesConverter.fromDocx4j(value.getCustGeom()));
-    if (value.getPrstGeom() != null) egGeometry = ShapePropertiesConverter.newEGGeometry(ShapePropertiesConverter.fromDocx4j(value.getPrstGeom()));
+    if (value.getCustGeom() != null) egGeometry = ShapePropertiesModel.EG_Geometry.newCustGeom(CustomGeometry2DConverter.fromDocx4j(value.getCustGeom()));
+    if (value.getPrstGeom() != null) egGeometry = ShapePropertiesModel.EG_Geometry.newPrstGeom(PresetGeometry2DConverter.fromDocx4j(value.getPrstGeom()));
     ShapePropertiesModel.EG_FillProperties egFillProperties = new ShapePropertiesModel.EG_FillProperties();
-    if (value.getNoFill() != null) egFillProperties = ShapePropertiesConverter.newEGFillProperties(ShapePropertiesConverter.fromDocx4j(value.getNoFill()));
-    if (value.getSolidFill() != null) egFillProperties = ShapePropertiesConverter.newEGFillProperties(ShapePropertiesConverter.fromDocx4j(value.getSolidFill()));
-    if (value.getGradFill() != null) egFillProperties = ShapePropertiesConverter.newEGFillProperties(ShapePropertiesConverter.fromDocx4j(value.getGradFill()));
-    if (value.getBlipFill() != null) egFillProperties = ShapePropertiesConverter.newEGFillProperties(ShapePropertiesConverter.fromDocx4j(value.getBlipFill()));
-    if (value.getPattFill() != null) egFillProperties = ShapePropertiesConverter.newEGFillProperties(ShapePropertiesConverter.fromDocx4j(value.getPattFill()));
-    if (value.getGrpFill() != null) egFillProperties = ShapePropertiesConverter.newEGFillProperties(ShapePropertiesConverter.fromDocx4j(value.getGrpFill()));
+    if (value.getNoFill() != null) egFillProperties = ShapePropertiesModel.EG_FillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j(value.getNoFill()));
+    if (value.getSolidFill() != null) egFillProperties = ShapePropertiesModel.EG_FillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j(value.getSolidFill()));
+    if (value.getGradFill() != null) egFillProperties = ShapePropertiesModel.EG_FillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j(value.getGradFill()));
+    if (value.getBlipFill() != null) egFillProperties = ShapePropertiesModel.EG_FillProperties.newBlipFill(BlipFillPropertiesConverter.fromDocx4j(value.getBlipFill()));
+    if (value.getPattFill() != null) egFillProperties = ShapePropertiesModel.EG_FillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j(value.getPattFill()));
+    if (value.getGrpFill() != null) egFillProperties = ShapePropertiesModel.EG_FillProperties.newGrpFill(GroupFillPropertiesConverter.fromDocx4j(value.getGrpFill()));
     ShapePropertiesModel.EG_EffectProperties egEffectProperties = new ShapePropertiesModel.EG_EffectProperties();
-    if (value.getEffectLst() != null) egEffectProperties = ShapePropertiesConverter.newEGEffectProperties(ShapePropertiesConverter.fromDocx4j(value.getEffectLst()));
-    if (value.getEffectDag() != null) egEffectProperties = ShapePropertiesConverter.newEGEffectProperties(ShapePropertiesConverter.fromDocx4j(value.getEffectDag()));
+    if (value.getEffectLst() != null) egEffectProperties = ShapePropertiesModel.EG_EffectProperties.newEffectLst(EffectListConverter.fromDocx4j(value.getEffectLst()));
+    if (value.getEffectDag() != null) egEffectProperties = ShapePropertiesModel.EG_EffectProperties.newEffectDag(EffectContainerConverter.fromDocx4j(value.getEffectDag()));
     return new ShapePropertiesModel(BlackWhiteModeValueConverter.fromDocx4j(value.getBwMode()), Transform2DConverter.fromDocx4j(value.getXfrm()), egGeometry, egFillProperties, LinePropertiesConverter.fromDocx4j(value.getLn()), egEffectProperties, Scene3DConverter.fromDocx4j(value.getScene3D()), Shape3DConverter.fromDocx4j(value.getSp3D()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

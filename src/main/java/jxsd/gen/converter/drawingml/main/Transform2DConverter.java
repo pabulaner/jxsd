@@ -13,7 +13,7 @@ public class Transform2DConverter {
 
   public static Transform2DModel fromDocx4j(CTTransform2D value) {
     if (value == null) return null;
-    return new Transform2DModel(BooleanValueConverter.fromDocx4j(value.getFlipV()), AngleValueConverter.fromDocx4j(value.getRot()), BooleanValueConverter.fromDocx4j(value.getFlipH()), Point2DConverter.fromDocx4j(value.getOff()), PositiveSize2DConverter.fromDocx4j(value.getExt()));
+    return new Transform2DModel(BooleanValueConverter.fromDocx4j(value.isFlipV()), AngleValueConverter.fromDocx4j(value.getRot()), BooleanValueConverter.fromDocx4j(value.isFlipH()), Point2DConverter.fromDocx4j(value.getOff()), PositiveSize2DConverter.fromDocx4j(value.getExt()));
   }
 
   public static CTTransform2D toDocx4j(Transform2DModel value) {

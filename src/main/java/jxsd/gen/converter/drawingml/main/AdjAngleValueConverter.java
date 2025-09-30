@@ -17,5 +17,6 @@ public class AdjAngleValueConverter {
 
   public static String toDocx4j(AdjAngleValueModel value) {
     if (value == null) return null;
+    return value.getValue();
   }
 }

@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.chart;
 
-import jxsd.gen.builder.drawingml.chart.PictureFormatValueBuilder;
 import jxsd.gen.model.drawingml.chart.PictureFormatValueModel;
 import org.docx4j.dml.chart.STPictureFormat;
 
@@ -13,17 +12,17 @@ public class PictureFormatValueConverter {
 
   public static PictureFormatValueModel fromDocx4j(STPictureFormat value) {
     if (value == null) return null;
-    if (value == PictureFormatValueBuilder.STRETCH) return PictureFormatValueModel.STRETCH;
-    if (value == PictureFormatValueBuilder.STACK) return PictureFormatValueModel.STACK;
-    if (value == PictureFormatValueBuilder.STACK_SCALE) return PictureFormatValueModel.STACK_SCALE;
+    if (value == STPictureFormat.STRETCH) return PictureFormatValueModel.STRETCH;
+    if (value == STPictureFormat.STACK) return PictureFormatValueModel.STACK;
+    if (value == STPictureFormat.STACK_SCALE) return PictureFormatValueModel.STACK_SCALE;
     return null;
   }
 
   public static STPictureFormat toDocx4j(PictureFormatValueModel value) {
     if (value == null) return null;
-    if (value == PictureFormatValueModel.STRETCH) return PictureFormatValueBuilder.STRETCH;
-    if (value == PictureFormatValueModel.STACK) return PictureFormatValueBuilder.STACK;
-    if (value == PictureFormatValueModel.STACK_SCALE) return PictureFormatValueBuilder.STACK_SCALE;
+    if (value == PictureFormatValueModel.STRETCH) return STPictureFormat.STRETCH;
+    if (value == PictureFormatValueModel.STACK) return STPictureFormat.STACK;
+    if (value == PictureFormatValueModel.STACK_SCALE) return STPictureFormat.STACK_SCALE;
     return null;
   }
 }

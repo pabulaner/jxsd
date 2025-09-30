@@ -15,7 +15,7 @@ public class HyperlinkConverter {
 
   public static HyperlinkModel fromDocx4j(CTHyperlink value) {
     if (value == null) return null;
-    return new HyperlinkModel(StringValueConverter.fromDocx4j(value.getInvalidUrl()), StringValueConverter.fromDocx4j(value.getTgtFrame()), RelationshipIdValueConverter.fromDocx4j(value.getId()), BooleanValueConverter.fromDocx4j(value.getHistory()), StringValueConverter.fromDocx4j(value.getTooltip()), BooleanValueConverter.fromDocx4j(value.getHighlightClick()), StringValueConverter.fromDocx4j(value.getAction()), BooleanValueConverter.fromDocx4j(value.getEndSnd()), EmbeddedWAVAudioFileConverter.fromDocx4j(value.getSnd()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    return new HyperlinkModel(StringValueConverter.fromDocx4j(value.getInvalidUrl()), StringValueConverter.fromDocx4j(value.getTgtFrame()), RelationshipIdValueConverter.fromDocx4j(value.getId()), BooleanValueConverter.fromDocx4j(value.isHistory()), StringValueConverter.fromDocx4j(value.getTooltip()), BooleanValueConverter.fromDocx4j(value.isHighlightClick()), StringValueConverter.fromDocx4j(value.getAction()), BooleanValueConverter.fromDocx4j(value.isEndSnd()), EmbeddedWAVAudioFileConverter.fromDocx4j(value.getSnd()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTHyperlink toDocx4j(HyperlinkModel value) {

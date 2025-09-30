@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.chart;
 
-import jxsd.gen.builder.drawingml.chart.PageSetupOrientationValueBuilder;
 import jxsd.gen.model.drawingml.chart.PageSetupOrientationValueModel;
 import org.docx4j.dml.chart.STPageSetupOrientation;
 
@@ -13,17 +12,17 @@ public class PageSetupOrientationValueConverter {
 
   public static PageSetupOrientationValueModel fromDocx4j(STPageSetupOrientation value) {
     if (value == null) return null;
-    if (value == PageSetupOrientationValueBuilder.DEFAULT) return PageSetupOrientationValueModel.DEFAULT;
-    if (value == PageSetupOrientationValueBuilder.PORTRAIT) return PageSetupOrientationValueModel.PORTRAIT;
-    if (value == PageSetupOrientationValueBuilder.LANDSCAPE) return PageSetupOrientationValueModel.LANDSCAPE;
+    if (value == STPageSetupOrientation.DEFAULT) return PageSetupOrientationValueModel.DEFAULT;
+    if (value == STPageSetupOrientation.PORTRAIT) return PageSetupOrientationValueModel.PORTRAIT;
+    if (value == STPageSetupOrientation.LANDSCAPE) return PageSetupOrientationValueModel.LANDSCAPE;
     return null;
   }
 
   public static STPageSetupOrientation toDocx4j(PageSetupOrientationValueModel value) {
     if (value == null) return null;
-    if (value == PageSetupOrientationValueModel.DEFAULT) return PageSetupOrientationValueBuilder.DEFAULT;
-    if (value == PageSetupOrientationValueModel.PORTRAIT) return PageSetupOrientationValueBuilder.PORTRAIT;
-    if (value == PageSetupOrientationValueModel.LANDSCAPE) return PageSetupOrientationValueBuilder.LANDSCAPE;
+    if (value == PageSetupOrientationValueModel.DEFAULT) return STPageSetupOrientation.DEFAULT;
+    if (value == PageSetupOrientationValueModel.PORTRAIT) return STPageSetupOrientation.PORTRAIT;
+    if (value == PageSetupOrientationValueModel.LANDSCAPE) return STPageSetupOrientation.LANDSCAPE;
     return null;
   }
 }

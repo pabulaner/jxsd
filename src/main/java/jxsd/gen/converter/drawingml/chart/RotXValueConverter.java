@@ -7,13 +7,11 @@ public class RotXValueConverter {
   private RotXValueConverter() {
   }
 
-  public static byte fromDocx4j(Byte value) {
-    if (value == null) return null;
+  public static Byte fromDocx4j(Byte value) {
     return value;
   }
 
-  public static Byte toDocx4j(byte value) {
-    if (value == null) return null;
+  public static Byte toDocx4j(Byte value) {
     return value;
   }
 }

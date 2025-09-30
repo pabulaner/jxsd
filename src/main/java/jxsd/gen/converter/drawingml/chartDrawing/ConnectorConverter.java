@@ -16,7 +16,7 @@ public class ConnectorConverter {
 
   public static ConnectorModel fromDocx4j(CTConnector value) {
     if (value == null) return null;
-    return new ConnectorModel(BooleanValueConverter.fromDocx4j(value.getFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), ConnectorNonVisualConverter.fromDocx4j(value.getNvCxnSpPr()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), ShapeStyleConverter.fromDocx4j(value.getStyle()));
+    return new ConnectorModel(BooleanValueConverter.fromDocx4j(value.isFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), ConnectorNonVisualConverter.fromDocx4j(value.getNvCxnSpPr()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), ShapeStyleConverter.fromDocx4j(value.getStyle()));
   }
 
   public static CTConnector toDocx4j(ConnectorModel value) {

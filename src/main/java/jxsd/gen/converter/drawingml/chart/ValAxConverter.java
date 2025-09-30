@@ -15,8 +15,8 @@ public class ValAxConverter {
   public static ValAxModel fromDocx4j(CTValAx value) {
     if (value == null) return null;
     ValAxModel.CrossesOrCrossesAt crossesOrCrossesAt = new ValAxModel.CrossesOrCrossesAt();
-    if (value.getCrosses() != null) crossesOrCrossesAt = ValAxConverter.newCrossesOrCrossesAt(ValAxConverter.fromDocx4j(value.getCrosses()));
-    if (value.getCrossesAt() != null) crossesOrCrossesAt = ValAxConverter.newCrossesOrCrossesAt(ValAxConverter.fromDocx4j(value.getCrossesAt()));
+    if (value.getCrosses() != null) crossesOrCrossesAt = ValAxModel.CrossesOrCrossesAt.newCrosses(CrossesConverter.fromDocx4j(value.getCrosses()));
+    if (value.getCrossesAt() != null) crossesOrCrossesAt = ValAxModel.CrossesOrCrossesAt.newCrossesAt(DoubleConverter.fromDocx4j(value.getCrossesAt()));
     return new ValAxModel(UnsignedIntConverter.fromDocx4j(value.getAxId()), ScalingConverter.fromDocx4j(value.getScaling()), BooleanConverter.fromDocx4j(value.getDelete()), AxPosConverter.fromDocx4j(value.getAxPos()), ChartLinesConverter.fromDocx4j(value.getMajorGridlines()), ChartLinesConverter.fromDocx4j(value.getMinorGridlines()), TitleConverter.fromDocx4j(value.getTitle()), NumFmtConverter.fromDocx4j(value.getNumFmt()), TickMarkConverter.fromDocx4j(value.getMajorTickMark()), TickMarkConverter.fromDocx4j(value.getMinorTickMark()), TickLblPosConverter.fromDocx4j(value.getTickLblPos()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), TextBodyConverter.fromDocx4j(value.getTxPr()), UnsignedIntConverter.fromDocx4j(value.getCrossAx()), crossesOrCrossesAt, CrossBetweenConverter.fromDocx4j(value.getCrossBetween()), AxisUnitConverter.fromDocx4j(value.getMajorUnit()), AxisUnitConverter.fromDocx4j(value.getMinorUnit()), DispUnitsConverter.fromDocx4j(value.getDispUnits()), ExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

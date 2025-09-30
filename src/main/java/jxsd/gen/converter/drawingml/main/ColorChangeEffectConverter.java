@@ -13,7 +13,7 @@ public class ColorChangeEffectConverter {
 
   public static ColorChangeEffectModel fromDocx4j(CTColorChangeEffect value) {
     if (value == null) return null;
-    return new ColorChangeEffectModel(BooleanValueConverter.fromDocx4j(value.getUseA()), ColorConverter.fromDocx4j(value.getClrFrom()), ColorConverter.fromDocx4j(value.getClrTo()));
+    return new ColorChangeEffectModel(BooleanValueConverter.fromDocx4j(value.isUseA()), ColorConverter.fromDocx4j(value.getClrFrom()), ColorConverter.fromDocx4j(value.getClrTo()));
   }
 
   public static CTColorChangeEffect toDocx4j(ColorChangeEffectModel value) {

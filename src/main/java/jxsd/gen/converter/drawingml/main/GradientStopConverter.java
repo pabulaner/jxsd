@@ -13,12 +13,12 @@ public class GradientStopConverter {
   public static GradientStopModel fromDocx4j(CTGradientStop value) {
     if (value == null) return null;
     GradientStopModel.EG_ColorChoice egColorChoice = new GradientStopModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = GradientStopConverter.newEGColorChoice(GradientStopConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = GradientStopConverter.newEGColorChoice(GradientStopConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = GradientStopConverter.newEGColorChoice(GradientStopConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = GradientStopConverter.newEGColorChoice(GradientStopConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = GradientStopConverter.newEGColorChoice(GradientStopConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = GradientStopConverter.newEGColorChoice(GradientStopConverter.fromDocx4j(value.getPrstClr()));
+    if (value.getScrgbClr() != null) egColorChoice = GradientStopModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = GradientStopModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = GradientStopModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = GradientStopModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = GradientStopModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = GradientStopModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
     return new GradientStopModel(PositiveFixedPercentageValueConverter.fromDocx4j(value.getPos()), egColorChoice);
   }
 

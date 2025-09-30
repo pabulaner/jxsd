@@ -17,20 +17,20 @@ public class DLblsConverter {
   public static DLblsModel fromDocx4j(CTDLbls value) {
     if (value == null) return null;
     DLblsModel.DeleteOrDLbls deleteOrDLbls = new DLblsModel.DeleteOrDLbls();
-    if (value.getDelete() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getDelete()));
-    if (value.getNumFmt() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getNumFmt()));
-    if (value.getSpPr() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getSpPr()));
-    if (value.getTxPr() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getTxPr()));
-    if (value.getDLblPos() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getDLblPos()));
-    if (value.getShowLegendKey() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getShowLegendKey()));
-    if (value.getShowVal() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getShowVal()));
-    if (value.getShowCatName() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getShowCatName()));
-    if (value.getShowSerName() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getShowSerName()));
-    if (value.getShowPercent() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getShowPercent()));
-    if (value.getShowBubbleSize() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getShowBubbleSize()));
-    if (value.getSeparator() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getSeparator()));
-    if (value.getShowLeaderLines() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getShowLeaderLines()));
-    if (value.getLeaderLines() != null) deleteOrDLbls = DLblsConverter.newDeleteOrDLbls(DLblsConverter.fromDocx4j(value.getLeaderLines()));
+    if (value.getDelete() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newDelete(BooleanConverter.fromDocx4j(value.getDelete()));
+    if (value.getNumFmt() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newNumFmt(NumFmtConverter.fromDocx4j(value.getNumFmt()));
+    if (value.getSpPr() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newSpPr(ShapePropertiesConverter.fromDocx4j(value.getSpPr()));
+    if (value.getTxPr() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newTxPr(TextBodyConverter.fromDocx4j(value.getTxPr()));
+    if (value.getDLblPos() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newDLblPos(DLblPosConverter.fromDocx4j(value.getDLblPos()));
+    if (value.getShowLegendKey() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newShowLegendKey(BooleanConverter.fromDocx4j(value.getShowLegendKey()));
+    if (value.getShowVal() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newShowVal(BooleanConverter.fromDocx4j(value.getShowVal()));
+    if (value.getShowCatName() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newShowCatName(BooleanConverter.fromDocx4j(value.getShowCatName()));
+    if (value.getShowSerName() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newShowSerName(BooleanConverter.fromDocx4j(value.getShowSerName()));
+    if (value.getShowPercent() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newShowPercent(BooleanConverter.fromDocx4j(value.getShowPercent()));
+    if (value.getShowBubbleSize() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newShowBubbleSize(BooleanConverter.fromDocx4j(value.getShowBubbleSize()));
+    if (value.getSeparator() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newSeparator(StringValueConverter.fromDocx4j(value.getSeparator()));
+    if (value.getShowLeaderLines() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newShowLeaderLines(BooleanConverter.fromDocx4j(value.getShowLeaderLines()));
+    if (value.getLeaderLines() != null) deleteOrDLbls = DLblsModel.DeleteOrDLbls.newLeaderLines(ChartLinesConverter.fromDocx4j(value.getLeaderLines()));
     return new DLblsModel(value.getDLbl().stream().map(DLblConverter::fromDocx4j).collect(Collectors.toList()), deleteOrDLbls, ExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

@@ -14,12 +14,12 @@ public class CustomColorConverter {
   public static CustomColorModel fromDocx4j(CTCustomColor value) {
     if (value == null) return null;
     CustomColorModel.EG_ColorChoice egColorChoice = new CustomColorModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = CustomColorConverter.newEGColorChoice(CustomColorConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = CustomColorConverter.newEGColorChoice(CustomColorConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = CustomColorConverter.newEGColorChoice(CustomColorConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = CustomColorConverter.newEGColorChoice(CustomColorConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = CustomColorConverter.newEGColorChoice(CustomColorConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = CustomColorConverter.newEGColorChoice(CustomColorConverter.fromDocx4j(value.getPrstClr()));
+    if (value.getScrgbClr() != null) egColorChoice = CustomColorModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = CustomColorModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = CustomColorModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = CustomColorModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = CustomColorModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = CustomColorModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
     return new CustomColorModel(StringValueConverter.fromDocx4j(value.getName()), egColorChoice);
   }
 

@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.EffectContainerTypeValueBuilder;
 import jxsd.gen.model.drawingml.main.EffectContainerTypeValueModel;
 import org.docx4j.dml.STEffectContainerType;
 
@@ -13,15 +12,15 @@ public class EffectContainerTypeValueConverter {
 
   public static EffectContainerTypeValueModel fromDocx4j(STEffectContainerType value) {
     if (value == null) return null;
-    if (value == EffectContainerTypeValueBuilder.SIB) return EffectContainerTypeValueModel.SIB;
-    if (value == EffectContainerTypeValueBuilder.TREE) return EffectContainerTypeValueModel.TREE;
+    if (value == STEffectContainerType.SIB) return EffectContainerTypeValueModel.SIB;
+    if (value == STEffectContainerType.TREE) return EffectContainerTypeValueModel.TREE;
     return null;
   }
 
   public static STEffectContainerType toDocx4j(EffectContainerTypeValueModel value) {
     if (value == null) return null;
-    if (value == EffectContainerTypeValueModel.SIB) return EffectContainerTypeValueBuilder.SIB;
-    if (value == EffectContainerTypeValueModel.TREE) return EffectContainerTypeValueBuilder.TREE;
+    if (value == EffectContainerTypeValueModel.SIB) return STEffectContainerType.SIB;
+    if (value == EffectContainerTypeValueModel.TREE) return STEffectContainerType.TREE;
     return null;
   }
 }

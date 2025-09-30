@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.chart;
 
-import jxsd.gen.builder.drawingml.chart.GroupingValueBuilder;
 import jxsd.gen.model.drawingml.chart.GroupingValueModel;
 import org.docx4j.dml.chart.STGrouping;
 
@@ -13,17 +12,17 @@ public class GroupingValueConverter {
 
   public static GroupingValueModel fromDocx4j(STGrouping value) {
     if (value == null) return null;
-    if (value == GroupingValueBuilder.PERCENT_STACKED) return GroupingValueModel.PERCENT_STACKED;
-    if (value == GroupingValueBuilder.STANDARD) return GroupingValueModel.STANDARD;
-    if (value == GroupingValueBuilder.STACKED) return GroupingValueModel.STACKED;
+    if (value == STGrouping.PERCENT_STACKED) return GroupingValueModel.PERCENT_STACKED;
+    if (value == STGrouping.STANDARD) return GroupingValueModel.STANDARD;
+    if (value == STGrouping.STACKED) return GroupingValueModel.STACKED;
     return null;
   }
 
   public static STGrouping toDocx4j(GroupingValueModel value) {
     if (value == null) return null;
-    if (value == GroupingValueModel.PERCENT_STACKED) return GroupingValueBuilder.PERCENT_STACKED;
-    if (value == GroupingValueModel.STANDARD) return GroupingValueBuilder.STANDARD;
-    if (value == GroupingValueModel.STACKED) return GroupingValueBuilder.STACKED;
+    if (value == GroupingValueModel.PERCENT_STACKED) return STGrouping.PERCENT_STACKED;
+    if (value == GroupingValueModel.STANDARD) return STGrouping.STANDARD;
+    if (value == GroupingValueModel.STACKED) return STGrouping.STACKED;
     return null;
   }
 }

@@ -7,13 +7,11 @@ public class HoleSizeValueConverter {
   private HoleSizeValueConverter() {
   }
 
-  public static short fromDocx4j(Short value) {
-    if (value == null) return null;
+  public static Short fromDocx4j(Short value) {
     return value;
   }
 
-  public static Short toDocx4j(short value) {
-    if (value == null) return null;
+  public static Short toDocx4j(Short value) {
     return value;
   }
 }

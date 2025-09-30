@@ -13,17 +13,17 @@ public class LinePropertiesConverter {
   public static LinePropertiesModel fromDocx4j(CTLineProperties value) {
     if (value == null) return null;
     LinePropertiesModel.EG_LineFillProperties egLineFillProperties = new LinePropertiesModel.EG_LineFillProperties();
-    if (value.getNoFill() != null) egLineFillProperties = LinePropertiesConverter.newEGLineFillProperties(LinePropertiesConverter.fromDocx4j(value.getNoFill()));
-    if (value.getSolidFill() != null) egLineFillProperties = LinePropertiesConverter.newEGLineFillProperties(LinePropertiesConverter.fromDocx4j(value.getSolidFill()));
-    if (value.getGradFill() != null) egLineFillProperties = LinePropertiesConverter.newEGLineFillProperties(LinePropertiesConverter.fromDocx4j(value.getGradFill()));
-    if (value.getPattFill() != null) egLineFillProperties = LinePropertiesConverter.newEGLineFillProperties(LinePropertiesConverter.fromDocx4j(value.getPattFill()));
+    if (value.getNoFill() != null) egLineFillProperties = LinePropertiesModel.EG_LineFillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j(value.getNoFill()));
+    if (value.getSolidFill() != null) egLineFillProperties = LinePropertiesModel.EG_LineFillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j(value.getSolidFill()));
+    if (value.getGradFill() != null) egLineFillProperties = LinePropertiesModel.EG_LineFillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j(value.getGradFill()));
+    if (value.getPattFill() != null) egLineFillProperties = LinePropertiesModel.EG_LineFillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j(value.getPattFill()));
     LinePropertiesModel.EG_LineDashProperties egLineDashProperties = new LinePropertiesModel.EG_LineDashProperties();
-    if (value.getPrstDash() != null) egLineDashProperties = LinePropertiesConverter.newEGLineDashProperties(LinePropertiesConverter.fromDocx4j(value.getPrstDash()));
-    if (value.getCustDash() != null) egLineDashProperties = LinePropertiesConverter.newEGLineDashProperties(LinePropertiesConverter.fromDocx4j(value.getCustDash()));
+    if (value.getPrstDash() != null) egLineDashProperties = LinePropertiesModel.EG_LineDashProperties.newPrstDash(PresetLineDashPropertiesConverter.fromDocx4j(value.getPrstDash()));
+    if (value.getCustDash() != null) egLineDashProperties = LinePropertiesModel.EG_LineDashProperties.newCustDash(DashStopListConverter.fromDocx4j(value.getCustDash()));
     LinePropertiesModel.EG_LineJoinProperties egLineJoinProperties = new LinePropertiesModel.EG_LineJoinProperties();
-    if (value.getRound() != null) egLineJoinProperties = LinePropertiesConverter.newEGLineJoinProperties(LinePropertiesConverter.fromDocx4j(value.getRound()));
-    if (value.getBevel() != null) egLineJoinProperties = LinePropertiesConverter.newEGLineJoinProperties(LinePropertiesConverter.fromDocx4j(value.getBevel()));
-    if (value.getMiter() != null) egLineJoinProperties = LinePropertiesConverter.newEGLineJoinProperties(LinePropertiesConverter.fromDocx4j(value.getMiter()));
+    if (value.getRound() != null) egLineJoinProperties = LinePropertiesModel.EG_LineJoinProperties.newRound(LineJoinRoundConverter.fromDocx4j(value.getRound()));
+    if (value.getBevel() != null) egLineJoinProperties = LinePropertiesModel.EG_LineJoinProperties.newBevel(LineJoinBevelConverter.fromDocx4j(value.getBevel()));
+    if (value.getMiter() != null) egLineJoinProperties = LinePropertiesModel.EG_LineJoinProperties.newMiter(LineJoinMiterPropertiesConverter.fromDocx4j(value.getMiter()));
     return new LinePropertiesModel(LineWidthValueConverter.fromDocx4j(value.getW()), LineCapValueConverter.fromDocx4j(value.getCap()), CompoundLineValueConverter.fromDocx4j(value.getCmpd()), PenAlignmentValueConverter.fromDocx4j(value.getAlgn()), egLineFillProperties, egLineDashProperties, egLineJoinProperties, LineEndPropertiesConverter.fromDocx4j(value.getHeadEnd()), LineEndPropertiesConverter.fromDocx4j(value.getTailEnd()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

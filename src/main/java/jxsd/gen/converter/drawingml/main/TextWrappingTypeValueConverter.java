@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.TextWrappingTypeValueBuilder;
 import jxsd.gen.model.drawingml.main.TextWrappingTypeValueModel;
 import org.docx4j.dml.STTextWrappingType;
 
@@ -13,15 +12,15 @@ public class TextWrappingTypeValueConverter {
 
   public static TextWrappingTypeValueModel fromDocx4j(STTextWrappingType value) {
     if (value == null) return null;
-    if (value == TextWrappingTypeValueBuilder.NONE) return TextWrappingTypeValueModel.NONE;
-    if (value == TextWrappingTypeValueBuilder.SQUARE) return TextWrappingTypeValueModel.SQUARE;
+    if (value == STTextWrappingType.NONE) return TextWrappingTypeValueModel.NONE;
+    if (value == STTextWrappingType.SQUARE) return TextWrappingTypeValueModel.SQUARE;
     return null;
   }
 
   public static STTextWrappingType toDocx4j(TextWrappingTypeValueModel value) {
     if (value == null) return null;
-    if (value == TextWrappingTypeValueModel.NONE) return TextWrappingTypeValueBuilder.NONE;
-    if (value == TextWrappingTypeValueModel.SQUARE) return TextWrappingTypeValueBuilder.SQUARE;
+    if (value == TextWrappingTypeValueModel.NONE) return STTextWrappingType.NONE;
+    if (value == TextWrappingTypeValueModel.SQUARE) return STTextWrappingType.SQUARE;
     return null;
   }
 }

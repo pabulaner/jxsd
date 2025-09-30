@@ -13,7 +13,7 @@ public class GroupTransform2DConverter {
 
   public static GroupTransform2DModel fromDocx4j(CTGroupTransform2D value) {
     if (value == null) return null;
-    return new GroupTransform2DModel(BooleanValueConverter.fromDocx4j(value.getFlipV()), AngleValueConverter.fromDocx4j(value.getRot()), BooleanValueConverter.fromDocx4j(value.getFlipH()), Point2DConverter.fromDocx4j(value.getOff()), PositiveSize2DConverter.fromDocx4j(value.getExt()), Point2DConverter.fromDocx4j(value.getChOff()), PositiveSize2DConverter.fromDocx4j(value.getChExt()));
+    return new GroupTransform2DModel(BooleanValueConverter.fromDocx4j(value.isFlipV()), AngleValueConverter.fromDocx4j(value.getRot()), BooleanValueConverter.fromDocx4j(value.isFlipH()), Point2DConverter.fromDocx4j(value.getOff()), PositiveSize2DConverter.fromDocx4j(value.getExt()), Point2DConverter.fromDocx4j(value.getChOff()), PositiveSize2DConverter.fromDocx4j(value.getChExt()));
   }
 
   public static CTGroupTransform2D toDocx4j(GroupTransform2DModel value) {

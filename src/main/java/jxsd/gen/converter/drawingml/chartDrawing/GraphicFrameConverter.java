@@ -16,7 +16,7 @@ public class GraphicFrameConverter {
 
   public static GraphicFrameModel fromDocx4j(CTGraphicFrame value) {
     if (value == null) return null;
-    return new GraphicFrameModel(BooleanValueConverter.fromDocx4j(value.getFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), GraphicFrameNonVisualConverter.fromDocx4j(value.getNvGraphicFramePr()), Transform2DConverter.fromDocx4j(value.getXfrm()), GraphicValueConverter.fromDocx4j(value.getGraphic()));
+    return new GraphicFrameModel(BooleanValueConverter.fromDocx4j(value.isFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), GraphicFrameNonVisualConverter.fromDocx4j(value.getNvGraphicFramePr()), Transform2DConverter.fromDocx4j(value.getXfrm()), GraphicValueConverter.fromDocx4j(value.getGraphic()));
   }
 
   public static CTGraphicFrame toDocx4j(GraphicFrameModel value) {

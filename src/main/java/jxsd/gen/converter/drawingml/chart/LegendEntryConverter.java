@@ -14,8 +14,8 @@ public class LegendEntryConverter {
   public static LegendEntryModel fromDocx4j(CTLegendEntry value) {
     if (value == null) return null;
     LegendEntryModel.DeleteOrLegendEntryData deleteOrLegendEntryData = new LegendEntryModel.DeleteOrLegendEntryData();
-    if (value.getDelete() != null) deleteOrLegendEntryData = LegendEntryConverter.newDeleteOrLegendEntryData(LegendEntryConverter.fromDocx4j(value.getDelete()));
-    if (value.getTxPr() != null) deleteOrLegendEntryData = LegendEntryConverter.newDeleteOrLegendEntryData(LegendEntryConverter.fromDocx4j(value.getTxPr()));
+    if (value.getDelete() != null) deleteOrLegendEntryData = LegendEntryModel.DeleteOrLegendEntryData.newDelete(BooleanConverter.fromDocx4j(value.getDelete()));
+    if (value.getTxPr() != null) deleteOrLegendEntryData = LegendEntryModel.DeleteOrLegendEntryData.newTxPr(TextBodyConverter.fromDocx4j(value.getTxPr()));
     return new LegendEntryModel(UnsignedIntConverter.fromDocx4j(value.getIdx()), deleteOrLegendEntryData, ExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

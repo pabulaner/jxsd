@@ -13,7 +13,7 @@ public class HeaderFooterConverter {
 
   public static HeaderFooterModel fromDocx4j(CTHeaderFooter value) {
     if (value == null) return null;
-    return new HeaderFooterModel(BooleanValueConverter.fromDocx4j(value.getDifferentOddEven()), BooleanValueConverter.fromDocx4j(value.getDifferentFirst()), BooleanValueConverter.fromDocx4j(value.getAlignWithMargins()), XstringValueConverter.fromDocx4j(value.getOddHeader()), XstringValueConverter.fromDocx4j(value.getOddFooter()), XstringValueConverter.fromDocx4j(value.getEvenHeader()), XstringValueConverter.fromDocx4j(value.getEvenFooter()), XstringValueConverter.fromDocx4j(value.getFirstHeader()), XstringValueConverter.fromDocx4j(value.getFirstFooter()));
+    return new HeaderFooterModel(BooleanValueConverter.fromDocx4j(value.isDifferentOddEven()), BooleanValueConverter.fromDocx4j(value.isDifferentFirst()), BooleanValueConverter.fromDocx4j(value.isAlignWithMargins()), XstringValueConverter.fromDocx4j(value.getOddHeader()), XstringValueConverter.fromDocx4j(value.getOddFooter()), XstringValueConverter.fromDocx4j(value.getEvenHeader()), XstringValueConverter.fromDocx4j(value.getEvenFooter()), XstringValueConverter.fromDocx4j(value.getFirstHeader()), XstringValueConverter.fromDocx4j(value.getFirstFooter()));
   }
 
   public static CTHeaderFooter toDocx4j(HeaderFooterModel value) {

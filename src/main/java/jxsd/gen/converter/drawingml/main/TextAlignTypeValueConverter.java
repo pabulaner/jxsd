@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.TextAlignTypeValueBuilder;
 import jxsd.gen.model.drawingml.main.TextAlignTypeValueModel;
 import org.docx4j.dml.STTextAlignType;
 
@@ -13,25 +12,25 @@ public class TextAlignTypeValueConverter {
 
   public static TextAlignTypeValueModel fromDocx4j(STTextAlignType value) {
     if (value == null) return null;
-    if (value == TextAlignTypeValueBuilder.L) return TextAlignTypeValueModel.L;
-    if (value == TextAlignTypeValueBuilder.CTR) return TextAlignTypeValueModel.CTR;
-    if (value == TextAlignTypeValueBuilder.R) return TextAlignTypeValueModel.R;
-    if (value == TextAlignTypeValueBuilder.JUST) return TextAlignTypeValueModel.JUST;
-    if (value == TextAlignTypeValueBuilder.JUST_LOW) return TextAlignTypeValueModel.JUST_LOW;
-    if (value == TextAlignTypeValueBuilder.DIST) return TextAlignTypeValueModel.DIST;
-    if (value == TextAlignTypeValueBuilder.THAI_DIST) return TextAlignTypeValueModel.THAI_DIST;
+    if (value == STTextAlignType.L) return TextAlignTypeValueModel.L;
+    if (value == STTextAlignType.CTR) return TextAlignTypeValueModel.CTR;
+    if (value == STTextAlignType.R) return TextAlignTypeValueModel.R;
+    if (value == STTextAlignType.JUST) return TextAlignTypeValueModel.JUST;
+    if (value == STTextAlignType.JUST_LOW) return TextAlignTypeValueModel.JUST_LOW;
+    if (value == STTextAlignType.DIST) return TextAlignTypeValueModel.DIST;
+    if (value == STTextAlignType.THAI_DIST) return TextAlignTypeValueModel.THAI_DIST;
     return null;
   }
 
   public static STTextAlignType toDocx4j(TextAlignTypeValueModel value) {
     if (value == null) return null;
-    if (value == TextAlignTypeValueModel.L) return TextAlignTypeValueBuilder.L;
-    if (value == TextAlignTypeValueModel.CTR) return TextAlignTypeValueBuilder.CTR;
-    if (value == TextAlignTypeValueModel.R) return TextAlignTypeValueBuilder.R;
-    if (value == TextAlignTypeValueModel.JUST) return TextAlignTypeValueBuilder.JUST;
-    if (value == TextAlignTypeValueModel.JUST_LOW) return TextAlignTypeValueBuilder.JUST_LOW;
-    if (value == TextAlignTypeValueModel.DIST) return TextAlignTypeValueBuilder.DIST;
-    if (value == TextAlignTypeValueModel.THAI_DIST) return TextAlignTypeValueBuilder.THAI_DIST;
+    if (value == TextAlignTypeValueModel.L) return STTextAlignType.L;
+    if (value == TextAlignTypeValueModel.CTR) return STTextAlignType.CTR;
+    if (value == TextAlignTypeValueModel.R) return STTextAlignType.R;
+    if (value == TextAlignTypeValueModel.JUST) return STTextAlignType.JUST;
+    if (value == TextAlignTypeValueModel.JUST_LOW) return STTextAlignType.JUST_LOW;
+    if (value == TextAlignTypeValueModel.DIST) return STTextAlignType.DIST;
+    if (value == TextAlignTypeValueModel.THAI_DIST) return STTextAlignType.THAI_DIST;
     return null;
   }
 }

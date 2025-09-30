@@ -17,7 +17,7 @@ public class ShapeConverter {
 
   public static ShapeModel fromDocx4j(CTShape value) {
     if (value == null) return null;
-    return new ShapeModel(BooleanValueConverter.fromDocx4j(value.getFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), BooleanValueConverter.fromDocx4j(value.getFLocksText()), StringValueConverter.fromDocx4j(value.getTextlink()), ShapeNonVisualConverter.fromDocx4j(value.getNvSpPr()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), ShapeStyleConverter.fromDocx4j(value.getStyle()), TextBodyConverter.fromDocx4j(value.getTxBody()));
+    return new ShapeModel(BooleanValueConverter.fromDocx4j(value.isFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), BooleanValueConverter.fromDocx4j(value.isFLocksText()), StringValueConverter.fromDocx4j(value.getTextlink()), ShapeNonVisualConverter.fromDocx4j(value.getNvSpPr()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), ShapeStyleConverter.fromDocx4j(value.getStyle()), TextBodyConverter.fromDocx4j(value.getTxBody()));
   }
 
   public static CTShape toDocx4j(ShapeModel value) {

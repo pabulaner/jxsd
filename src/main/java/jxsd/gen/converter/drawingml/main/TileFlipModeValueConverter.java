@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.TileFlipModeValueBuilder;
 import jxsd.gen.model.drawingml.main.TileFlipModeValueModel;
 import org.docx4j.dml.STTileFlipMode;
 
@@ -13,19 +12,19 @@ public class TileFlipModeValueConverter {
 
   public static TileFlipModeValueModel fromDocx4j(STTileFlipMode value) {
     if (value == null) return null;
-    if (value == TileFlipModeValueBuilder.NONE) return TileFlipModeValueModel.NONE;
-    if (value == TileFlipModeValueBuilder.X) return TileFlipModeValueModel.X;
-    if (value == TileFlipModeValueBuilder.Y) return TileFlipModeValueModel.Y;
-    if (value == TileFlipModeValueBuilder.XY) return TileFlipModeValueModel.XY;
+    if (value == STTileFlipMode.NONE) return TileFlipModeValueModel.NONE;
+    if (value == STTileFlipMode.X) return TileFlipModeValueModel.X;
+    if (value == STTileFlipMode.Y) return TileFlipModeValueModel.Y;
+    if (value == STTileFlipMode.XY) return TileFlipModeValueModel.XY;
     return null;
   }
 
   public static STTileFlipMode toDocx4j(TileFlipModeValueModel value) {
     if (value == null) return null;
-    if (value == TileFlipModeValueModel.NONE) return TileFlipModeValueBuilder.NONE;
-    if (value == TileFlipModeValueModel.X) return TileFlipModeValueBuilder.X;
-    if (value == TileFlipModeValueModel.Y) return TileFlipModeValueBuilder.Y;
-    if (value == TileFlipModeValueModel.XY) return TileFlipModeValueBuilder.XY;
+    if (value == TileFlipModeValueModel.NONE) return STTileFlipMode.NONE;
+    if (value == TileFlipModeValueModel.X) return STTileFlipMode.X;
+    if (value == TileFlipModeValueModel.Y) return STTileFlipMode.Y;
+    if (value == TileFlipModeValueModel.XY) return STTileFlipMode.XY;
     return null;
   }
 }

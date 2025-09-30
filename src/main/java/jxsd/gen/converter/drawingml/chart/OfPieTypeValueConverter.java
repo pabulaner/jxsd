@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.chart;
 
-import jxsd.gen.builder.drawingml.chart.OfPieTypeValueBuilder;
 import jxsd.gen.model.drawingml.chart.OfPieTypeValueModel;
 import org.docx4j.dml.chart.STOfPieType;
 
@@ -13,15 +12,15 @@ public class OfPieTypeValueConverter {
 
   public static OfPieTypeValueModel fromDocx4j(STOfPieType value) {
     if (value == null) return null;
-    if (value == OfPieTypeValueBuilder.PIE) return OfPieTypeValueModel.PIE;
-    if (value == OfPieTypeValueBuilder.BAR) return OfPieTypeValueModel.BAR;
+    if (value == STOfPieType.PIE) return OfPieTypeValueModel.PIE;
+    if (value == STOfPieType.BAR) return OfPieTypeValueModel.BAR;
     return null;
   }
 
   public static STOfPieType toDocx4j(OfPieTypeValueModel value) {
     if (value == null) return null;
-    if (value == OfPieTypeValueModel.PIE) return OfPieTypeValueBuilder.PIE;
-    if (value == OfPieTypeValueModel.BAR) return OfPieTypeValueBuilder.BAR;
+    if (value == OfPieTypeValueModel.PIE) return STOfPieType.PIE;
+    if (value == OfPieTypeValueModel.BAR) return STOfPieType.BAR;
     return null;
   }
 }

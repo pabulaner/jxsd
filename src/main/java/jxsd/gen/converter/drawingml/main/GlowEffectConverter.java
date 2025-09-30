@@ -13,12 +13,12 @@ public class GlowEffectConverter {
   public static GlowEffectModel fromDocx4j(CTGlowEffect value) {
     if (value == null) return null;
     GlowEffectModel.EG_ColorChoice egColorChoice = new GlowEffectModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = GlowEffectConverter.newEGColorChoice(GlowEffectConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = GlowEffectConverter.newEGColorChoice(GlowEffectConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = GlowEffectConverter.newEGColorChoice(GlowEffectConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = GlowEffectConverter.newEGColorChoice(GlowEffectConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = GlowEffectConverter.newEGColorChoice(GlowEffectConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = GlowEffectConverter.newEGColorChoice(GlowEffectConverter.fromDocx4j(value.getPrstClr()));
+    if (value.getScrgbClr() != null) egColorChoice = GlowEffectModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = GlowEffectModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = GlowEffectModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = GlowEffectModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = GlowEffectModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = GlowEffectModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
     return new GlowEffectModel(PositiveCoordinateValueConverter.fromDocx4j(value.getRad()), egColorChoice);
   }
 

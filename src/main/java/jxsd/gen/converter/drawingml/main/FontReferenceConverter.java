@@ -13,12 +13,12 @@ public class FontReferenceConverter {
   public static FontReferenceModel fromDocx4j(CTFontReference value) {
     if (value == null) return null;
     FontReferenceModel.EG_ColorChoice egColorChoice = new FontReferenceModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = FontReferenceConverter.newEGColorChoice(FontReferenceConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = FontReferenceConverter.newEGColorChoice(FontReferenceConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = FontReferenceConverter.newEGColorChoice(FontReferenceConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = FontReferenceConverter.newEGColorChoice(FontReferenceConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = FontReferenceConverter.newEGColorChoice(FontReferenceConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = FontReferenceConverter.newEGColorChoice(FontReferenceConverter.fromDocx4j(value.getPrstClr()));
+    if (value.getScrgbClr() != null) egColorChoice = FontReferenceModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = FontReferenceModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = FontReferenceModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = FontReferenceModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = FontReferenceModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = FontReferenceModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
     return new FontReferenceModel(FontCollectionIndexValueConverter.fromDocx4j(value.getIdx()), egColorChoice);
   }
 

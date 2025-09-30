@@ -13,8 +13,8 @@ public class DispUnitsConverter {
   public static DispUnitsModel fromDocx4j(CTDispUnits value) {
     if (value == null) return null;
     DispUnitsModel.CustUnitOrBuiltInUnit custUnitOrBuiltInUnit = new DispUnitsModel.CustUnitOrBuiltInUnit();
-    if (value.getCustUnit() != null) custUnitOrBuiltInUnit = DispUnitsConverter.newCustUnitOrBuiltInUnit(DispUnitsConverter.fromDocx4j(value.getCustUnit()));
-    if (value.getBuiltInUnit() != null) custUnitOrBuiltInUnit = DispUnitsConverter.newCustUnitOrBuiltInUnit(DispUnitsConverter.fromDocx4j(value.getBuiltInUnit()));
+    if (value.getCustUnit() != null) custUnitOrBuiltInUnit = DispUnitsModel.CustUnitOrBuiltInUnit.newCustUnit(DoubleConverter.fromDocx4j(value.getCustUnit()));
+    if (value.getBuiltInUnit() != null) custUnitOrBuiltInUnit = DispUnitsModel.CustUnitOrBuiltInUnit.newBuiltInUnit(BuiltInUnitConverter.fromDocx4j(value.getBuiltInUnit()));
     return new DispUnitsModel(custUnitOrBuiltInUnit, DispUnitsLblConverter.fromDocx4j(value.getDispUnitsLbl()), ExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

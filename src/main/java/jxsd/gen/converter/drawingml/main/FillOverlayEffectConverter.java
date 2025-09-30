@@ -13,12 +13,12 @@ public class FillOverlayEffectConverter {
   public static FillOverlayEffectModel fromDocx4j(CTFillOverlayEffect value) {
     if (value == null) return null;
     FillOverlayEffectModel.EG_FillProperties egFillProperties = new FillOverlayEffectModel.EG_FillProperties();
-    if (value.getNoFill() != null) egFillProperties = FillOverlayEffectConverter.newEGFillProperties(FillOverlayEffectConverter.fromDocx4j(value.getNoFill()));
-    if (value.getSolidFill() != null) egFillProperties = FillOverlayEffectConverter.newEGFillProperties(FillOverlayEffectConverter.fromDocx4j(value.getSolidFill()));
-    if (value.getGradFill() != null) egFillProperties = FillOverlayEffectConverter.newEGFillProperties(FillOverlayEffectConverter.fromDocx4j(value.getGradFill()));
-    if (value.getBlipFill() != null) egFillProperties = FillOverlayEffectConverter.newEGFillProperties(FillOverlayEffectConverter.fromDocx4j(value.getBlipFill()));
-    if (value.getPattFill() != null) egFillProperties = FillOverlayEffectConverter.newEGFillProperties(FillOverlayEffectConverter.fromDocx4j(value.getPattFill()));
-    if (value.getGrpFill() != null) egFillProperties = FillOverlayEffectConverter.newEGFillProperties(FillOverlayEffectConverter.fromDocx4j(value.getGrpFill()));
+    if (value.getNoFill() != null) egFillProperties = FillOverlayEffectModel.EG_FillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j(value.getNoFill()));
+    if (value.getSolidFill() != null) egFillProperties = FillOverlayEffectModel.EG_FillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j(value.getSolidFill()));
+    if (value.getGradFill() != null) egFillProperties = FillOverlayEffectModel.EG_FillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j(value.getGradFill()));
+    if (value.getBlipFill() != null) egFillProperties = FillOverlayEffectModel.EG_FillProperties.newBlipFill(BlipFillPropertiesConverter.fromDocx4j(value.getBlipFill()));
+    if (value.getPattFill() != null) egFillProperties = FillOverlayEffectModel.EG_FillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j(value.getPattFill()));
+    if (value.getGrpFill() != null) egFillProperties = FillOverlayEffectModel.EG_FillProperties.newGrpFill(GroupFillPropertiesConverter.fromDocx4j(value.getGrpFill()));
     return new FillOverlayEffectModel(BlendModeValueConverter.fromDocx4j(value.getBlend()), egFillProperties);
   }
 

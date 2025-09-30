@@ -25,17 +25,8 @@ public class UnionConverterParser implements SpecParser {
         TypeName modelTypeName = ParserUtil.convertType(specType, modelResolver);
         TypeName docx4jTypeName = ParserUtil.convertType(specType, docx4jResolver);
 
-        ///
-        /// ---- FROM ----
-        ///
-
         fromBuilder.addStatement("return new $T(value)", modelTypeName);
-
-        ///
-        /// ---- TO ----
-        ///
-
-        // TODO: implement
+        toBuilder.addStatement("return value.getValue()");
 
         ctx.next();
     }

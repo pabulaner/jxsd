@@ -7,13 +7,11 @@ public class MarkerCoordinateValueConverter {
   private MarkerCoordinateValueConverter() {
   }
 
-  public static double fromDocx4j(Double value) {
-    if (value == null) return null;
+  public static Double fromDocx4j(Double value) {
     return value;
   }
 
-  public static Double toDocx4j(double value) {
-    if (value == null) return null;
+  public static Double toDocx4j(Double value) {
     return value;
   }
 }

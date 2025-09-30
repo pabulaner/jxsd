@@ -13,7 +13,7 @@ public class GraphicalObjectFrameLockingConverter {
 
   public static GraphicalObjectFrameLockingModel fromDocx4j(CTGraphicalObjectFrameLocking value) {
     if (value == null) return null;
-    return new GraphicalObjectFrameLockingModel(BooleanValueConverter.fromDocx4j(value.getNoDrilldown()), BooleanValueConverter.fromDocx4j(value.getNoResize()), BooleanValueConverter.fromDocx4j(value.getNoChangeAspect()), BooleanValueConverter.fromDocx4j(value.getNoSelect()), BooleanValueConverter.fromDocx4j(value.getNoGrp()), BooleanValueConverter.fromDocx4j(value.getNoMove()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    return new GraphicalObjectFrameLockingModel(BooleanValueConverter.fromDocx4j(value.isNoDrilldown()), BooleanValueConverter.fromDocx4j(value.isNoResize()), BooleanValueConverter.fromDocx4j(value.isNoChangeAspect()), BooleanValueConverter.fromDocx4j(value.isNoSelect()), BooleanValueConverter.fromDocx4j(value.isNoGrp()), BooleanValueConverter.fromDocx4j(value.isNoMove()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTGraphicalObjectFrameLocking toDocx4j(GraphicalObjectFrameLockingModel value) {

@@ -3,18 +3,20 @@ package io.github.pabulaner.jxsd.spec.parser.converter;
 import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
+import io.github.pabulaner.jxsd.java.JavaComplex;
 import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaField;
-import io.github.pabulaner.jxsd.java.JavaSequence;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.parser.ComplexSpecParser;
 import io.github.pabulaner.jxsd.spec.resolver.Resolver;
 import io.github.pabulaner.jxsd.util.Name;
+import jakarta.xml.bind.JAXBElement;
 
+import javax.xml.namespace.QName;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,12 +26,17 @@ public class SequenceConverterParser extends ComplexSpecParser {
 
     @Override
     public void parse(SpecContext ctx) {
-        JavaSequence spec = ctx.get(SpecKey.SPEC);
+        JavaComplex spec = ctx.get(SpecKey.SPEC);
         MethodSpec.Builder fromBuilder = ctx.get(ConverterParser.FROM_BUILDER);
         MethodSpec.Builder toBuilder = ctx.get(ConverterParser.TO_BUILDER);
         Resolver modelResolver = ctx.get(SpecKey.MODEL_RESOLVER);
         Resolver converterResolver = ctx.get(SpecKey.CONVERTER_RESOLVER);
         Resolver docx4jResolver = ctx.get(SpecKey.DOCX4J_RESOLVER);
+
+        JavaType specType = spec.getType();
+        TypeName modelTypeName = ParserUtil.convertType(specType, modelResolver);
+        TypeName converterTypeName = ParserUtil.convertType(specType, converterResolver);
+        TypeName docx4jTypeName = ParserUtil.convertType(specType, docx4jResolver);
 
         // parse all inners except for choices
         spec.getInners().forEach(inner -> {
@@ -37,11 +44,6 @@ public class SequenceConverterParser extends ComplexSpecParser {
                 parseInner(ctx, inner);
             }
         });
-
-        JavaType specType = spec.getType();
-        TypeName modelTypeName = ParserUtil.convertType(specType, modelResolver);
-        TypeName converterTypeName = ParserUtil.convertType(specType, converterResolver);
-        TypeName docx4jTypeName = ParserUtil.convertType(specType, docx4jResolver);
 
         CodeBlock.Builder fromInnerBuilder = CodeBlock.builder();
         CodeBlock.Builder fromNewBuilder = CodeBlock.builder().add("return new $T(", modelTypeName);
@@ -71,6 +73,7 @@ public class SequenceConverterParser extends ComplexSpecParser {
             if (choice != null) {
                 JavaType choiceType = choice.getType();
                 TypeName choiceTypeName = ParserUtil.convertType(choiceType, modelResolver, isList);
+                TypeName choiceTypeNameNoList = ParserUtil.convertType(choiceType, modelResolver, false);
                 String choiceName = new Name(choiceType.getName()).toVarUpper();
 
                 fromInnerBuilder.add("$T $N = ", choiceTypeName, fieldNameLower);
@@ -87,17 +90,25 @@ public class SequenceConverterParser extends ComplexSpecParser {
                         JavaType choiceFieldType = choiceField.getType();
                         TypeName choiceFieldTypeName = ParserUtil.convertType(choiceFieldType, docx4jResolver);
                         TypeName choiceConverterTypeName = ParserUtil.convertType(choiceFieldType, converterResolver, false);
-                        String choiceFieldName = new Name(choiceField.getName()).toUpper();
+                        Name choiceFieldName = new Name(choiceField.getName());
+                        String choiceFieldNameLower = choiceFieldName.toLower();
+                        String choiceFieldNameUpper = choiceFieldName.toUpper();
 
                         if (areTypesUnique) {
-                            fromInnerBuilder.addStatement("if (val instanceof $T) return $T.new$N($T.fromDocx4j(($T) val))", choiceFieldTypeName, docx4jFieldTypeName, choiceFieldName, choiceConverterTypeName, choiceFieldTypeName);
-                            toInnerBuilder.addStatement("if (val.is$N()) return $T.toDocx4j(val.get$N())", choiceFieldName, converterTypeName, choiceFieldName);
+                            fromInnerBuilder.addStatement("if (val instanceof $T) return $T.new$N($T.fromDocx4j(($T) val))", choiceFieldTypeName, choiceTypeNameNoList, choiceFieldNameUpper, choiceConverterTypeName, choiceFieldTypeName);
+                            toInnerBuilder.addStatement("if (val.is$N()) return $T.toDocx4j(val.get$N())", choiceFieldNameUpper, choiceConverterTypeName, choiceFieldNameUpper);
                         } else {
+                            fromInnerBuilder.addStatement("if (val.getName().getLocalPart().equals(\"$N\")) return $T.new$N($T.fromDocx4j(($T) val.getValue()))", choiceFieldNameLower, choiceTypeNameNoList, choiceFieldNameUpper, choiceConverterTypeName, choiceFieldTypeName);
+                            toInnerBuilder.addStatement("if (val.is$N()) return new $T<>(new $T(\"$N\"), $T.class, $T.toDocx4j(val.get$N()))", choiceFieldNameUpper, JAXBElement.class, QName.class, choiceFieldNameLower, choiceFieldTypeName, choiceConverterTypeName, choiceFieldNameUpper);
                             // TODO: implement
                         }
                     });
 
-                    toInnerBuilder.addStatement("return null").endControlFlow(").collect($T.toList())", Collectors.class);
+                    String stmt = "return null";
+                    String end = ").collect($T.toList())";
+
+                    fromInnerBuilder.addStatement(stmt).endControlFlow(end, Collectors.class);
+                    toInnerBuilder.addStatement(stmt).endControlFlow(end + ")", Collectors.class);
                 } else {
                     fromInnerBuilder.addStatement("new $T()", choiceTypeName);
 
@@ -107,7 +118,7 @@ public class SequenceConverterParser extends ComplexSpecParser {
                         TypeName choiceConverterTypeName = ParserUtil.convertType(choiceFieldType, converterResolver, false);
                         String choiceFieldName = new Name(choiceField.getName()).toUpper();
 
-                        fromInnerBuilder.addStatement("if (value.get$N() != null) $N = $T.new$N($T.fromDocx4j(value.get$N()))", choiceFieldName, fieldNameLower, converterTypeName, fieldNameUpper, converterTypeName, choiceFieldName);
+                        fromInnerBuilder.addStatement("if (value.get$N() != null) $N = $T.new$N($T.fromDocx4j(value.get$N()))", choiceFieldName, fieldNameLower, choiceTypeName, choiceFieldName, choiceConverterTypeName, choiceFieldName);
                         toInnerBuilder.addStatement("if (value.get$N().is$N()) result.set$N($T.toDocx4j(value.get$N().get$N()))", choiceName, choiceFieldName, choiceFieldName, choiceConverterTypeName, choiceName, choiceFieldName);
                     });
                 }
@@ -117,7 +128,9 @@ public class SequenceConverterParser extends ComplexSpecParser {
                 fromNewBuilder.add("value.get$N().stream().map($T::fromDocx4j).collect($T.toList())", fieldNameUpper, fieldConverterTypeName, Collectors.class);
                 toBuilder.addStatement("result.get$N().addAll(value.get$N().stream().map($T::toDocx4j).collect($T.toList()))", fieldNameUpper, fieldNameUpper, fieldConverterTypeName, Collectors.class);
             } else {
-                fromNewBuilder.add("$T.fromDocx4j(value.get$N())", fieldConverterTypeName, fieldNameUpper);
+                String getter = ParserUtil.convertGetterName(fieldType, fieldNameUpper);
+
+                fromNewBuilder.add("$T.fromDocx4j(value.$N())", fieldConverterTypeName, getter);
                 toBuilder.addStatement("result.set$N($T.toDocx4j(value.get$N()))", fieldNameUpper, fieldConverterTypeName, fieldNameUpper);
             }
         });
@@ -129,7 +142,7 @@ public class SequenceConverterParser extends ComplexSpecParser {
         ctx.next();
     }
 
-    private JavaChoice getInnerChoice(JavaSequence spec, JavaField field) {
+    private JavaChoice getInnerChoice(JavaComplex spec, JavaField field) {
         for (JavaClass inner : spec.getInners()) {
             if (inner instanceof JavaChoice casted && inner.getType().equals(field.getType())) {
                 return casted;

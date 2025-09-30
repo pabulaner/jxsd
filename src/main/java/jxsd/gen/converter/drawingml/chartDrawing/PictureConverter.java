@@ -17,7 +17,7 @@ public class PictureConverter {
 
   public static PictureModel fromDocx4j(CTPicture value) {
     if (value == null) return null;
-    return new PictureModel(BooleanValueConverter.fromDocx4j(value.getFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), PictureNonVisualConverter.fromDocx4j(value.getNvPicPr()), BlipFillPropertiesConverter.fromDocx4j(value.getBlipFill()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), ShapeStyleConverter.fromDocx4j(value.getStyle()));
+    return new PictureModel(BooleanValueConverter.fromDocx4j(value.isFPublished()), StringValueConverter.fromDocx4j(value.getMacro()), PictureNonVisualConverter.fromDocx4j(value.getNvPicPr()), BlipFillPropertiesConverter.fromDocx4j(value.getBlipFill()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), ShapeStyleConverter.fromDocx4j(value.getStyle()));
   }
 
   public static CTPicture toDocx4j(PictureModel value) {

@@ -13,7 +13,7 @@ public class NumFmtConverter {
 
   public static NumFmtModel fromDocx4j(CTNumFmt value) {
     if (value == null) return null;
-    return new NumFmtModel(XstringValueConverter.fromDocx4j(value.getFormatCode()), BooleanValueConverter.fromDocx4j(value.getSourceLinked()));
+    return new NumFmtModel(XstringValueConverter.fromDocx4j(value.getFormatCode()), BooleanValueConverter.fromDocx4j(value.isSourceLinked()));
   }
 
   public static CTNumFmt toDocx4j(NumFmtModel value) {

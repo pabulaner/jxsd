@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.RectAlignmentValueBuilder;
 import jxsd.gen.model.drawingml.main.RectAlignmentValueModel;
 import org.docx4j.dml.STRectAlignment;
 
@@ -13,29 +12,29 @@ public class RectAlignmentValueConverter {
 
   public static RectAlignmentValueModel fromDocx4j(STRectAlignment value) {
     if (value == null) return null;
-    if (value == RectAlignmentValueBuilder.TL) return RectAlignmentValueModel.TL;
-    if (value == RectAlignmentValueBuilder.T) return RectAlignmentValueModel.T;
-    if (value == RectAlignmentValueBuilder.TR) return RectAlignmentValueModel.TR;
-    if (value == RectAlignmentValueBuilder.L) return RectAlignmentValueModel.L;
-    if (value == RectAlignmentValueBuilder.CTR) return RectAlignmentValueModel.CTR;
-    if (value == RectAlignmentValueBuilder.R) return RectAlignmentValueModel.R;
-    if (value == RectAlignmentValueBuilder.BL) return RectAlignmentValueModel.BL;
-    if (value == RectAlignmentValueBuilder.B) return RectAlignmentValueModel.B;
-    if (value == RectAlignmentValueBuilder.BR) return RectAlignmentValueModel.BR;
+    if (value == STRectAlignment.TL) return RectAlignmentValueModel.TL;
+    if (value == STRectAlignment.T) return RectAlignmentValueModel.T;
+    if (value == STRectAlignment.TR) return RectAlignmentValueModel.TR;
+    if (value == STRectAlignment.L) return RectAlignmentValueModel.L;
+    if (value == STRectAlignment.CTR) return RectAlignmentValueModel.CTR;
+    if (value == STRectAlignment.R) return RectAlignmentValueModel.R;
+    if (value == STRectAlignment.BL) return RectAlignmentValueModel.BL;
+    if (value == STRectAlignment.B) return RectAlignmentValueModel.B;
+    if (value == STRectAlignment.BR) return RectAlignmentValueModel.BR;
     return null;
   }
 
   public static STRectAlignment toDocx4j(RectAlignmentValueModel value) {
     if (value == null) return null;
-    if (value == RectAlignmentValueModel.TL) return RectAlignmentValueBuilder.TL;
-    if (value == RectAlignmentValueModel.T) return RectAlignmentValueBuilder.T;
-    if (value == RectAlignmentValueModel.TR) return RectAlignmentValueBuilder.TR;
-    if (value == RectAlignmentValueModel.L) return RectAlignmentValueBuilder.L;
-    if (value == RectAlignmentValueModel.CTR) return RectAlignmentValueBuilder.CTR;
-    if (value == RectAlignmentValueModel.R) return RectAlignmentValueBuilder.R;
-    if (value == RectAlignmentValueModel.BL) return RectAlignmentValueBuilder.BL;
-    if (value == RectAlignmentValueModel.B) return RectAlignmentValueBuilder.B;
-    if (value == RectAlignmentValueModel.BR) return RectAlignmentValueBuilder.BR;
+    if (value == RectAlignmentValueModel.TL) return STRectAlignment.TL;
+    if (value == RectAlignmentValueModel.T) return STRectAlignment.T;
+    if (value == RectAlignmentValueModel.TR) return STRectAlignment.TR;
+    if (value == RectAlignmentValueModel.L) return STRectAlignment.L;
+    if (value == RectAlignmentValueModel.CTR) return STRectAlignment.CTR;
+    if (value == RectAlignmentValueModel.R) return STRectAlignment.R;
+    if (value == RectAlignmentValueModel.BL) return STRectAlignment.BL;
+    if (value == RectAlignmentValueModel.B) return STRectAlignment.B;
+    if (value == RectAlignmentValueModel.BR) return STRectAlignment.BR;
     return null;
   }
 }

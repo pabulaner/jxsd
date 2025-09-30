@@ -14,21 +14,21 @@ public class TextParagraphPropertiesConverter {
   public static TextParagraphPropertiesModel fromDocx4j(CTTextParagraphProperties value) {
     if (value == null) return null;
     TextParagraphPropertiesModel.EG_TextBulletColor egTextBulletColor = new TextParagraphPropertiesModel.EG_TextBulletColor();
-    if (value.getBuClrTx() != null) egTextBulletColor = TextParagraphPropertiesConverter.newEGTextBulletColor(TextParagraphPropertiesConverter.fromDocx4j(value.getBuClrTx()));
-    if (value.getBuClr() != null) egTextBulletColor = TextParagraphPropertiesConverter.newEGTextBulletColor(TextParagraphPropertiesConverter.fromDocx4j(value.getBuClr()));
+    if (value.getBuClrTx() != null) egTextBulletColor = TextParagraphPropertiesModel.EG_TextBulletColor.newBuClrTx(TextBulletColorFollowTextConverter.fromDocx4j(value.getBuClrTx()));
+    if (value.getBuClr() != null) egTextBulletColor = TextParagraphPropertiesModel.EG_TextBulletColor.newBuClr(ColorConverter.fromDocx4j(value.getBuClr()));
     TextParagraphPropertiesModel.EG_TextBulletSize egTextBulletSize = new TextParagraphPropertiesModel.EG_TextBulletSize();
-    if (value.getBuSzTx() != null) egTextBulletSize = TextParagraphPropertiesConverter.newEGTextBulletSize(TextParagraphPropertiesConverter.fromDocx4j(value.getBuSzTx()));
-    if (value.getBuSzPct() != null) egTextBulletSize = TextParagraphPropertiesConverter.newEGTextBulletSize(TextParagraphPropertiesConverter.fromDocx4j(value.getBuSzPct()));
-    if (value.getBuSzPts() != null) egTextBulletSize = TextParagraphPropertiesConverter.newEGTextBulletSize(TextParagraphPropertiesConverter.fromDocx4j(value.getBuSzPts()));
+    if (value.getBuSzTx() != null) egTextBulletSize = TextParagraphPropertiesModel.EG_TextBulletSize.newBuSzTx(TextBulletSizeFollowTextConverter.fromDocx4j(value.getBuSzTx()));
+    if (value.getBuSzPct() != null) egTextBulletSize = TextParagraphPropertiesModel.EG_TextBulletSize.newBuSzPct(TextBulletSizePercentConverter.fromDocx4j(value.getBuSzPct()));
+    if (value.getBuSzPts() != null) egTextBulletSize = TextParagraphPropertiesModel.EG_TextBulletSize.newBuSzPts(TextBulletSizePointConverter.fromDocx4j(value.getBuSzPts()));
     TextParagraphPropertiesModel.EG_TextBulletTypeface egTextBulletTypeface = new TextParagraphPropertiesModel.EG_TextBulletTypeface();
-    if (value.getBuFontTx() != null) egTextBulletTypeface = TextParagraphPropertiesConverter.newEGTextBulletTypeface(TextParagraphPropertiesConverter.fromDocx4j(value.getBuFontTx()));
-    if (value.getBuFont() != null) egTextBulletTypeface = TextParagraphPropertiesConverter.newEGTextBulletTypeface(TextParagraphPropertiesConverter.fromDocx4j(value.getBuFont()));
+    if (value.getBuFontTx() != null) egTextBulletTypeface = TextParagraphPropertiesModel.EG_TextBulletTypeface.newBuFontTx(TextBulletTypefaceFollowTextConverter.fromDocx4j(value.getBuFontTx()));
+    if (value.getBuFont() != null) egTextBulletTypeface = TextParagraphPropertiesModel.EG_TextBulletTypeface.newBuFont(TextFontValueConverter.fromDocx4j(value.getBuFont()));
     TextParagraphPropertiesModel.EG_TextBullet egTextBullet = new TextParagraphPropertiesModel.EG_TextBullet();
-    if (value.getBuNone() != null) egTextBullet = TextParagraphPropertiesConverter.newEGTextBullet(TextParagraphPropertiesConverter.fromDocx4j(value.getBuNone()));
-    if (value.getBuAutoNum() != null) egTextBullet = TextParagraphPropertiesConverter.newEGTextBullet(TextParagraphPropertiesConverter.fromDocx4j(value.getBuAutoNum()));
-    if (value.getBuChar() != null) egTextBullet = TextParagraphPropertiesConverter.newEGTextBullet(TextParagraphPropertiesConverter.fromDocx4j(value.getBuChar()));
-    if (value.getBuBlip() != null) egTextBullet = TextParagraphPropertiesConverter.newEGTextBullet(TextParagraphPropertiesConverter.fromDocx4j(value.getBuBlip()));
-    return new TextParagraphPropertiesModel(TextIndentValueConverter.fromDocx4j(value.getIndent()), BooleanValueConverter.fromDocx4j(value.getLatinLnBrk()), TextMarginValueConverter.fromDocx4j(value.getMarR()), BooleanValueConverter.fromDocx4j(value.getHangingPunct()), TextFontAlignTypeValueConverter.fromDocx4j(value.getFontAlgn()), BooleanValueConverter.fromDocx4j(value.getEaLnBrk()), BooleanValueConverter.fromDocx4j(value.getRtl()), TextIndentLevelTypeValueConverter.fromDocx4j(value.getLvl()), TextMarginValueConverter.fromDocx4j(value.getMarL()), Coordinate32ValueConverter.fromDocx4j(value.getDefTabSz()), TextAlignTypeValueConverter.fromDocx4j(value.getAlgn()), TextSpacingConverter.fromDocx4j(value.getLnSpc()), TextSpacingConverter.fromDocx4j(value.getSpcBef()), TextSpacingConverter.fromDocx4j(value.getSpcAft()), egTextBulletColor, egTextBulletSize, egTextBulletTypeface, egTextBullet, TextTabStopListConverter.fromDocx4j(value.getTabLst()), TextCharacterPropertiesConverter.fromDocx4j(value.getDefRPr()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    if (value.getBuNone() != null) egTextBullet = TextParagraphPropertiesModel.EG_TextBullet.newBuNone(TextNoBulletConverter.fromDocx4j(value.getBuNone()));
+    if (value.getBuAutoNum() != null) egTextBullet = TextParagraphPropertiesModel.EG_TextBullet.newBuAutoNum(TextAutonumberBulletConverter.fromDocx4j(value.getBuAutoNum()));
+    if (value.getBuChar() != null) egTextBullet = TextParagraphPropertiesModel.EG_TextBullet.newBuChar(TextCharBulletConverter.fromDocx4j(value.getBuChar()));
+    if (value.getBuBlip() != null) egTextBullet = TextParagraphPropertiesModel.EG_TextBullet.newBuBlip(TextBlipBulletConverter.fromDocx4j(value.getBuBlip()));
+    return new TextParagraphPropertiesModel(TextIndentValueConverter.fromDocx4j(value.getIndent()), BooleanValueConverter.fromDocx4j(value.isLatinLnBrk()), TextMarginValueConverter.fromDocx4j(value.getMarR()), BooleanValueConverter.fromDocx4j(value.isHangingPunct()), TextFontAlignTypeValueConverter.fromDocx4j(value.getFontAlgn()), BooleanValueConverter.fromDocx4j(value.isEaLnBrk()), BooleanValueConverter.fromDocx4j(value.isRtl()), TextIndentLevelTypeValueConverter.fromDocx4j(value.getLvl()), TextMarginValueConverter.fromDocx4j(value.getMarL()), Coordinate32ValueConverter.fromDocx4j(value.getDefTabSz()), TextAlignTypeValueConverter.fromDocx4j(value.getAlgn()), TextSpacingConverter.fromDocx4j(value.getLnSpc()), TextSpacingConverter.fromDocx4j(value.getSpcBef()), TextSpacingConverter.fromDocx4j(value.getSpcAft()), egTextBulletColor, egTextBulletSize, egTextBulletTypeface, egTextBullet, TextTabStopListConverter.fromDocx4j(value.getTabLst()), TextCharacterPropertiesConverter.fromDocx4j(value.getDefRPr()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTTextParagraphProperties toDocx4j(TextParagraphPropertiesModel value) {

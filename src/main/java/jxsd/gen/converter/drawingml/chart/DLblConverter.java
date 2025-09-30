@@ -16,20 +16,20 @@ public class DLblConverter {
   public static DLblModel fromDocx4j(CTDLbl value) {
     if (value == null) return null;
     DLblModel.DeleteOrDLbl deleteOrDLbl = new DLblModel.DeleteOrDLbl();
-    if (value.getDelete() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getDelete()));
-    if (value.getLayout() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getLayout()));
-    if (value.getTx() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getTx()));
-    if (value.getNumFmt() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getNumFmt()));
-    if (value.getSpPr() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getSpPr()));
-    if (value.getTxPr() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getTxPr()));
-    if (value.getDLblPos() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getDLblPos()));
-    if (value.getShowLegendKey() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getShowLegendKey()));
-    if (value.getShowVal() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getShowVal()));
-    if (value.getShowCatName() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getShowCatName()));
-    if (value.getShowSerName() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getShowSerName()));
-    if (value.getShowPercent() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getShowPercent()));
-    if (value.getShowBubbleSize() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getShowBubbleSize()));
-    if (value.getSeparator() != null) deleteOrDLbl = DLblConverter.newDeleteOrDLbl(DLblConverter.fromDocx4j(value.getSeparator()));
+    if (value.getDelete() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newDelete(BooleanConverter.fromDocx4j(value.getDelete()));
+    if (value.getLayout() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newLayout(LayoutConverter.fromDocx4j(value.getLayout()));
+    if (value.getTx() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newTx(TxConverter.fromDocx4j(value.getTx()));
+    if (value.getNumFmt() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newNumFmt(NumFmtConverter.fromDocx4j(value.getNumFmt()));
+    if (value.getSpPr() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newSpPr(ShapePropertiesConverter.fromDocx4j(value.getSpPr()));
+    if (value.getTxPr() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newTxPr(TextBodyConverter.fromDocx4j(value.getTxPr()));
+    if (value.getDLblPos() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newDLblPos(DLblPosConverter.fromDocx4j(value.getDLblPos()));
+    if (value.getShowLegendKey() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newShowLegendKey(BooleanConverter.fromDocx4j(value.getShowLegendKey()));
+    if (value.getShowVal() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newShowVal(BooleanConverter.fromDocx4j(value.getShowVal()));
+    if (value.getShowCatName() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newShowCatName(BooleanConverter.fromDocx4j(value.getShowCatName()));
+    if (value.getShowSerName() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newShowSerName(BooleanConverter.fromDocx4j(value.getShowSerName()));
+    if (value.getShowPercent() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newShowPercent(BooleanConverter.fromDocx4j(value.getShowPercent()));
+    if (value.getShowBubbleSize() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newShowBubbleSize(BooleanConverter.fromDocx4j(value.getShowBubbleSize()));
+    if (value.getSeparator() != null) deleteOrDLbl = DLblModel.DeleteOrDLbl.newSeparator(StringValueConverter.fromDocx4j(value.getSeparator()));
     return new DLblModel(UnsignedIntConverter.fromDocx4j(value.getIdx()), deleteOrDLbl, ExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

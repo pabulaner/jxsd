@@ -13,11 +13,11 @@ public class RelSizeAnchorConverter {
   public static RelSizeAnchorModel fromDocx4j(CTRelSizeAnchor value) {
     if (value == null) return null;
     RelSizeAnchorModel.SpOrGrpSpOrGraphicFrame spOrGrpSpOrGraphicFrame = new RelSizeAnchorModel.SpOrGrpSpOrGraphicFrame();
-    if (value.getSp() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(RelSizeAnchorConverter.fromDocx4j(value.getSp()));
-    if (value.getGrpSp() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(RelSizeAnchorConverter.fromDocx4j(value.getGrpSp()));
-    if (value.getGraphicFrame() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(RelSizeAnchorConverter.fromDocx4j(value.getGraphicFrame()));
-    if (value.getCxnSp() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(RelSizeAnchorConverter.fromDocx4j(value.getCxnSp()));
-    if (value.getPic() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(RelSizeAnchorConverter.fromDocx4j(value.getPic()));
+    if (value.getSp() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newSp(ShapeConverter.fromDocx4j(value.getSp()));
+    if (value.getGrpSp() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newGrpSp(GroupShapeConverter.fromDocx4j(value.getGrpSp()));
+    if (value.getGraphicFrame() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newGraphicFrame(GraphicFrameConverter.fromDocx4j(value.getGraphicFrame()));
+    if (value.getCxnSp() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newCxnSp(ConnectorConverter.fromDocx4j(value.getCxnSp()));
+    if (value.getPic() != null) spOrGrpSpOrGraphicFrame = RelSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newPic(PictureConverter.fromDocx4j(value.getPic()));
     return new RelSizeAnchorModel(MarkerConverter.fromDocx4j(value.getFrom()), MarkerConverter.fromDocx4j(value.getTo()), spOrGrpSpOrGraphicFrame);
   }
 

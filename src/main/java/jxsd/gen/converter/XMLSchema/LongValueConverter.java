@@ -7,13 +7,11 @@ public class LongValueConverter {
   private LongValueConverter() {
   }
 
-  public static long fromDocx4j(Long value) {
-    if (value == null) return null;
+  public static Long fromDocx4j(Long value) {
     return value;
   }
 
-  public static Long toDocx4j(long value) {
-    if (value == null) return null;
+  public static Long toDocx4j(Long value) {
     return value;
   }
 }

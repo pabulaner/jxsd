@@ -14,9 +14,9 @@ public class GradientFillPropertiesConverter {
   public static GradientFillPropertiesModel fromDocx4j(CTGradientFillProperties value) {
     if (value == null) return null;
     GradientFillPropertiesModel.EG_ShadeProperties egShadeProperties = new GradientFillPropertiesModel.EG_ShadeProperties();
-    if (value.getLin() != null) egShadeProperties = GradientFillPropertiesConverter.newEGShadeProperties(GradientFillPropertiesConverter.fromDocx4j(value.getLin()));
-    if (value.getPath() != null) egShadeProperties = GradientFillPropertiesConverter.newEGShadeProperties(GradientFillPropertiesConverter.fromDocx4j(value.getPath()));
-    return new GradientFillPropertiesModel(BooleanValueConverter.fromDocx4j(value.getRotWithShape()), TileFlipModeValueConverter.fromDocx4j(value.getFlip()), GradientStopListConverter.fromDocx4j(value.getGsLst()), egShadeProperties, RelativeRectConverter.fromDocx4j(value.getTileRect()));
+    if (value.getLin() != null) egShadeProperties = GradientFillPropertiesModel.EG_ShadeProperties.newLin(LinearShadePropertiesConverter.fromDocx4j(value.getLin()));
+    if (value.getPath() != null) egShadeProperties = GradientFillPropertiesModel.EG_ShadeProperties.newPath(PathShadePropertiesConverter.fromDocx4j(value.getPath()));
+    return new GradientFillPropertiesModel(BooleanValueConverter.fromDocx4j(value.isRotWithShape()), TileFlipModeValueConverter.fromDocx4j(value.getFlip()), GradientStopListConverter.fromDocx4j(value.getGsLst()), egShadeProperties, RelativeRectConverter.fromDocx4j(value.getTileRect()));
   }
 
   public static CTGradientFillProperties toDocx4j(GradientFillPropertiesModel value) {

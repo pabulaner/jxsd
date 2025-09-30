@@ -7,13 +7,11 @@ public class FloatValueConverter {
   private FloatValueConverter() {
   }
 
-  public static float fromDocx4j(Float value) {
-    if (value == null) return null;
+  public static Float fromDocx4j(Float value) {
     return value;
   }
 
-  public static Float toDocx4j(float value) {
-    if (value == null) return null;
+  public static Float toDocx4j(Float value) {
     return value;
   }
 }

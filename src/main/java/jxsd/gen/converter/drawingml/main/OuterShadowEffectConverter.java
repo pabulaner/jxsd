@@ -14,13 +14,13 @@ public class OuterShadowEffectConverter {
   public static OuterShadowEffectModel fromDocx4j(CTOuterShadowEffect value) {
     if (value == null) return null;
     OuterShadowEffectModel.EG_ColorChoice egColorChoice = new OuterShadowEffectModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = OuterShadowEffectConverter.newEGColorChoice(OuterShadowEffectConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = OuterShadowEffectConverter.newEGColorChoice(OuterShadowEffectConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = OuterShadowEffectConverter.newEGColorChoice(OuterShadowEffectConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = OuterShadowEffectConverter.newEGColorChoice(OuterShadowEffectConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = OuterShadowEffectConverter.newEGColorChoice(OuterShadowEffectConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = OuterShadowEffectConverter.newEGColorChoice(OuterShadowEffectConverter.fromDocx4j(value.getPrstClr()));
-    return new OuterShadowEffectModel(PositiveCoordinateValueConverter.fromDocx4j(value.getBlurRad()), PositiveCoordinateValueConverter.fromDocx4j(value.getDist()), BooleanValueConverter.fromDocx4j(value.getRotWithShape()), PercentageValueConverter.fromDocx4j(value.getSy()), FixedAngleValueConverter.fromDocx4j(value.getKy()), PercentageValueConverter.fromDocx4j(value.getSx()), FixedAngleValueConverter.fromDocx4j(value.getKx()), PositiveFixedAngleValueConverter.fromDocx4j(value.getDir()), RectAlignmentValueConverter.fromDocx4j(value.getAlgn()), egColorChoice);
+    if (value.getScrgbClr() != null) egColorChoice = OuterShadowEffectModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = OuterShadowEffectModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = OuterShadowEffectModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = OuterShadowEffectModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = OuterShadowEffectModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = OuterShadowEffectModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
+    return new OuterShadowEffectModel(PositiveCoordinateValueConverter.fromDocx4j(value.getBlurRad()), PositiveCoordinateValueConverter.fromDocx4j(value.getDist()), BooleanValueConverter.fromDocx4j(value.isRotWithShape()), PercentageValueConverter.fromDocx4j(value.getSy()), FixedAngleValueConverter.fromDocx4j(value.getKy()), PercentageValueConverter.fromDocx4j(value.getSx()), FixedAngleValueConverter.fromDocx4j(value.getKx()), PositiveFixedAngleValueConverter.fromDocx4j(value.getDir()), RectAlignmentValueConverter.fromDocx4j(value.getAlgn()), egColorChoice);
   }
 
   public static CTOuterShadowEffect toDocx4j(OuterShadowEffectModel value) {

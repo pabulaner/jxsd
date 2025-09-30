@@ -13,7 +13,7 @@ public class NonVisualPicturePropertiesConverter {
 
   public static NonVisualPicturePropertiesModel fromDocx4j(CTNonVisualPictureProperties value) {
     if (value == null) return null;
-    return new NonVisualPicturePropertiesModel(BooleanValueConverter.fromDocx4j(value.getPreferRelativeResize()), PictureLockingConverter.fromDocx4j(value.getPicLocks()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    return new NonVisualPicturePropertiesModel(BooleanValueConverter.fromDocx4j(value.isPreferRelativeResize()), PictureLockingConverter.fromDocx4j(value.getPicLocks()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTNonVisualPictureProperties toDocx4j(NonVisualPicturePropertiesModel value) {

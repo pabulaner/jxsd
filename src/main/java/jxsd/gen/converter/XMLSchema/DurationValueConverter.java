@@ -10,12 +10,10 @@ public class DurationValueConverter {
   }
 
   public static Duration fromDocx4j(Duration value) {
-    if (value == null) return null;
     return value;
   }
 
   public static Duration toDocx4j(Duration value) {
-    if (value == null) return null;
     return value;
   }
 }

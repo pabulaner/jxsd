@@ -13,7 +13,7 @@ public class GroupLockingConverter {
 
   public static GroupLockingModel fromDocx4j(CTGroupLocking value) {
     if (value == null) return null;
-    return new GroupLockingModel(BooleanValueConverter.fromDocx4j(value.getNoResize()), BooleanValueConverter.fromDocx4j(value.getNoChangeAspect()), BooleanValueConverter.fromDocx4j(value.getNoSelect()), BooleanValueConverter.fromDocx4j(value.getNoUngrp()), BooleanValueConverter.fromDocx4j(value.getNoGrp()), BooleanValueConverter.fromDocx4j(value.getNoMove()), BooleanValueConverter.fromDocx4j(value.getNoRot()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    return new GroupLockingModel(BooleanValueConverter.fromDocx4j(value.isNoResize()), BooleanValueConverter.fromDocx4j(value.isNoChangeAspect()), BooleanValueConverter.fromDocx4j(value.isNoSelect()), BooleanValueConverter.fromDocx4j(value.isNoUngrp()), BooleanValueConverter.fromDocx4j(value.isNoGrp()), BooleanValueConverter.fromDocx4j(value.isNoMove()), BooleanValueConverter.fromDocx4j(value.isNoRot()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTGroupLocking toDocx4j(GroupLockingModel value) {

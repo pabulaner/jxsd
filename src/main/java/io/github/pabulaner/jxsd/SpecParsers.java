@@ -13,6 +13,7 @@ import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.SpecParser;
 import io.github.pabulaner.jxsd.spec.SpecParserFilter;
 import io.github.pabulaner.jxsd.spec.SpecParserMap;
+import io.github.pabulaner.jxsd.spec.SpecParserSwitch;
 import io.github.pabulaner.jxsd.spec.parser.builder.BuilderParser;
 import io.github.pabulaner.jxsd.spec.parser.builder.ChoiceBuilderParser;
 import io.github.pabulaner.jxsd.spec.parser.builder.EnumBuilderParser;
@@ -21,6 +22,8 @@ import io.github.pabulaner.jxsd.spec.parser.builder.SequenceBuilderParser;
 import io.github.pabulaner.jxsd.spec.parser.builder.UnionBuilderParser;
 import io.github.pabulaner.jxsd.spec.parser.converter.ChoiceConverterParser;
 import io.github.pabulaner.jxsd.spec.parser.converter.ConverterParser;
+import io.github.pabulaner.jxsd.spec.parser.fix.SystemColorConverterParser;
+import io.github.pabulaner.jxsd.spec.parser.fix.SystemColorValConverterParser;
 import io.github.pabulaner.jxsd.spec.parser.converter.EnumConverterParser;
 import io.github.pabulaner.jxsd.spec.parser.converter.InterfaceConverterParser;
 import io.github.pabulaner.jxsd.spec.parser.converter.PrimitiveConverterParser;
@@ -43,7 +46,7 @@ import java.util.function.Predicate;
 
 public final class SpecParsers {
 
-    private static final Predicate<SpecContext> PREDICATE = ctx -> {
+    private static final Predicate<SpecContext> PRIMITIVE_PREDICATE = ctx -> {
         JavaClass spec = ctx.get(SpecKey.SPEC);
         return !(spec instanceof JavaPrimitive || spec instanceof JavaRestriction);
     };
@@ -54,7 +57,7 @@ public final class SpecParsers {
 
     public static List<SpecParser> getModelParsers(Resolver resolver) {
         return List.of(
-                new SpecParserFilter(PREDICATE),
+                new SpecParserFilter(PRIMITIVE_PREDICATE),
                 new AddPkgToContextParser(resolver),
                 new ModelParser(),
                 new AddBuilderMethodToModelParser(),
@@ -69,7 +72,7 @@ public final class SpecParsers {
 
     public static List<SpecParser> getBuilderParsers(Resolver resolver) {
         return List.of(
-                new SpecParserFilter(PREDICATE),
+                new SpecParserFilter(PRIMITIVE_PREDICATE),
                 new AddPkgToContextParser(resolver),
                 new BuilderParser(),
                 new AddJavadocToClassParser(),
@@ -86,13 +89,23 @@ public final class SpecParsers {
                 new AddPkgToContextParser(resolver),
                 new ConverterParser(),
                 new AddJavadocToClassParser(),
-                new SpecParserMap()
-                        .add(JavaPrimitive.class, new PrimitiveConverterParser())
-                        .add(JavaRestriction.class, new RestrictionConverterParser())
-                        .add(JavaUnion.class, new UnionConverterParser())
-                        .add(JavaEnum.class, new EnumConverterParser())
-                        .add(JavaSequence.class, new SequenceConverterParser())
-                        .add(JavaChoice.class, new ChoiceConverterParser())
-                        .add(JavaInterface.class, new InterfaceConverterParser()));
+                new SpecParserSwitch()
+                        .add(isType("CT_SystemColor"), new SystemColorConverterParser())
+                        .add(isType("ST_SystemColorVal"), new SystemColorValConverterParser())
+                        .add(ctx -> true, new SpecParserMap()
+                                .add(JavaPrimitive.class, new PrimitiveConverterParser())
+                                .add(JavaRestriction.class, new RestrictionConverterParser())
+                                .add(JavaUnion.class, new UnionConverterParser())
+                                .add(JavaEnum.class, new EnumConverterParser())
+                                .add(JavaSequence.class, new SequenceConverterParser())
+                                .add(JavaChoice.class, new ChoiceConverterParser())
+                                .add(JavaInterface.class, new InterfaceConverterParser())));
+    }
+
+    private static Predicate<SpecContext> isType(String name) {
+        return ctx -> {
+            JavaClass spec = ctx.get(SpecKey.SPEC);
+            return spec.getType().getName().equals(name);
+        };
     }
 }

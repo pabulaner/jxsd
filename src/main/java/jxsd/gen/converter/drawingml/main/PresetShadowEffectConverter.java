@@ -13,12 +13,12 @@ public class PresetShadowEffectConverter {
   public static PresetShadowEffectModel fromDocx4j(CTPresetShadowEffect value) {
     if (value == null) return null;
     PresetShadowEffectModel.EG_ColorChoice egColorChoice = new PresetShadowEffectModel.EG_ColorChoice();
-    if (value.getScrgbClr() != null) egColorChoice = PresetShadowEffectConverter.newEGColorChoice(PresetShadowEffectConverter.fromDocx4j(value.getScrgbClr()));
-    if (value.getSrgbClr() != null) egColorChoice = PresetShadowEffectConverter.newEGColorChoice(PresetShadowEffectConverter.fromDocx4j(value.getSrgbClr()));
-    if (value.getHslClr() != null) egColorChoice = PresetShadowEffectConverter.newEGColorChoice(PresetShadowEffectConverter.fromDocx4j(value.getHslClr()));
-    if (value.getSysClr() != null) egColorChoice = PresetShadowEffectConverter.newEGColorChoice(PresetShadowEffectConverter.fromDocx4j(value.getSysClr()));
-    if (value.getSchemeClr() != null) egColorChoice = PresetShadowEffectConverter.newEGColorChoice(PresetShadowEffectConverter.fromDocx4j(value.getSchemeClr()));
-    if (value.getPrstClr() != null) egColorChoice = PresetShadowEffectConverter.newEGColorChoice(PresetShadowEffectConverter.fromDocx4j(value.getPrstClr()));
+    if (value.getScrgbClr() != null) egColorChoice = PresetShadowEffectModel.EG_ColorChoice.newScrgbClr(ScRgbColorConverter.fromDocx4j(value.getScrgbClr()));
+    if (value.getSrgbClr() != null) egColorChoice = PresetShadowEffectModel.EG_ColorChoice.newSrgbClr(SRgbColorConverter.fromDocx4j(value.getSrgbClr()));
+    if (value.getHslClr() != null) egColorChoice = PresetShadowEffectModel.EG_ColorChoice.newHslClr(HslColorConverter.fromDocx4j(value.getHslClr()));
+    if (value.getSysClr() != null) egColorChoice = PresetShadowEffectModel.EG_ColorChoice.newSysClr(SystemColorConverter.fromDocx4j(value.getSysClr()));
+    if (value.getSchemeClr() != null) egColorChoice = PresetShadowEffectModel.EG_ColorChoice.newSchemeClr(SchemeColorConverter.fromDocx4j(value.getSchemeClr()));
+    if (value.getPrstClr() != null) egColorChoice = PresetShadowEffectModel.EG_ColorChoice.newPrstClr(PresetColorConverter.fromDocx4j(value.getPrstClr()));
     return new PresetShadowEffectModel(PositiveCoordinateValueConverter.fromDocx4j(value.getDist()), PresetShadowValValueConverter.fromDocx4j(value.getPrst()), PositiveFixedAngleValueConverter.fromDocx4j(value.getDir()), egColorChoice);
   }
 

@@ -15,8 +15,8 @@ public class DateAxConverter {
   public static DateAxModel fromDocx4j(CTDateAx value) {
     if (value == null) return null;
     DateAxModel.CrossesOrCrossesAt crossesOrCrossesAt = new DateAxModel.CrossesOrCrossesAt();
-    if (value.getCrosses() != null) crossesOrCrossesAt = DateAxConverter.newCrossesOrCrossesAt(DateAxConverter.fromDocx4j(value.getCrosses()));
-    if (value.getCrossesAt() != null) crossesOrCrossesAt = DateAxConverter.newCrossesOrCrossesAt(DateAxConverter.fromDocx4j(value.getCrossesAt()));
+    if (value.getCrosses() != null) crossesOrCrossesAt = DateAxModel.CrossesOrCrossesAt.newCrosses(CrossesConverter.fromDocx4j(value.getCrosses()));
+    if (value.getCrossesAt() != null) crossesOrCrossesAt = DateAxModel.CrossesOrCrossesAt.newCrossesAt(DoubleConverter.fromDocx4j(value.getCrossesAt()));
     return new DateAxModel(UnsignedIntConverter.fromDocx4j(value.getAxId()), ScalingConverter.fromDocx4j(value.getScaling()), BooleanConverter.fromDocx4j(value.getDelete()), AxPosConverter.fromDocx4j(value.getAxPos()), ChartLinesConverter.fromDocx4j(value.getMajorGridlines()), ChartLinesConverter.fromDocx4j(value.getMinorGridlines()), TitleConverter.fromDocx4j(value.getTitle()), NumFmtConverter.fromDocx4j(value.getNumFmt()), TickMarkConverter.fromDocx4j(value.getMajorTickMark()), TickMarkConverter.fromDocx4j(value.getMinorTickMark()), TickLblPosConverter.fromDocx4j(value.getTickLblPos()), ShapePropertiesConverter.fromDocx4j(value.getSpPr()), TextBodyConverter.fromDocx4j(value.getTxPr()), UnsignedIntConverter.fromDocx4j(value.getCrossAx()), crossesOrCrossesAt, BooleanConverter.fromDocx4j(value.getAuto()), LblOffsetConverter.fromDocx4j(value.getLblOffset()), TimeUnitConverter.fromDocx4j(value.getBaseTimeUnit()), AxisUnitConverter.fromDocx4j(value.getMajorUnit()), TimeUnitConverter.fromDocx4j(value.getMajorTimeUnit()), AxisUnitConverter.fromDocx4j(value.getMinorUnit()), TimeUnitConverter.fromDocx4j(value.getMinorTimeUnit()), ExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 

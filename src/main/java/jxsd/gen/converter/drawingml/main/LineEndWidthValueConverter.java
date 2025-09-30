@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.LineEndWidthValueBuilder;
 import jxsd.gen.model.drawingml.main.LineEndWidthValueModel;
 import org.docx4j.dml.STLineEndWidth;
 
@@ -13,17 +12,17 @@ public class LineEndWidthValueConverter {
 
   public static LineEndWidthValueModel fromDocx4j(STLineEndWidth value) {
     if (value == null) return null;
-    if (value == LineEndWidthValueBuilder.SM) return LineEndWidthValueModel.SM;
-    if (value == LineEndWidthValueBuilder.MED) return LineEndWidthValueModel.MED;
-    if (value == LineEndWidthValueBuilder.LG) return LineEndWidthValueModel.LG;
+    if (value == STLineEndWidth.SM) return LineEndWidthValueModel.SM;
+    if (value == STLineEndWidth.MED) return LineEndWidthValueModel.MED;
+    if (value == STLineEndWidth.LG) return LineEndWidthValueModel.LG;
     return null;
   }
 
   public static STLineEndWidth toDocx4j(LineEndWidthValueModel value) {
     if (value == null) return null;
-    if (value == LineEndWidthValueModel.SM) return LineEndWidthValueBuilder.SM;
-    if (value == LineEndWidthValueModel.MED) return LineEndWidthValueBuilder.MED;
-    if (value == LineEndWidthValueModel.LG) return LineEndWidthValueBuilder.LG;
+    if (value == LineEndWidthValueModel.SM) return STLineEndWidth.SM;
+    if (value == LineEndWidthValueModel.MED) return STLineEndWidth.MED;
+    if (value == LineEndWidthValueModel.LG) return STLineEndWidth.LG;
     return null;
   }
 }

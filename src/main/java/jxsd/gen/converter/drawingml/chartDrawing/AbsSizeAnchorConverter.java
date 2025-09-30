@@ -14,11 +14,11 @@ public class AbsSizeAnchorConverter {
   public static AbsSizeAnchorModel fromDocx4j(CTAbsSizeAnchor value) {
     if (value == null) return null;
     AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrame spOrGrpSpOrGraphicFrame = new AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrame();
-    if (value.getSp() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(AbsSizeAnchorConverter.fromDocx4j(value.getSp()));
-    if (value.getGrpSp() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(AbsSizeAnchorConverter.fromDocx4j(value.getGrpSp()));
-    if (value.getGraphicFrame() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(AbsSizeAnchorConverter.fromDocx4j(value.getGraphicFrame()));
-    if (value.getCxnSp() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(AbsSizeAnchorConverter.fromDocx4j(value.getCxnSp()));
-    if (value.getPic() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorConverter.newSpOrGrpSpOrGraphicFrame(AbsSizeAnchorConverter.fromDocx4j(value.getPic()));
+    if (value.getSp() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newSp(ShapeConverter.fromDocx4j(value.getSp()));
+    if (value.getGrpSp() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newGrpSp(GroupShapeConverter.fromDocx4j(value.getGrpSp()));
+    if (value.getGraphicFrame() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newGraphicFrame(GraphicFrameConverter.fromDocx4j(value.getGraphicFrame()));
+    if (value.getCxnSp() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newCxnSp(ConnectorConverter.fromDocx4j(value.getCxnSp()));
+    if (value.getPic() != null) spOrGrpSpOrGraphicFrame = AbsSizeAnchorModel.SpOrGrpSpOrGraphicFrame.newPic(PictureConverter.fromDocx4j(value.getPic()));
     return new AbsSizeAnchorModel(MarkerConverter.fromDocx4j(value.getFrom()), PositiveSize2DConverter.fromDocx4j(value.getExt()), spOrGrpSpOrGraphicFrame);
   }
 

@@ -10,12 +10,10 @@ public class TimeValueConverter {
   }
 
   public static LocalTime fromDocx4j(LocalTime value) {
-    if (value == null) return null;
     return value;
   }
 
   public static LocalTime toDocx4j(LocalTime value) {
-    if (value == null) return null;
     return value;
   }
 }

@@ -1,6 +1,5 @@
 package jxsd.gen.converter.drawingml.main;
 
-import jxsd.gen.builder.drawingml.main.FontCollectionIndexValueBuilder;
 import jxsd.gen.model.drawingml.main.FontCollectionIndexValueModel;
 import org.docx4j.dml.STFontCollectionIndex;
 
@@ -13,17 +12,17 @@ public class FontCollectionIndexValueConverter {
 
   public static FontCollectionIndexValueModel fromDocx4j(STFontCollectionIndex value) {
     if (value == null) return null;
-    if (value == FontCollectionIndexValueBuilder.MAJOR) return FontCollectionIndexValueModel.MAJOR;
-    if (value == FontCollectionIndexValueBuilder.MINOR) return FontCollectionIndexValueModel.MINOR;
-    if (value == FontCollectionIndexValueBuilder.NONE) return FontCollectionIndexValueModel.NONE;
+    if (value == STFontCollectionIndex.MAJOR) return FontCollectionIndexValueModel.MAJOR;
+    if (value == STFontCollectionIndex.MINOR) return FontCollectionIndexValueModel.MINOR;
+    if (value == STFontCollectionIndex.NONE) return FontCollectionIndexValueModel.NONE;
     return null;
   }
 
   public static STFontCollectionIndex toDocx4j(FontCollectionIndexValueModel value) {
     if (value == null) return null;
-    if (value == FontCollectionIndexValueModel.MAJOR) return FontCollectionIndexValueBuilder.MAJOR;
-    if (value == FontCollectionIndexValueModel.MINOR) return FontCollectionIndexValueBuilder.MINOR;
-    if (value == FontCollectionIndexValueModel.NONE) return FontCollectionIndexValueBuilder.NONE;
+    if (value == FontCollectionIndexValueModel.MAJOR) return STFontCollectionIndex.MAJOR;
+    if (value == FontCollectionIndexValueModel.MINOR) return STFontCollectionIndex.MINOR;
+    if (value == FontCollectionIndexValueModel.NONE) return STFontCollectionIndex.NONE;
     return null;
   }
 }

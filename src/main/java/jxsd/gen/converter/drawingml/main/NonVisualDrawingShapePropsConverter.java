@@ -13,7 +13,7 @@ public class NonVisualDrawingShapePropsConverter {
 
   public static NonVisualDrawingShapePropsModel fromDocx4j(CTNonVisualDrawingShapeProps value) {
     if (value == null) return null;
-    return new NonVisualDrawingShapePropsModel(BooleanValueConverter.fromDocx4j(value.getTxBox()), ShapeLockingConverter.fromDocx4j(value.getSpLocks()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
+    return new NonVisualDrawingShapePropsModel(BooleanValueConverter.fromDocx4j(value.isTxBox()), ShapeLockingConverter.fromDocx4j(value.getSpLocks()), OfficeArtExtensionListConverter.fromDocx4j(value.getExtLst()));
   }
 
   public static CTNonVisualDrawingShapeProps toDocx4j(NonVisualDrawingShapePropsModel value) {

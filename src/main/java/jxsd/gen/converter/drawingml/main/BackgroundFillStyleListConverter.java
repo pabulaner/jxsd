@@ -21,27 +21,29 @@ public class BackgroundFillStyleListConverter {
   public static BackgroundFillStyleListModel fromDocx4j(CTBackgroundFillStyleList value) {
     if (value == null) return null;
     List<BackgroundFillStyleListModel.EG_FillProperties> egFillProperties = value.getEGFillProperties().stream().map(val -> {
-      if (val instanceof CTNoFillProperties) return CTBackgroundFillStyleList.EGFillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j((CTNoFillProperties) val));
-      if (val instanceof CTSolidColorFillProperties) return CTBackgroundFillStyleList.EGFillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j((CTSolidColorFillProperties) val));
-      if (val instanceof CTGradientFillProperties) return CTBackgroundFillStyleList.EGFillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j((CTGradientFillProperties) val));
-      if (val instanceof CTBlipFillProperties) return CTBackgroundFillStyleList.EGFillProperties.newBlipFill(BlipFillPropertiesConverter.fromDocx4j((CTBlipFillProperties) val));
-      if (val instanceof CTPatternFillProperties) return CTBackgroundFillStyleList.EGFillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j((CTPatternFillProperties) val));
-      if (val instanceof CTGroupFillProperties) return CTBackgroundFillStyleList.EGFillProperties.newGrpFill(GroupFillPropertiesConverter.fromDocx4j((CTGroupFillProperties) val));
-      return new BackgroundFillStyleListModel(egFillProperties);
-    }
-
-    public static CTBackgroundFillStyleList toDocx4j(BackgroundFillStyleListModel value) {
-      if (value == null) return null;
-      CTBackgroundFillStyleList result = new CTBackgroundFillStyleList();
-      result.getEGFillProperties().addAll(value.getEGFillProperties().stream().map(val -> {
-        if (val.isNoFill()) return BackgroundFillStyleListConverter.toDocx4j(val.getNoFill());
-        if (val.isSolidFill()) return BackgroundFillStyleListConverter.toDocx4j(val.getSolidFill());
-        if (val.isGradFill()) return BackgroundFillStyleListConverter.toDocx4j(val.getGradFill());
-        if (val.isBlipFill()) return BackgroundFillStyleListConverter.toDocx4j(val.getBlipFill());
-        if (val.isPattFill()) return BackgroundFillStyleListConverter.toDocx4j(val.getPattFill());
-        if (val.isGrpFill()) return BackgroundFillStyleListConverter.toDocx4j(val.getGrpFill());
-        return null;
-      } ).collect(Collectors.toList());
-      return result;
-    }
+      if (val instanceof CTNoFillProperties) return BackgroundFillStyleListModel.EG_FillProperties.newNoFill(NoFillPropertiesConverter.fromDocx4j((CTNoFillProperties) val));
+      if (val instanceof CTSolidColorFillProperties) return BackgroundFillStyleListModel.EG_FillProperties.newSolidFill(SolidColorFillPropertiesConverter.fromDocx4j((CTSolidColorFillProperties) val));
+      if (val instanceof CTGradientFillProperties) return BackgroundFillStyleListModel.EG_FillProperties.newGradFill(GradientFillPropertiesConverter.fromDocx4j((CTGradientFillProperties) val));
+      if (val instanceof CTBlipFillProperties) return BackgroundFillStyleListModel.EG_FillProperties.newBlipFill(BlipFillPropertiesConverter.fromDocx4j((CTBlipFillProperties) val));
+      if (val instanceof CTPatternFillProperties) return BackgroundFillStyleListModel.EG_FillProperties.newPattFill(PatternFillPropertiesConverter.fromDocx4j((CTPatternFillProperties) val));
+      if (val instanceof CTGroupFillProperties) return BackgroundFillStyleListModel.EG_FillProperties.newGrpFill(GroupFillPropertiesConverter.fromDocx4j((CTGroupFillProperties) val));
+      return null;
+    } ).collect(Collectors.toList());
+    return new BackgroundFillStyleListModel(egFillProperties);
   }
+
+  public static CTBackgroundFillStyleList toDocx4j(BackgroundFillStyleListModel value) {
+    if (value == null) return null;
+    CTBackgroundFillStyleList result = new CTBackgroundFillStyleList();
+    result.getEGFillProperties().addAll(value.getEGFillProperties().stream().map(val -> {
+      if (val.isNoFill()) return NoFillPropertiesConverter.toDocx4j(val.getNoFill());
+      if (val.isSolidFill()) return SolidColorFillPropertiesConverter.toDocx4j(val.getSolidFill());
+      if (val.isGradFill()) return GradientFillPropertiesConverter.toDocx4j(val.getGradFill());
+      if (val.isBlipFill()) return BlipFillPropertiesConverter.toDocx4j(val.getBlipFill());
+      if (val.isPattFill()) return PatternFillPropertiesConverter.toDocx4j(val.getPattFill());
+      if (val.isGrpFill()) return GroupFillPropertiesConverter.toDocx4j(val.getGrpFill());
+      return null;
+    } ).collect(Collectors.toList()));
+    return result;
+  }
+}
