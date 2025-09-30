@@ -12,20 +12,10 @@ import java.util.Map;
 /**
  * Defines a class transform.
  */
-public class ClassTransform {
+public class ClassTransform extends TypeTransform {
 
     /**
-     * The name of the target class.
-     */
-    private final String name;
-
-    /**
-     * The interfaces the class implements.
-     */
-    private final List<InterfaceTransform> interfaces;
-
-    /**
-     * The class transforms for inner classes, if any.
+     * The class transforms for inner classes.
      */
     private final Map<String, ClassTransform> classes;
 
@@ -43,6 +33,9 @@ public class ClassTransform {
             @JacksonXmlProperty(localName = "name")
             String name,
             @JacksonXmlElementWrapper(useWrapping = false)
+            @JacksonXmlProperty(localName = "generic")
+            List<GenericTransform> generics,
+            @JacksonXmlElementWrapper(useWrapping = false)
             @JacksonXmlProperty(localName = "implements")
             List<InterfaceTransform> interfaces,
             @JacksonXmlElementWrapper(useWrapping = false)
@@ -55,8 +48,8 @@ public class ClassTransform {
             @JacksonXmlProperty(localName = "rename")
             List<RefactorTransform> renames
     ) {
-        this.name = name;
-        this.interfaces = interfaces != null ? interfaces : new ArrayList<>();
+        super(name, generics, interfaces);
+
         this.classes = new HashMap<>();
         this.replaces = new HashMap<>();
         this.renames = new HashMap<>();
@@ -64,14 +57,6 @@ public class ClassTransform {
         if (classes != null) classes.forEach(value -> this.classes.put(value.getName(), value));
         if (replaces != null) replaces.forEach(value -> this.replaces.put(value.getValue(), value));
         if (renames != null) renames.forEach(value -> this.renames.put(value.getValue(), value));
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<InterfaceTransform> getInterfaces() {
-        return interfaces;
     }
 
     public ClassTransform getClass(String key) {

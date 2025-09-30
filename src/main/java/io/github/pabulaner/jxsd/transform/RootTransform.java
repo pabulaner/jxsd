@@ -33,7 +33,7 @@ public final class RootTransform extends ClassTransform {
             @JacksonXmlProperty(localName = "rename")
             List<RefactorTransform> renames
     ) {
-        super(null, interfaces, classes, replaces, renames);
+        super(null, null, interfaces, classes, replaces, renames);
         this.pkg = List.of(pkg.split("\\."));
     }
 

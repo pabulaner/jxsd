@@ -13,7 +13,7 @@ public class MethodTransform {
     private final String name;
 
     /**
-     * The pkg of the type.
+     * The package of the type.
      */
     private final String pkg;
 

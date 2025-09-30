@@ -40,13 +40,17 @@
     <!-- CHART -->
 
     <interface name="IT_Chart">
+        <generic name="TSer" extends="IT_Ser" />
         <method name="dLbls" type="CT_DLbls" />
         <method name="extLst" type="CT_ExtensionList" />
-        <method name="ser" type="IT_Series" isGeneric="true" list="true" />
+        <method name="ser" type="TSer" list="true" />
         <method name="varyColors" type="CT_Boolean" />
+        <method name="builder" type="IT_ChartBuilder" />
     </interface>
     <interface name="IT_AreaChart">
-        <extends name="IT_Chart" />
+        <extends name="IT_Chart">
+            <generic name="CT_AreaSer" />
+        </extends>
         <extends name="IT_AxIdComponent" />
         <extends name="IT_DropLinesComponent" />
         <extends name="IT_GroupingComponent" />
@@ -80,7 +84,7 @@
 
     <!-- SERIES -->
 
-    <interface name="IT_Series">
+    <interface name="IT_Ser">
         <method name="idx" type="CT_UnsignedInt" />
         <method name="order" type="CT_UnsignedInt" />
         <method name="tx" type="CT_SerTx" />
@@ -129,30 +133,30 @@
     </class>
 
     <class name="CT_AreaSer">
-        <implements name="IT_Series" />
+        <implements name="IT_Ser" />
         <implements name="IT_PictureOptionsComponent" />
     </class>
     <class name="CT_BarSer">
-        <implements name="IT_Series" />
+        <implements name="IT_Ser" />
         <implements name="IT_InvertIfNegativeComponent" />
         <implements name="IT_PictureOptionsComponent" />
     </class>
     <class name="CT_BubbleSer">
-        <implements name="IT_Series" />
+        <implements name="IT_Ser" />
         <implements name="IT_InvertIfNegativeComponent" />
         <rename value="xVal" with="cat" />
         <rename value="yVal" with="val" />
     </class>
     <class name="CT_LineSer">
-        <implements name="IT_Series" />
+        <implements name="IT_Ser" />
         <implements name="IT_MarkerComponent" />
         <implements name="IT_SmoothComponent" />
     </class>
     <class name="CT_PieSer">
-        <implements name="IT_Series" />
+        <implements name="IT_Ser" />
     </class>
     <class name="CT_ScatterSer">
-        <implements name="IT_Series" />
+        <implements name="IT_Ser" />
         <implements name="IT_MarkerComponent" />
         <implements name="IT_SmoothComponent" />
         <rename value="xVal" with="cat" />
@@ -160,7 +164,7 @@
     </class>
 
     <class name="CT_PlotArea">
-        <!--<replace value="AreaChartOrArea3DChartOrLineChart" with="IT_Chart" />-->
+        <replace value="AreaChartOrArea3DChartOrLineChart" with="IT_Chart" />
         <rename value="areaChartOrArea3DChartOrLineChart" with="charts" />
     </class>
 </transform>

@@ -90,7 +90,7 @@ public class Transformer {
                             })
                             .toList();
 
-                    List<JavaType> interfaces = iface.getExt()
+                    List<JavaType> interfaces = iface.getInterfaces()
                             .stream()
                             .map(val -> new JavaType.Builder()
                                     .setPkg(transform.getPkg())

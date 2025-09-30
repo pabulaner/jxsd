@@ -36,7 +36,7 @@ public class Main {
         JavaResult javaResult = new JavaParser().parse(xsdResult);
 
         List<String> pkg = List.of("jxsd", "gen");
-        TransformMap map = new TransformMap(List.of());
+        TransformMap map = new TransformMap(List.of(Main.class.getResource("/transforms/transform.xml")));
 
         Resolver modelResolver = Resolvers.getDefault(javaResult.scope(), pkg, "model", map);
         Resolver builderResolver = Resolvers.getDefault(javaResult.scope(), pkg, "builder", map);

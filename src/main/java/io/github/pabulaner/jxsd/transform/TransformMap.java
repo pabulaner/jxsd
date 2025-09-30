@@ -66,7 +66,7 @@ public class TransformMap {
             if (transform != null) {
                 transform.getInterfaces().forEach(iface -> {
                     if (iface.getName().equals(type.getName())) {
-                        interfaces.addAll(iface.getExt());
+                        interfaces.addAll(iface.getInterfaces());
                     }
                 });
             }

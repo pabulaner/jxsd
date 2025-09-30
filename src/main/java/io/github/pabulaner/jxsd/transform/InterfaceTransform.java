@@ -8,17 +8,7 @@ import java.util.List;
 /**
  * Defines a interface declaration.
  */
-public final class InterfaceTransform {
-
-    /**
-     * The name of the interface.
-     */
-    private final String name;
-
-    /**
-     * The super interfaces, if any.
-     */
-    private final List<InterfaceTransform> ext;
+public final class InterfaceTransform extends TypeTransform {
 
     /**
      * The methods the interface defines.
@@ -29,23 +19,17 @@ public final class InterfaceTransform {
             @JacksonXmlProperty(localName = "name")
             String name,
             @JacksonXmlElementWrapper(useWrapping = false)
+            @JacksonXmlProperty(localName = "generic")
+            List<GenericTransform> generics,
+            @JacksonXmlElementWrapper(useWrapping = false)
             @JacksonXmlProperty(localName = "extends")
-            List<InterfaceTransform> ext,
+            List<InterfaceTransform> interfaces,
             @JacksonXmlElementWrapper(useWrapping = false)
             @JacksonXmlProperty(localName = "method")
             List<MethodTransform> methods
     ) {
-        this.name = name;
-        this.ext = ext != null ? ext : List.of();
+        super(name, generics, interfaces);
         this.methods = methods != null ? methods : List.of();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<InterfaceTransform> getExt() {
-        return ext;
     }
 
     public List<MethodTransform> getMethods() {
