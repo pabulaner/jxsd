@@ -1,33 +1,38 @@
 # JXsd
 
-Example usage:
+JXsd is a code generator for xsd files.
+It allows to generate java classes for the defined schema in xsd files.
 
-```
-JXsdParser.parse(new JXsdParser.Config()
-    .addPkgConverter("drawingml", "dml")
-    .setBasePkg("com.example.models")
-    .setXsdFile(Main.class.getResource("/xsd/dml/dml-chart.xsd"))
-    .addTransformFile(Main.class.getResource("/transforms/transform.xml"))
-    .setOutputPath(Path.of("path/to/dest")));
-```
+# Usage
 
-#### addPkgConverter
+See the Main.java file for an example.
 
-Used to rename packages.
+# Packages
 
-#### setBasePkg
+### xsd
 
-Used to set the base package.
+The xsd package parses the raw xsd files into a format that can be used to extract names, properties, etc. of the schema.
 
-#### setXsdFile
+### java
 
-Used to set the xsd file from which the classes should be generated. 
+The java package makes use of the output of the xsd package and converts it into a format close to java classes.
+It outputs classes representing java classes, interfaces and enums. 
 
-#### addTransformFile
+### spec
 
-Used to add a transformation file which can be used to rename or replace names and types or to add interfaces to certain classes.
+The spec package makes use of the output of the java package and converts it into a spec.
+A spec is a representation of a java class, interface or enum that can be written into a java file.
+This java file is then a valid java class, interface or enum.
 
-#### setOutputPath
+### gen
 
-Used to set the output path of all generated files.
+The gen package makes use of the output of the spec package and creates the actual java files.
 
+### transform
+
+The transform package provides the functionality to transform the generated java classes.
+This includes changing names of types or adding interfaces to certain classes.
+
+### util
+
+The util package contains some utility classes and functions.
