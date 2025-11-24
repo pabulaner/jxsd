@@ -1,7 +1,5 @@
 package io.github.pabulaner.jxsd.spec;
 
-import io.github.pabulaner.jxsd.java.JavaClass;
-
 import java.util.function.Predicate;
 
 public class SpecParserFilter implements SpecParser {

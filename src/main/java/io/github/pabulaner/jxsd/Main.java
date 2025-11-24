@@ -1,6 +1,5 @@
 package io.github.pabulaner.jxsd;
 
-import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.gen.Generator;
 import io.github.pabulaner.jxsd.gen.GeneratorConfig;
 import io.github.pabulaner.jxsd.java.JavaParser;
@@ -11,16 +10,11 @@ import io.github.pabulaner.jxsd.spec.resolver.Resolver;
 import io.github.pabulaner.jxsd.transform.TransformMap;
 import io.github.pabulaner.jxsd.xsd.XsdParser;
 import io.github.pabulaner.jxsd.xsd.XsdResult;
-import org.plutext.jaxb.svg11.G;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.security.spec.KeySpec;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

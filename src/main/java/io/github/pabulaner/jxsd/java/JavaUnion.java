@@ -1,7 +1,6 @@
 package io.github.pabulaner.jxsd.java;
 
 import java.util.List;
-import java.util.Objects;
 
 public final class JavaUnion extends JavaClass {
 

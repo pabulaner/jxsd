@@ -1,17 +1,11 @@
 package io.github.pabulaner.jxsd.transform;
 
-import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaComplex;
-import io.github.pabulaner.jxsd.java.JavaInterface;
-import io.github.pabulaner.jxsd.java.JavaMethod;
-import io.github.pabulaner.jxsd.java.JavaResult;
-import io.github.pabulaner.jxsd.java.JavaType;
+import io.github.pabulaner.jxsd.java.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 public class Transformer {
 

@@ -1,21 +1,9 @@
 package io.github.pabulaner.jxsd;
 
-import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaPrimitive;
-import io.github.pabulaner.jxsd.java.JavaRestriction;
-import io.github.pabulaner.jxsd.java.JavaScope;
-import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.spec.SpecContext;
-import io.github.pabulaner.jxsd.spec.resolver.PrimitiveResolver;
-import io.github.pabulaner.jxsd.spec.resolver.SwitchResolver;
-import io.github.pabulaner.jxsd.spec.resolver.TransformResolver;
+import io.github.pabulaner.jxsd.java.*;
+import io.github.pabulaner.jxsd.spec.resolver.*;
 import io.github.pabulaner.jxsd.transform.TransformMap;
 import io.github.pabulaner.jxsd.util.Name;
-import io.github.pabulaner.jxsd.spec.resolver.PkgCleanResolver;
-import io.github.pabulaner.jxsd.spec.resolver.PkgParentResolver;
-import io.github.pabulaner.jxsd.spec.resolver.PkgRenameResolver;
-import io.github.pabulaner.jxsd.spec.resolver.Resolver;
-import io.github.pabulaner.jxsd.spec.resolver.TypeRenameResolver;
 import io.github.pabulaner.jxsd.util.Pair;
 
 import java.util.ArrayList;

@@ -7,12 +7,7 @@ import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.spec.resolver.Resolver;
 import io.github.pabulaner.jxsd.util.Name;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public final class ParserUtil {

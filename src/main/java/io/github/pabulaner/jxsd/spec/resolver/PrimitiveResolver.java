@@ -1,11 +1,8 @@
 package io.github.pabulaner.jxsd.spec.resolver;
 
-import com.squareup.javapoet.ClassName;
 import io.github.pabulaner.jxsd.java.JavaRestriction;
 import io.github.pabulaner.jxsd.java.JavaScope;
 import io.github.pabulaner.jxsd.java.JavaType;
-import io.github.pabulaner.jxsd.spec.util.ParserUtil;
-import io.github.pabulaner.jxsd.util.Name;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,9 +1,5 @@
 package io.github.pabulaner.jxsd.transform;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**

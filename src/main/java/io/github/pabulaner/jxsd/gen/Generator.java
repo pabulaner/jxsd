@@ -2,35 +2,13 @@ package io.github.pabulaner.jxsd.gen;
 
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
+import io.github.pabulaner.jxsd.java.JavaResult;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
-import io.github.pabulaner.jxsd.spec.parser.extra.AddBuilderMethodToModelParser;
-import io.github.pabulaner.jxsd.spec.parser.extra.AddJavadocToClassParser;
-import io.github.pabulaner.jxsd.spec.parser.model.ChoiceModelParser;
-import io.github.pabulaner.jxsd.spec.parser.model.EnumModelParser;
-import io.github.pabulaner.jxsd.spec.parser.model.InterfaceModelParser;
-import io.github.pabulaner.jxsd.spec.parser.model.PrimitiveModelParser;
-import io.github.pabulaner.jxsd.spec.parser.model.RestrictionModelParser;
-import io.github.pabulaner.jxsd.spec.parser.model.SequenceModelParser;
-import io.github.pabulaner.jxsd.spec.parser.model.UnionModelParser;
-import io.github.pabulaner.jxsd.java.JavaChoice;
-import io.github.pabulaner.jxsd.java.JavaEnum;
-import io.github.pabulaner.jxsd.java.JavaInterface;
-import io.github.pabulaner.jxsd.java.JavaPrimitive;
-import io.github.pabulaner.jxsd.java.JavaRestriction;
-import io.github.pabulaner.jxsd.java.JavaResult;
-import io.github.pabulaner.jxsd.java.JavaSequence;
-import io.github.pabulaner.jxsd.java.JavaUnion;
-import io.github.pabulaner.jxsd.spec.SpecParser;
-import io.github.pabulaner.jxsd.spec.SpecParserMap;
-import io.github.pabulaner.jxsd.spec.parser.model.ModelParser;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class Generator {
 

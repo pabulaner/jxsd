@@ -1,7 +1,6 @@
 package io.github.pabulaner.jxsd.spec.parser;
 
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.java.JavaClass;
 import io.github.pabulaner.jxsd.java.JavaComplex;
 import io.github.pabulaner.jxsd.spec.SpecContext;

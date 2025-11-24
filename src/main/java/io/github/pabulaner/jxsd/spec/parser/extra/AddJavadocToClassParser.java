@@ -1,14 +1,7 @@
 package io.github.pabulaner.jxsd.spec.parser.extra;
 
 import com.squareup.javapoet.TypeSpec;
-import io.github.pabulaner.jxsd.java.JavaChoice;
-import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaEnum;
-import io.github.pabulaner.jxsd.java.JavaList;
-import io.github.pabulaner.jxsd.java.JavaPrimitive;
-import io.github.pabulaner.jxsd.java.JavaRestriction;
-import io.github.pabulaner.jxsd.java.JavaSequence;
-import io.github.pabulaner.jxsd.java.JavaUnion;
+import io.github.pabulaner.jxsd.java.*;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.SpecParser;

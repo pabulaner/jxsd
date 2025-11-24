@@ -1,20 +1,6 @@
 package io.github.pabulaner.jxsd.xsd;
 
-import com.sun.xml.xsom.XSAnnotation;
-import com.sun.xml.xsom.XSAttributeDecl;
-import com.sun.xml.xsom.XSComplexType;
-import com.sun.xml.xsom.XSContentType;
-import com.sun.xml.xsom.XSElementDecl;
-import com.sun.xml.xsom.XSListSimpleType;
-import com.sun.xml.xsom.XSModelGroup;
-import com.sun.xml.xsom.XSParticle;
-import com.sun.xml.xsom.XSRestrictionSimpleType;
-import com.sun.xml.xsom.XSSchemaSet;
-import com.sun.xml.xsom.XSSimpleType;
-import com.sun.xml.xsom.XSTerm;
-import com.sun.xml.xsom.XSType;
-import com.sun.xml.xsom.XSUnionSimpleType;
-import com.sun.xml.xsom.XmlString;
+import com.sun.xml.xsom.*;
 import com.sun.xml.xsom.parser.XSOMParser;
 import com.sun.xml.xsom.util.DomAnnotationParserFactory;
 import org.w3c.dom.Element;
@@ -25,10 +11,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.SAXParserFactory;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class XsdParser {

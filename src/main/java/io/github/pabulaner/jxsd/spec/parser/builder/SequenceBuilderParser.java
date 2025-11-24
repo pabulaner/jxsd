@@ -4,13 +4,12 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.github.pabulaner.jxsd.java.JavaSequence;
-import io.github.pabulaner.jxsd.spec.util.ParserUtil;
-import io.github.pabulaner.jxsd.java.JavaChoice;
 import io.github.pabulaner.jxsd.java.JavaType;
 import io.github.pabulaner.jxsd.spec.SpecContext;
 import io.github.pabulaner.jxsd.spec.SpecKey;
 import io.github.pabulaner.jxsd.spec.parser.ComplexSpecParser;
 import io.github.pabulaner.jxsd.spec.resolver.Resolver;
+import io.github.pabulaner.jxsd.spec.util.ParserUtil;
 import io.github.pabulaner.jxsd.util.Name;
 
 import javax.lang.model.element.Modifier;

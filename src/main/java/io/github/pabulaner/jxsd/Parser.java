@@ -1,6 +1,5 @@
 package io.github.pabulaner.jxsd;
 
-import freemarker.template.TemplateException;
 import io.github.pabulaner.jxsd.gen.Generator;
 import io.github.pabulaner.jxsd.gen.GeneratorConfig;
 import io.github.pabulaner.jxsd.java.JavaParser;

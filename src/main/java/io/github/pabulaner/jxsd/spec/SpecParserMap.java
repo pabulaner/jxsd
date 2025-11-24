@@ -1,7 +1,6 @@
 package io.github.pabulaner.jxsd.spec;
 
 import io.github.pabulaner.jxsd.java.JavaClass;
-import io.github.pabulaner.jxsd.java.JavaParser;
 
 import java.util.HashMap;
 import java.util.Map;

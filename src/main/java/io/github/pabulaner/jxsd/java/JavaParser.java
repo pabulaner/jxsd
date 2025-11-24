@@ -1,25 +1,12 @@
 package io.github.pabulaner.jxsd.java;
 
 import io.github.pabulaner.jxsd.util.Name;
-import io.github.pabulaner.jxsd.xsd.XsdComplexStruct;
-import io.github.pabulaner.jxsd.xsd.XsdElementValue;
-import io.github.pabulaner.jxsd.xsd.XsdGroupValue;
-import io.github.pabulaner.jxsd.xsd.XsdRestriction;
-import io.github.pabulaner.jxsd.xsd.XsdResult;
-import io.github.pabulaner.jxsd.xsd.XsdScope;
-import io.github.pabulaner.jxsd.xsd.XsdSimpleStruct;
-import io.github.pabulaner.jxsd.xsd.XsdStruct;
-import io.github.pabulaner.jxsd.xsd.XsdType;
-import io.github.pabulaner.jxsd.xsd.XsdValue;
+import io.github.pabulaner.jxsd.xsd.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
 
 public class JavaParser {
 
